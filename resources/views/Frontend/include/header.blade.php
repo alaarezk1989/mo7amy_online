@@ -193,7 +193,8 @@ $sess_user_id= session('user_id');
                      <a href="#" class="dropdown-toggle prof-name" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                       <span class=""> {{auth()->user()->name}} </span><span class="caret"></span></a>                                     
                       <ul class="dropdown-menu user-menu">
-                        <li> <a href="{{lang_url('YourCases')}}"> اضف قضية </a></li>
+                        <li> <a href="{{lang_url('show')}}"> اضف قضية </a></li>
+                        <li> <a href="{{lang_url('YourCases')}}"> قضاياك </a></li>
                         <li> <a href="{{lang_url('edit-profile').'/'.$sess_user_id}}">{{ trans('cpanel.my_profile') }} </a></li>
                         <li> <a href="client-setting.html">  اعداداتى </a></li> 
                         <li> <a href="{{lang_url('logout')}}">  {{ trans('cpanel.log_out') }} </a></li> 
