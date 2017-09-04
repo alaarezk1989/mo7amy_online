@@ -19,7 +19,7 @@ use Mail;
 // use CountryState;
 use DB;
 use Response;
-// use Carbon;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -427,6 +427,11 @@ class UserController extends Controller
         $city_id=$lawyer_data->city;
         $user_city = Cities::findOrFail($city_id);
 
+        $birthdate= $lawyer_data->birthdate;
+        $birthdate= strtotime($lawyer_data->birthdate);
+        $birthdate= date("Y, m, d", $birthdate);
+        $birthdate= (int)$birthdate;
+        $birthdate_year=Carbon::createFromDate($birthdate)->diff(Carbon::now())->format('%y');
         $data = [
             'title'=>trans('cpanel.site_name'),
             'page_title'=>trans('cpanel.edit_admin'),
@@ -434,7 +439,10 @@ class UserController extends Controller
             'user_specialty'=>$user_specialty,
             'user_country'=>$user_country,
             'user_city'=>$user_city,
+            'birthdate_year'=>$birthdate_year,
         ];
+        // return Carbon::createFromDate(1991, 7, 19)->diff(Carbon::now())->format('%y years, %m months and %d days');
+
           return view(FE.'.lawyer')->with($data);
       }
 }

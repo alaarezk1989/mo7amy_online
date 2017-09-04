@@ -32,10 +32,7 @@
                  <h4>معلومات عن المحامى </h4>
                  <ul class="list-unstyled ul-lawyer">
                     <li> <i class="fa fa-map-marker" aria-hidden="true"></i> {{$user_country->name}} , {{$user_city->name}}  </li>
-                    <li> <i class="fa fa-birthday-cake" aria-hidden="true"></i>
-                      {{ \Carbon\Carbon::createFromDate(1991, 7, 19)->diff(Carbon::now())->format('%y years, %m months and %d days')
- }}
- {{trans('cpanel.year')}} </li>
+                    <li> <i class="fa fa-birthday-cake" aria-hidden="true"></i>  {{$birthdate_year}} {{trans('cpanel.year')}} </li>
                     <li> <i class="fa fa-phone" aria-hidden="true"></i> </li>
                     <li> <i class="fa fa-envelope" aria-hidden="true"></i></li>
                  </ul>

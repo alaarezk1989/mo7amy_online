@@ -105,6 +105,13 @@ $(document).ready(function() {
             }); //end ajax
     }); //end on change country
 });  //End Document.Ready
+
+
+$(function() {
+    $( "#datepicker" ).datepicker();
+         $( "#datepicker" ).datepicker("option", "dateFormat","mm/dd/yy");
+ });
+
 </script>
 </body>
 </html>
