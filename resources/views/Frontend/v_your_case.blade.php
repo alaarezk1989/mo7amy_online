@@ -71,7 +71,7 @@
 <a href="{{lang_url('edit-case').'/'.$value->id}}">
 <button class="btn btn-primary">تعديل</button>
 </a>
-<a href="{{lang_url('delete').'/'.$value->id}}"
+<a href="{{url('delete').'/'.$value->id}}"
 <button class="btn btn-danger">مسح</button></a>
 </div>  
 </div> 

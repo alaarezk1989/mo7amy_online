@@ -191,11 +191,20 @@ public function test (Request $request)
           }
     }
 
-public function delete(Request $request){
-  Cases::destroy($id);
-  return back();
-}
 
+   public function delete($locale='ar',$id)
+    { 
+
+      /* echo $id;
+       return;*/
+        $case = Cases::findOrFail($id);
+        $case->delete();
+        
+         Session::flash('message', 'تم المسح'); 
+              Session::flash('alert-class', 'alert-success'); 
+           $sess_locale=$request->session()->get('sess_locale');
+            return redirect($sess_locale.'/show');
+    }
 
       public function AllCases(){
         $per_page = 2;

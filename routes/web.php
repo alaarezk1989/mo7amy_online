@@ -41,8 +41,8 @@ Route::group(['middlewareGroups' => ['web']], function() {
         Route::get('{locale?}/edit-case/{GUID}', FE. '\CasesController@edit');
         Route::post('update-case/{GUID}', FE. '\CasesController@update');
          Route::get('{locale?}/cases',FE.  '\CasesController@AllCases');
+        Route::get('{locale?}/delete-case/{GUID}', FE. '\CasesController@delete');
 
-         Route::delete('{locale?}/delete/{id}', '\CasesController@delete');
          Route::get('{locale?}/case/{id}',FE.  '\CasesController@SingleCase');
          Route::get('{locale?}/YourCases',FE.  '\CasesController@YourCases');
   /*houida*/
