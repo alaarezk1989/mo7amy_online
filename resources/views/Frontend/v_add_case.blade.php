@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
 <div class="row">
-<img src="{{ URL::to('public/assets/Frontend/img/AddCaseImage.png') }}" alt="addcase" class="img-responsive">    
+<img src="{{ URL::to('public/assets/Frontend/img/Add%20Case%20Image.png') }}" alt="addcase" class="img-responsive">    
 </div>        
 </div>    
 

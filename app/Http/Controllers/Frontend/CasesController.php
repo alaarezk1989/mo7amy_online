@@ -195,15 +195,15 @@ public function test (Request $request)
    public function delete($locale='ar',$id)
     { 
 
-      /* echo $id;
+       /*echo $id;
        return;*/
         $case = Cases::findOrFail($id);
         $case->delete();
         
-         Session::flash('message', 'تم المسح'); 
+         Session::flash('message', 'تم مسح قضيتك بنجاح'); 
               Session::flash('alert-class', 'alert-success'); 
-           $sess_locale=$request->session()->get('sess_locale');
-            return redirect($sess_locale.'/show');
+           $sess_locale= session('sess_locale');
+            return redirect($sess_locale.'/YourCases');
     }
 
       public function AllCases(){

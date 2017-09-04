@@ -43,8 +43,11 @@
 
 <input type='hidden' id='current_page' />
 <input type='hidden' id='show_per_page' />	
-
+	@if(Session::has('message'))
+<p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+@endif
 <div id='content'>	
+
 
 
 
@@ -71,7 +74,7 @@
 <a href="{{lang_url('edit-case').'/'.$value->id}}">
 <button class="btn btn-primary">تعديل</button>
 </a>
-<a href="{{url('delete').'/'.$value->id}}"
+<a href="{{lang_url('delete-case').'/'.$value->id}}"
 <button class="btn btn-danger">مسح</button></a>
 </div>  
 </div> 
@@ -144,40 +147,7 @@
 
 </div>    
 
-<!--************************modal for delete ***************************-->
-
-
-
-<div class="modal fade" id="deletetvideo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-
-<div class="modal-dialog" role="document">
-
-<div class="modal-content">
-
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-<h4 class="modal-title" id="exampleModalLabel"><i class="fa fa-trash" aria-hidden="true"></i> مسح الفيديو </h4>
-</div>
-
-
-<div class="modal-body">
-<p>هل تريد مسح هذا ؟ </p>
-<p> هل انت متأكد ؟</p>
-</div>
-
-
-
-<div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal">الغاء </button>
-<button type="button" class="btn btn-primary ms7">مسح</button>
-</div>
-
-
-</div>
-
-</div>
-
-</div>     
+  
 
 
 
