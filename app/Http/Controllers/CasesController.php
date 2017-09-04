@@ -191,11 +191,14 @@ public function test (Request $request)
           }
     }
 
-public function dlt(Request $request){
-  Cases::destroy($id);
-  return back();
-}
 
+   public function delete($id)
+    {
+        $case = Cases::findOrFail($id);
+        $case->delete();
+        
+        return back();
+    }
 
       public function AllCases(){
         $per_page = 2;

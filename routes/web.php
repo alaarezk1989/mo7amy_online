@@ -42,7 +42,7 @@ Route::group(['middlewareGroups' => ['web']], function() {
         Route::post('update-case/{GUID}', FE. '\CasesController@update');
          Route::get('{locale?}/cases',FE.  '\CasesController@AllCases');
 
-         Route::delete('{locale?}/delete/{id}', '\CasesController@dlt');
+         Route::delete('{locale?}/delete/{id}', '\CasesController@delete');
          Route::get('{locale?}/case/{id}',FE.  '\CasesController@SingleCase');
          Route::get('{locale?}/YourCases',FE.  '\CasesController@YourCases');
   /*houida*/
