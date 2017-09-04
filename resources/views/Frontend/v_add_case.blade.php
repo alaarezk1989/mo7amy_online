@@ -34,18 +34,19 @@
 
 <div class="form-group inp2"> 
 <label> البلد والمدينة </label>
-<select class="sl-cou" name="country">
+<select class="sl-cou" name="country" id="country">
 <option value="0">   اختار البلد </option>
 <option value="مصر">مصر </option>
 <option value="السعودية">السعودية  </option>
 <option value="الامارات"> الامارات  </option>
 </select>
-<!--<select>
+
+<select id="city">
 <option value="">   اختار المدينة </option>
 <option value="">القاهرة  </option>
 <option value="">الجيزة  </option>
 <option value=""> اسكندرية  </option>
-</select>-->     
+</select>  
 </div>    
 
 
