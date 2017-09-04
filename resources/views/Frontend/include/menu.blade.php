@@ -1,6 +1,7 @@
 <ul class="nav navbar-nav navbar-right main-ul">
   <li class="active"><a href="index-ar.html">الرئيسية</a></li>
-  <li><a href="cases.html">القضايا</a></li>
+ <li><a href="{{lang_url('cases')}}">القضايا</a></li>
+ <li><a href="{{lang_url('YourCases')}}">قضايك</a></li>
   <li><a href="{{lang_url('lawyers')}}">المستشارين</a></li>
   <li><a href="who%20are%20we.html">من نحن</a></li>
   <li><a href="contact.html">اتصل بنا</a></li>

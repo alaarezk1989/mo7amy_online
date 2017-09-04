@@ -32,18 +32,20 @@ Route::get('countries', function()
 Route::group(['middlewareGroups' => ['web']], function() {
 
     Auth::routes();
-    /*houida*/
-             Route::get('{locale?}/show',FE.  '\CasesController@index');
+   
+/*houida*/
+         Route::get('{locale?}/show',FE.  '\CasesController@index');
 
-             Route::post('test',FE.'\CasesController@test');
+         Route::post('test',FE.'\CasesController@test');
 
-            Route::get('{locale?}/edit-case/{GUID}', FE. '\CasesController@edit');
-            Route::post('update-case/{GUID}', FE. '\CasesController@update');
-             Route::get('{locale?}/cases',FE.  '\CasesController@AllCases');
+        Route::get('{locale?}/edit-case/{GUID}', FE. '\CasesController@edit');
+        Route::post('update-case/{GUID}', FE. '\CasesController@update');
+         Route::get('{locale?}/cases',FE.  '\CasesController@AllCases');
 
-             Route::get('{locale?}/case/{id}',FE.  '\CasesController@SingleCase');
-             Route::get('{locale?}/YourCases',FE.  '\CasesController@YourCases');
-      /*houida*/
+         Route::delete('{locale?}/delete/{id}', '\CasesController@dlt');
+         Route::get('{locale?}/case/{id}',FE.  '\CasesController@SingleCase');
+         Route::get('{locale?}/YourCases',FE.  '\CasesController@YourCases');
+  /*houida*/
     // Route::get('{locale?}/login', AD . '\AdminController@login');
     Route::get('{locale?}/logout', AD . '\AdminController@logout');
     Route::post('{locale?}/login', FE . '\UserController@user_login');
