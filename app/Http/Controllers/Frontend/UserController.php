@@ -432,8 +432,8 @@ class UserController extends Controller
             'page_title'=>trans('cpanel.edit_admin'),
             'user_data'=>$lawyer_data,
             'user_specialty'=>$user_specialty,
-            'user_country'=>$user_country;
-            'user_city'=>$user_city;
+            'user_country'=>$user_country,
+            'user_city'=>$user_city,
         ];
           return view(FE.'.lawyer')->with($data);
       }
