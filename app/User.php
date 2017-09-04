@@ -113,12 +113,6 @@ class User extends Authenticatable
    {
        $this->notify(new CustomPassword($token));
    }
-
-   public function age(){
-      //  $this->birthdate->diff($this->attributes['dob'])
-      //  ->format('%y years, %m months and %d days');
-      return  $this->birthdate->diffInYears(\Carbon::now());
-  }
 }
 
 
