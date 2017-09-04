@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html lang="ar">
    <head>
-      <meta charset="UTF-8">
-      <meta name="description" content="Free Web tutorials">
+     <meta charset="UTF-8">
+     <meta name="description" content="Free Web tutorials">
       <meta name="keywords" content="HTML,CSS,XML,JavaScript">
       <meta name="author" content="Nesma Arby">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">    
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
       <title>
          @if(!empty($title))
          {{$title}}
@@ -189,15 +189,15 @@ $sess_user_id= session('user_id');
                   </li>
                   @else
                   <li>
-                     <a href="{{lang_url('logout')}}" class="menu"> {{ trans('cpanel.log_out') }}
-                     <img src="{{ asset('public/assets/'.FE .'/img/Vector%20Smart%20Object.png')}}" class="sign">
-                     </a>
-                   </li>
-                   <li>
-
-
-                      <a href="{{lang_url('edit-profile').'/'.$sess_user_id}}" class="menu"> {{ trans('cpanel.my_profile') }}</a>
-
+                    <a href="#" class="lk-profile"><img src="{{ asset('public/assets/'.FE .'/img/User%20Account.png')}}" alt="account" class="img-acc"></a>
+                     <a href="#" class="dropdown-toggle prof-name" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      <span class=""> {{auth()->user()->name}} </span><span class="caret"></span></a>                                     
+                      <ul class="dropdown-menu user-menu">
+                        <li> <a href="{{lang_url('YourCases')}}"> اضف قضية </a></li>
+                        <li> <a href="{{lang_url('edit-profile').'/'.$sess_user_id}}">{{ trans('cpanel.my_profile') }} </a></li>
+                        <li> <a href="client-setting.html">  اعداداتى </a></li> 
+                        <li> <a href="{{lang_url('logout')}}">  {{ trans('cpanel.log_out') }} </a></li> 
+                    </ul>
                     </li>
 
                   @endif
