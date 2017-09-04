@@ -355,7 +355,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), $rules);
         $validator->SetAttributeNames([
           'current_password'          =>trans('cpanel.current_password'),
-          'password'                  =>trans('cpanel.password'),
+          'new_password'                  =>trans('cpanel.password'),
           'password_confirmation'     =>trans('cpanel.password_confirmation'),
         ]);
 
