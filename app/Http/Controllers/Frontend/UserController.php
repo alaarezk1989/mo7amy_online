@@ -19,7 +19,7 @@ use Mail;
 // use CountryState;
 use DB;
 use Response;
-use Carbon/Carbon 
+// use Carbon;
 
 class UserController extends Controller
 {
