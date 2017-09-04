@@ -1,0 +1,33 @@
+margin:320 px
+
+header color: ffffff - h: 110 px
+
+menus font: VIP Rawy Regular 25 px - b31f24
+menus margin: 50 px
+
+login font: VIP Rawy Regular 30 px - b31f24
+login margin: 20 px
+login icon: w/h 40*33 px
+
+borders color: e0cd85 - 1 px
+margin t&b: 25 px
+
+title border:
+title font: VIP Rawy Regular 25 px - b31f24
+sentence font: VIP Rawy Regular 20 px - 999999
+text box: h: 60 px
+
+details border: 
+details font: VIP Rawy Regular 25 px - b31f24
+sentence font: VIP Rawy Regular 20 px - 999999
+
+side border: 547 px
+case type font: VIP Rawy Regular 25 px - b31f24
+combo box font: VIP Rawy Regular 20 px - 999999
+combo box: h: 40 px
+arrow icon: w/h 10*6 px
+
+date icon: w/h 16/25 px - 777777
+
+submit font: VIP Rawy Bold 30 px - ffffff
+submit btn: w/h 250*50 - radius 5 px - b31f24
