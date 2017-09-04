@@ -13,7 +13,6 @@ use Validator;
 use Auth;
 use App\User;
 use App\User_specialty;
-use App\Cities;
 use App;
 use Hash;
 // use CountryState;
@@ -101,7 +100,6 @@ class CitiesController extends Controller
 
     function cities_country($country_id){
 
-          // return $country_id;
           $sess_locale= session('sess_locale');
         // $cities= DB::table('cities')
         // ->where('local', '=', $sess_locale)
