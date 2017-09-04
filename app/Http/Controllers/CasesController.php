@@ -194,8 +194,8 @@ public function test (Request $request)
 
    public function delete($id)
     {
-        $delete = Cases::findOrFail($id);
-        $delete->delete();
+        $case = Cases::findOrFail($id);
+        $case->delete();
         
         return back();
     }
