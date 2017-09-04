@@ -192,7 +192,7 @@ public function test (Request $request)
     }
 
 
-   public function destroy($id)
+   public function delete($id)
     {
         $delete = Cases::findOrFail($id);
         $delete->delete();
