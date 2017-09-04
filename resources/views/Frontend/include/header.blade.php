@@ -7,8 +7,8 @@
      <meta name="description" content="Free Web tutorials">
       <meta name="keywords" content="HTML,CSS,XML,JavaScript">
       <meta name="author" content="Nesma Arby">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">    
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>
          @if(!empty($title))
          {{$title}}
@@ -78,33 +78,52 @@ $sess_user_id= session('user_id');
                                     <div class="form-group text-center">
                                        <label class="circle-label one">
 
-                                       {!! Form::radio('permissions', 'lawyer') !!}
+                                       {!! Form::radio('permissions', 'lawyer','',array('checked'=>'checked')) !!}
                                        <span class="place-name" id="lawyer"> {{trans('cpanel.lawyer')}}  </span>
                                        </label>
                                        <label class="circle-label">
                                       {!! Form::radio('permissions', 'client') !!}
                                        <span class="place-name" id="client"> {{ trans('cpanel.client') }}   </span>
                                        </label>
+
+                                       @if($errors->has('permissions'))
+                   						          <span class="help-block text-danger">{{ $errors->first('permissions') }}</span>
+                   						        @endif
                                     </div>
 
                                     <div class="form-group">
                                        {!! Form::text('name',old('name'), array('id'=>'name', 'class'=>'form-control','required'=>'required','placeholder'=>trans('cpanel.name'))) !!}
+                                       @if($errors->has('name'))
+                   						          <span class="help-block text-danger">{{ $errors->first('name') }}</span>
+                   						        @endif
                                     </div>
 
                                     <div class="form-group">
                                       {!! Form::tel('phone',old('phone'), array('id'=>'phone', 'class'=>'form-control','required'=>'required','placeholder'=>trans('cpanel.phone_number'))) !!}
+                                      @if($errors->has('phone'))
+                                        <span class="help-block text-danger">{{ $errors->first('phone') }}</span>
+                                      @endif
                                     </div>
 
                                     <div class="form-group">
-                                         {!! Form::text('email',old('email'), array('id'=>'email', 'class'=>'form-control','required'=>'required','placeholder'=>trans('cpanel.email_address'))) !!}
+                                         {!! Form::email('email',old('email'), array('id'=>'email', 'class'=>'form-control','required'=>'required','placeholder'=>trans('cpanel.email_address'))) !!}
+                                         @if($errors->has('email'))
+                                           <span class="help-block text-danger">{{ $errors->first('email') }}</span>
+                                         @endif
                                     </div>
 
                                     <div class="form-group">
                                          {!! Form::password('password', array('id'=>'password', 'class'=>'form-control','placeholder'=>trans('cpanel.enter_password'))) !!}
+                                         @if($errors->has('password'))
+                                          <span class="help-block text-danger">{{ $errors->first('password') }}</span>
+                                        @endif
                                     </div>
 
                                     <div class="form-group">
                                        {!! Form::password('password_confirmation', array('id'=>'password_confirmation', 'class'=>'form-control','placeholder'=>trans('cpanel.confirm_password'))) !!}
+                                       @if($errors->has('password_confirmation'))
+                 							          <span class="help-block text-danger">{{ $errors->first('password_confirmation') }}</span>
+                 							        @endif
                                     </div>
 
                                     <div class=" slct form-group">
@@ -149,9 +168,15 @@ $sess_user_id= session('user_id');
                                    {!! Form::open(['url'=>$sess_locale.'/login', 'class'=>'form','id'=>'login-nav','role'=>'form',' accept-charset'=>'UTF-8']) !!}
                                     <div class="form-group">
                                          {!! Form::email('email', old('email'), array('class'=>'form-control','placeholder'=>trans('cpanel.email_address'), 'id' => 'exampleInputEmail2')) !!}
+                                         @if($errors->has('email'))
+                                           <span class="help-block text-danger">{{ $errors->first('email') }}</span>
+                                         @endif
                                     </div>
                                     <div class="form-group">
                                          {!! Form::password('password', array('class'=>'form-control','placeholder'=>trans('cpanel.enter_password'), 'id' => 'exampleInputPassword2')) !!}
+                                         @if($errors->has('password'))
+                   							          <span class="help-block text-danger">{{ $errors->first('password') }}</span>
+                   							        @endif
                                     </div>
                                     <a href="#" class="forgetpass"> {{ trans('cpanel.forgot_password') }}  ؟ </a>
                                     <div class="buttons form-group">
@@ -177,6 +202,9 @@ $sess_user_id= session('user_id');
                                  {!! Form::open(['method'=>'POST', 'class'=>'form','id'=>'login-nav','url'=>'password/email','role'=>'form',' accept-charset'=>'UTF-8']) !!}
                                     <div class="form-group">
                                        {!! Form::email('email','', array('id'=>'email', 'class'=>'form-control','required'=>'required','placeholder'=>trans('cpanel.email_address'))) !!}
+                                       @if($errors->has('email'))
+                                         <span class="help-block text-danger">{{ $errors->first('email') }}</span>
+                                       @endif
                                     </div>
                                     <div class="butn-send form-group">
                                        <button type="submit" class="send">  {{ trans('cpanel.submit') }}    </button>
@@ -191,13 +219,13 @@ $sess_user_id= session('user_id');
                   <li>
                     <a href="#" class="lk-profile"><img src="{{ asset('public/assets/'.FE .'/img/User%20Account.png')}}" alt="account" class="img-acc"></a>
                      <a href="#" class="dropdown-toggle prof-name" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                      <span class=""> {{auth()->user()->name}} </span><span class="caret"></span></a>                                     
+                      <span class=""> {{auth()->user()->name}} </span><span class="caret"></span></a>
                       <ul class="dropdown-menu user-menu">
                         <li> <a href="{{lang_url('show')}}"> اضف قضية </a></li>
                         <li> <a href="{{lang_url('YourCases')}}"> قضاياك </a></li>
                         <li> <a href="{{lang_url('edit-profile').'/'.$sess_user_id}}">{{ trans('cpanel.my_profile') }} </a></li>
-                        <li> <a href="client-setting.html">  اعداداتى </a></li> 
-                        <li> <a href="{{lang_url('logout')}}">  {{ trans('cpanel.log_out') }} </a></li> 
+                        <li> <a href="client-setting.html">  اعداداتى </a></li>
+                        <li> <a href="{{lang_url('logout')}}">  {{ trans('cpanel.log_out') }} </a></li>
                     </ul>
                     </li>
 
