@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Session;
 use Auth;
+use App\User;
 use DB;
 
 class CasesController extends Controller
@@ -190,7 +191,10 @@ public function test (Request $request)
           }
     }
 
-
+public function dlt(Request $request){
+  Cases::destroy($id);
+  return back();
+}
 
 
       public function AllCases(){
@@ -228,10 +232,15 @@ public function test (Request $request)
          /* $all_cases =  DB::table('cases')
                ->where('status', '=', '1');*/
         $case = Cases::findOrFail($id);
+        $user_id=$case->user_id;
+        $user_case = User::findOrFail($user_id);
+         
+
         $data = [
             'title'=>trans('cpanel.site_name'), 
             'case'=>$case,
             'id'=>$id,
+            'user_case'=>$user_case,
         ];
       /*echo "<pre>";
       print_r($data);

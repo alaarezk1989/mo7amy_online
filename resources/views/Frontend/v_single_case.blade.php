@@ -1,9 +1,112 @@
 @extends(FEI.'.master')
 @section('content')
 
+<section class="details">
+<div class="container">
+<div class="row">
+<div class="de-Fsection">
+
+<p>
+<?= $case['title']; ?>
+</p>  
+
+
+<div>   
+<div class="casetype"> نوع القضية : <span><?= $case['type']; ?></span></div>    
+<div class="status"> الحالة :                    <?php
+                         if($case['status'] ==1) echo '<span> متاح</span>';
+                         else{echo '</span>غير متاحة</span>'; }
+                              ?></div>  
+</div> 
+
+<div style="margin-top:5px">
+<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>   
+<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>    
+<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>
+باقى <span>55</span> يوم</div>    
+</div>   
+
+</div>   
+
+
+<div class="col-md-4 ma">
+
+<div class="all-deatils">    
+
+<div class="account-case">
+
+<img src="img/Case%20Account.png"> 
+
+<h3><?= $user_case->name?></h3> 
+
+<i class="fa fa-star-o" aria-hidden="true"></i>
+<i class="fa fa-star-o" aria-hidden="true"></i>
+<i class="fa fa-star-o" aria-hidden="true"></i>
+<i class="fa fa-star-o" aria-hidden="true"></i>
+<i class="fa fa-star-o" aria-hidden="true"></i>
+
+
+<div class="opinion">
+<span> (4.25) </span> 
+<span> 99</span> أراء   
+</div>    
+
+</div>    
+
+
+<div class="case-price">
+<h4>$ 20,000</h4>     
+اعلى سعر 
+</div>   
+
+<div class="numofviews">
+<h4>$ 100,000</h4>     
+عدد المشاهدات
+</div>     
+
+<div class="numooffers">
+<h4>$ 1000</h4>     
+عدد العروض  
+</div>
+
+<div class="forresvation">   
+<form action="" method=""> 
+<input type="text" class="form-control" placeholder="حدد سعرك">    
+<button type="submit">قدم عرضك  </button>      
+</form>    
+</div>   
+
+
+</div>
+</div>    
+
+
+
+<div class="col-md-8 ma">
+
+<div class="more-details">
+<h4>التفاصيل </h4> 
+
+<p>
+
+<?= $case['description']; ?>
+
+</p>    
+</div>   
+
+
+
+
+</div>
+</div>    
+</div>    
+</section>    
+
+<!--***********************************************************************-->
+
 <div class="container-fluid head-off">
 <div class="row">
-<img src="img/Client%20Cases%20Page%20Image.png" class="img-responsive">
+<img src="{{ URL::to('public/assets/Frontend/img/Case%20Details%20Page%20Image.png') }}" class="img-responsive">
 </div> 
 </div> 
 
@@ -38,290 +141,128 @@
 
 <div id='content'>	
 
-<div class="case-client border-bott">
-<p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>  
-<div>   
-<div class="casetype"> نوع القضية : <span>جنائية</span></div>    
-<div class="status"> الحالة : <span>متاح</span></div>    
+<div class="col-md-3 text-center border-bott padd-top border-rght">
+<div class="law-profile">
+<a href="#"> <img src="img/Profile%20Image-1.png" class="imgs"> </a>
+<a href="#"> <p class="names">خالد كامل </p> </a>   
+<a href="#"> <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p> </a>
+<div class="offers"> سعر العرض:  $ 1,000,000 </div> 
+<button onclick="" class="okk">قبلت عرضك </button>     
 </div> 
-<div class="another-details">
-<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>   
-<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>    
-<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>    
-<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div> 
-<div class="imp-button">
-<button data-target="#deletetvideo" data-toggle="modal" class="delt"> مسح </button>         
-<button data-toggle="modal" data-target="#editvideo" class="edit"> تعديل </button>      
-</div>    
-</div> 
-</div>   
+</div>
 
-<div class="case-client border-bott">
-<p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>  
-<div>   
-<div class="casetype"> نوع القضية : <span>جنائية</span></div>    
-<div class="status"> الحالة : <span>متاح</span></div>    
+<div class="col-md-3 text-center border-bott padd-top border-rght">
+<div class="law-profile">
+<a href="#"> <img src="img/Profile%20Image-1.png" class="imgs"> </a>
+<a href="#"> <p class="names">خالد كامل </p> </a>  
+<a href="#"> <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p> </a>
+<div class="offers"> سعر العرض:  $ 1000.000 </div> 
+<button onclick="" class="okk">قبلت عرضك </button>     
 </div> 
-<div class="another-details">
-<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>   
-<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>    
-<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>    
-<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div> 
-<div class="imp-button">
-<button data-target="#deletetvideo" data-toggle="modal" class="delt"> مسح </button>         
-<button data-toggle="modal" data-target="#editvideo" class="edit"> تعديل </button>      
-</div> 
-</div> 
-</div>  
+</div> 	
 
+<div class="col-md-3 text-center border-bott padd-top border-rght">
+<div class="law-profile">
+<a href="#"> <img src="img/Profile%20Image-1.png" class="imgs"> </a>
+<a href="#"> <p class="names">خالد كامل </p> </a>    
+<a href="#"> <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p> </a>
+<div class="offers"> سعر العرض:  $ 1000.000 </div> 
+<button onclick="" class="okk">قبلت عرضك </button>     
+</div> 
+</div>
 
-<div class="case-client border-bott">
-<p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>  
-<div>   
-<div class="casetype"> نوع القضية : <span>جنائية</span></div>    
-<div class="status"> الحالة : <span>متاح</span></div>    
+<div class="col-md-3 text-center border-bott padd-top ">
+<div class="law-profile">
+<a href="#"> <img src="img/Profile%20Image-1.png" class="imgs"> </a>
+<a href="#"> <p class="names">خالد كامل </p> </a>    
+<a href="#"> <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p> </a>
+<div class="offers"> سعر العرض:  $ 1000.000 </div> 
+<button onclick="" class="okk">قبلت عرضك </button>     
 </div> 
-<div class="another-details">
-<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>   
-<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>    
-<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>    
-<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div> 
-<div class="imp-button">
-<button data-target="#deletetvideo" data-toggle="modal" class="delt"> مسح </button>         
-<button data-toggle="modal" data-target="#editvideo" class="edit"> تعديل </button>      
-</div>  
-</div> 
-</div>  
+</div>
 
-
-<div class="case-client border-bott">
-<p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>  
-<div>   
-<div class="casetype"> نوع القضية : <span>جنائية</span></div>    
-<div class="status"> الحالة : <span>متاح</span></div>    
-</div> 
-<div class="another-details">
-<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>   
-<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>    
-<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>    
-<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div> 
-<div class="imp-button">
-<button data-target="#deletetvideo" data-toggle="modal" class="delt"> مسح </button>         
-<button data-toggle="modal" data-target="#editvideo" class="edit"> تعديل </button>      
-</div>  
-</div> 
-</div>  
-
-
-<div class="case-client">
-<p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>  
-<div>   
-<div class="casetype"> نوع القضية : <span>جنائية</span></div>    
-<div class="status"> الحالة : <span>متاح</span></div>    
-</div> 
-<div class="another-details">
-<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>   
-<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>    
-<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>    
-<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div> 
-<div class="imp-button">
-<button data-target="#deletetvideo" data-toggle="modal" class="delt"> مسح </button>         
-<button data-toggle="modal" data-target="#editvideo" class="edit"> تعديل </button>      
-</div> 
-</div> 
-</div>  
-
-<!--********************************************************-->
-
-<div class="case-client border-bott">
-<p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>  
-<div>   
-<div class="casetype"> نوع القضية : <span>جنائية</span></div>    
-<div class="status-doing"> الحالة : <span>  تحت التنفيذ</span></div>    
-</div> 
-<div class="another-details">
-<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>   
-<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>    
-<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>    
-<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div> 
-<div class="imp-button">
-<button data-target="#deletetvideo" data-toggle="modal" class="delt"> مسح </button>         
-<button data-toggle="modal" data-target="#editvideo" class="edit"> تعديل </button>      
-</div>   
-</div> 
-</div>   
-
-<div class="case-client border-bott">
-<p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>  
-<div>   
-<div class="casetype"> نوع القضية : <span>جنائية</span></div>    
-<div class="status-doing"> الحالة : <span>  تحت التنفيذ</span></div>     
-</div> 
-<div class="another-details">
-<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>   
-<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>    
-<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>    
-<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div> 
-<div class="imp-button">
-<button data-target="#deletetvideo" data-toggle="modal" class="delt"> مسح </button>         
-<button data-toggle="modal" data-target="#editvideo" class="edit"> تعديل </button>      
-</div>  
-</div> 
-</div>  
-
-
-<div class="case-client border-bott">
-<p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>  
-<div>   
-<div class="casetype"> نوع القضية : <span>جنائية</span></div>    
-<div class="status-doing"> الحالة : <span>  تحت التنفيذ</span></div>    
-</div> 
-<div class="another-details">
-<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>   
-<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>    
-<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>    
-<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div> 
-<div class="imp-button">
-<button data-target="#deletetvideo" data-toggle="modal" class="delt"> مسح </button>         
-<button data-toggle="modal" data-target="#editvideo" class="edit"> تعديل </button>      
-</div>   
-</div> 
-</div>  
-
-
-<div class="case-client border-bott">
-<p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>  
-<div>   
-<div class="casetype"> نوع القضية : <span>جنائية</span></div>    
-<div class="status-doing"> الحالة : <span>  تحت التنفيذ</span></div>        
-</div> 
-<div class="another-details">
-<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>   
-<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>    
-<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>    
-<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div> 
-<div class="imp-button">
-<button data-target="#deletetvideo" data-toggle="modal" class="delt"> مسح </button>         
-<button data-toggle="modal" data-target="#editvideo" class="edit"> تعديل </button>      
-</div> 
-</div> 
-</div>  
-
-
-<div class="case-client">
-<p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>  
-<div>   
-<div class="casetype"> نوع القضية : <span>جنائية</span></div>    
-<div class="status-doing"> الحالة : <span>  تحت التنفيذ</span></div>     
-</div> 
-<div class="another-details">
-<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>   
-<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>    
-<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>    
-<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div> 
-<div class="imp-button">
-<button data-target="#deletetvideo" data-toggle="modal" class="delt"> مسح </button>         
-<button data-toggle="modal" data-target="#editvideo" class="edit"> تعديل </button>      
-</div>   
+<div class="col-md-3 text-center  padd-top border-rght">
+<div class="law-profile">
+<a href="#"> <img src="img/Profile%20Image-1.png" class="imgs"> </a>
+<a href="#"> <p class="names">خالد كامل </p> </a>     
+<a href="#"> <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p> </a>
+<div class="offers"> سعر العرض:  $ 1000.000 </div> 
+<button onclick="" class="okk">قبلت عرضك </button>     
 </div> 
 </div> 
 
-<!--********************************************************************-->
+<div class="col-md-3 text-center  padd-top border-rght">
+<div class="law-profile">
+<a href="#"> <img src="img/Profile%20Image-1.png" class="imgs"> </a>
+<a href="#"> <p class="names">خالد كامل </p> </a>     
+<a href="#"> <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p> </a>
+<div class="offers"> سعر العرض:  $ 1000.000 </div> 
+<button onclick="" class="okk">قبلت عرضك </button>     
+</div> 
+</div> 
+
+<div class="col-md-3 text-center  padd-top border-rght">
+<div class="law-profile">
+<a href="#"> <img src="img/Profile%20Image-1.png" class="imgs"> </a>
+<a href="#"> <p class="names">خالد كامل </p> </a>  
+<a href="#"> <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p> </a>
+<div class="offers"> سعر العرض:  $ 1000.000 </div> 
+<button onclick="" class="okk">قبلت عرضك </button>     
+</div> 
+</div>	
+
+<div class="col-md-3 text-center padd-top border-rght">
+<div class="law-profile">
+<a href="#"> <img src="img/Profile%20Image-1.png" class="imgs"> </a>
+<a href="#"> <p class="names">خالد كامل </p> </a>  
+<a href="#"> <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p> </a>
+<div class="offers"> سعر العرض:  $ 1000.000 </div> 
+<button onclick="" class="okk">قبلت عرضك </button>     
+</div> 
+</div> 
+
+<div class="col-md-3 text-center padd-top">
+<div class="law-profile">
+<a href="#"> <img src="img/Profile%20Image-1.png" class="imgs"> </a>
+<a href="#"> <p class="names">خالد كامل </p> </a>   
+<a href="#"> <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p> </a>
+<div class="offers"> سعر العرض:  $ 1000.000 </div> 
+<button onclick="" class="okk">قبلت عرضك </button>     
+</div> 
+</div>
 
 
-<div class="case-client border-bott">
-<p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>  
-<div>   
-<div class="casetype"> نوع القضية : <span>جنائية</span></div>    
-<div class="status"> الحالة : <span>متاح</span></div>    
-</div> 
-<div class="another-details">
-<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>   
-<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>    
-<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>    
-<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div> 
-<div class="imp-button">
-<button data-target="#deletetvideo" data-toggle="modal" class="delt"> مسح </button>         
-<button data-toggle="modal" data-target="#editvideo" class="edit"> تعديل </button>      
-</div>    
-</div> 
-</div>   
+<!--*********************************************-->
 
-<div class="case-client border-bott">
-<p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>  
-<div>   
-<div class="casetype"> نوع القضية : <span>جنائية</span></div>    
-<div class="status"> الحالة : <span>متاح</span></div>    
+<div class="col-md-3 text-center border-bott padd-top border-rght">
+<div class="law-profile">
+<a href="#"> <img src="img/Profile%20Image-2.png" class="imgs"> </a>
+<a href="#"> <p class="names">خالد كامل </p> </a>   
+<a href="#"> <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p> </a>
+<div class="offers"> سعر العرض:  $ 1000.000 </div> 
+<button onclick="" class="okk">قبلت عرضك </button>     
 </div> 
-<div class="another-details">
-<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>   
-<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>    
-<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>    
-<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div> 
-<div class="imp-button">
-<button data-target="#deletetvideo" data-toggle="modal" class="delt"> مسح </button>         
-<button data-toggle="modal" data-target="#editvideo" class="edit"> تعديل </button>      
-</div>  
-</div> 
-</div>  
+</div>
 
-
-<div class="case-client border-bott">
-<p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>  
-<div>   
-<div class="casetype"> نوع القضية : <span>جنائية</span></div>    
-<div class="status"> الحالة : <span>متاح</span></div>    
+<div class="col-md-3 text-center border-bott padd-top border-rght">
+<div class="law-profile">
+<a href="#"> <img src="img/Profile%20Image-2.png" class="imgs"> </a>
+<a href="#"> <p class="names">خالد كامل </p> </a>     
+<a href="#"> <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p> </a>
+<div class="offers"> سعر العرض:  $ 1000.000 </div> 
+<button onclick="" class="okk">قبلت عرضك </button>     
 </div> 
-<div class="another-details">
-<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>   
-<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>    
-<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>    
-<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div> 
-<div class="imp-button">
-<button data-target="#deletetvideo" data-toggle="modal" class="delt"> مسح </button>         
-<button data-toggle="modal" data-target="#editvideo" class="edit"> تعديل </button>      
-</div>  
-</div> 
-</div>  
+</div> 	
 
-
-<div class="case-client border-bott">
-<p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>  
-<div>   
-<div class="casetype"> نوع القضية : <span>جنائية</span></div>    
-<div class="status"> الحالة : <span>متاح</span></div>    
+<div class="col-md-3 text-center border-bott padd-top border-rght">
+<div class="law-profile">
+<a href="#"> <img src="img/Profile%20Image-2.png" class="imgs"> </a>
+<a href="#"> <p class="names">خالد كامل </p> </a>   
+<a href="#"> <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p> </a>
+<div class="offers"> سعر العرض:  $ 1000.000 </div> 
+<button onclick="" class="okk">قبلت عرضك </button>     
 </div> 
-<div class="another-details">
-<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>   
-<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>    
-<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>    
-<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div> 
-<div class="imp-button">
-<button data-target="#deletetvideo" data-toggle="modal" class="delt"> مسح </button>         
-<button data-toggle="modal" data-target="#editvideo" class="edit"> تعديل </button>      
-</div>   
-</div> 
-</div>  
-
-
-<div class="case-client">
-<p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>  
-<div>   
-<div class="casetype"> نوع القضية : <span>جنائية</span></div>    
-<div class="status"> الحالة : <span>متاح</span></div>    
-</div> 
-<div class="another-details">
-<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>   
-<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>    
-<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>    
-<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div> 
-<div class="imp-button">
-<button data-target="#deletetvideo" data-toggle="modal" class="delt"> مسح </button>         
-<button data-toggle="modal" data-target="#editvideo" class="edit"> تعديل </button>      
-</div>  
-</div> 
-</div>     
-
+</div>
 
 
 </div>	
@@ -330,97 +271,9 @@
 </div>    
 </section>
 
-<div id='page_navigation'></div>	
 
 
 
-<!--*******************************************-->   
-
-<!--******************************Modal******************************-->
-
-
-
-<div class="modal fade" id="editvideo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-
-<div class="modal-dialog" role="document">
-
-<div class="modal-content">
-
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-<h4 class="modal-title" id="exampleModalLabel"> <i class="fa fa-pencil" aria-hidden="true"></i>تعديل الفيديو</h4>
-</div>
-
-
-<div class="modal-body">
-<form>
-<div class="form-group">
-<input type="text" class="form-control" id="recipient-name" placeholder="تعديل العنوان">
-</div>
-<div class="form-group">
-<textarea class="form-control" id="message-text" placeholder="تعديل الوصف "></textarea>
-</div>
-</form>
-</div>
-
-
-
-<div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal">الغاء</button>
-<button type="button" class="btn btn-primary saving">حفظ</button>
-</div>
-
-
-</div>
-
-</div>
-
-</div>    
-
-<!--************************modal for delete ***************************-->
-
-
-
-<div class="modal fade" id="deletetvideo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-
-<div class="modal-dialog" role="document">
-
-<div class="modal-content">
-
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-<h4 class="modal-title" id="exampleModalLabel"><i class="fa fa-trash" aria-hidden="true"></i> مسح الفيديو </h4>
-</div>
-
-
-<div class="modal-body">
-<p>هل تريد مسح هذا ؟ </p>
-<p> هل انت متأكد ؟</p>
-</div>
-
-
-
-<div class="modal-footer">
-<button type="button" class="btn btn-default" data-dismiss="modal">الغاء </button>
-<button type="button" class="btn btn-primary ms7">مسح</button>
-</div>
-
-
-</div>
-
-</div>
-
-</div>     
-
-
-
-<!--*************************************************-->    
-
-
-
-
-
-<!--*******************************************-->    
 
  @stop
 
