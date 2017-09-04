@@ -106,6 +106,9 @@ return array (
   'arranging'=>'ترتيب',
   'type_of_specialization'=>'نوع التخصص',
   'about_lawyer'=>'عن المحامى ',
+  'year'=>'سنه',
+  ''=>'',
+  ''=>'',
   ''=>'',
   ''=>'',
 );

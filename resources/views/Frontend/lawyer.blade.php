@@ -31,8 +31,8 @@
               <div class="lawyer-info">
                  <h4>معلومات عن المحامى </h4>
                  <ul class="list-unstyled ul-lawyer">
-                    <li> <i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,القاهرة  </li>
-                    <li> <i class="fa fa-birthday-cake" aria-hidden="true"></i>  42 سنة </li>
+                    <li> <i class="fa fa-map-marker" aria-hidden="true"></i> {{$user_country}} , {{$user_city}}  </li>
+                    <li> <i class="fa fa-birthday-cake" aria-hidden="true"></i>  42 {{trans('cpanel.year'}} </li>
                     <li> <i class="fa fa-phone" aria-hidden="true"></i> </li>
                     <li> <i class="fa fa-envelope" aria-hidden="true"></i></li>
                  </ul>
@@ -47,9 +47,17 @@
                  <p> {{$user_data->career}} </p>
                  <span>
                     {{trans('cpanel.type_of_specialization')}} :
-                   @foreach ($user_specialty as $row_specialty)
-                   {{trans('cpanel.'.$row_specialty->specialty)}} -
-                 @endforeach  </span>
+                    @php
+                    $i=1;
+                      foreach ($user_specialty as $row_specialty){
+                      echo trans('cpanel.'.$row_specialty->specialty);
+                      if($i < count($user_specialty)){
+                        echo ' - ';
+                      }
+                      $i++;
+                    }
+                    @endphp
+                    </span>
                  <ul class="list-unstyled prof-social">
                     <li> <a herf="">  <i class="fa fa-facebook"></i>  </a>  </li>
                     <li> <a herf="">  <i class="fa fa-twitter"></i>  </a>  </li>

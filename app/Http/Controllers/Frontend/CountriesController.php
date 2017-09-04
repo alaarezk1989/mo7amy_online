@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Administrator;
 use App\Http\Controllers\Controller;
 use Validator;
 use App\Countries;
+use App\Cities;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Session;
@@ -18,7 +19,7 @@ class CountriesController extends Controller
     public function index()
     {
         //
-        
+
     }
 
     /**

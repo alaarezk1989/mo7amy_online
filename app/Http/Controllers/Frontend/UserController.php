@@ -11,10 +11,12 @@ use Validator;
 use Auth;
 use App\User;
 use App\User_specialty;
+use App\Countries;
+use App\Cities;
 use App;
 use Hash;
 use Mail;
-use CountryState;
+// use CountryState;
 use DB;
 use Response;
 
@@ -418,11 +420,20 @@ class UserController extends Controller
         ->orderBy('id')->get();
 
         $lawyer_data = User::findOrFail($id);
+
+        $country_id=$lawyer_data->country;
+        $user_country = Countries::findOrFail($country_id);
+
+        $city_id=$lawyer_data->city;
+        $user_city = Cities::findOrFail($city_id);
+
         $data = [
             'title'=>trans('cpanel.site_name'),
             'page_title'=>trans('cpanel.edit_admin'),
             'user_data'=>$lawyer_data,
             'user_specialty'=>$user_specialty,
+            'user_country'=>$user_country;
+            'user_city'=>$user_city;
         ];
           return view(FE.'.lawyer')->with($data);
       }
