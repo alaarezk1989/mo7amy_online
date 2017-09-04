@@ -191,7 +191,7 @@ public function test (Request $request)
           }
     }
 
-public function dlt(Request $request){
+public function delete(Request $request){
   Cases::destroy($id);
   return back();
 }
