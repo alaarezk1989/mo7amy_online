@@ -1,9 +1,10 @@
 <?php
 
 if (!function_exists('my_asset')) {
-    function my_asset($path)
+    function user_auth()
     {
-        return asset($path, 'alaa');
+         $sess_user_obj= session('user_obj');
+         return $sess_user_obj;
     }
 }
 

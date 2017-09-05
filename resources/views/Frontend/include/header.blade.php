@@ -42,7 +42,11 @@
 
      session(['sess_locale' => $locale]);
      $sess_locale= session('sess_locale');
-$sess_user_id= session('user_id');
+    //  if(auth()->user()){
+       $sess_user_id= session('user_id');
+
+    //  }
+
 //echo $sess_user_id;
 ?>
 
@@ -219,7 +223,7 @@ $sess_user_id= session('user_id');
                   <li>
                     <a href="#" class="lk-profile"><img src="{{ asset('public/assets/'.FE .'/img/User%20Account.png')}}" alt="account" class="img-acc"></a>
                      <a href="#" class="dropdown-toggle prof-name" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                      <span class=""> {{auth()->user()->name}} </span><span class="caret"></span></a>
+                      <span class=""> {{user_auth()->name}} </span><span class="caret"></span></a>
                       <ul class="dropdown-menu user-menu">
                         <li> <a href="{{lang_url('create')}}"> اضف قضية </a></li>
                         <li> <a href="{{lang_url('your-cases')}}"> قضاياك </a></li>

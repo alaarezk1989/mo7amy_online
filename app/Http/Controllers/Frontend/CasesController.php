@@ -85,8 +85,8 @@ public function create_case (Request $request)
             'country'                         =>'required',
             'city'                            =>'required',
             'finished_date'                   =>'required',
-           
-         
+
+
         ];
         $validator = Validator::make($request->all(), $rules);
         $validator->SetAttributeNames([
@@ -96,7 +96,7 @@ public function create_case (Request $request)
             'country'                   =>'country',
             'city'                      =>'city',
            'finished_date'              =>'finished_date',
-      
+
         ]);
         if($validator->fails())
         {
@@ -106,13 +106,13 @@ public function create_case (Request $request)
             // return $request->all();
             return back()->withInput()->withErrors($validator);
         }else{
-          
+
             $add = new Cases;
            // $add->id                    =date('YmdHis') . mt_rand();
             $add->id                       =uniqid('',true);
             $add->title                    = $request->input('title');
             $add->description              = $request->input('description');
-           
+
             $add->type                     = $request->input('type');
             $add->country                  = $request->input('country');
             $add->city                  = $request->input('city');
@@ -120,10 +120,10 @@ public function create_case (Request $request)
             $add->user_id                  = $sess_user_id;
             $add->status                   = 1;
             $add->save();
-         
 
-                Session::flash('message', 'تم اضافة قضيتك بنجاح'); 
-              Session::flash('alert-class', 'alert-success'); 
+
+                Session::flash('message', 'تم اضافة قضيتك بنجاح');
+              Session::flash('alert-class', 'alert-success');
            $sess_locale=$request->session()->get('sess_locale');
             return redirect($sess_locale.'/show');
         }
@@ -173,7 +173,7 @@ public function create_case (Request $request)
  $sess_user_id= session('user_id');
 
          $cases_data = Cases::findOrFail($id);
-      
+
           $data = [
                'title'=>trans('cpanel.site_name'),
               'page_title'=>trans('cpanel.edit_admin'),
@@ -204,15 +204,15 @@ public function create_case (Request $request)
         //return $id;
         $rules=[
             'title'                           =>'required',
-            
-           
-         
+
+
+
         ];
-      
+
           $validator = Validator::make($request->all(), $rules);
         $validator->SetAttributeNames([
               'title'                     =>'title',
-        
+
           ]);
           if($validator->fails())
           {
@@ -224,38 +224,38 @@ public function create_case (Request $request)
 
             $case->title                    = $request->input('title');
             // $case->description             = $request->input('description');
-           
+
             // $case->type                    = $request->input('type');
             // $case->country                 = $request->input('country');
-        
+
             // $case->finished_date           =$request->input('finished_date');
-            
+
             $case->status            = 1;
 
 
               $case->save();
 
-          
+
              // session()->flash('success_msg', trans('cpanel.form_success'));
-   Session::flash('message', 'تم تعديل قضيتك بنجاح'); 
-             Session::flash('alert-class', 'alert-success'); 
+   Session::flash('message', 'تم تعديل قضيتك بنجاح');
+             Session::flash('alert-class', 'alert-success');
            $sess_locale=$request->session()->get('sess_locale');
-            
+
               return redirect($sess_locale.'/edit-case/'.$id);
           }
     }
 
 
    public function delete($locale='ar',$id)
-    { 
+    {
 
        /*echo $id;
        return;*/
         $case = Cases::findOrFail($id);
         $case->delete();
-        
-         Session::flash('message', 'تم مسح قضيتك بنجاح'); 
-              Session::flash('alert-class', 'alert-success'); 
+
+         Session::flash('message', 'تم مسح قضيتك بنجاح');
+              Session::flash('alert-class', 'alert-success');
            $sess_locale= session('sess_locale');
             return redirect($sess_locale.'/YourCases');
     }
@@ -291,16 +291,16 @@ public function create_case (Request $request)
       }
 
    public function SingleCase($locale='ar',$id){
-        
+
          /* $all_cases =  DB::table('cases')
                ->where('status', '=', '1');*/
         $case = Cases::findOrFail($id);
         $user_id=$case->user_id;
         $user_case = User::findOrFail($user_id);
-         
+
 
         $data = [
-            'title'=>trans('cpanel.site_name'), 
+            'title'=>trans('cpanel.site_name'),
             'case'=>$case,
             'id'=>$id,
             'user_case'=>$user_case,
@@ -309,11 +309,12 @@ public function create_case (Request $request)
       print_r($data);
       echo "</pre>";
       return;*/
+      // return Auth::user()->permissions;
           return view(FE . '/v_single_case')->with($data);
       }
 
 
- 
+
 
 
 
@@ -343,7 +344,7 @@ public function create_case (Request $request)
      * @param  \App\Cases  $cases
      * @return \Illuminate\Http\Response
      */
-   
+
 
     /**
      * Remove the specified resource from storage.

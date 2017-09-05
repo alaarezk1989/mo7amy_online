@@ -112,6 +112,7 @@ class UserController extends Controller
               session()->flash('success_msg', trans('cpanel.form_success'));
   // return auth()->user()->id;
               session(['user_id' => $user_id]);
+              session(['user_obj' => $user_obj]);
               $sess_locale=$request->session()->get('sess_locale');
                 return redirect($sess_locale.'/edit-profile/'.$user_id);
     }
@@ -327,6 +328,7 @@ class UserController extends Controller
               $user_obj = DB::table('users')
               ->where('email', '=', $request->input('email'))->first();
               session(['user_id' => $user_obj->id]);
+              session(['user_obj' => $user_obj]);
               // return $user_obj->id;
                 if(User::GetRole() == 'admin')
                 {
