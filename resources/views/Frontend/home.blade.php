@@ -1,7 +1,12 @@
 
 
+
 @extends(FEI.'.master')
 @section('content')
+
+<?php
+use Carbon\Carbon;
+?>
 <div class="container-fluid">
    <div class="row">
       <ul class="list-unstyled list-tabs">
@@ -105,12 +110,20 @@
                          else{
                            echo '</span>غير متاحة</span>'; }
                      ?>
+                     
+                    
                         
                      </div>
                   </div>
                   <ul class="list-unstyled">
                      <li><i class="fa fa-map-marker" aria-hidden="true"></i> <span>{{$value->name1}} -{{$value->name2}}</span>   </li>
-                     <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span> منذ 30 دقيقة  </span>   </li>
+                     <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span></span>
+                     <?php
+                            $current = Carbon::now();
+                            $old = Carbon::parse($value->created_at);
+                           echo $old->diffInHours($current);
+ 
+                        ?>   </li>
                      <li><i class="fa fa-calendar" aria-hidden="true"></i> <span> باقى 35 يوم   </span>  </li>
                   </ul>
                   <div class="price"> <i class="fa fa-money" aria-hidden="true">  </i>  اعلى سعر :<span>200,000</span> </div>
