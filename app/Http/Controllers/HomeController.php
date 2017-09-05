@@ -75,14 +75,32 @@ class HomeController extends Controller
         $states[$state->id]=$state->name;
       }
 
+$latest_cases = $this->LatestCases();
       $data = [
           'title'=>trans('cpanel.site_name'),
           'countries'=>$countries,
           'states'=>$states,
           'locale'=>$locale,
-
+          'latest_cases'=>$latest_cases,
 
       ];
-        return view(FE . '/home')->with($data);;
+        return view(FE . '/home')->with($data);
     }
+
+
+    public function LatestCases(){
+
+        $Latest_cases = DB::table('cases')
+            ->join('countries', 'countries.id', '=', 'cases.country')
+            ->join('cities', 'cities.id', '=', 'cases.city')
+            ->select('cases.*')
+            ->orderBy ('cases.created_at')
+            ->limit(9)
+            ->get();
+
+       
+          return $Latest_cases;
+
+      }
+
 }

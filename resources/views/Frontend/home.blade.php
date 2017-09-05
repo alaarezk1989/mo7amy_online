@@ -85,17 +85,28 @@
    </div>
 </section>
 <!--******************************************************-->
+ 
+
 <section class="latestcases">
    <div class="container">
       <h1 class="text-center m-top-bott">احدث القضايا </h1>
       <div class="row">
+      @foreach($latest_cases as $value)
          <div class="col-md-4 m_bottom">
-            <a href="casedetails-AR.html">
+            <a href="{{lang_url('case').'/'.$value->id}}">
                <div class="case-temp">
-                  <p>خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في,</p>
+                  <p>{{$value->description}}</p>
                   <div class="tempp">
-                     <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                     <div class="status"> الحالة : <span>متاح</span></div>
+                     <div class="casetype"> نوع القضية : <span>{{$value->type}}</span></div>
+                     <div class="status"> الحالة : 
+
+                     <?php
+                         if($value->status ==1) echo '<span> متاح</span>';
+                         else{
+                           echo '</span>غير متاحة</span>'; }
+                     ?>
+                        
+                     </div>
                   </div>
                   <ul class="list-unstyled">
                      <li><i class="fa fa-map-marker" aria-hidden="true"></i> <span> السعودية -جدة</span>   </li>
@@ -106,143 +117,11 @@
                </div>
             </a>
          </div>
-         <div class="col-md-4 m_bottom">
-            <a href="casedetails-AR.html">
-               <div class="case-temp">
-                  <p>خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في,</p>
-                  <div class="tempp">
-                     <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                     <div class="status"> الحالة : <span>متاح</span></div>
-                  </div>
-                  <ul class="list-unstyled">
-                     <li><i class="fa fa-map-marker" aria-hidden="true"></i> <span> السعودية -جدة</span>   </li>
-                     <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span> منذ 30 دقيقة  </span>   </li>
-                     <li><i class="fa fa-calendar" aria-hidden="true"></i> <span> باقى 35 يوم   </span>  </li>
-                  </ul>
-                  <div class="price"> <i class="fa fa-money" aria-hidden="true"> </i> اعلى سعر : <span>200,000</span> </div>
-               </div>
-            </a>
-         </div>
-         <div class="col-md-4 m_bottom">
-            <a href="casedetails-AR.html">
-               <div class="case-temp">
-                  <p>خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في,</p>
-                  <div class="tempp">
-                     <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                     <div class="status"> الحالة : <span>متاح</span></div>
-                  </div>
-                  <ul class="list-unstyled">
-                     <li><i class="fa fa-map-marker" aria-hidden="true"></i> <span> السعودية -جدة</span>   </li>
-                     <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span> منذ 30 دقيقة  </span>   </li>
-                     <li><i class="fa fa-calendar" aria-hidden="true"></i> <span> باقى 35 يوم   </span>  </li>
-                  </ul>
-                  <div class="price"> <i class="fa fa-money" aria-hidden="true"></i>  اعلى سعر : <span>200,000</span> </div>
-               </div>
-            </a>
-         </div>
-         <div class="col-md-4 m_bottom">
-            <a href="casedetails-AR.html">
-               <div class="case-temp">
-                  <p>خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في,</p>
-                  <div class="tempp">
-                     <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                     <div class="status"> الحالة : <span>متاح</span></div>
-                  </div>
-                  <ul class="list-unstyled">
-                     <li><i class="fa fa-map-marker" aria-hidden="true"></i> <span> السعودية -جدة</span>   </li>
-                     <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span> منذ 30 دقيقة  </span>   </li>
-                     <li><i class="fa fa-calendar" aria-hidden="true"></i> <span> باقى 35 يوم   </span>  </li>
-                  </ul>
-                  <div class="price"> <i class="fa fa-money" aria-hidden="true"></i>  اعلى سعر : <span>200,000</span> </div>
-               </div>
-            </a>
-         </div>
-         <div class="col-md-4 m_bottom">
-            <a href="casedetails-AR.html">
-               <div class="case-temp">
-                  <p>خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في,</p>
-                  <div class="tempp">
-                     <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                     <div class="status"> الحالة : <span>متاح</span></div>
-                  </div>
-                  <ul class="list-unstyled">
-                     <li><i class="fa fa-map-marker" aria-hidden="true"></i> <span> السعودية -جدة</span>   </li>
-                     <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span> منذ 30 دقيقة  </span>   </li>
-                     <li><i class="fa fa-calendar" aria-hidden="true"></i> <span> باقى 35 يوم   </span>  </li>
-                  </ul>
-                  <div class="price"> <i class="fa fa-money" aria-hidden="true"></i>  اعلى سعر : <span>200,000</span> </div>
-               </div>
-            </a>
-         </div>
-         <div class="col-md-4 m_bottom">
-            <a href="casedetails-AR.html">
-               <div class="case-temp">
-                  <p>خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في,</p>
-                  <div class="tempp">
-                     <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                     <div class="status"> الحالة : <span>متاح</span></div>
-                  </div>
-                  <ul class="list-unstyled">
-                     <li><i class="fa fa-map-marker" aria-hidden="true"></i> <span> السعودية -جدة</span>   </li>
-                     <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span> منذ 30 دقيقة  </span>   </li>
-                     <li><i class="fa fa-calendar" aria-hidden="true"></i> <span> باقى 35 يوم   </span>  </li>
-                  </ul>
-                  <div class="price"> <i class="fa fa-money" aria-hidden="true"></i>  اعلى سعر : <span>200,000</span> </div>
-               </div>
-            </a>
-         </div>
-         <div class="col-md-4">
-            <a href="casedetails-AR.html">
-               <div class="case-temp">
-                  <p>خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في,</p>
-                  <div class="tempp">
-                     <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                     <div class="status"> الحالة : <span>متاح</span></div>
-                  </div>
-                  <ul class="list-unstyled">
-                     <li><i class="fa fa-map-marker" aria-hidden="true"></i> <span> السعودية -جدة</span>   </li>
-                     <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span> منذ 30 دقيقة  </span>   </li>
-                     <li><i class="fa fa-calendar" aria-hidden="true"></i> <span> باقى 35 يوم   </span>  </li>
-                  </ul>
-                  <div class="price"> <i class="fa fa-money" aria-hidden="true"></i>  اعلى سعر : <span>200,000</span> </div>
-               </div>
-            </a>
-         </div>
-         <div class="col-md-4">
-            <a href="casedetails-AR.html">
-               <div class="case-temp">
-                  <p>خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في,</p>
-                  <div class="tempp">
-                     <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                     <div class="status"> الحالة : <span>متاح</span></div>
-                  </div>
-                  <ul class="list-unstyled">
-                     <li><i class="fa fa-map-marker" aria-hidden="true"></i> <span> السعودية -جدة</span>   </li>
-                     <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span> منذ 30 دقيقة  </span>   </li>
-                     <li><i class="fa fa-calendar" aria-hidden="true"></i> <span> باقى 35 يوم   </span>  </li>
-                  </ul>
-                  <div class="price"> <i class="fa fa-money" aria-hidden="true"></i>  اعلى سعر : <span>200,000</span> </div>
-               </div>
-            </a>
-         </div>
-         <div class="col-md-4">
-            <a href="casedetails-AR.html">
-               <div class="case-temp">
-                  <p>خسائر اللازمة ومطالبة حدة بل. الآخر الحلفاء أن غزو, إجلاء وتنامت عدد مع. لقهر معركة لبلجيكا، بـ انه, ربع الأثنان المقيتة في,</p>
-                  <div class="tempp">
-                     <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                     <div class="status"> الحالة : <span>متاح</span></div>
-                  </div>
-                  <ul class="list-unstyled">
-                     <li><i class="fa fa-map-marker" aria-hidden="true"></i> <span> السعودية -جدة</span>   </li>
-                     <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span> منذ 30 دقيقة  </span>   </li>
-                     <li><i class="fa fa-calendar" aria-hidden="true"></i> <span> باقى 35 يوم   </span>  </li>
-                  </ul>
-                  <div class="price"> <i class="fa fa-money" aria-hidden="true"></i>  اعلى سعر : <span>200,000</span> </div>
-               </div>
-            </a>
-         </div>
-      </div>
+           @endforeach
+
+
+
+
    </div>
 </section>
 <!--**********************************************************-->
