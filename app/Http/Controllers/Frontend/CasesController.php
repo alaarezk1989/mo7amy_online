@@ -276,7 +276,7 @@ public function create_case (Request $request)
       public function your_cases(){
 
         $sess_user_id= session('user_id');
-        $per_page = 20;
+        $per_page = 2;
         $your_case =  DB::table('cases')
                ->where('status', '=', '1')
                ->where('user_id', '=', $sess_user_id)

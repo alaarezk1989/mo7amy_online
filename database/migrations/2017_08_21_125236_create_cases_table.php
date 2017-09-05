@@ -15,8 +15,8 @@ class CreateCasesTable extends Migration
     {
         Schema::create('cases', function (Blueprint $table) {
             
-            $table->string('GUID');
-            $table->string('user_GUID');
+            $table->string('id')->primary()->index();
+            $table->string('user_id');
             $table->string('title');
             $table->string('description');
             $table->string('type');
@@ -24,7 +24,7 @@ class CreateCasesTable extends Migration
             $table->integer('city');
             $table->string('finished_date');
             $table->integer('status');
-            $table->integer('is_bids');
+            $table->integer('is_bids')->default('0');
             $table->timestamps();
         });
     }

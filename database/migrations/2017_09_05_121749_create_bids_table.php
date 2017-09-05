@@ -14,7 +14,7 @@ class CreateBidsTable extends Migration
     public function up()
     {
         Schema::create('bids', function (Blueprint $table) {
-            $table->string('id')->primary()->index();;
+            $table->string('id')->primary()->index();
             $table->string('user_id');
             $table->string('case_id');
             $table->integer('bids_val');
