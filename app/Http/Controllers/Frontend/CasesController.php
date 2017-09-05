@@ -200,18 +200,24 @@ public function test (Request $request)
      */
     public function update(Request $request, $id)
     {
-         //return $request->all();
-        //return $id;
+        
         $rules=[
             'title'                           =>'required',
-            
-           
-         
+            'description'                     =>'required',
+            'type'                            =>'required',
+            'country'                         =>'required',
+            'city'                            =>'required',
+            'finished_date'                   =>'required', 
         ];
       
           $validator = Validator::make($request->all(), $rules);
         $validator->SetAttributeNames([
-              'title'                     =>'title',
+            'title'                     =>'title',
+            'description'               =>'description',
+            'type'                      =>'type',
+            'country'                   =>'country',
+            'city'                      =>'city',
+           'finished_date'              =>'finished_date',
         
           ]);
           if($validator->fails())
@@ -257,7 +263,7 @@ public function test (Request $request)
     }
 
       public function AllCases(){
-        $per_page = 2;
+        $per_page = 20;
         $all_cases =  DB::table('cases')
                ->where('status', '=', '1')
               ->paginate($per_page);
@@ -272,7 +278,7 @@ public function test (Request $request)
       public function YourCases(){
 
         $sess_user_id= session('user_id');
-        $per_page = 2;
+        $per_page = 20;
         $your_case =  DB::table('cases')
                ->where('status', '=', '1')
                ->where('user_id', '=', $sess_user_id)
