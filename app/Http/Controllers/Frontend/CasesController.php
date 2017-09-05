@@ -100,8 +100,8 @@ public function test (Request $request)
         ]);
         if($validator->fails())
         {
-            session()->flash('error_msg', trans('cpanel.form_error'));
-
+         //   session()->flash('error_msg', trans('cpanel.form_error'));
+// Session::flash('alert-class', 'alert-danger'); 
 
             // return $request->all();
             return back()->withInput()->withErrors($validator);
@@ -200,7 +200,7 @@ public function test (Request $request)
      */
     public function update(Request $request, $id)
     {
-         // return $request->all();
+         //return $request->all();
         //return $id;
         $rules=[
             'title'                           =>'required',
@@ -217,23 +217,19 @@ public function test (Request $request)
           if($validator->fails())
           {
            // return $request->all();
-              session()->flash('error_msg', 'form_error');
+            //  session()->flash('error_msg', 'form_error');
               return back()->withInput()->withErrors($validator);
           }else{
               $case = Cases::findOrFail($id);
 
-            $case->title                    = $request->input('title');
-            // $case->description             = $request->input('description');
-           
-            // $case->type                    = $request->input('type');
-            // $case->country                 = $request->input('country');
-        
-            // $case->finished_date           =$request->input('finished_date');
-            
-            $case->status            = 1;
-
-
-              $case->save();
+           $case->title                   = $request->input('title');
+           $case->description             = $request->input('description');
+           $case->type                    = $request->input('type');
+           $case->country                 = $request->input('country');
+           $case->city                    = $request->input('city');
+           $case->finished_date           =$request->input('finished_date');
+           $case->status                  = 1;
+           $case->save();
 
           
              // session()->flash('success_msg', trans('cpanel.form_success'));
