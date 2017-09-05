@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCasesTable extends Migration
+class CreateBidsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,12 @@ class CreateCasesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cases', function (Blueprint $table) {
-            
+        Schema::create('bids', function (Blueprint $table) {
             $table->string('id')->primary()->index();
             $table->string('user_id');
-            $table->string('title');
-            $table->string('description');
-            $table->string('type');
-            $table->integer('country');
-            $table->integer('city');
-            $table->string('finished_date');
-            $table->integer('status');
-            $table->integer('is_bids')->default('0');
+            $table->string('case_id');
+            $table->integer('bids_val');
+            $table->integer('is_pids')->default('0');
             $table->timestamps();
         });
     }
@@ -36,6 +30,6 @@ class CreateCasesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cases');
+        Schema::dropIfExists('bids');
     }
 }
