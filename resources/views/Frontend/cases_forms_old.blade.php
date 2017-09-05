@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
 <div class="row">
-<img src="{{ URL::to('public/assets/Frontend/img/Add%20Case%20Image.png') }}" alt="addcase" class="img-responsive">    
+<img src="{{ URL::to('public/assets/Frontend/img/AddCaseImage.png') }}" alt="addcase" class="img-responsive">    
 </div>        
 </div>    
 
@@ -12,12 +12,20 @@
 <section class="addcase">
 <div class="container">
 <div class="row">
+<?php
+/*
+echo "<pre>";
 
-  <form  method="POST" action="{{ url('test') }}">
-                        {{ csrf_field() }}
+ print_r($cases_data);
+ echo "</pre>";
+ return;*/
+ ?>
+ {!! Form::model($cases_data,['method'=>'post','files'=>true,'url'=>'/update-case/'.$id]) !!}
+
 
 
 <div class="col-md-4 maa">
+
 
 <div class="casere-servation">    
 
@@ -34,19 +42,18 @@
 
 <div class="form-group inp2"> 
 <label> البلد والمدينة </label>
-<select class="sl-cou" name="country" id="country">
+<select class="sl-cou" name="country">
 <option value="0">   اختار البلد </option>
 <option value="مصر">مصر </option>
 <option value="السعودية">السعودية  </option>
 <option value="الامارات"> الامارات  </option>
 </select>
-
-<select id="city">
+<!--<select>
 <option value="">   اختار المدينة </option>
 <option value="">القاهرة  </option>
 <option value="">الجيزة  </option>
 <option value=""> اسكندرية  </option>
-</select>  
+</select>-->     
 </div>    
 
 
@@ -75,26 +82,22 @@
 
 <div class="form-group inp-addcase"> 
 <label> عنوان القضية </label>
-<input name="title" type="text" class="form-control" placeholder="أضف عنوان لقضيتك"> 
-@if ($errors->has('title'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('title') }}</strong>
-                                    </span>
-                                @endif
+{!! Form::text('title',old('title'), array('id'=>'title', 'class'=>'form-control','required'=>'required')) !!}
 
 
 </div>   
 
 <div class="form-group inp-details">     
 <label>التفاصيل </label>  
-<textarea  name ="description" rows="11" cols="93" placeholder="أضف تفاصيل قضيتك "></textarea>    
+ {!! Form::textarea('description',old('description'), array('rows'=>11,'cols'=>93, 'class'=>'form-control non-resizable') ) !!}
+
 </div> 
 
 
 
 </div>    
 </div> 
-</form>   
+ {!! Form::close() !!}  
 
 
 </div> 

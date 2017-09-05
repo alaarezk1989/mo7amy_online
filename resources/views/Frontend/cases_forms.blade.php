@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
 <div class="row">
-<img src="{{ URL::to('public/assets/Frontend/img/AddCaseImage.png') }}" alt="addcase" class="img-responsive">    
+<img src="{{ URL::to('public/assets/Frontend/img/Add%20Case%20Image.png') }}" alt="addcase" class="img-responsive">    
 </div>        
 </div>    
 
@@ -12,48 +12,37 @@
 <section class="addcase">
 <div class="container">
 <div class="row">
-<?php
-/*
-echo "<pre>";
 
- print_r($cases_data);
- echo "</pre>";
- return;*/
- ?>
- {!! Form::model($cases_data,['method'=>'post','files'=>true,'url'=>'/update-case/'.$id]) !!}
 
+  	<!-- BEGIN FORM-->
+                @if(!empty($cases_data))
+                    {!! Form::model($cases_data,['method'=>'PATCH','url'=>'/update-case/'.$cases_data->id, 'id'=>'form_sample_3']) !!}
+                    @else
+                      {!! Form::open(['method'=>'POST','id'=>'form_sample_3','url'=>'test']) !!}
+                @endif
+                       
 
 
 <div class="col-md-4 maa">
-
 
 <div class="casere-servation">    
 
 <div class="form-group inp1"> 
 <label> نوع القضية </label>
-<select name="type">
-<option value="0">أختار نوع قضيتك</option>
-<option value="جنائية">جنائية</option>
-<option value="زوجية">زوجية </option>
-<option value="أسرية "> أسرية  </option>
-</select>
+
+{!! Form::select('type', $specialty,old('type'), ['id'=>'type']) !!}
 </div> 
 
 
 <div class="form-group inp2"> 
 <label> البلد والمدينة </label>
-<select class="sl-cou" name="country">
-<option value="0">   اختار البلد </option>
-<option value="مصر">مصر </option>
-<option value="السعودية">السعودية  </option>
-<option value="الامارات"> الامارات  </option>
-</select>
-<!--<select>
-<option value="">   اختار المدينة </option>
-<option value="">القاهرة  </option>
-<option value="">الجيزة  </option>
-<option value=""> اسكندرية  </option>
-</select>-->     
+
+
+ {!! Form::select('country', $countries,old('country'), ['id'=>'country','class' => 'sl-cou']) !!}
+
+
+ {!! Form::select('city', $states,old('city'), ['id'=>'city','class' => 'sl-cou']) !!}
+                            
 </div>    
 
 
@@ -82,15 +71,21 @@ echo "<pre>";
 
 <div class="form-group inp-addcase"> 
 <label> عنوان القضية </label>
-{!! Form::text('title',old('title'), array('id'=>'title', 'class'=>'form-control','required'=>'required')) !!}
+
+{!! Form::text('title',old('title'), array('id'=>'title', 'class'=>'form-control','required'=>'required','placeholder'=>'أضف عنوان لقضيتك')) !!}
+
+@if ($errors->has('title'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('title') }}</strong>
+                                    </span>
+                                @endif
 
 
 </div>   
 
 <div class="form-group inp-details">     
 <label>التفاصيل </label>  
- {!! Form::textarea('description',old('description'), array('rows'=>11,'cols'=>93, 'class'=>'form-control non-resizable') ) !!}
-
+<textarea  name ="description" rows="11" cols="93" placeholder="أضف تفاصيل قضيتك "></textarea>    
 </div> 
 
 

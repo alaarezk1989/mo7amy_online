@@ -20,16 +20,44 @@ class CasesController extends Controller
      */
     public function index()
     {
-      /*
-      $sess_user_id= session('user_id');
-      $sess_locale= session('sess_locale');
-        echo $sess_locale;
-      return $sess_user_id;
-      */
-        //
-    // return   auth()->user()->id;
-//session(['user_id' => $user_id]);
-        return view(FE . '/v_add_case');
+        $sess_locale= session('sess_locale');
+      $all_countries = DB::table('countries')
+          ->where('local', '=', $sess_locale)->orderBy('id')->get();
+          $first_country_id=0;
+          $countries=array();
+          foreach ($all_countries as $country) {
+            if($first_country_id <= 0){
+              $first_country_id=$country->id;
+            }
+            // if($country->id < $first_country_id){
+            //     $first_country_id=$country->id;
+            // }
+            $countries[$country->id]=$country->name;
+          }
+
+          $states=array();
+          $all_states = DB::table('cities')
+         ->where('local', '=', $sess_locale)
+         ->where('country_id', '=', $first_country_id)
+          ->get();
+          foreach ($all_states as $state) {
+            $states[$state->id]=$state->name;
+          }
+ $specialty  = User::GetAdminSpecialty();
+ $sess_user_id= session('user_id');
+        $data = [
+              'title'=>trans('cpanel.site_name'),
+              'page_title'=>trans('cpanel.edit_admin'),
+              'submit_button'=>trans('cpanel.save'),
+              'type'=>'edit',
+              'form_title'=>trans('cpanel.admin_form'),
+              'specialty'=>$specialty,
+              'countries'=>$countries,
+              'states'=>$states,
+              'sess_user_id'=>$sess_user_id,
+
+          ];
+        return view(FE . '/cases_forms')->with($data);
     }
 
     /**
@@ -55,6 +83,7 @@ public function test (Request $request)
             'description'                     =>'required',
             'type'                            =>'required',
             'country'                         =>'required',
+            'city'                            =>'required',
             'finished_date'                   =>'required',
            
          
@@ -65,6 +94,7 @@ public function test (Request $request)
             'description'               =>'description',
             'type'                      =>'type',
             'country'                   =>'country',
+            'city'                      =>'city',
            'finished_date'              =>'finished_date',
       
         ]);
@@ -76,7 +106,7 @@ public function test (Request $request)
             // return $request->all();
             return back()->withInput()->withErrors($validator);
         }else{
-
+          
             $add = new Cases;
            // $add->id                    =date('YmdHis') . mt_rand();
             $add->id                       =uniqid('',true);
@@ -85,7 +115,7 @@ public function test (Request $request)
            
             $add->type                     = $request->input('type');
             $add->country                  = $request->input('country');
-        
+            $add->city                  = $request->input('city');
             $add->finished_date            = $request->input('finished_date');
             $add->user_id                  = $sess_user_id;
             $add->status                   = 1;
@@ -116,21 +146,45 @@ public function test (Request $request)
     public function edit($locale='ar',$id)
     {
 
-        /*  if(auth()->user()->id != $id){
-              return redirect('/');
-          }*/
-       //   if(auth()->user()->id == user_id)
+      $sess_locale= session('sess_locale');
+      $all_countries = DB::table('countries')
+          ->where('local', '=', $sess_locale)->orderBy('id')->get();
+          $first_country_id=0;
+          $countries=array();
+          foreach ($all_countries as $country) {
+            if($first_country_id <= 0){
+              $first_country_id=$country->id;
+            }
+            // if($country->id < $first_country_id){
+            //     $first_country_id=$country->id;
+            // }
+            $countries[$country->id]=$country->name;
+          }
+
+          $states=array();
+          $all_states = DB::table('cities')
+         ->where('local', '=', $sess_locale)
+         ->where('country_id', '=', $first_country_id)
+          ->get();
+          foreach ($all_states as $state) {
+            $states[$state->id]=$state->name;
+          }
+ $specialty  = User::GetAdminSpecialty();
+ $sess_user_id= session('user_id');
 
          $cases_data = Cases::findOrFail($id);
       
           $data = [
-              
                'title'=>trans('cpanel.site_name'),
               'page_title'=>trans('cpanel.edit_admin'),
               'submit_button'=>trans('cpanel.save'),
-              'cases_data'=>$cases_data,
               'type'=>'edit',
               'form_title'=>trans('cpanel.admin_form'),
+              'specialty'=>$specialty,
+              'countries'=>$countries,
+              'states'=>$states,
+              'sess_user_id'=>$sess_user_id,
+              'cases_data'=>$cases_data,
               'id'=>$id,
 
           ];

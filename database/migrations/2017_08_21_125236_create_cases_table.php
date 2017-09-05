@@ -20,9 +20,11 @@ class CreateCasesTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('type');
-            $table->string('country');
+            $table->integer('country');
+            $table->integer('city');
             $table->string('finished_date');
-            $table->string('status');
+            $table->integer('status');
+            $table->integer('is_bids');
             $table->timestamps();
         });
     }
