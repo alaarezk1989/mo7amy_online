@@ -261,7 +261,7 @@ public function create_case (Request $request)
     }
 
       public function AllCases(){
-        $per_page = 2;
+        $per_page = 20;
         $all_cases =  DB::table('cases')
                ->where('status', '=', '1')
               ->paginate($per_page);
@@ -276,7 +276,7 @@ public function create_case (Request $request)
       public function your_cases(){
 
         $sess_user_id= session('user_id');
-        $per_page = 2;
+        $per_page = 20;
         $your_case =  DB::table('cases')
                ->where('status', '=', '1')
                ->where('user_id', '=', $sess_user_id)
