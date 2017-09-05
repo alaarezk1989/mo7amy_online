@@ -263,8 +263,11 @@ public function create_case (Request $request)
       public function AllCases(){
         $per_page = 20;
         $all_cases =  DB::table('cases')
-               ->where('status', '=', '1')
-              ->paginate($per_page);
+                ->where('status', '=', '1')
+                ->join('countries', 'countries.id', '=', 'cases.country')
+                ->join('cities', 'cities.id', '=', 'cases.city')
+                ->select('cases.*','countries.name as name1','cities.name as name2')
+                ->paginate($per_page);
         $data = [
             'title'=>trans('cpanel.site_name'),
             'page_title'=>trans('cpanel.edit_admin'),

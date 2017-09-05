@@ -58,7 +58,7 @@
                               ?></div>    
 </div> 
 <div class="another-details">
-<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>   
+<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i>{{$value->name1}} - {{$value->name12}}</div>   
 <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>    
 <div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>    
 <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div> 

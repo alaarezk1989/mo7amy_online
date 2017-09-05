@@ -15,6 +15,8 @@ use Mail;
 use CountryState;
 use App;
 use DB;
+use Carbon;
+
 
 class HomeController extends Controller
 {
@@ -97,6 +99,8 @@ $latest_cases = $this->LatestCases();
             ->orderBy ('cases.created_at')
             ->limit(9)
             ->get();
+
+
 
        
           return $Latest_cases;
