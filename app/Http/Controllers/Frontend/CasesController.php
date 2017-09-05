@@ -72,7 +72,7 @@ class CasesController extends Controller
 
 
 
-public function test (Request $request)
+public function create_case (Request $request)
 
 
     {
@@ -275,7 +275,7 @@ public function test (Request $request)
         ];
           return view(FE . '/v_all_cases')->with($data);
       }
-      public function YourCases(){
+      public function your_cases(){
 
         $sess_user_id= session('user_id');
         $per_page = 20;

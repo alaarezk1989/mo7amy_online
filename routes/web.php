@@ -36,7 +36,7 @@ Route::group(['middlewareGroups' => ['web']], function() {
 /*houida*/
          Route::get('{locale?}/show',FE.  '\CasesController@index');
 
-         Route::post('test',FE.'\CasesController@test');
+         Route::post('create-case',FE.'\CasesController@create_case');
 
         Route::get('{locale?}/edit-case/{GUID}', FE. '\CasesController@edit');
         Route::post('update-case/{GUID}', FE. '\CasesController@update');
@@ -69,6 +69,10 @@ Route::group(['middlewareGroups' => ['web']], function() {
 
         // lawyer Area
           Route::group(['middleware' => 'Permission:client'], function() {
+             /*houida*/
+
+            /*houida*/
+
           });
 
 // Admin Area
