@@ -18,7 +18,7 @@
                 @if(!empty($cases_data))
                     {!! Form::model($cases_data,['method'=>'PATCH','url'=>'/update-case/'.$cases_data->id, 'id'=>'form_sample_3']) !!}
                     @else
-                      {!! Form::open(['method'=>'POST','id'=>'form_sample_3','url'=>'test']) !!}
+                      {!! Form::open(['method'=>'POST','id'=>'form_sample_3','url'=>'create-case']) !!}
                 @endif
                        
 

@@ -11,24 +11,27 @@
 <div class="row">
 
 
-<div class="arrange">
-<i class="fa fa-sort " aria-hidden="true"></i>  
-<div class="dropdown">
-<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-ترتيب 
-<span class="caret"></span>
-</button>
-<ul class="dropdown-menu arrang-menu" aria-labelledby="dropdownMenu1">
-<li><a href="#">اعلى سعر </a></li>
-<li><a href="#">اقل سعر  </a></li>
-<li><a href="#"> احدث عرض  </a></li>
-</ul>
-</div>    
-<p> يظهر <spa> 0- 8 </spa> من <span> 25 </span>  نتيجة  </p> 
-
-<div id='page_navigation'></div>	
-
-</div>
+  <div class="arrange">
+                     <i class="fa fa-sort " aria-hidden="true"></i>
+                     <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        {{ trans('cpanel.arranging') }}
+                        <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu arrang-menu" aria-labelledby="dropdownMenu1">
+                           <li><a href="#">{{ trans('cpanel.highest_price') }}</a></li>
+                           <li><a href="#">{{ trans('cpanel.lowest_price') }}</a></li>
+                           <li><a href="#">{{ trans('cpanel.latest_show') }} </a></li>
+                        </ul>
+                     </div>
+                     <p>
+                       {{trans('cpanel.show')}}
+                        <span> 0- {{ $your_case->perPage() }} </span>
+                        {{trans('cpanel.of')}}
+                        <span> {{$your_case->total()}} </span>{{trans('cpanel.result')}}
+                     </p>
+                     <div id='page_navigation'>{{ $your_case->links() }}</div>
+                  </div>
 
 
 
