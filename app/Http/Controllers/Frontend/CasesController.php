@@ -281,7 +281,7 @@ public function create_case (Request $request)
             'page_title'=>trans('cpanel.edit_admin'),
             'per_page'=>$per_page,
             'all_cases'=>$all_cases,
-            'finished_days'=>$finished_days,
+            // 'finished_days'=>$finished_days,
         ];
           return view(FE . '/v_all_cases')->with($data);
       }

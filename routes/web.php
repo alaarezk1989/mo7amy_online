@@ -34,11 +34,11 @@ Route::group(['middlewareGroups' => ['web']], function() {
     Auth::routes();
 
 /*houida*/
-       
 
-       
+
+
          Route::get('{locale?}/cases',FE.  '\CasesController@AllCases');
-        
+
 
          Route::get('{locale?}/case/{id}',FE.  '\CasesController@SingleCase');
          Route::get('{locale?}/your-cases',FE.  '\CasesController@your_cases');
@@ -52,6 +52,7 @@ Route::group(['middlewareGroups' => ['web']], function() {
     Route::get('{locale?}/lawyers', FE . '\UserController@list_lawyers');
     Route::get('{locale?}/lawyer/{id}', FE . '\UserController@lawyer');
     Route::any('cities_country/{id?}', FE . '\CitiesController@cities_country');
+    Route::post('set_your_bids/{case_id}', FE . '\BidsController@set_your_bids');
 
       Route::group(['middleware' => 'auth'], function() {
 

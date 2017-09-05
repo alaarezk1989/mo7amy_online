@@ -3,20 +3,21 @@
 <!DOCTYPE html>
 <html lang="ar">
    <head>
-     <meta charset="UTF-8">
-     <meta name="description" content="Free Web tutorials">
-      <meta name="keywords" content="HTML,CSS,XML,JavaScript">
-      <meta name="author" content="Nesma Arby">
+
+      <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="keywords" content="">
       <title>
-         @if(!empty($title))
-         {{$title}}
-         @if(!empty($page_title))
-         | {{$page_title}}
-         @endif
-         @endif
+          @if(!empty($title))
+              {{$title}}
+              @if(!empty($page_title))
+              | {{$page_title}}
+              @endif
+          @endif
       </title>
+
       <link href="{{ asset('public/assets/'.FE .'/css/bootstrap.min.css')}}" rel="stylesheet">
       <link href="{{ asset('public/assets/'.FE .'/css/font-awesome.min.css')}}" rel="stylesheet">
       <link href="{{ asset('public/assets/'.FE .'/css/hover-min.css')}}" rel="stylesheet">
@@ -131,9 +132,9 @@
                                     </div>
 
                                     <div class=" slct form-group">
-                                      {!! Form::select('country', $countries,'', array('id'=>'country') ) !!}
+                                      {!! Form::select('country', get_countries_cities()['countries'],'', array('id'=>'country') ) !!}
 
-                                      {!! Form::select('city', $states,'', array('id'=>'city')) !!}
+                                      {!! Form::select('city', get_countries_cities()['states'],'', array('id'=>'city')) !!}
 
                                     </div>
                                     <div class="gender text-center">

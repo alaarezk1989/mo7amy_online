@@ -16,3 +16,36 @@ if (!function_exists('lang_url')) {
         return url($locale.'/'.$path);
     }
 }
+
+
+if (!function_exists('get_countries_cities')) {
+    function get_countries_cities()
+    {
+      $locale = App::getLocale();
+      $all_countries = DB::table('countries')
+      ->where('local', '=', $locale)->orderBy('id')->get();
+      $first_country_id=0;
+      $countries=array();
+      foreach ($all_countries as $country) {
+        if($first_country_id <= 0){
+          $first_country_id=$country->id;
+        }
+
+        $countries[$country->id]=$country->name;
+      }
+
+      $states=array();
+      $all_states = DB::table('cities')
+      ->where('local', '=', $locale)
+      ->where('country_id', '=', $first_country_id)
+      ->get();
+      foreach ($all_states as $state) {
+        $states[$state->id]=$state->name;
+      }
+        $data=[
+          'countries'=>$countries,
+          'states'=>$states,
+      ];
+      return $data;
+    }
+}

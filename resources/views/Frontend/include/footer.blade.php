@@ -104,6 +104,32 @@ $(document).ready(function() {
                 }
             }); //end ajax
     }); //end on change country
+
+
+    $('#bids_button').on('click', function() {
+      var bids_val= $('#bids_val').val();
+      var case_id=$('#case_id').val();
+      // var req_url = "{!! url('set_your_bids') !!}"+'/'+bids_val+'/'+case_id;
+      var req_url = "{!! url('set_your_bids') !!}"+'/'+case_id;
+        $.ajax({
+                type: "pst",
+                url:req_url,
+                // data: {bids_val: bids_val,case_id: case_id},
+                data: $('#form_set_bids').serialize(), // Request data in JSON
+                 dataType: 'json', // Define data type will be JSON
+                success: function(result) {
+                    alert('ttt');
+                    // var $el = $("#bids_div");
+                    // $el.hide(); // remove old options
+                    console.log(result);
+                },
+                error: function(error) {
+                    alert( 'ee'+console.log(error));
+                console.log(error);
+                }
+            }); //end ajax
+              // return false;
+    }); //end on click on bids
 });  //End Document.Ready
 
 

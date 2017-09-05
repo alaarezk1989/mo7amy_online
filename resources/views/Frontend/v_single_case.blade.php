@@ -54,14 +54,15 @@
 
                @if(auth()->user())
                  @if(user_auth()->permissions=='lawyer')
-               <div class="forresvation">
-                  {{--
-                  <form action="" method=""> --}}
-                     <input type="text" class="form-control" placeholder="حدد سعرك" id="bids_val">
+               <div class="forresvation" id="bids_div">
+
+                {!! Form::open(['method'=>'POST','id'=>'form_set_bids','url'=>'set_your_bids/'.$id]) !!}
+
+                    {!! Form::text('bids_val','', array('class'=>'form-control','id'=>'bids_val','placeholder'=>'حدد سعر', 'required'=>'required' ) ) !!}
+                    {!! Form::hidden('case_id',$id, array('id'=>'case_id') ) !!}
                      <button type="submit" id="bids_button">قدم عرضك  </button>
-                     {{--
-                  </form>
-                  --}}
+                  {!! Form::close() !!}
+
                </div>
                @endif
              @endif

@@ -49,37 +49,14 @@ class HomeController extends Controller
       App::setLocale($locale);
       $locale = App::getLocale();
 
+      // $states = CountryState::getStates('EG');
       // $countries = CountryState::getCountries();
 
-      $all_countries = DB::table('countries')
-      ->where('local', '=', $locale)->orderBy('id')->get();
-      $first_country_id=0;
-      $countries=array();
-      foreach ($all_countries as $country) {
-        if($first_country_id <= 0){
-          $first_country_id=$country->id;
-        }
-        // if($country->id < $first_country_id){
-        //     $first_country_id=$country->id;
-        // }
-        $countries[$country->id]=$country->name;
-      }
-
-      // $states = CountryState::getStates('EG');
-      $states=array();
-      $all_states = DB::table('cities')
-      ->where('local', '=', $locale)
-      ->where('country_id', '=', $first_country_id)
-      ->get();
-      foreach ($all_states as $state) {
-        $states[$state->id]=$state->name;
-      }
-
-$latest_cases = $this->LatestCases();
+      $latest_cases = $this->LatestCases();
       $data = [
           'title'=>trans('cpanel.site_name'),
-          'countries'=>$countries,
-          'states'=>$states,
+          // 'countries'=>$countries,
+          // 'states'=>$states,
           'locale'=>$locale,
           'latest_cases'=>$latest_cases,
 
@@ -98,7 +75,7 @@ $latest_cases = $this->LatestCases();
             ->limit(9)
             ->get();
 
-       
+
           return $Latest_cases;
 
       }
