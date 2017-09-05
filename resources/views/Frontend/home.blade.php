@@ -109,7 +109,7 @@
                      </div>
                   </div>
                   <ul class="list-unstyled">
-                     <li><i class="fa fa-map-marker" aria-hidden="true"></i> <span> السعودية -جدة</span>   </li>
+                     <li><i class="fa fa-map-marker" aria-hidden="true"></i> <span>{{$value->name1}} -{{$value->name2}}</span>   </li>
                      <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span> منذ 30 دقيقة  </span>   </li>
                      <li><i class="fa fa-calendar" aria-hidden="true"></i> <span> باقى 35 يوم   </span>  </li>
                   </ul>
