@@ -72,7 +72,7 @@ class CasesController extends Controller
 
 
 
-public function create_case (Request $request)
+public function test (Request $request)
 
 
     {
@@ -100,8 +100,8 @@ public function create_case (Request $request)
         ]);
         if($validator->fails())
         {
-         //   session()->flash('error_msg', trans('cpanel.form_error'));
-// Session::flash('alert-class', 'alert-danger'); 
+            session()->flash('error_msg', trans('cpanel.form_error'));
+
 
             // return $request->all();
             return back()->withInput()->withErrors($validator);
@@ -200,42 +200,40 @@ public function create_case (Request $request)
      */
     public function update(Request $request, $id)
     {
-        
+         // return $request->all();
+        //return $id;
         $rules=[
             'title'                           =>'required',
-            'description'                     =>'required',
-            'type'                            =>'required',
-            'country'                         =>'required',
-            'city'                            =>'required',
-            'finished_date'                   =>'required', 
+            
+           
+         
         ];
       
           $validator = Validator::make($request->all(), $rules);
         $validator->SetAttributeNames([
-            'title'                     =>'title',
-            'description'               =>'description',
-            'type'                      =>'type',
-            'country'                   =>'country',
-            'city'                      =>'city',
-           'finished_date'              =>'finished_date',
+              'title'                     =>'title',
         
           ]);
           if($validator->fails())
           {
            // return $request->all();
-            //  session()->flash('error_msg', 'form_error');
+              session()->flash('error_msg', 'form_error');
               return back()->withInput()->withErrors($validator);
           }else{
               $case = Cases::findOrFail($id);
 
-           $case->title                   = $request->input('title');
-           $case->description             = $request->input('description');
-           $case->type                    = $request->input('type');
-           $case->country                 = $request->input('country');
-           $case->city                    = $request->input('city');
-           $case->finished_date           =$request->input('finished_date');
-           $case->status                  = 1;
-           $case->save();
+            $case->title                    = $request->input('title');
+            // $case->description             = $request->input('description');
+           
+            // $case->type                    = $request->input('type');
+            // $case->country                 = $request->input('country');
+        
+            // $case->finished_date           =$request->input('finished_date');
+            
+            $case->status            = 1;
+
+
+              $case->save();
 
           
              // session()->flash('success_msg', trans('cpanel.form_success'));
@@ -263,7 +261,7 @@ public function create_case (Request $request)
     }
 
       public function AllCases(){
-        $per_page = 20;
+        $per_page = 2;
         $all_cases =  DB::table('cases')
                ->where('status', '=', '1')
               ->paginate($per_page);
@@ -275,10 +273,10 @@ public function create_case (Request $request)
         ];
           return view(FE . '/v_all_cases')->with($data);
       }
-      public function your_cases(){
+      public function YourCases(){
 
         $sess_user_id= session('user_id');
-        $per_page = 20;
+        $per_page = 2;
         $your_case =  DB::table('cases')
                ->where('status', '=', '1')
                ->where('user_id', '=', $sess_user_id)

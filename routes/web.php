@@ -34,12 +34,17 @@ Route::group(['middlewareGroups' => ['web']], function() {
     Auth::routes();
    
 /*houida*/
-      
+         Route::get('{locale?}/show',FE.  '\CasesController@index');
+
+         Route::post('test',FE.'\CasesController@test');
+
+        Route::get('{locale?}/edit-case/{GUID}', FE. '\CasesController@edit');
+        Route::post('update-case/{GUID}', FE. '\CasesController@update');
          Route::get('{locale?}/cases',FE.  '\CasesController@AllCases');
-        
+        Route::get('{locale?}/delete-case/{GUID}', FE. '\CasesController@delete');
 
          Route::get('{locale?}/case/{id}',FE.  '\CasesController@SingleCase');
-         Route::get('{locale?}/your-cases',FE.  '\CasesController@your_cases');
+         Route::get('{locale?}/YourCases',FE.  '\CasesController@YourCases');
   /*houida*/
     // Route::get('{locale?}/login', AD . '\AdminController@login');
     Route::get('{locale?}/logout', AD . '\AdminController@logout');
@@ -64,17 +69,6 @@ Route::group(['middlewareGroups' => ['web']], function() {
 
         // lawyer Area
           Route::group(['middleware' => 'Permission:client'], function() {
-             /*houida*/
-                Route::get('{locale?}/create',FE.  '\CasesController@index');
-                Route::post('create-case',FE.'\CasesController@create_case');
-
-                 Route::get('{locale?}/edit-case/{GUID}', FE. '\CasesController@edit');
-                Route::post('update-case/{GUID}', FE. '\CasesController@update');
-
-                Route::get('{locale?}/delete-case/{GUID}', FE. '\CasesController@delete');
-
-            /*houida*/
-
           });
 
 // Admin Area

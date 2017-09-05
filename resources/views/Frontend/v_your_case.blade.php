@@ -74,7 +74,7 @@
 <a href="{{lang_url('edit-case').'/'.$value->id}}">
 <button class="btn btn-primary">تعديل</button>
 </a>
-<a href="{{lang_url('delete-case').'/'.$value->id}} " onclick="return confirm('Are you sure you want to delete ?');" >
+<a href="{{lang_url('delete-case').'/'.$value->id}}"
 <button class="btn btn-danger">مسح</button></a>
 </div>  
 </div> 

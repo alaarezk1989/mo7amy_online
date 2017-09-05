@@ -24,7 +24,7 @@ class CreateCasesTable extends Migration
             $table->integer('city');
             $table->string('finished_date');
             $table->integer('status');
-            $table->integer('is_bids')->default(0);
+            $table->integer('is_bids');
             $table->timestamps();
         });
     }
