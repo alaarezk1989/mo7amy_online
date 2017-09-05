@@ -72,7 +72,7 @@ class CasesController extends Controller
 
 
 
-public function create (Request $request)
+public function create_case (Request $request)
 
 
     {
