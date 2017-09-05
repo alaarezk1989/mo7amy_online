@@ -9,6 +9,7 @@ use App\Http\Requests;
 use Session;
 use Auth;
 use App\User;
+use Carbon\Carbon;
 use DB;
 
 class CasesController extends Controller
@@ -261,22 +262,33 @@ public function create_case (Request $request)
     }
 
       public function AllCases(){
+
         $per_page = 20;
         $all_cases =  DB::table('cases')
                ->where('status', '=', '1')
               ->paginate($per_page);
+
+      /* $finished_date= $all_cases['finished_date'];
+        //return $finished_date;
+      // $finished_date= strtotime($all_cases->finished_date);
+        $finished_date= date("Y, m, d", $finished_date);
+        $finished_date= (int)$finished_date;
+        $finished_days=Carbon::createFromDate(2019, 11, 2)->diff(Carbon::now())->format('%y %m %d');*/
+
+//return $finished_days;
         $data = [
             'title'=>trans('cpanel.site_name'),
             'page_title'=>trans('cpanel.edit_admin'),
             'per_page'=>$per_page,
             'all_cases'=>$all_cases,
+            'finished_days'=>$finished_days,
         ];
           return view(FE . '/v_all_cases')->with($data);
       }
       public function your_cases(){
 
         $sess_user_id= session('user_id');
-        $per_page = 2;
+        $per_page = 10;
         $your_case =  DB::table('cases')
                ->where('status', '=', '1')
                ->where('user_id', '=', $sess_user_id)
