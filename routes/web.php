@@ -32,7 +32,7 @@ Route::get('countries', function()
 Route::group(['middlewareGroups' => ['web']], function() {
 
     Auth::routes();
-   
+
 /*houida*/
        
 
