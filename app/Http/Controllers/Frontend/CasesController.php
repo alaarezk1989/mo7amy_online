@@ -28,7 +28,7 @@ class CasesController extends Controller
             if($first_country_id <= 0){
               $first_country_id=$country->id;
             }
-          
+
             $countries[$country->id]=$country->name;
           }
           $states=array();
@@ -230,7 +230,7 @@ public function create_case (Request $request)
     }
       public function AllCases(){
 
-     
+
               $per_page = 20;
               $all_cases =  DB::table('cases')
                 ->where('status', '=', '1')
@@ -249,7 +249,7 @@ public function create_case (Request $request)
             if($first_country_id <= 0){
               $first_country_id=$country->id;
             }
-          
+
             $countries[$country->id]=$country->name;
           }
 /*echo "<pre>";
@@ -285,14 +285,31 @@ return; */
    public function SingleCase($locale='ar',$id){
 
 $case_bids=array();
+$all_case_bids=array();
+
      if(auth()->user()){
         $sess_user_id= session('user_id');
         $case_bids =  DB::table('bids')
          ->where('user_id', '=', $sess_user_id)
          ->where('case_id', '=', $id)->first();
+
+         $per_page = 25;
+        /* $all_case_bids=DB::table('bids')
+          ->where('case_id', '=', $id)
+          ->orderBy('created_at', 'desc')
+          ->paginate($per_page);
+*/
+          $all_case_bids = DB::table('bids')
+              ->where('case_id', '=', $id)
+              ->join('users', 'users.id', '=', 'bids.user_id')
+              ->join('countries', 'countries.id', '=', 'users.country')
+              ->join('cities', 'cities.id', '=', 'users.city')
+              ->select('bids.*','users.*','countries.name as country_name','cities.name as city_name')
+              ->orderBy ('bids.created_at')
+              ->limit($per_page)
+              ->get();
       }
-
-
+// return $all_case_bids;
         $case = Cases::findOrFail($id);
         $user_id=$case->user_id;
         $user_case = User::findOrFail($user_id);
@@ -303,6 +320,7 @@ $case_bids=array();
             'id'=>$id,
             'user_case'=>$user_case,
             'case_bids'=>$case_bids,
+            'all_case_bids'=>$all_case_bids,
         ];
       /*echo "<pre>";
       print_r($data);

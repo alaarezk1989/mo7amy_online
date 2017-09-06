@@ -86,7 +86,8 @@ class User extends Authenticatable
     **/
     public function scopeGetRole()
     {
-        return auth()->user()->permissions;
+      // return auth()->user()->permissions;
+        return user_auth()->permissions;
     }
 
     public function scopeGetid()
