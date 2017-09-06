@@ -55,12 +55,14 @@ class HomeController extends Controller
       // $countries = CountryState::getCountries();
 
       $latest_cases = $this->LatestCases();
+      $lawyers = $this->lawyers();
       $data = [
           'title'=>trans('cpanel.site_name'),
           // 'countries'=>$countries,
           // 'states'=>$states,
           'locale'=>$locale,
           'latest_cases'=>$latest_cases,
+          'lawyers'=>$lawyers,
 
       ];
         return view(FE . '/home')->with($data);
@@ -79,6 +81,19 @@ class HomeController extends Controller
 
 
           return $Latest_cases;
+
+      }
+
+      public function lawyers(){
+
+        $lawyers = DB::table('users')
+            ->select('users.*')
+            ->where('permissions','=','lawyer')
+            ->limit(6)
+            ->get();
+
+
+          return $lawyers;
 
       }
 
