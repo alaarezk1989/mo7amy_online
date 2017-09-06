@@ -53,18 +53,23 @@
                </div>
 
                @if(auth()->user())
-                 @if(user_auth()->permissions=='lawyer')
+
                <div class="forresvation" id="bids_div">
+                  @if(user_auth()->permissions=='lawyer')
+                    @if(!empty($case_bids))
+                    <button><span>{{ trans('cpanel.you_offer') }}</span> {{$case_bids->bids_val}} $ </button>
+                  @else
+                    {!! Form::open(['method'=>'POST','id'=>'form_set_bids','url'=>'set_your_bids/'.$id]) !!}
 
-                {!! Form::open(['method'=>'POST','id'=>'form_set_bids','url'=>'set_your_bids/'.$id]) !!}
-
-                    {!! Form::text('bids_val','', array('class'=>'form-control','id'=>'bids_val','placeholder'=>'حدد سعر', 'required'=>'required' ) ) !!}
-                    {!! Form::hidden('case_id',$id, array('id'=>'case_id') ) !!}
-                     <button type="submit" id="bids_button">قدم عرضك  </button>
-                  {!! Form::close() !!}
+                      {!! Form::text('bids_val','', array('class'=>'form-control','id'=>'bids_val','placeholder'=>'حدد سعر', 'required'=>'required' ) ) !!}
+                      {!! Form::hidden('case_id',$id, array('id'=>'case_id') ) !!}
+                         <button type="submit" id="bids_button">{{ trans('cpanel.put_you_offer') }} </button>
+                    {!! Form::close() !!}
+                  @endif
+                @endif
 
                </div>
-               @endif
+
              @endif
 
             </div>
