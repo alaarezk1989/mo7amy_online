@@ -124,7 +124,7 @@ $(document).ready(function() {
                     console.log(result);
                 },
                 error: function(error) {
-                    alert( 'ee'+console.log(error));
+                    // alert( 'ee'+console.log(error));
                 console.log(error);
                 }
             }); //end ajax

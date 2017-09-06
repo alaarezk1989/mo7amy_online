@@ -122,163 +122,32 @@
          <input type='hidden' id='current_page' />
          <input type='hidden' id='show_per_page' />
          <div id='content'>
+
+             @foreach($all_case_bids as $user_bids)
             <div class="col-md-3 text-center border-bott padd-top border-rght">
                <div class="law-profile">
-                  <a href="#"> <img src="img/Profile%20Image-1.png" class="imgs"> </a>
-                  <a href="#">
-                     <p class="names">خالد كامل </p>
+                  <a href="lawyer/{{$user_bids->id}}">
+
+                    @if($user_bids->image !='')
+                      <img src="{{ asset('public/uploads/user_img')}}/{{$user_bids->image}}" class="imgs" />
+                    @else
+                       <img src="{{ asset('public/uploads')}}/avater.png" class="imgs">
+                    @endif
                   </a>
-                  <a href="#">
-                     <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p>
+                  <a href="lawyer/{{$user_bids->id}}">
+                     <p class="names">{{$user_bids->name}} </p>
                   </a>
-                  <div class="offers"> سعر العرض:  $ 1,000,000 </div>
+                  <a href="lawyer/{{$user_bids->id}}">
+                     <p class="desc">{{$user_bids->career}}
+                       <span> {{$user_bids->country_name}} , {{$user_bids->city_name}} </span>
+                     </p>
+                  </a>
+                  <div class="offers">سعر العرض:  $ {{$user_bids->bids_val}}  </div>
                   <button onclick="" class="okk">قبلت عرضك </button>
                </div>
             </div>
-            <div class="col-md-3 text-center border-bott padd-top border-rght">
-               <div class="law-profile">
-                  <a href="#"> <img src="img/Profile%20Image-1.png" class="imgs"> </a>
-                  <a href="#">
-                     <p class="names">خالد كامل </p>
-                  </a>
-                  <a href="#">
-                     <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p>
-                  </a>
-                  <div class="offers"> سعر العرض:  $ 1000.000 </div>
-                  <button onclick="" class="okk">قبلت عرضك </button>
-               </div>
-            </div>
-            <div class="col-md-3 text-center border-bott padd-top border-rght">
-               <div class="law-profile">
-                  <a href="#"> <img src="img/Profile%20Image-1.png" class="imgs"> </a>
-                  <a href="#">
-                     <p class="names">خالد كامل </p>
-                  </a>
-                  <a href="#">
-                     <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p>
-                  </a>
-                  <div class="offers"> سعر العرض:  $ 1000.000 </div>
-                  <button onclick="" class="okk">قبلت عرضك </button>
-               </div>
-            </div>
-            <div class="col-md-3 text-center border-bott padd-top ">
-               <div class="law-profile">
-                  <a href="#"> <img src="img/Profile%20Image-1.png" class="imgs"> </a>
-                  <a href="#">
-                     <p class="names">خالد كامل </p>
-                  </a>
-                  <a href="#">
-                     <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p>
-                  </a>
-                  <div class="offers"> سعر العرض:  $ 1000.000 </div>
-                  <button onclick="" class="okk">قبلت عرضك </button>
-               </div>
-            </div>
-            <div class="col-md-3 text-center  padd-top border-rght">
-               <div class="law-profile">
-                  <a href="#"> <img src="img/Profile%20Image-1.png" class="imgs"> </a>
-                  <a href="#">
-                     <p class="names">خالد كامل </p>
-                  </a>
-                  <a href="#">
-                     <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p>
-                  </a>
-                  <div class="offers"> سعر العرض:  $ 1000.000 </div>
-                  <button onclick="" class="okk">قبلت عرضك </button>
-               </div>
-            </div>
-            <div class="col-md-3 text-center  padd-top border-rght">
-               <div class="law-profile">
-                  <a href="#"> <img src="img/Profile%20Image-1.png" class="imgs"> </a>
-                  <a href="#">
-                     <p class="names">خالد كامل </p>
-                  </a>
-                  <a href="#">
-                     <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p>
-                  </a>
-                  <div class="offers"> سعر العرض:  $ 1000.000 </div>
-                  <button onclick="" class="okk">قبلت عرضك </button>
-               </div>
-            </div>
-            <div class="col-md-3 text-center  padd-top border-rght">
-               <div class="law-profile">
-                  <a href="#"> <img src="img/Profile%20Image-1.png" class="imgs"> </a>
-                  <a href="#">
-                     <p class="names">خالد كامل </p>
-                  </a>
-                  <a href="#">
-                     <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p>
-                  </a>
-                  <div class="offers"> سعر العرض:  $ 1000.000 </div>
-                  <button onclick="" class="okk">قبلت عرضك </button>
-               </div>
-            </div>
-            <div class="col-md-3 text-center padd-top border-rght">
-               <div class="law-profile">
-                  <a href="#"> <img src="img/Profile%20Image-1.png" class="imgs"> </a>
-                  <a href="#">
-                     <p class="names">خالد كامل </p>
-                  </a>
-                  <a href="#">
-                     <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p>
-                  </a>
-                  <div class="offers"> سعر العرض:  $ 1000.000 </div>
-                  <button onclick="" class="okk">قبلت عرضك </button>
-               </div>
-            </div>
-            <div class="col-md-3 text-center padd-top">
-               <div class="law-profile">
-                  <a href="#"> <img src="img/Profile%20Image-1.png" class="imgs"> </a>
-                  <a href="#">
-                     <p class="names">خالد كامل </p>
-                  </a>
-                  <a href="#">
-                     <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p>
-                  </a>
-                  <div class="offers"> سعر العرض:  $ 1000.000 </div>
-                  <button onclick="" class="okk">قبلت عرضك </button>
-               </div>
-            </div>
-            <!--*********************************************-->
-            <div class="col-md-3 text-center border-bott padd-top border-rght">
-               <div class="law-profile">
-                  <a href="#"> <img src="img/Profile%20Image-2.png" class="imgs"> </a>
-                  <a href="#">
-                     <p class="names">خالد كامل </p>
-                  </a>
-                  <a href="#">
-                     <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p>
-                  </a>
-                  <div class="offers"> سعر العرض:  $ 1000.000 </div>
-                  <button onclick="" class="okk">قبلت عرضك </button>
-               </div>
-            </div>
-            <div class="col-md-3 text-center border-bott padd-top border-rght">
-               <div class="law-profile">
-                  <a href="#"> <img src="img/Profile%20Image-2.png" class="imgs"> </a>
-                  <a href="#">
-                     <p class="names">خالد كامل </p>
-                  </a>
-                  <a href="#">
-                     <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p>
-                  </a>
-                  <div class="offers"> سعر العرض:  $ 1000.000 </div>
-                  <button onclick="" class="okk">قبلت عرضك </button>
-               </div>
-            </div>
-            <div class="col-md-3 text-center border-bott padd-top border-rght">
-               <div class="law-profile">
-                  <a href="#"> <img src="img/Profile%20Image-2.png" class="imgs"> </a>
-                  <a href="#">
-                     <p class="names">خالد كامل </p>
-                  </a>
-                  <a href="#">
-                     <p class="desc">مستشار محكمة النقض الدولى <span> مصر , القاهرة </span>  </p>
-                  </a>
-                  <div class="offers"> سعر العرض:  $ 1000.000 </div>
-                  <button onclick="" class="okk">قبلت عرضك </button>
-               </div>
-            </div>
+               @endforeach
+            
          </div>
       </div>
    </div>

@@ -66,7 +66,7 @@ Route::group(['middlewareGroups' => ['web']], function() {
         });
 
         // lawyer Area
-          Route::group(['middleware' => 'Permission:client'], function() {
+        //  Route::group(['middleware' => 'Permission:client'], function() {
              /*houida*/
                 Route::get('{locale?}/create',FE.  '\CasesController@index');
                 Route::post('create-case',FE.'\CasesController@create_case');
@@ -77,7 +77,7 @@ Route::group(['middlewareGroups' => ['web']], function() {
                 Route::get('{locale?}/delete-case/{GUID}', FE. '\CasesController@delete');
             /*houida*/
 
-          });
+    //      });
 
 // Admin Area
       Route::group(['middleware' => 'Permission:admin'], function() {
