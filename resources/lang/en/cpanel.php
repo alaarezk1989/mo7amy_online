@@ -49,7 +49,7 @@ return array (
   'real_estate' => 'real_estate',
   'financial' => 'financial',
   'commercial' => 'commercial',
-  'criminal_offense' => 'criminal_offense',
+  'criminal_offense' => 'criminal offense',
   'banking' => 'banking',
   'military' => 'military',
   'management' => 'management',
