@@ -226,7 +226,7 @@ public function create_case (Request $request)
          Session::flash('message', 'تم مسح قضيتك بنجاح');
               Session::flash('alert-class', 'alert-success');
            $sess_locale= session('sess_locale');
-            return redirect($sess_locale.'/YourCases');
+            return redirect($sess_locale.'/your-cases');
     }
       public function AllCases(){
 
