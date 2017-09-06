@@ -1,6 +1,9 @@
 @extends(FEI.'.master')
 @section('content')
-
+<?php
+use Carbon\Carbon;
+$locale = App::getLocale();
+?>
 <!--*******************************************************************-->
 
 <div class="container-fluid ">
@@ -49,15 +52,30 @@
  @foreach($all_cases as $value)
 <a href="{{lang_url('case').'/'.$value->id}}">
 <div class="case-client border-bott">
-<p>{{$value->description}}<p>
+<p>{{$value->title}}<p>
 <div>   
 <div class="casetype"> نوع القضية : <span>{{$value->type}}</span></div>    
    
 </div> 
 <div class="another-details">
 <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i>{{$value->name1}} - {{$value->name2}}</div>   
-<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>    
-<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>    
+<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i>
+<?php
+                            Carbon::setLocale($locale);
+                            $current = Carbon::now();
+                            $old = Carbon::parse($value->created_at);
+                            echo $old->diffForHumans($current);
+ 
+?>
+
+
+</div>    
+<div class="time"><i  class="fa fa-calendar" aria-hidden="true"></i><?php
+                            Carbon::setLocale($locale);
+                            $current = Carbon::parse($value->created_at);
+                            $old = Carbon::parse($value->finished_date);
+                           echo $old->diffForHumans($current);
+                           ?>  </div>    
 <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div> 
 </div> 
 </div>   

@@ -230,13 +230,7 @@ public function create_case (Request $request)
     }
       public function AllCases(){
 
-      /* $finished_date= $all_cases['finished_date'];
-        //return $finished_date;
-      // $finished_date= strtotime($all_cases->finished_date);
-        $finished_date= date("Y, m, d", $finished_date);
-        $finished_date= (int)$finished_date;
-        $finished_days=Carbon::createFromDate(2019, 11, 2)->diff(Carbon::now())->format('%y %m %d');*/
-//return $finished_days;
+     
               $per_page = 20;
               $all_cases =  DB::table('cases')
                 ->where('status', '=', '1')

@@ -15,7 +15,7 @@ use Mail;
 use CountryState;
 use App;
 use DB;
-use Carbon;
+use Carbon\Carbon;
 
 
 class HomeController extends Controller
