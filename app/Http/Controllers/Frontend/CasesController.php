@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Validator;
@@ -9,8 +8,8 @@ use App\Http\Requests;
 use Session;
 use Auth;
 use App\User;
+use Carbon\Carbon;
 use DB;
-
 class CasesController extends Controller
 {
     /**
@@ -34,7 +33,6 @@ class CasesController extends Controller
             // }
             $countries[$country->id]=$country->name;
           }
-
           $states=array();
           $all_states = DB::table('cities')
          ->where('local', '=', $sess_locale)
@@ -55,29 +53,18 @@ class CasesController extends Controller
               'countries'=>$countries,
               'states'=>$states,
               'sess_user_id'=>$sess_user_id,
-
           ];
         return view(FE . '/cases_forms')->with($data);
     }
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
-
-
 
 public function create_case (Request $request)
-
-
     {
          $sess_user_id= session('user_id');
-
         $rules=[
             'title'                           =>'required',
             'description'                     =>'required',
@@ -85,8 +72,8 @@ public function create_case (Request $request)
             'country'                         =>'required',
             'city'                            =>'required',
             'finished_date'                   =>'required',
-
-
+           
+         
         ];
         $validator = Validator::make($request->all(), $rules);
         $validator->SetAttributeNames([
@@ -96,56 +83,43 @@ public function create_case (Request $request)
             'country'                   =>'country',
             'city'                      =>'city',
            'finished_date'              =>'finished_date',
-
+      
         ]);
         if($validator->fails())
         {
             session()->flash('error_msg', trans('cpanel.form_error'));
-
-
             // return $request->all();
             return back()->withInput()->withErrors($validator);
         }else{
-
+          
             $add = new Cases;
            // $add->id                    =date('YmdHis') . mt_rand();
             $add->id                       =uniqid('',true);
             $add->title                    = $request->input('title');
             $add->description              = $request->input('description');
-
+           
             $add->type                     = $request->input('type');
             $add->country                  = $request->input('country');
-            $add->city                  = $request->input('city');
+            $add->city                     = $request->input('city');
             $add->finished_date            = $request->input('finished_date');
             $add->user_id                  = $sess_user_id;
             $add->status                   = 1;
             $add->save();
-
-
-                Session::flash('message', 'تم اضافة قضيتك بنجاح');
-              Session::flash('alert-class', 'alert-success');
+         
+                Session::flash('message', 'تم اضافة قضيتك بنجاح'); 
+              Session::flash('alert-class', 'alert-success'); 
            $sess_locale=$request->session()->get('sess_locale');
-            return redirect($sess_locale.'/show');
+            return redirect($sess_locale.'/create');
         }
     }
-
-
-
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-
-
-
-
     public function edit($locale='ar',$id)
     {
-
       $sess_locale= session('sess_locale');
       $all_countries = DB::table('countries')
           ->where('local', '=', $sess_locale)->orderBy('id')->get();
@@ -160,7 +134,6 @@ public function create_case (Request $request)
             // }
             $countries[$country->id]=$country->name;
           }
-
           $states=array();
           $all_states = DB::table('cities')
          ->where('local', '=', $sess_locale)
@@ -171,9 +144,8 @@ public function create_case (Request $request)
           }
  $specialty  = User::GetAdminSpecialty();
  $sess_user_id= session('user_id');
-
          $cases_data = Cases::findOrFail($id);
-
+      
           $data = [
                'title'=>trans('cpanel.site_name'),
               'page_title'=>trans('cpanel.edit_admin'),
@@ -186,11 +158,9 @@ public function create_case (Request $request)
               'sess_user_id'=>$sess_user_id,
               'cases_data'=>$cases_data,
               'id'=>$id,
-
           ];
           return view(FE.'.cases_forms')->with($data);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -204,15 +174,25 @@ public function create_case (Request $request)
         //return $id;
         $rules=[
             'title'                           =>'required',
-
-
-
+            'description'                     =>'required',
+            'type'                            =>'required',
+            'country'                         =>'required',
+            'city'                            =>'required',
+            'finished_date'                   =>'required',
+            
+           
+         
         ];
-
+      
           $validator = Validator::make($request->all(), $rules);
         $validator->SetAttributeNames([
-              'title'                     =>'title',
-
+            'title'                     =>'title',
+            'description'               =>'description',
+            'type'                      =>'type',
+            'country'                   =>'country',
+            'city'                      =>'city',
+           'finished_date'              =>'finished_date',
+        
           ]);
           if($validator->fails())
           {
@@ -221,66 +201,59 @@ public function create_case (Request $request)
               return back()->withInput()->withErrors($validator);
           }else{
               $case = Cases::findOrFail($id);
-
-            $case->title                    = $request->input('title');
-            // $case->description             = $request->input('description');
-
-            // $case->type                    = $request->input('type');
-            // $case->country                 = $request->input('country');
-
-            // $case->finished_date           =$request->input('finished_date');
-
-            $case->status            = 1;
-
-
-              $case->save();
-
-
+            $case->title                   = $request->input('title');
+            $case->description             = $request->input('description');
+            $case->type                    = $request->input('type');
+            $case->country                 = $request->input('country');
+            $case->city                    = $request->input('city');
+            $case->finished_date           =$request->input('finished_date');
+            $case->status                  = 1;
+            $case->save();
+          
              // session()->flash('success_msg', trans('cpanel.form_success'));
-   Session::flash('message', 'تم تعديل قضيتك بنجاح');
-             Session::flash('alert-class', 'alert-success');
-           $sess_locale=$request->session()->get('sess_locale');
-
+             Session::flash('message', 'تم تعديل قضيتك بنجاح'); 
+             Session::flash('alert-class', 'alert-success'); 
+             $sess_locale=$request->session()->get('sess_locale');
+            
               return redirect($sess_locale.'/edit-case/'.$id);
           }
     }
-
-
    public function delete($locale='ar',$id)
-    {
-
+    { 
        /*echo $id;
        return;*/
         $case = Cases::findOrFail($id);
         $case->delete();
-
-         Session::flash('message', 'تم مسح قضيتك بنجاح');
-              Session::flash('alert-class', 'alert-success');
+        
+         Session::flash('message', 'تم مسح قضيتك بنجاح'); 
+              Session::flash('alert-class', 'alert-success'); 
            $sess_locale= session('sess_locale');
             return redirect($sess_locale.'/YourCases');
     }
-
       public function AllCases(){
         $per_page = 20;
         $all_cases =  DB::table('cases')
-                ->where('status', '=', '1')
-                ->join('countries', 'countries.id', '=', 'cases.country')
-                ->join('cities', 'cities.id', '=', 'cases.city')
-                ->select('cases.*','countries.name as name1','cities.name as name2')
-                ->paginate($per_page);
+               ->where('status', '=', '1')
+              ->paginate($per_page);
+      /* $finished_date= $all_cases['finished_date'];
+        //return $finished_date;
+      // $finished_date= strtotime($all_cases->finished_date);
+        $finished_date= date("Y, m, d", $finished_date);
+        $finished_date= (int)$finished_date;
+        $finished_days=Carbon::createFromDate(2019, 11, 2)->diff(Carbon::now())->format('%y %m %d');*/
+//return $finished_days;
         $data = [
             'title'=>trans('cpanel.site_name'),
             'page_title'=>trans('cpanel.edit_admin'),
             'per_page'=>$per_page,
             'all_cases'=>$all_cases,
-            // 'finished_days'=>$finished_days,
+            'finished_days'=>$finished_days,
         ];
           return view(FE . '/v_all_cases')->with($data);
       }
       public function your_cases(){
-
         $sess_user_id= session('user_id');
-        $per_page = 2;
+        $per_page = 10;
         $your_case =  DB::table('cases')
                ->where('status', '=', '1')
                ->where('user_id', '=', $sess_user_id)
@@ -293,18 +266,16 @@ public function create_case (Request $request)
         ];
           return view(FE . '/v_your_case')->with($data);
       }
-
    public function SingleCase($locale='ar',$id){
-
+        
          /* $all_cases =  DB::table('cases')
                ->where('status', '=', '1');*/
         $case = Cases::findOrFail($id);
         $user_id=$case->user_id;
         $user_case = User::findOrFail($user_id);
-
-
+         
         $data = [
-            'title'=>trans('cpanel.site_name'),
+            'title'=>trans('cpanel.site_name'), 
             'case'=>$case,
             'id'=>$id,
             'user_case'=>$user_case,
@@ -315,21 +286,11 @@ public function create_case (Request $request)
       return;*/
           return view(FE . '/v_single_case')->with($data);
       }
-
-
-
-
-
-
-
-
-
-
+ 
     public function store(Request $request)
     {
         //
     }
-
     /**
      * Display the specified resource.
      *
@@ -340,15 +301,13 @@ public function create_case (Request $request)
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Cases  $cases
      * @return \Illuminate\Http\Response
      */
-
-
+   
     /**
      * Remove the specified resource from storage.
      *
