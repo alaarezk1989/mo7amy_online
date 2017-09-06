@@ -121,11 +121,17 @@ use Carbon\Carbon;
                      <?php
                             $current = Carbon::now();
                             $old = Carbon::parse($value->created_at);
-                           echo $old->diffInHours($current);
+                           echo $old->diffForHumans($current);
  
                         ?>   </li>
                      <li><i class="fa fa-calendar" aria-hidden="true"></i> <span> 
-
+                        
+                         <?php
+                            $current = Carbon::parse($value->finished_date);
+                            $old = Carbon::parse($value->created_at);
+                           echo $old->diffForHumans($current);
+ 
+                        ?> 
                       
 
                      </span>  </li>
