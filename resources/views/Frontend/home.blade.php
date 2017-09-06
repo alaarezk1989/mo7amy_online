@@ -126,11 +126,7 @@ use Carbon\Carbon;
                         ?>   </li>
                      <li><i class="fa fa-calendar" aria-hidden="true"></i> <span> 
 
-                        <?php
-                            $old2 = Carbon::parse($value->created_at);
-                           echo $old2->diffInDays($value->finished_date);
- 
-                        ?> 
+                      
 
                      </span>  </li>
                   </ul>
