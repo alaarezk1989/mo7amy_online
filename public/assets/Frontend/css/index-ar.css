@@ -44,6 +44,16 @@ margin-bottom: 15px;
 margin-top: 15px;    
 }
 
+.margin-top{
+margin-top: 110px !important;
+}
+
+.carousel-indicators {
+bottom: 0;
+margin-bottom: 0;
+}
+
+
 .class-selct{
 border-color:#b31f24 !important;
 color:#b31f24 !important;
@@ -61,7 +71,7 @@ padding-top: 20px;
 border-right: 1px solid #e0cd85;
 }
 
-.login-form , .sign-form{
+.login-form , .sign-form,.forget{
 display: none;
 }
 
@@ -108,16 +118,18 @@ display: block !important;
 
 /************navbar******************/
 
+
+.navbar-nav li .lk-profile {
+padding:  0;
+float: left !important;
+}
+
 .navbar{
 margin-bottom: 0;
 }
 
 .sign{
 padding-right: 10px;
-}
-
-.login-form{
-display: none;
 }
 
 .navbar-default{
@@ -238,8 +250,25 @@ padding-right: 0;
 
 .navbar-right {
 float: right!important;
-margin-right: 8%;
+margin-right: 2%;
 margin-top: 2%;
+}
+
+.user-menu{
+text-align: right;
+padding: 0;
+margin-left: 32%;
+}
+
+.user-menu li a{
+font-size: 15px;
+padding: 10px;
+}
+
+.user-menu li a:hover{
+background: #b31f24;
+color: #fff;
+width: 100%;
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
@@ -263,12 +292,16 @@ background-color: transparent;
 
 .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
 margin-left: -15px;
-margin-top: 8px;
+margin-top: 10px;
 }
 
 .navbar-nav>li>a{
 line-height: normal;
 }
+
+/*.navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse{
+max-height: 500px;
+}*/
 
 
 .main-ul li a:after {
@@ -313,9 +346,9 @@ right: -17px;
 }
 
 
-#login-dp.dropdown-menu{
+/*#login-dp.dropdown-menu{
 left: -60px !important;
-}
+}*/
 
 
 .acc-tybe{
@@ -525,12 +558,14 @@ margin-top: 30px;
 overflow: hidden;
 border: 1px solid #e0cd85;
 border-radius: 5px;
+width: 100%;    
 }
 
 .law-profile .names{
 font-size: 20px;
 color: #b31f24;
 font-family: 'B-font';
+margin: 15px 0 10px 0;    
 }
 
 .law-profile .desc{
@@ -548,7 +583,6 @@ display: block;
 .law-profile .offers{
 font-size: 20px;
 color: #b31f24;
-padding-bottom: 15px;
 cursor: pointer;
 font-family: 'B-font';
 margin: 0px auto 20px auto; 
@@ -565,23 +599,26 @@ border-radius: 5px;
 font-size: 20px;
 outline: none;
 font-weight: bold;
-display: none ;
 margin: 0px auto 20px auto;
-
 }
-
 
 
 .de-Fsection{
 border: 1px solid #e0cd85;
 padding: 20px;
-border-radius: 10px;
+border-radius: 10px;   
 }
 
 .de-Fsection p{
 font-size: 20px;
 font-family: 'B-font';
 color: #444444;
+}
+
+
+.scrolled{
+background-color: #fff;
+box-shadow: 0 0 2px 3px #ccc;
 }
 
 .casetype{
@@ -720,7 +757,6 @@ outline: 0;
 width: 100%;
 font-size: 20px;
 }
-
 
 .comment-box2{
 overflow: hidden;
@@ -933,8 +969,6 @@ border-radius: 5px;
 border: 1px solid #e0cd85;  
 }
 
-
-
 .casere-servation select{
 display: block;
 width: 100%;
@@ -1009,7 +1043,7 @@ background-size: cover;
 background-position: top center;
 min-height: 320px;
 margin-bottom: 75px;
-margin-top: 75px;   
+margin-top: 50px;   
 }
 
 .cases .row{
@@ -1376,7 +1410,7 @@ transition-property: all;
 transition-duration: 0.4s;
 }
 
-.list-tabs {
+/*.list-tabs {
 margin-bottom: 25px;
 margin-top: 25px;
 text-align: center;
@@ -1392,10 +1426,29 @@ position: absolute;
 z-index: 2;
 top: 48%;
 right: 43%;
+}*/
+
+/*.tabs-content,.tabs-content3{
+position: relative;   
+}*/
+
+
+.list-tabs {
+border: 1px solid #ccc;
+text-align: center;
+width: 300px;
+height: 45px;
+margin-left: auto;
+margin-right: auto;
+border-radius: 20px;
+overflow: hidden;
+cursor: pointer;
+margin-top: 50px; 
 }
 
-.tabs-content,.tabs-content3{
-position: relative;
+
+.navbar-left .dropdown a {
+display: inline-block;
 }
 
 
@@ -1739,7 +1792,7 @@ transition: all 0.5s ease-in-out;
 }
 
 .case-client:hover{
-background-color: lightgray;
+background-color: #f1f1f1;
 cursor: pointer;
 }
 
@@ -1849,8 +1902,7 @@ position: relative;
 .top-container {
 position: absolute;
 bottom: 57%;
-right: 47%;
-cursor: pointer;    
+right: 47%;   
 }
 
 .child-img{
@@ -2168,9 +2220,60 @@ padding: 20px;
 
 @media(max-width:767px){
 
+.navbar {
+min-height: 50px;    
+}    
+
+.lk-profile{
+display: inline-block !important;
+
+}
+
+.prof-name{
+display: inline-block !important;
+}
+
+
+.navbar-collapse{
+border-top: 1px solid #fff;
+width: 100%;
+}    
+
 .de-Fsection {
 margin-left: 15px;
 margin-right: 15px;
+}
+
+.navbar-left .dropdown a{
+display: block;
+}
+
+#content{
+width: 100%
+}    
+
+.sign-form,.login-form,.forget{
+float: right;
+}    
+
+#login-dp.dropdown-menu{
+left: 0px !important;
+}
+
+.navbar-nav .open .user-menu {
+position: static;
+float: none;
+width: 30%;
+margin-top: 0;
+background-color: #FFF;
+border: 1px solid #FFF;
+-webkit-box-shadow: none;
+box-shadow: none;
+margin-right: 13%;
+}   
+
+.lang .dropdown-menu{
+float: right !important;
 }
 
 .details .col-md-4{
@@ -2190,7 +2293,7 @@ padding-right: 15px;
 }    
 
 .logo{
-width: 60%;
+width: 40%;
 margin-right: 10px;
 }    
 
@@ -2198,8 +2301,8 @@ margin-right: 10px;
 position: relative;
 float: left;
 padding: 9px 10px;
-margin-top: 16px;
-margin-right: 15px;
+margin-top: 10px;
+margin-right: 10px;
 margin-bottom: 0;
 border-radius: 4px;
 margin-left: 10px;
@@ -2220,9 +2323,6 @@ float: none;
 margin: 7.5px 26px;
 }
 
-.navbar {
-min-height: 85px;    
-}
 
 .navbar-collapse{
 float: right;
@@ -2249,7 +2349,7 @@ text-align: center;
 }
 
 .buttons-save .done{
-width: 110px;
+width: 100px;
 font-size: 14px;
 }
 
@@ -2331,7 +2431,6 @@ padding: 6px 0px;
 font-size: 18px;
 }    
 
-
 .status {
 display: inline-block;
 font-size: 18px;
@@ -2358,12 +2457,49 @@ height: 64px;
 }
 
 
-.top-container {
-position: absolute;
-top: 40%;
-right: 40%;
+.top-container img {
+width: 150px;
+height: 150px;
 }
 
+.top-container {
+position: static;
+top: 0;
+right: 0;
+margin: auto;
+display: block;
+text-align: center;
+padding: 0 0 10px 0;
+}
+
+.profile-container {
+position: static;
+left: 0;
+bottom: 0;
+/* display: none; */
+}
+
+#form-profile {
+position: relative;
+margin: 0;
+left: 0;
+bottom: 100px;
+text-align: center;
+padding: 0 0;
+}
+
+.profile .container{
+margin-top: 0;
+}
+
+.cover-container {
+position: static;
+}
+
+.profile-container {
+position: static;
+height:0;
+}
 
 .profile .label2 {
 border: 1px solid;
@@ -2401,6 +2537,98 @@ float: left;
 margin-top: -34px;
 }
 
+.circle-label #lawyer, .circle-label #client, .circle-label #male, .circle-label #female{
+width: 100px;
+}
+
+.saveme,.cancelme{
+width: 100px;
+}
+
+.list-tabs {
+position: static;
+z-index: 0; 
+top: 0; 
+right: 0;  
+border:1px solid #ccc;
+}
+
+.tabs-content, .tabs-content3{
+position: static;
+}
+
+.margin-top {
+margin-top: 60px !important;
+}
+
+.user-menu{
+border: 1px solid #ccc !important;
+}
+
+.user-menu li a:hover {
+background: #b31f24 !important;
+color: #fff !important;
+width: 100% !important;
+}
+
+.navbar-nav li .lk-profile{
+float: none !important;
+}
+
+.navbar-nav .open .user-menu {
+margin-right: 72px;
+} 
+
+}
+
+/***************************************************/
+
+@media(min-width:0) and (max-width:479px){
+
+#login-dp{
+max-width: 250px;
+min-width: 0;
+}
+
+.buttons button:nth-child(1),.buttons button:nth-child(2),.slct select:nth-child(2),.slct select:nth-child(1) {
+float: none;
+display: block;
+margin: 0 auto 10px auto;
+outline:none;
+}
+
+.span_Orr {
+top: 72%;
+}
+
+.span_Or{
+top: 88%;
+}
+
+.btn-fb{
+font-size: 12px;
+width: auto;
+}
+
+.forresvation  button, .forresvation  input{
+font-size: 15px;
+}  
+
+.circle-label.one {
+margin-left: 0;
+}
+
+.img-acc{
+width: 70%;
+}
+
+.prof-name {
+display: inline-block !important;
+padding: 0 !important;
+}
+
+
+
 
 
 }
@@ -2429,11 +2657,16 @@ margin-right: 10px;
 
 .nav>li>a {
 padding: 10px 12px;
-font-size: 14px;
+font-size: 12px;
+font-weight:bold;
+}
+
+.img-acc{
+width: 70%;
 }
 
 .navbar-right {
-margin-right: -9%;
+margin-right: -8%;
 margin-top: 2%;
 }
 
@@ -2500,7 +2733,7 @@ margin-top: -34px;
 
 .top-container {
 position: absolute;
-bottom: 72%;
+bottom: 67%;
 right: 41%;
 }
 
@@ -2510,11 +2743,27 @@ height: 50%;
 }
 
 .profile-container {
-    position: absolute;
-    left: 66%;
-    bottom: 30%;
-    display: none;
+position: absolute;
+left: 66%;
+bottom: 30%;
+display: none;
 }
+
+.list-tabs {
+position: static;
+z-index: 0; 
+top: 0; 
+right: 0;  
+border:1px solid #ccc;
+}
+
+.tabs-content, .tabs-content3{
+position: static;
+}
+
+
+
+
 
 }
 
@@ -2532,8 +2781,12 @@ margin-top: 2%;
 .nav>li>a 
 {
 padding: 10px 15px;
-font-size: 19px;
+font-size: 16px;
 } 
+
+.img-acc{
+width: 80%;
+}    
 
 .logo{
 width: 80%;
@@ -2548,41 +2801,102 @@ font-size: 30px;
 }
 
 
-
-
 .top-container {
 position: absolute;
 bottom: 60%;
 right: 42%;
-cursor: pointer;
-}    
-
+} 
 
 }
-
 
 /*************************************************/
 
+@media(max-width:1200px){
+
+.law-profile .offers{
+font-size: 15px;
+}
+}
+
+/*******************************/
+
 @media(min-width:1200px){
 
+#login-dp{
+padding: 10px;
+}	
 
+.acc-tybe{
+font-size: 17px;
+margin-bottom: 10px;
+}	
+
+.place-name{
+height: 32px;
+line-height: 27px;
+}
+
+#login-nav label{
+margin-bottom: 10px;
+}
+
+#login-nav input{
+height: 32px;
+font-size: 15px;	
+}
+
+#login-dp .form-group {
+margin-bottom: 7px;
+}
+
+.slct select:nth-child(1),.slct select:nth-child(2) {
+height: 32px;
+font-size: 14px;
+}
+
+.gender {
+margin-bottom: 10px;
+margin-top: 0;
 }
 
 
+.mb {
+margin-bottom: 10px;
+margin-top: 10px;
+}
 
+.gen {
+font-size: 15px;
+}
 
+.circle-label.one {
+margin-left: 40px;
+}
 
+.buttons button:nth-child(1),.buttons button:nth-child(2) {
+font-size: 14px;
+height: 32px;
+line-height: 22px;
+}
 
+.or {
+margin-top: 14px;
+margin-bottom: 14px;
+}
 
+.span_Or {
+font-size: 16px;
+top: 82%;
+margin-top: 27px;
+}
 
+.span_Orr{
+top: 10em;
+}
 
+}
 
-
-
-
-
-
-
+/**************************************************/
 
 @media(max-width:768px){
 #login-dp{

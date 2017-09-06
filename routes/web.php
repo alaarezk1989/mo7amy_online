@@ -82,7 +82,7 @@ Route::group(['middlewareGroups' => ['web']], function() {
 // Admin Area
       Route::group(['middleware' => 'Permission:admin'], function() {
 
-        Route::resource('admins', AD . '\AdminController');
+        Route::resource('{locale?}/admins', AD . '\AdminController');
         Route::get('create', AD . '\AdminController@create');
         Route::post('delete_select_admins', AD . '\AdminController@DeleteSelectedAdmins');
         });

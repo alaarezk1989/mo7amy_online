@@ -131,7 +131,7 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function home()
+    public function home($locale='ar')
     {
         $data = [
             'title'=>trans('cpanel.site_name'),
