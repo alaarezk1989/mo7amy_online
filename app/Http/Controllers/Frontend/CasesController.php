@@ -28,9 +28,7 @@ class CasesController extends Controller
             if($first_country_id <= 0){
               $first_country_id=$country->id;
             }
-            // if($country->id < $first_country_id){
-            //     $first_country_id=$country->id;
-            // }
+          
             $countries[$country->id]=$country->name;
           }
           $states=array();
@@ -239,17 +237,37 @@ public function create_case (Request $request)
         $finished_date= (int)$finished_date;
         $finished_days=Carbon::createFromDate(2019, 11, 2)->diff(Carbon::now())->format('%y %m %d');*/
 //return $finished_days;
-               $per_page = 20;
-        $all_cases =  DB::table('cases')
+              $per_page = 20;
+              $all_cases =  DB::table('cases')
                 ->where('status', '=', '1')
                 ->join('countries', 'countries.id', '=', 'cases.country')
                 ->join('cities', 'cities.id', '=', 'cases.city')
                 ->select('cases.*','countries.name as name1','cities.name as name2')
                 ->paginate($per_page);
+
+       $specialty = User::GetAdminSpecialty();
+        $sess_locale= session('sess_locale');
+       $all_countries = DB::table('countries')
+          ->where('local', '=', $sess_locale)->orderBy('id')->get();
+          $first_country_id=0;
+          $countries=array();
+          foreach ($all_countries as $country) {
+            if($first_country_id <= 0){
+              $first_country_id=$country->id;
+            }
+          
+            $countries[$country->id]=$country->name;
+          }
+/*echo "<pre>";
+print_r($specialty);
+echo "</pre>";
+return; */
         $data = [
             'title'=>trans('cpanel.site_name'),
             'page_title'=>trans('cpanel.edit_admin'),
             'per_page'=>$per_page,
+            'specialty'=>$specialty,
+            'countries'=>$countries,
             'all_cases'=>$all_cases,
             // 'finished_days'=>$finished_days,
         ];

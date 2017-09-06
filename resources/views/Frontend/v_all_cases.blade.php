@@ -111,30 +111,20 @@
 </div>    
 
 <div class="dep">
-<label> الاقسام </label>    
-<input type="checkbox" name="" value="">  الكل <br>
-<input type="checkbox" name="" value=""> تجارية  <br>
-<input type="checkbox" name="" value="" > مالية   <br>
-<input type="checkbox" name="" value="" > عقارية   <br>
-<input type="checkbox" name="" value="" > طبية   <br>
-<input type="checkbox" name="" value="" > زوجية   <br>
-<input type="checkbox" name="" value="" > اسرية   <br>
-<input type="checkbox" name="" value="" > عمالية  <br>
-<input type="checkbox" name="" value="" > ادارية  <br>
-<input type="checkbox" name="" value="" > عسكرية   <br>
+<label> الاقسام </label>  
+<input type="checkbox" name="" value="">  الكل <br>  
+  <?php
+         foreach($specialty as $key => $value){?>
+               <input  type="checkbox" name="total[]" value="{{$key}}"  /> {{$value}} <br> 
+            <?php }?>
 </div>
 
 <div class="count">
 <label> الدول </label>    
-<input type="checkbox" name="" value="">  الكل <br>
-<input type="checkbox" name="" value=""> الامارات   <br>
-<input type="checkbox" name="" value="" > السعودية    <br>
-<input type="checkbox" name="" value="" > قطر    <br>
-<input type="checkbox" name="" value="" > البحرين   <br>
-<input type="checkbox" name="" value="" > الكويت   <br>
-<input type="checkbox" name="" value="" > مصر    <br>
-<input type="checkbox" name="" value="" > تونس  <br>
-<input type="checkbox" name="" value="" > المغرب  <br>
+  <?php
+         foreach($countries as $key => $value){?>
+               <input  type="checkbox" name="total[]" value="{{$key}}"  /> {{$value}} <br> 
+            <?php }?>
 </div>    
 
 
