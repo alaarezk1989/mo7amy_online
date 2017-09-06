@@ -120,7 +120,8 @@
 </div>
 
 <div class="count">
-<label> الدول </label>    
+<label> الدول </label> 
+<input type="checkbox" name="" value="">  الكل <br>    
   <?php
          foreach($countries as $key => $value){?>
                <input  type="checkbox" name="total[]" value="{{$key}}"  /> {{$value}} <br> 
