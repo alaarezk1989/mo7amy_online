@@ -124,7 +124,15 @@ use Carbon\Carbon;
                            echo $old->diffInHours($current);
  
                         ?>   </li>
-                     <li><i class="fa fa-calendar" aria-hidden="true"></i> <span> باقى 35 يوم   </span>  </li>
+                     <li><i class="fa fa-calendar" aria-hidden="true"></i> <span> 
+
+                        <?php
+                            $old2 = Carbon::parse($value->created_at);
+                           echo $old2->diffInDays($value->finished_date);
+ 
+                        ?> 
+
+                     </span>  </li>
                   </ul>
                   <div class="price"> <i class="fa fa-money" aria-hidden="true">  </i>  اعلى سعر :<span>200,000</span> </div>
                </div>
