@@ -159,24 +159,11 @@ $locale = App::getLocale();
    <div class="container-fluid">
       <h1 class="text-center"> افضل الاستشاريين</h1>
       <div class="row">
+      @foreach($lawyers as $law)
          <div class="col-lg-2 col-md-4 col-sm-6 cons">
-            <a href="profile-case.html" class="img1"> <img src="img/1.png" class="img-responsive">  <span class="name">ندى محمد <span class="title">محامى بمحاكم مجلس الدولة  </span></span> </a>
+            <a href="profile-case.html" class="img1"> <img src="{{ URL::to('public/assets/Frontend/img/2.png') }}" class="img-responsive">  <span class="name">{{$law->name}} <span class="title">{{$law->career}} </span></span> </a>
          </div>
-         <div class="col-lg-2 col-md-4 col-sm-6 cons">
-            <a href="profile-case.html" class="img1"> <img src="img/2.png" class="img-responsive"><span class="name">احمد محمد <span class="title">محامى بمحاكم مجلس الدولة </span></span>  </a>
-         </div>
-         <div class="col-lg-2 col-md-4 col-sm-6 cons">
-            <a href="profile-case.html" class="img1"> <img src="img/3.png" class="img-responsive"><span class="name">هبة احمد <span class="title">محامى بمحاكم مجلس الدولة </span></span>  </a>
-         </div>
-         <div class="col-lg-2 col-md-4 col-sm-6 cons">
-            <a href="profile-case.html" class="img1"> <img src="img/4.png" class="img-responsive"><span class="name">مالك محمد <span class="title">محامى بمحاكم مجلس الدولة </span></span>  </a>
-         </div>
-         <div class="col-lg-2 col-md-4 col-sm-6 cons">
-            <a href="profile-case.html" class="img1"> <img src="img/5.png" class="img-responsive"><span class="name"> فريدة احمد <span class="title">محامى بمحاكم مجلس الدولة </span></span>  </a>
-         </div>
-         <div class="col-lg-2 col-md-4 col-sm-6 cons">
-            <a href="profile-case.html" class="img1"> <img src="img/6.png" class="img-responsive"><span class="name">على عبدالرحمن<span class="title">محامى بمحاكم مجلس الدولة </span></span>  </a>
-         </div>
+         @endforeach
       </div>
    </div>
 </section>
