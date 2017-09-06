@@ -55,7 +55,17 @@ $locale = App::getLocale();
 <p>{{$value->title}}<p>
 <div>   
 <div class="casetype"> نوع القضية : <span>{{$value->type}}</span></div>    
-   
+                       <div class="status"> الحالة : 
+
+                     <?php
+                         if($value->status ==1) echo '<span> متاح</span>';
+                         else{
+                           echo '</span>غير متاحة</span>'; }
+                     ?>
+                     
+                    
+                        
+                     </div> 
 </div> 
 <div class="another-details">
 <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i>{{$value->name1}} - {{$value->name2}}</div>   
