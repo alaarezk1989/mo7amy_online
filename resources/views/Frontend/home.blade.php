@@ -6,85 +6,91 @@
 
 <?php
 use Carbon\Carbon;
+$locale = App::getLocale();
+
 ?>
+
 <div class="container-fluid">
-   <div class="row">
-      <ul class="list-unstyled list-tabs">
-         <li class="selected custom-js" data-class="tab1">الخريطة  </li>
-         <li data-class="tab2"> الصور   </li>
-      </ul>
-      <div class="tabs-content">
-         <div class="tab1">
-            <div id="map"></div>
-         </div>
-         <div class="tab2">
-            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-               <!-- Indicators -->
-               <ol class="carousel-indicators">
-                  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                  <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                  <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-               </ol>
-               <div class="carousel-inner" role="listbox">
-                  <div class="item active">
-                     <img src="{{ URL::to('public/assets/Frontend/img/Slider1.png') }}" alt="...">
-                  </div>
-                  <div class="item">
-                     <img src="{{ URL::to('public/assets/Frontend/img/Slider1.png') }}" alt="...">
-                  </div>
-               </div>
-               <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-               <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-               <span class="sr-only">Previous</span>
-               </a>
-               <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-               <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-               <span class="sr-only">Next</span>
-               </a>
-            </div>
-         </div>
-      </div>
-   </div>
+<div class="row">
+
+<div class="tabs-content margin-top">
+
+<div class="tab1">
+<div id="map"></div>  
+</div>
+
+<div class="tab2">  
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+<!-- Indicators -->
+<ol class="carousel-indicators">
+<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+</ol>
+<div class="carousel-inner" role="listbox">
+<div class="item active">
+<img src="{{ URL::to('public/assets/Frontend/img/Slider1.png') }}" alt="slide1" class="img-responsive">
+</div>
+<div class="item">
+<img src="{{ URL::to('public/assets/Frontend/img/Slider1.png') }}" alt="slide2" class="img-responsive">
+</div>
+</div>
+<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+<span class="sr-only">Previous</span>
+</a>
+<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+<span class="sr-only">Next</span>
+</a>
+</div>    
+</div>    
+</div>
+<ul class="list-unstyled list-tabs">
+<li class="selected custom-js" data-class="tab1">الخريطة  </li>   
+<li data-class="tab2"> الصور   </li>   
+</ul>     
+</div>    
 </div>
 <!--*******************************************************-->
 <section class="cases">
    <div class="container">
       <div class="row">
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="img/s1.png" class="img-responsive"></a>
+            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s1.png') }}" class="img-responsive"></a>
          </div>
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="img/s2.png" class="img-responsive"></a>
+            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s2.png') }}" class="img-responsive"></a>
          </div>
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="img/s3.png" class="img-responsive"></a>
+            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s3.png') }}" class="img-responsive"></a>
          </div>
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="img/s4.png" class="img-responsive"></a>
+            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s4.png') }}" class="img-responsive"></a>
          </div>
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="img/s5.png" class="img-responsive"></a>
+            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s5.png') }}" class="img-responsive"></a>
          </div>
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="img/s6.png" class="img-responsive"></a>
+            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s6.png') }}" class="img-responsive"></a>
          </div>
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="img/s12.png" class="img-responsive"></a>
+            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s12.png') }}" class="img-responsive"></a>
          </div>
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="img/s8.png" class="img-responsive"></a>
+            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s8.png') }}" class="img-responsive"></a>
          </div>
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="img/s9.png" class="img-responsive"></a>
+            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s9.png') }}" class="img-responsive"></a>
          </div>
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="img/s10.png" class="img-responsive"></a>
+            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s10.png') }}" class="img-responsive"></a>
          </div>
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="img/s11.png" class="img-responsive"></a>
+            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s11.png') }}" class="img-responsive"></a>
          </div>
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="img/s7.png" class="img-responsive"></a>
+            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s7.png') }}" class="img-responsive"></a>
          </div>
       </div>
    </div>
@@ -119,19 +125,20 @@ use Carbon\Carbon;
                      <li><i class="fa fa-map-marker" aria-hidden="true"></i> <span>{{$value->name1}} -{{$value->name2}}</span>   </li>
                      <li><i class="fa fa-clock-o" aria-hidden="true"></i> <span></span>
                      <?php
+                            Carbon::setLocale($locale);
                             $current = Carbon::now();
                             $old = Carbon::parse($value->created_at);
-                           echo $old->diffForHumans($current);
+                            echo $old->diffForHumans($current);
  
                         ?>   </li>
                      <li><i class="fa fa-calendar" aria-hidden="true"></i> <span> 
                         
                          <?php
-                            $current = Carbon::parse($value->finished_date);
-                            $old = Carbon::parse($value->created_at);
+                            Carbon::setLocale($locale);
+                            $current = Carbon::parse($value->created_at);
+                            $old = Carbon::parse($value->finished_date);
                            echo $old->diffForHumans($current);
- 
-                        ?> 
+                           ?> 
                       
 
                      </span>  </li>
@@ -180,56 +187,56 @@ use Carbon\Carbon;
       <div class="row">
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
-               <a href=""> <img src="img/c1.png"> </a>
+               <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c1.png') }}"> </a>
                <p>السعودية  </p>
                <span>40 قضية </span>
             </div>
          </div>
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
-               <a href=""> <img src="img/c2.png"> </a>
+               <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c2.png') }}"> </a>
                <p>مصر   </p>
                <span>40 قضية </span>
             </div>
          </div>
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
-               <a href=""> <img src="img/c3.png"> </a>
+               <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c3.png') }}"> </a>
                <p>الامارات   </p>
                <span>40 قضية </span>
             </div>
          </div>
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
-               <a href=""> <img src="img/c4.png"> </a>
+               <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c4.png') }}"> </a>
                <p>الكويت   </p>
                <span>40 قضية </span>
             </div>
          </div>
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
-               <a href=""> <img src="img/c5.png"> </a>
+               <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c5.png') }}"> </a>
                <p>تونس    </p>
                <span>40 قضية </span>
             </div>
          </div>
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
-               <a href=""> <img src="img/c6.png"> </a>
+               <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c6.png') }}"> </a>
                <p>المغرب </p>
                <span>40 قضية </span>
             </div>
          </div>
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
-               <a href=""> <img src="img/c7.png"> </a>
+               <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c7.png') }}"> </a>
                <p>  الجزائر </p>
                <span>40 قضية </span>
             </div>
          </div>
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
-               <a href=""> <img src="img/c8.png"> </a>
+               <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c8.png') }}"> </a>
                <p>  البحرين </p>
                <span>40 قضية </span>
             </div>
