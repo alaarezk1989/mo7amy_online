@@ -231,10 +231,7 @@ public function create_case (Request $request)
             return redirect($sess_locale.'/YourCases');
     }
       public function AllCases(){
-        $per_page = 20;
-        $all_cases =  DB::table('cases')
-               ->where('status', '=', '1')
-              ->paginate($per_page);
+       
       /* $finished_date= $all_cases['finished_date'];
         //return $finished_date;
       // $finished_date= strtotime($all_cases->finished_date);
@@ -242,12 +239,19 @@ public function create_case (Request $request)
         $finished_date= (int)$finished_date;
         $finished_days=Carbon::createFromDate(2019, 11, 2)->diff(Carbon::now())->format('%y %m %d');*/
 //return $finished_days;
+               $per_page = 20;
+        $all_cases =  DB::table('cases')
+                ->where('status', '=', '1')
+                ->join('countries', 'countries.id', '=', 'cases.country')
+                ->join('cities', 'cities.id', '=', 'cases.city')
+                ->select('cases.*','countries.name as name1','cities.name as name2')
+                ->paginate($per_page);
         $data = [
             'title'=>trans('cpanel.site_name'),
             'page_title'=>trans('cpanel.edit_admin'),
             'per_page'=>$per_page,
             'all_cases'=>$all_cases,
-            'finished_days'=>$finished_days,
+            // 'finished_days'=>$finished_days,
         ];
           return view(FE . '/v_all_cases')->with($data);
       }
