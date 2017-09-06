@@ -106,7 +106,7 @@ $locale = App::getLocale();
          <div class="col-md-4 m_bottom">
             <a href="{{lang_url('case').'/'.$value->id}}">
                <div class="case-temp">
-                  <p>{{$value->description}}</p>
+                  <p>{{$value->title}}</p>
                   <div class="tempp">
                      <div class="casetype"> نوع القضية : <span>{{$value->type}}</span></div>
                      <div class="status"> الحالة : 
@@ -173,59 +173,64 @@ $locale = App::getLocale();
       <h1 class="text-center">  الدول والقضايا </h1>
       <div class="row">
          <div class="col-md-3 col-sm-6 m_bottom">
+
+         
+
             <div class="text text-center">
                <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c1.png') }}"> </a>
                <p>السعودية  </p>
-               <span>40 قضية </span>
+               <span>{{$saudiCases}} قضية </span>
             </div>
          </div>
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
                <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c2.png') }}"> </a>
                <p>مصر   </p>
-               <span>40 قضية </span>
+               <span>{{$egyptCases}}  قضية </span>
             </div>
          </div>
-         <div class="col-md-3 col-sm-6 m_bottom">
+         
+        <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
                <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c3.png') }}"> </a>
                <p>الامارات   </p>
-               <span>40 قضية </span>
+               <span>0 قضية </span>
             </div>
          </div>
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
                <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c4.png') }}"> </a>
                <p>الكويت   </p>
-               <span>40 قضية </span>
+               <span>0 قضية </span>
             </div>
          </div>
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
                <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c5.png') }}"> </a>
                <p>تونس    </p>
-               <span>40 قضية </span>
+               <span>{{$tunisiaCases}} قضية </span>
             </div>
          </div>
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
                <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c6.png') }}"> </a>
                <p>المغرب </p>
-               <span>40 قضية </span>
+               <span>0 قضية </span>
             </div>
          </div>
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
                <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c7.png') }}"> </a>
                <p>  الجزائر </p>
-               <span>40 قضية </span>
+               <span>{{$algeriaCases}} قضية </span>
             </div>
          </div>
+
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
                <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c8.png') }}"> </a>
                <p>  البحرين </p>
-               <span>40 قضية </span>
+               <span>0 قضية </span>
             </div>
          </div>
       </div>
@@ -235,23 +240,28 @@ $locale = App::getLocale();
 <section class="stat">
    <div class="container">
       <div class="row">
-         <div class="col-md-3 col-sm-6 m-top">
-            <p class="count-text "> القضايا المنجزة </p>
-            <h2 class="timer count-title" id="count-number" data-to="250" data-speed="800"></h2>
-         </div>
-         <div class="col-md-3 col-sm-6 m-top">
-            <p class="count-text "> عدد الاستشاريين </p>
-            <h2 class="timer count-title" id="count-number" data-to="350" data-speed="800"></h2>
-         </div>
-         <div class="col-md-3 col-sm-6 m-top">
-            <p class="count-text "> عدد العملاء </p>
-            <h2 class="timer count-title" id="count-number" data-to="500" data-speed="800"></h2>
-         </div>
-         <div class="col-md-3 col-sm-6 m-top">
-            <p class="count-text ">عدد القضايا </p>
-            <h2 class="timer count-title" id="count-number" data-to="247" data-speed="800"></h2>
-         </div>
-      </div>
-   </div>
-</section>
+            <div class="col-md-3 col-sm-6 m-top">
+            <p class="count-text "> القضايا المنجزة </p>      
+            <h2 class="timer count-title counter" data-count="{{$countDoneCases}}"></h2>
+            </div>    
+
+            <div class="col-md-3 col-sm-6 m-top">
+            <p class="count-text "> عدد الاستشاريين </p>      
+            <h2 class="timer count-title counter" data-count="{{$countLawyers}}" ></h2>
+            </div>
+
+
+            <div class="col-md-3 col-sm-6 m-top">
+            <p class="count-text "> عدد العملاء </p> 
+            <h2 class="timer count-title counter" data-count="{{$countUsers}}"></h2>
+            </div>   
+
+
+            <div class="col-md-3 col-sm-6 m-top">
+            <p class="count-text ">عدد القضايا </p>       
+            <h2 class="timer count-title counter" data-count="{{$countAllCases}}"></h2>
+            </div>    
+      </div>       
+   </div>    
+</section>    
 @stop

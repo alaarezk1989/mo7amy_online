@@ -66,9 +66,9 @@ map: map
 </script>
 
 
-{{-- <script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IUR6CYZb2rgw-8Pu1eUMOinqqq3XN9c&callback=initMap">
-</script> --}}
+ <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IUR6CYZb2rgw-8Pu1eUMOinqqq3XN9c&callback=initMap">
+</script> 
 
 <script src="{{ asset('public/assets/'.FE .'/js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{ asset('public/assets/'.FE .'/js/bootstrap.min.js')}}"></script>

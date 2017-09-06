@@ -2,25 +2,47 @@
 
 @extends(FEI.'.master')
 @section('content')
+<?php
+
+use Carbon\Carbon;
+$locale = App::getLocale();
+
+?>
 <section class="details">
    <div class="container">
       <div class="row">
          <div class="de-Fsection">
             <p>
-               <?= $case['title']; ?>
+            {{$case->title}}
             </p>
             <div>
-               <div class="casetype"> نوع القضية : <span><?= $case['type']; ?></span></div>
+               <div class="casetype"> نوع القضية : <span>{{$case->type}}</span></div>
                <div class="status"> الحالة :                    <?php
-                  if($case['status'] ==1) echo '<span> متاح</span>';
+                  if($case->status) echo '<span> متاح</span>';
                   else{echo '</span>غير متاحة</span>'; }
                        ?></div>
             </div>
             <div style="margin-top:5px">
-               <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>
-               <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>
+               <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> </div>
+               <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i>
+                        <?php
+                            Carbon::setLocale($locale);
+                            $current = Carbon::now();
+                            $old = Carbon::parse($case->created_at);
+                            echo $old->diffForHumans($current);
+ 
+                        ?> 
+
+
+
+               </div>
                <div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>
-                  باقى <span>55</span> يوم
+                        <?php
+                            Carbon::setLocale($locale);
+                            $current = Carbon::parse($case->created_at);
+                            $old = Carbon::parse($case->finished_date);
+                           echo $old->diffForHumans($current);
+                         ?> 
                </div>
             </div>
          </div>
@@ -28,7 +50,7 @@
             <div class="all-deatils">
                <div class="account-case">
                   <img src="img/Case%20Account.png">
-                  <h3><?= $user_case->name?></h3>
+                  <h3>{{$user_case->name}}</h3>
                   <i class="fa fa-star-o" aria-hidden="true"></i>
                   <i class="fa fa-star-o" aria-hidden="true"></i>
                   <i class="fa fa-star-o" aria-hidden="true"></i>
@@ -78,7 +100,7 @@
             <div class="more-details">
                <h4>التفاصيل </h4>
                <p>
-                  <?= $case['description']; ?>
+                 {{$case->description}}
                </p>
             </div>
          </div>
