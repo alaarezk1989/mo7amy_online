@@ -54,17 +54,17 @@ class HomeController extends Controller
       // $states = CountryState::getStates('EG');
       // $countries = CountryState::getCountries();
 
-      $latest_cases = $this->LatestCases();
-      $lawyers = $this->lawyers();
-      $countDoneCases = $this->countDoneCases();
-      $countLawyers = $this->countLawyers();
-      $countUsers = $this->countUsers();
-      $countAllCases = $this->countAllCases();
-      $libyaCases = $this->libyaCases();
-      $tunisiaCases = $this->tunisiaCases();
-      $algeriaCases = $this->algeriaCases();
-      $saudiCases = $this->saudiCases();
-      $egyptCases = $this->egyptCases();
+        $latest_cases = $this->LatestCases();
+        $lawyers = $this->lawyers();
+        $countDoneCases = $this->countDoneCases();
+        $countLawyers = $this->countLawyers();
+        $countUsers = $this->countUsers();
+        $countAllCases = $this->countAllCases();
+        $libyaCases = $this->libyaCases();
+        $tunisiaCases = $this->tunisiaCases();
+        $algeriaCases = $this->algeriaCases();
+        $saudiCases = $this->saudiCases();
+        $egyptCases = $this->egyptCases();
       $data = [
           'title'=>trans('cpanel.site_name'),
           // 'countries'=>$countries,
@@ -94,7 +94,7 @@ class HomeController extends Controller
             ->join('countries', 'countries.id', '=', 'cases.country')
             ->join('cities', 'cities.id', '=', 'cases.city')
             ->select('cases.*','countries.name as name1','cities.name as name2')
-            ->orderBy ('cases.created_at')
+            ->orderBy ('cases.created_at','desc')
             ->limit(9)
             ->get();
 
