@@ -106,7 +106,7 @@ $locale = App::getLocale();
          <div class="col-md-4 m_bottom">
             <a href="{{lang_url('case').'/'.$value->id}}">
                <div class="case-temp">
-                  <p>{{$value->description}}</p>
+                  <p style="height: 64px;">{{$value->description}}</p>
                   <div class="tempp">
                      <div class="casetype"> نوع القضية : <span>{{$value->type}}</span></div>
                      <div class="status"> الحالة : 
@@ -116,10 +116,7 @@ $locale = App::getLocale();
                          else{
                            echo '</span>غير متاحة</span>'; }
                      ?>
-                     
-                    
-                        
-                     </div>
+                    </div>
                   </div>
                   <ul class="list-unstyled">
                      <li><i class="fa fa-map-marker" aria-hidden="true"></i> <span>{{$value->name1}} -{{$value->name2}}</span>   </li>
@@ -143,7 +140,7 @@ $locale = App::getLocale();
 
                      </span>  </li>
                   </ul>
-                  <div class="price"> <i class="fa fa-money" aria-hidden="true">  </i>  اعلى سعر :<span>200,000</span> </div>
+                  <div class="price"> <i class="fa fa-money" aria-hidden="true">  </i>  اعلى سعر :<span></span> </div>
                </div>
             </a>
          </div>
