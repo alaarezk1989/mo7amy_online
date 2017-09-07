@@ -106,7 +106,7 @@ $locale = App::getLocale();
          <div class="col-md-4 m_bottom">
             <a href="{{lang_url('case').'/'.$value->id}}">
                <div class="case-temp">
-                  <p>{{$value->title}}</p>
+                  <p>{{$value->description}}</p>
                   <div class="tempp">
                      <div class="casetype"> نوع القضية : <span>{{$value->type}}</span></div>
                      <div class="status"> الحالة : 

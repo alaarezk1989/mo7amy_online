@@ -94,7 +94,7 @@ class HomeController extends Controller
             ->join('countries', 'countries.id', '=', 'cases.country')
             ->join('cities', 'cities.id', '=', 'cases.city')
             ->select('cases.*','countries.name as name1','cities.name as name2')
-            ->orderBy ('cases.created_at')
+            ->orderBy ('cases.created_at','desc')
             ->limit(9)
             ->get();
 
