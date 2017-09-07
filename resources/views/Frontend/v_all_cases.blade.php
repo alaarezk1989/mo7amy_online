@@ -5,12 +5,196 @@ use Carbon\Carbon;
 $locale = App::getLocale();
 ?>
 <!--*******************************************************************-->
+<style>
+.cssload-thecube {
+    width: 73px;
+    height: 73px;
+    margin: 0 auto;
+    margin-top: 49px;
+    position: relative;
+    transform: rotateZ(45deg);
+        -o-transform: rotateZ(45deg);
+        -ms-transform: rotateZ(45deg);
+        -webkit-transform: rotateZ(45deg);
+        -moz-transform: rotateZ(45deg);
+}
+.cssload-thecube .cssload-cube {
+    position: relative;
+    transform: rotateZ(45deg);
+        -o-transform: rotateZ(45deg);
+        -ms-transform: rotateZ(45deg);
+        -webkit-transform: rotateZ(45deg);
+        -moz-transform: rotateZ(45deg);
+}
+.cssload-thecube .cssload-cube {
+    float: left;
+    width: 50%;
+    height: 50%;
+    position: relative;
+    transform: scale(1.1);
+        -o-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+}
+.cssload-thecube .cssload-cube:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(43,160,199);
+    animation: cssload-fold-thecube 2.76s infinite linear both;
+        -o-animation: cssload-fold-thecube 2.76s infinite linear both;
+        -ms-animation: cssload-fold-thecube 2.76s infinite linear both;
+        -webkit-animation: cssload-fold-thecube 2.76s infinite linear both;
+        -moz-animation: cssload-fold-thecube 2.76s infinite linear both;
+    transform-origin: 100% 100%;
+        -o-transform-origin: 100% 100%;
+        -ms-transform-origin: 100% 100%;
+        -webkit-transform-origin: 100% 100%;
+        -moz-transform-origin: 100% 100%;
+}
+.cssload-thecube .cssload-c2 {
+    transform: scale(1.1) rotateZ(90deg);
+        -o-transform: scale(1.1) rotateZ(90deg);
+        -ms-transform: scale(1.1) rotateZ(90deg);
+        -webkit-transform: scale(1.1) rotateZ(90deg);
+        -moz-transform: scale(1.1) rotateZ(90deg);
+}
+.cssload-thecube .cssload-c3 {
+    transform: scale(1.1) rotateZ(180deg);
+        -o-transform: scale(1.1) rotateZ(180deg);
+        -ms-transform: scale(1.1) rotateZ(180deg);
+        -webkit-transform: scale(1.1) rotateZ(180deg);
+        -moz-transform: scale(1.1) rotateZ(180deg);
+}
+.cssload-thecube .cssload-c4 {
+    transform: scale(1.1) rotateZ(270deg);
+        -o-transform: scale(1.1) rotateZ(270deg);
+        -ms-transform: scale(1.1) rotateZ(270deg);
+        -webkit-transform: scale(1.1) rotateZ(270deg);
+        -moz-transform: scale(1.1) rotateZ(270deg);
+}
+.cssload-thecube .cssload-c2:before {
+    animation-delay: 0.35s;
+        -o-animation-delay: 0.35s;
+        -ms-animation-delay: 0.35s;
+        -webkit-animation-delay: 0.35s;
+        -moz-animation-delay: 0.35s;
+}
+.cssload-thecube .cssload-c3:before {
+    animation-delay: 0.69s;
+        -o-animation-delay: 0.69s;
+        -ms-animation-delay: 0.69s;
+        -webkit-animation-delay: 0.69s;
+        -moz-animation-delay: 0.69s;
+}
+.cssload-thecube .cssload-c4:before {
+    animation-delay: 1.04s;
+        -o-animation-delay: 1.04s;
+        -ms-animation-delay: 1.04s;
+        -webkit-animation-delay: 1.04s;
+        -moz-animation-delay: 1.04s;
+}
+
+
+
+@keyframes cssload-fold-thecube {
+    0%, 10% {
+        transform: perspective(136px) rotateX(-180deg);
+        opacity: 0;
+    }
+    25%,
+                75% {
+        transform: perspective(136px) rotateX(0deg);
+        opacity: 1;
+    }
+    90%,
+                100% {
+        transform: perspective(136px) rotateY(180deg);
+        opacity: 0;
+    }
+}
+
+@-o-keyframes cssload-fold-thecube {
+    0%, 10% {
+        -o-transform: perspective(136px) rotateX(-180deg);
+        opacity: 0;
+    }
+    25%,
+                75% {
+        -o-transform: perspective(136px) rotateX(0deg);
+        opacity: 1;
+    }
+    90%,
+                100% {
+        -o-transform: perspective(136px) rotateY(180deg);
+        opacity: 0;
+    }
+}
+
+@-ms-keyframes cssload-fold-thecube {
+    0%, 10% {
+        -ms-transform: perspective(136px) rotateX(-180deg);
+        opacity: 0;
+    }
+    25%,
+                75% {
+        -ms-transform: perspective(136px) rotateX(0deg);
+        opacity: 1;
+    }
+    90%,
+                100% {
+        -ms-transform: perspective(136px) rotateY(180deg);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes cssload-fold-thecube {
+    0%, 10% {
+        -webkit-transform: perspective(136px) rotateX(-180deg);
+        opacity: 0;
+    }
+    25%,
+                75% {
+        -webkit-transform: perspective(136px) rotateX(0deg);
+        opacity: 1;
+    }
+    90%,
+                100% {
+        -webkit-transform: perspective(136px) rotateY(180deg);
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes cssload-fold-thecube {
+    0%, 10% {
+        -moz-transform: perspective(136px) rotateX(-180deg);
+        opacity: 0;
+    }
+    25%,
+                75% {
+        -moz-transform: perspective(136px) rotateX(0deg);
+        opacity: 1;
+    }
+    90%,
+                100% {
+        -moz-transform: perspective(136px) rotateY(180deg);
+        opacity: 0;
+    }
+}
+</style>
+
 
 <div class="container-fluid ">
 <div class="row">
 <img src="{{ URL::to('public/assets/Frontend/img/Cases%20Page%20Image.png') }}" class="img-responsive">      
 </div>        
 </div>    
+
+
 
 
 <!--***********************************************************************-->
@@ -47,78 +231,19 @@ $locale = App::getLocale();
 <input type='hidden' id='current_page' />
 <input type='hidden' id='show_per_page' />	    
 
-<div id='content'>
+<div id='content' >
 	
- @foreach($all_cases as $value)
-<a href="{{lang_url('case').'/'.$value->id}}">
-<div class="case-client border-bott">
-<p>{{$value->title}}<p>
-<div>   
-<div class="casetype"> نوع القضية : <span>{{$value->type}}</span></div>    
-                       <div class="status"> الحالة : 
 
-                     <?php
-                         if($value->status ==1) echo '<span> متاح</span>';
-                         else{
-                           echo '</span>غير متاحة</span>'; }
-                     ?>
-                     
-                    
-                        
-                     </div> 
-</div> 
-<div class="another-details">
-<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i>{{$value->name1}} - {{$value->name2}}</div>   
-<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i>
-<?php
-                            Carbon::setLocale($locale);
-                            $current = Carbon::now();
-                            $old = Carbon::parse($value->created_at);
-                            echo $old->diffForHumans($current);
- 
-?>
-
-
-</div>    
-<div class="time"><i  class="fa fa-calendar" aria-hidden="true"></i><?php
-                            Carbon::setLocale($locale);
-                            $current = Carbon::parse($value->created_at);
-                            $old = Carbon::parse($value->finished_date);
-                           echo $old->diffForHumans($current);
-                           ?>  </div>    
-<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div> 
-</div> 
-</div>   
-</a>
-  @endforeach
+<div class="cssload-thecube loader">
+    <div class="cssload-cube cssload-c1"></div>
+    <div class="cssload-cube cssload-c2"></div>
+    <div class="cssload-cube cssload-c4"></div>
+    <div class="cssload-cube cssload-c3"></div>
+</div>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 
 </div>	    
 </div>    
@@ -130,7 +255,7 @@ $locale = App::getLocale();
 <div class="col-md-4">
 <div class="sidebar2">
 
-<form>
+<form method="get" action="{{url('/cases/filtering')}}">
 
 <div class="forsearch">
 <label> البحث </label>    
@@ -138,23 +263,27 @@ $locale = App::getLocale();
 <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>    
 </div>    
 
-<div class="dep">
+<div id="filters" class="dep">
+<div class="filterblock">
 <label> الاقسام </label>  
 <input type="checkbox" name="" value="">  الكل <br>  
   <?php
          foreach($specialty as $key => $value){?>
-               <input  type="checkbox" name="total[]" value="{{$key}}"  /> {{$value}} <br> 
+               <input id="filter" class="filter types"  type="checkbox"  value="{{$key}}" data-tag="{{$value}}"  /> {{$value}} <br> 
             <?php }?>
 </div>
+</div>
 
-<div class="count">
+<div  id="filters2" class="count">
+<div class="filterblock2">
 <label> الدول </label> 
 <input type="checkbox" name="" value="">  الكل <br>    
   <?php
          foreach($countries as $key => $value){?>
-               <input  type="checkbox" name="total[]" value="{{$key}}"  /> {{$value}} <br> 
+               <input id="filter" class="filter countries"  type="checkbox"  value="{{$key}}" data-tag="{{$value}}"  /> {{$value}} <br> 
             <?php }?>
-</div>    
+</div>  
+</div>  
 
 
 <div class="case">
@@ -195,90 +324,152 @@ $locale = App::getLocale();
 
 <!--*******************************************--> 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-      <script type="text/javascript">
-         $(document).ready(function(){
+     
 
-         //how much items per page to show
-         var show_per_page = 8;
-         //getting the amount of elements inside content div
-         var number_of_items = $('#content').children().size();
-         //calculate the number of pages we are going to have
-         var number_of_pages = Math.ceil(number_of_items/show_per_page);
 
-         //set the value of our hidden input fields
-         $('#current_page').val(0);
-         $('#show_per_page').val(show_per_page);
-
-         //now when we got all we need for the navigation let's make it '
-
-         /*
-         what are we going to have in the navigation?
-         - link to previous page
-         - links to specific pages
-         - link to next page
-         */
-         var navigation_html = '<a class="next_link" href="javascript:next();"  aria-label="Next"> <i class="fa fa-chevron-right" aria-hidden="true"></i></a>';
-         var current_link = 0;
-         while(number_of_pages > current_link){
-         navigation_html += '<a class="page_link" href="javascript:go_to_page(' + current_link +')" longdesc="' + current_link +'">'+ (current_link + 1) +'</a>';
-         current_link++;
-         }
-         navigation_html += '<a class="previous_link" href="javascript:previous();" aria-label="previous"><i class="fa fa-chevron-left" aria-hidden="true"></i> </a>';
+      <script>
+            var types = [];
+            var countries = [];
+            var filters = [] ;
+            var url = "<?= url('/filtering') ?>";
 
 
 
-         $('#page_navigation').html(navigation_html);
+          $(document).ready(function(){
+            
+            $('.loader').hide();
+            $('.filter').on('change', function(){
+                $('.loader').show();
+              var category_list = [];
+              $('body #filter').each(function(){
+                
+                if($(this).is(":checked")) {
 
-         //add active_page class to the first page link
-         $('#page_navigation .page_link:first').addClass('active_page');
+                    if($(this).hasClass( "countries" )){
+                        if($(this).val()){
+                            countries.push($(this).val());
+                            countries = $.unique(countries);
+                        }
+                        
+                    }
+                    
+                    if($(this).hasClass( "types" )){
+                        if($(this).val()){
+                            types.push($(this).val());
 
-         //hide all the elements inside content div
-         $('#content').children().css('display', 'none');
+                            types = $.unique(types);
+                        }
+                    }
+                }/*else{
+                    if($(this).hasClass( "countries" )){
+                        if($(this).val()){
+                            countries.splice($(this).val());
+                            countries = $.unique(countries);
+                        }
+                        
+                    }
+                    
+                    if($(this).hasClass( "types" )){
+                        if($(this).val()){
+                            types.splice($(this).val());
+                            types = $.unique(types);
+                        }
+                    }
+                }*/
+               
+              });
 
-         //and show the first n (show_per_page) elements
-         $('#content').children().slice(0, show_per_page).css('display', 'block');
 
-         });
+            console.log(countries);
+            console.log(types);
+            filters = {'countries':countries,'types':types} ;
+            var html = '' ;
+            $.ajax({
+              type: "GET",
+              url: "http://localhost/mo7amy_online/ar/cases/filtering",
+              data: filters,
+              success: function(data){
+                $.each(data.data,function(k,v){
+                    html += '<div class="case-client border-bott">';
+                    html += '<p>'+v.title+'</p>  ';
+                    html += '<div> ';
+                    html += '<div class="casetype"> نوع القضية : <span>'+v.type+'</span></div>';
+                    html += '<div class="status"> الحالة : <span>'+v.status+'</span></div> ';
+                    html += '</div> ';
+                    html += '<div class="another-details">';
+                    html += '<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> '+v.country+' ,  '+v.city+' </div>';
+                    html += '<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>';
+                    html += '<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>';
+                    html += '<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div>';
+                    html += '</div> </div>';
 
-         function previous(){
 
-         new_page = parseInt($('#current_page').val()) - 1;
-         //if there is an item before the current active link run the function
-         if($('.active_page').prev('.page_link').length==true){
-         go_to_page(new_page);
-         }
+                });
+            
+                $('#content').html(html);
+                $('.loader').hide();
+                //
+                 html = '' ;
+                 types = [];
+                 countries = [];
+                 filters = [] ;
+              }
+            });
 
-         }
 
-         function next(){
-         new_page = parseInt($('#current_page').val()) + 1;
-         //if there is an item after the current active link run the function
-         if($('.active_page').next('.page_link').length==true){
-         go_to_page(new_page);
-         }
 
-         }
-         function go_to_page(page_num){
-         //get the number of items shown per page
-         var show_per_page = parseInt($('#show_per_page').val());
+              if(category_list.length == 0)
+                $('.resultblock').fadeIn();
+              else {
+                $('.resultblock').each(function(){
+                  var item = $(this).attr('data-tag');
+                  if(jQuery.inArray(item,category_list) > -1)
+                    $(this).fadeIn('slow');
+                  else
+                    $(this).hide();
+                });
+              }   
+            });
+          }); 
+        </script>
+        <script>
+          $(document).ready(function(){
+            $('.country').on('change', function(){
+              var category_list = [];
+              $('#filters2 :input:checked').each(function(){
+                var category = $(this).val();
+                category_list.push(category);
+              });
 
-         //get the element number where to start the slice from
-         start_from = page_num * show_per_page;
+              if(category_list.length == 0)
+                $('.resultblock').fadeIn();
+              else {
+                $('.resultblock').each(function(){
+                  var item = $(this).attr('id');
+                  if(jQuery.inArray(item,category_list) > -1)
+                    $(this).fadeIn('slow');
+                  else
+                    $(this).hide();
+                });
+              }   
+            });
+          }); 
+        </script>
 
-         //get the element number where to end the slice
-         end_on = start_from + show_per_page;
 
-         //hide all children elements of content div, get specific items and show them
-         $('#content').children().css('display', 'none').slice(start_from, end_on).css('display', 'block');
 
-         /*get the page link that has longdesc attribute of the current page and add active_page class to it
-         and remove that class from previously active page link*/
-         $('.page_link[longdesc=' + page_num +']').addClass('active_page').siblings('.active_page').removeClass('active_page');
 
-         //update the current page input field
-         $('#current_page').val(page_num);
-         }
 
-      </script>
 
+
+
+
+
+
+
+
+
+
+
+     
       @stop
