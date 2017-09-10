@@ -140,7 +140,8 @@ $locale = App::getLocale();
 
                      </span>  </li>
                   </ul>
-                  <div class="price"> <i class="fa fa-money" aria-hidden="true">  </i>  اعلى سعر :<span></span> </div>
+
+                  <div class="price"> <i class="fa fa-money" aria-hidden="true"></i>  اعلى سعر :<span>{{$value->bidValue}}</span> </div>
                </div>
             </a>
          </div>

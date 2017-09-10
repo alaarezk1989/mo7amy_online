@@ -1,6 +1,10 @@
 @extends(FEI.'.master')
 @section('content')
+<?php
+use Carbon\Carbon;
+$locale = App::getLocale();
 
+?>
   <!--*******************************************************************-->
   <section class="profile">
      <div class="container-fluid">
@@ -31,20 +35,20 @@
               <div class="lawyer-info">
                  <h4>معلومات عن المحامى </h4>
                  <ul class="list-unstyled ul-lawyer">
-                    <li> <i class="fa fa-map-marker" aria-hidden="true"></i> {{$user_country->name}} , {{$user_city->name}}  </li>
+                    <li> <i class="fa fa-map-marker" aria-hidden="true"></i>  {{$user_country->name}} , {{$user_city->name}}  </li>
                     <li> <i class="fa fa-birthday-cake" aria-hidden="true"></i>  {{$birthdate_year}} {{trans('cpanel.year')}} </li>
-                    <li> <i class="fa fa-phone" aria-hidden="true"></i> </li>
-                    <li> <i class="fa fa-envelope" aria-hidden="true"></i></li>
+                    <li> <i class="fa fa-phone" aria-hidden="true"></i>  {{$user_data->phone}} </li>
+                    <li> <i class="fa fa-envelope" aria-hidden="true"></i>   {{$user_data->email}}</li>
                  </ul>
-                 <span class="text-center"> 150 </span>
-                 <p class="text-center"> عدد  القضايا المرفوعة </p>
+                 <span class="text-center"> {{$countLawyersCases}} </span>
+                 <p class="text-center"> عدد القضايا المشترك بها </p>
                  <a href="tel:5555555555" class="text-center"> اتصل بالمحامى </a>
               </div>
            </div>
            <div class="col-md-8">
               <div class="info1">
                  <h2>{{$user_data->name}}  </h2>
-                 <p> {{$user_data->career}} </p>
+                 <p>{{$user_data->career}}</p>
                  <span>
                     {{trans('cpanel.type_of_specialization')}} :
                     @php
@@ -108,219 +112,43 @@
            <!--***********************************************-->
            <input type='hidden' id='current_page' />
            <input type='hidden' id='show_per_page' />
+            @foreach($lawyerCases as $lawyerCase)
            <div id='content'>
               <div class="case-client border-bott">
-                 <p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>
+                 <p> {{$lawyerCase->description}}  </p>
                  <div>
-                    <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                    <div class="status"> الحالة : <span>متاح</span></div>
+                    <div class="casetype"> نوع القضية : <span>{{$lawyerCase->type}}</span></div>
+                     <div class="status"> الحالة : 
+
+                     <?php
+                         if($lawyerCase->status ==1) echo '<span> متاح</span>';
+                         else{
+                           echo '</span>غير متاحة</span>'; }
+                     ?>
+                    </div>
                  </div>
                  <div class="another-details">
-                    <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>
-                    <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>
-                    <div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>
-                    <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div>
-                    <a href="#"> عرض المزيد </a>
+                    <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> {{$lawyerCase->name1}} -{{$lawyerCase->name2}} </div>
+                    <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span></span> <?php
+                            Carbon::setLocale($locale);
+                            $current = Carbon::now();
+                            $old = Carbon::parse($lawyerCase->created_at);
+                            echo $old->diffForHumans($current);
+ 
+                        ?> </div>
+                    <div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span></span> <?php
+                            Carbon::setLocale($locale);
+                            $current = Carbon::parse($lawyerCase->created_at);
+                            $old = Carbon::parse($lawyerCase->finished_date);
+                           echo $old->diffForHumans($current);
+                           ?> </div>
+
+                    <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر {{$lawyerCase->bidValue}} $</div>
+                    <a href="{{lang_url('case').'/'.$lawyerCase->id}}"> عرض المزيد </a>
                  </div>
               </div>
-              <div class="case-client border-bott">
-                 <p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>
-                 <div>
-                    <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                    <div class="status"> الحالة : <span>متاح</span></div>
-                 </div>
-                 <div class="another-details">
-                    <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>
-                    <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>
-                    <div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>
-                    <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div>
-                    <a href="#"> عرض المزيد </a>
-                 </div>
               </div>
-              <div class="case-client border-bott">
-                 <p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>
-                 <div>
-                    <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                    <div class="status"> الحالة : <span>متاح</span></div>
-                 </div>
-                 <div class="another-details">
-                    <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>
-                    <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>
-                    <div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>
-                    <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div>
-                    <a href="#"> عرض المزيد </a>
-                 </div>
-              </div>
-              <div class="case-client border-bott">
-                 <p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>
-                 <div>
-                    <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                    <div class="status"> الحالة : <span>متاح</span></div>
-                 </div>
-                 <div class="another-details">
-                    <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>
-                    <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>
-                    <div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>
-                    <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div>
-                    <a href="#"> عرض المزيد </a>
-                 </div>
-              </div>
-              <div class="case-client">
-                 <p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>
-                 <div>
-                    <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                    <div class="status"> الحالة : <span>متاح</span></div>
-                 </div>
-                 <div class="another-details">
-                    <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>
-                    <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>
-                    <div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>
-                    <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div>
-                    <a href="#"> عرض المزيد </a>
-                 </div>
-              </div>
-              <!--********************************************************-->
-              <div class="case-client border-bott">
-                 <p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>
-                 <div>
-                    <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                    <div class="status-doing"> الحالة : <span>  تحت التنفيذ</span></div>
-                 </div>
-                 <div class="another-details">
-                    <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>
-                    <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>
-                    <div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>
-                    <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div>
-                    <a href="#"> عرض المزيد </a>
-                 </div>
-              </div>
-              <div class="case-client border-bott">
-                 <p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>
-                 <div>
-                    <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                    <div class="status-doing"> الحالة : <span>  تحت التنفيذ</span></div>
-                 </div>
-                 <div class="another-details">
-                    <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>
-                    <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>
-                    <div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>
-                    <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div>
-                    <a href="#"> عرض المزيد </a>
-                 </div>
-              </div>
-              <div class="case-client border-bott">
-                 <p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>
-                 <div>
-                    <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                    <div class="status-doing"> الحالة : <span>  تحت التنفيذ</span></div>
-                 </div>
-                 <div class="another-details">
-                    <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>
-                    <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>
-                    <div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>
-                    <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div>
-                    <a href="#"> عرض المزيد </a>
-                 </div>
-              </div>
-              <div class="case-client border-bott">
-                 <p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>
-                 <div>
-                    <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                    <div class="status-doing"> الحالة : <span>  تحت التنفيذ</span></div>
-                 </div>
-                 <div class="another-details">
-                    <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>
-                    <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>
-                    <div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>
-                    <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div>
-                    <a href="#"> عرض المزيد </a>
-                 </div>
-              </div>
-              <div class="case-client">
-                 <p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>
-                 <div>
-                    <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                    <div class="status-doing"> الحالة : <span>  تحت التنفيذ</span></div>
-                 </div>
-                 <div class="another-details">
-                    <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>
-                    <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>
-                    <div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>
-                    <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div>
-                    <a href="#"> عرض المزيد </a>
-                 </div>
-              </div>
-              <!--********************************************************************-->
-              <div class="case-client border-bott">
-                 <p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>
-                 <div>
-                    <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                    <div class="status"> الحالة : <span>متاح</span></div>
-                 </div>
-                 <div class="another-details">
-                    <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>
-                    <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>
-                    <div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>
-                    <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div>
-                    <a href="#"> عرض المزيد </a>
-                 </div>
-              </div>
-              <div class="case-client border-bott">
-                 <p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>
-                 <div>
-                    <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                    <div class="status"> الحالة : <span>متاح</span></div>
-                 </div>
-                 <div class="another-details">
-                    <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>
-                    <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>
-                    <div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>
-                    <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div>
-                    <a href="#"> عرض المزيد </a>
-                 </div>
-              </div>
-              <div class="case-client border-bott">
-                 <p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>
-                 <div>
-                    <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                    <div class="status"> الحالة : <span>متاح</span></div>
-                 </div>
-                 <div class="another-details">
-                    <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>
-                    <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>
-                    <div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>
-                    <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div>
-                    <a href="#"> عرض المزيد </a>
-                 </div>
-              </div>
-              <div class="case-client border-bott">
-                 <p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>
-                 <div>
-                    <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                    <div class="status"> الحالة : <span>متاح</span></div>
-                 </div>
-                 <div class="another-details">
-                    <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>
-                    <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>
-                    <div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>
-                    <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div>
-                    <a href="#"> عرض المزيد </a>
-                 </div>
-              </div>
-              <div class="case-client">
-                 <p> هنالك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن الغالبية تم تعديلها بشكل ما عبر إدخال بعض النوادر   </p>
-                 <div>
-                    <div class="casetype"> نوع القضية : <span>جنائية</span></div>
-                    <div class="status"> الحالة : <span>متاح</span></div>
-                 </div>
-                 <div class="another-details">
-                    <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>
-                    <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> منذ <span>55</span> دقيقة</div>
-                    <div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>
-                    <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div>
-                    <a href="#"> عرض المزيد </a>
-                 </div>
-              </div>
+              @endforeach
            </div>
         </div>
      </div>

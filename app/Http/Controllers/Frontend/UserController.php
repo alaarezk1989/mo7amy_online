@@ -423,6 +423,24 @@ class UserController extends Controller
 
         $lawyer_data = User::findOrFail($id);
 
+        $countLawyersCases = DB::table('bids') 
+            ->where('bids.user_id','=',$id)
+            ->count();
+
+
+        $lawyerCases = DB::table('cases')
+            ->join('countries', 'countries.id', '=', 'cases.country')
+            ->join('cities', 'cities.id', '=', 'cases.city')
+            ->Leftjoin('bids','bids.case_id','=','cases.id')
+            ->where('bids.user_id','=',$id)
+            ->select('cases.*','countries.name as name1','cities.name as name2','bids.bids_val as bidValue')
+            ->orderBy ('cases.created_at','desc')
+            ->get();
+
+
+
+
+
         $country_id=$lawyer_data->country;
         $user_country = Countries::findOrFail($country_id);
 
@@ -441,7 +459,9 @@ class UserController extends Controller
             'user_specialty'=>$user_specialty,
             'user_country'=>$user_country,
             'user_city'=>$user_city,
+            'countLawyersCases'=>$countLawyersCases,
             'birthdate_year'=>$birthdate_year,
+            'lawyerCases'=>$lawyerCases,
         ];
         // return Carbon::createFromDate(1991, 7, 19)->diff(Carbon::now())->format('%y years, %m months and %d days');
 
