@@ -88,6 +88,9 @@
 <div class="alert alert-danger" style="font-size: 15px;" role="alert">{{ $errors->first('city') }}</div>                                   
  @endif
 
+  @if ($errors->has('finished_date'))
+<div class="alert alert-danger" style="font-size: 15px;" role="alert">{{ $errors->first('finished_date') }}</div>                                   
+ @endif
 
 <div class="casedetails">
 

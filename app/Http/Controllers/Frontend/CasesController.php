@@ -69,7 +69,7 @@ public function create_case (Request $request)
             'type'                            =>'required',
             'country'                         =>'required',
             'city'                            =>'required',
-            'finished_date'                   =>'required',
+            'finished_date'                   =>'required|date_format:Y-m-d|after:tomorrow',
 
 
         ];
@@ -80,11 +80,13 @@ public function create_case (Request $request)
             'type'                      =>'type',
             'country'                   =>'country',
             'city'                      =>'city',
-           'finished_date'              =>'finished_date',
+           'finished_date'              =>'finished date',
 
         ]);
         if($validator->fails())
-        {
+        {   /*$errors = $validation->messages();
+          echo $errors;
+          return;*/
             session()->flash('error_msg', trans('cpanel.form_error'));
             // return $request->all();
             return back()->withInput()->withErrors($validator);
@@ -176,7 +178,8 @@ public function create_case (Request $request)
             'type'                            =>'required',
             'country'                         =>'required',
             'city'                            =>'required',
-            'finished_date'                   =>'required',
+            'finished_date'                   =>'required|date_format:Y-m-d|after:tomorrow',
+
 
 
 
@@ -234,9 +237,11 @@ public function create_case (Request $request)
               $per_page = 20;
               $all_cases =  DB::table('cases')
                 ->where('status', '=', '1')
+
                 ->join('countries', 'countries.id', '=', 'cases.country')
                 ->join('cities', 'cities.id', '=', 'cases.city')
                 ->select('cases.*','countries.name as name1','cities.name as name2')
+                ->orderBy('created_at', 'desc')
                 ->paginate($per_page);
 
        $specialty = User::GetAdminSpecialty();
@@ -273,6 +278,7 @@ return; */
         $your_case =  DB::table('cases')
                ->where('status', '=', '1')
                ->where('user_id', '=', $sess_user_id)
+               ->orderBy('created_at', 'desc')
               ->paginate($per_page);
         $data = [
             'title'=>trans('cpanel.site_name'),
@@ -359,5 +365,32 @@ $all_case_bids=array();
     public function destroy(Cases $cases)
     {
         //
+    }
+
+    public function filtering(Request $request){
+
+      if($request->types AND $request->countries){
+        //$cases = Cases::where('country' ,'=', $request->countries)->get();
+        $cases = Cases::whereIn('type', (array)$request->types)
+        ->whereIn('country', (array)$request->countries)
+        ->get();
+      }elseif($request->types AND !$request->countries){
+        $cases = Cases::whereIn('type', (array)$request->types)->get();
+      }elseif($request->countries AND !$request->types){
+        $cases = Cases::whereIn('country' , (array)$request->countries)->get();
+      }else{
+        $cases = Cases::get();
+      }
+
+      //return response()->json(['types' => $request->types , 'countries' => $request->countries]);
+        
+      if($cases){
+        return response()->json(['code' => 200 , 'msg' => "success" , "data" => $cases]);
+      }else{
+        return response()->json(['code' => 404 , 'msg' => "not found" ]);
+      }
+      
+
+
     }
 }
