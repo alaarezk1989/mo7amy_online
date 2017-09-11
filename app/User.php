@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Notifications\Messages\MailMessage;
 use App;
+use DB;
 
 class User extends Authenticatable
 {
@@ -62,24 +63,18 @@ class User extends Authenticatable
 
     public function scopeGetAdminSpecialty()
     {
+            $locale = App::getLocale();
 
-        $specialty = [
-        'family'              => trans('cpanel.family'),
-        'matrimonial'         => trans('cpanel.matrimonial'),
-        'medical'             => trans('cpanel.medical'),
-        'real_estate'         => trans('cpanel.real_estate'),
-        'financial'           => trans('cpanel.financial'),
-        'commercial'          => trans('cpanel.commercial'),
-
-        'other'               => trans('cpanel.other'),
-        'banking'             => trans('cpanel.banking'),
-        'military'            => trans('cpanel.military'),
-        'management'          => trans('cpanel.management'),
-        'labor'               => trans('cpanel.labor'),
-        'criminal_offense'    => trans('cpanel.criminal_offense'),
-        ];
+         $specialty_query = DB::table('sections')
+        ->where('local','=',$locale)
+        ->get();
+        foreach ($specialty_query as $value) {
+          $specialty[$value->id]=$value->name;
+        }
         return $specialty;
     }
+
+
 
     /**
     * @return user role
