@@ -76,6 +76,10 @@ map: map
 <script src="{{ asset('public/assets/'.FE .'/js/smooth-scroll.min.js')}}"></script>
 <script src="{{ asset('public/assets/'.FE .'/js/jquery-ui.js')}}"></script>
 <script src="{{ asset('public/assets/'.FE .'/js/index.js')}}"></script>
+
+
+<script src="{{ asset('public/assets/'.FE .'/js/dateFormat.min.js')}}"></script>
+<script src="{{ asset('public/assets/'.FE .'/js/jquery-dateFormat.min.js')}}"></script>
 <script>
 $(document).ready(function() {
 

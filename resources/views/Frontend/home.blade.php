@@ -108,7 +108,7 @@ $locale = App::getLocale();
                <div class="case-temp">
                   <p style="height: 64px;">{{$value->description}}</p>
                   <div class="tempp">
-                     <div class="casetype"> نوع القضية : <span>{{$value->type}}</span></div>
+                     <div class="casetype"> نوع القضية : <span></span></div>
                      <div class="status"> الحالة : 
 
                      <?php
