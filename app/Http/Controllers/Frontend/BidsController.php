@@ -108,10 +108,10 @@ class BidsController extends Controller
       $add->save();
       $sess_locale=$request->session()->get('sess_locale');
 
-        return redirect($sess_locale.'/case/'.$case_id);
-      // $data = [
-      //     'cities_data' => '$bids_val',
-      // ];
+        // return redirect($sess_locale.'/case/'.$case_id);
+      $data = [
+          'bids_val' => $bids_val,
+      ];
 
       return response($data, 200)->header('Content-Type', 'text/plain');
     }

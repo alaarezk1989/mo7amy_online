@@ -68,7 +68,7 @@ map: map
 
  <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IUR6CYZb2rgw-8Pu1eUMOinqqq3XN9c&callback=initMap">
-</script> 
+</script>
 
 <script src="{{ asset('public/assets/'.FE .'/js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{ asset('public/assets/'.FE .'/js/bootstrap.min.js')}}"></script>
@@ -116,23 +116,23 @@ $(document).ready(function() {
       // var req_url = "{!! url('set_your_bids') !!}"+'/'+bids_val+'/'+case_id;
       var req_url = "{!! url('set_your_bids') !!}"+'/'+case_id;
         $.ajax({
-                type: "pst",
+                type: "post",
                 url:req_url,
                 // data: {bids_val: bids_val,case_id: case_id},
                 data: $('#form_set_bids').serialize(), // Request data in JSON
                  dataType: 'json', // Define data type will be JSON
                 success: function(result) {
-                    alert('ttt');
-                    // var $el = $("#bids_div");
-                    // $el.hide(); // remove old options
-                    console.log(result);
+                    var your_bids_value=result.bids_val;
+                    var $el = $("#bids_div");
+                    $el.html("  <button><span>{{ trans('cpanel.you_offer') }}</span>" +your_bids_value+" $ </button>"); // remove old options
+                    // console.log(result);
                 },
                 error: function(error) {
                     // alert( 'ee'+console.log(error));
                 console.log(error);
                 }
             }); //end ajax
-              // return false;
+              return false;
     }); //end on click on bids
 });  //End Document.Ready
 
