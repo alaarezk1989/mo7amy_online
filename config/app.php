@@ -181,6 +181,7 @@ return [
         DougSisk\CountryState\CountryStateServiceProvider::class,
         Barryvdh\TranslationManager\ManagerServiceProvider::class,
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
     ],
 
@@ -234,6 +235,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 

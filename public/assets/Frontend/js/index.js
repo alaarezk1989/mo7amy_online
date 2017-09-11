@@ -2,9 +2,9 @@ $(document).ready(function(){
 
 
 $(window).scroll(function(){
-var navbar= $('.navbar');	
-$(window).scrollTop() >= navbar.height() ?	navbar.addClass("scrolled") : navbar.removeClass("scrolled");	
-});  
+var navbar= $('.navbar');
+$(window).scrollTop() >= navbar.height() ?	navbar.addClass("scrolled") : navbar.removeClass("scrolled");
+});
 
 /*************************************************************/
 
@@ -13,43 +13,72 @@ $('.lawyer,.male,.female,.client').click(function(){
 $(this).toggleClass('class-selct');
 });
 
+/*********************************************/
+
 $('.menu').click(function(){
-$('.login-form').fadeToggle();
-$('.sign-form').fadeOut(); 
-$('.forget').fadeOut();	
+$('.login-form').show();
+$('.sign-form').hide();
+$('.forget').hide();
 });
 
 
 $('.register').click(function(){
-$('.login-form').fadeOut();   
-$('.sign-form').fadeIn();  
-});   
-	
-	
-$('.forgetpass').click(function(){
-$('.sign-form').fadeOut();  
-$('.login-form').fadeOut();
-$('.forget').fadeIn();	
+$('.login-form').hide();
+$('.sign-form').show();
+$('.forget').hide();
 });
-	
-	
+
+
+$('.forgetpass').click(function(){
+$('.sign-form').hide();
+$('.login-form').hide();
+$('.forget').show();
+});
+
+
 $('.already-mem').click(function(){
-$('.sign-form').fadeOut(); 
-$('.forget').fadeOut();	   
-$('.login-form').fadeIn(); 
+$('.sign-form').hide();
+$('.forget').hide();
+$('.login-form').show();
+});
 
-});  
+$('.close').click(function(){
 
+$('.sign-form').hide();
+$('.forget').hide();
+$('.login-form').hide();
 
+});
 
-/*************************************************************************************/  
+var hash = window.location.hash.substring(1);
+if(hash=='login'){
+$('.login-form').fadeIn();
+}
+if(hash=='sign'){
+$('.sign-form').fadeIn();
+}
+if(hash=='forget'){
+$('.forget').fadeIn();
+}
+
+/**************************************************/
+
+if($('input').hasClass('error')){
+$(this).css("border-color","red") ;
+$(this).children('.tooltiptext').css({
+visibility:"visible",
+opacity:"1"
+})
+}
+
+/*************************************************************************************/
 
 $(window).scroll(function() {
 var hT = $('.stat');
 if (!hT.length) {
 return;
 }
-var hTT = hT.offset().top;	
+var hTT = hT.offset().top;
 
 var hH = $('.stat').outerHeight(),
 wH = $(window).height(),
@@ -78,7 +107,7 @@ $this.text(this.countNum);
 //alert('finished');
 }
 
-});  
+});
 
 
 
@@ -86,10 +115,10 @@ $this.text(this.countNum);
 
 
 
-});  
+});
 }
 
-});      
+});
 
 
 
@@ -101,13 +130,13 @@ $(this).addClass('selected').siblings().removeClass("selected");
 $(this).addClass('custom-js').siblings().removeClass("custom-js");
 
 // hide all divs
-$('.tabs-content > div').hide();	
+$('.tabs-content > div').hide();
 
 $('.'+$(this).data('class')).show()	; // 3shan tkon .tab1 aw .tab2
 
 });
 
-/**************************************************************/    
+/**************************************************************/
 
 
 $('.list-tabs2 li').click(function(){
@@ -116,13 +145,13 @@ $(this).addClass('selected').siblings().removeClass("selected");
 $(this).addClass('custom-js').siblings().removeClass("custom-js");
 
 // hide all divs
-$('.tabs-content2 > div').hide();	
+$('.tabs-content2 > div').hide();
 
 $('.'+$(this).data('class')).show()	; // 3shan tkon .tab1 aw .tab2
 
-})	; 
+})	;
 
-/***************************************************************/    
+/***************************************************************/
 
 
 $('.list-tabs3 li').click(function(){
@@ -131,12 +160,12 @@ $(this).addClass('selected').siblings().removeClass("selected");
 $(this).addClass('custom-jss').siblings().removeClass("custom-jss");
 
 // hide all divs
-$('.tabs-content3 > div').hide();	
+$('.tabs-content3 > div').hide();
 $('.'+$(this).data('class')).show()	; // 3shan tkon .tab1 aw .tab2
 
-})	;     
+})	;
 
-/******************************************************************************/ 
+/******************************************************************************/
 
 $('.arrang-menu li a').click(function(){
 $(this).addClass('coloring').parent('li').prevAll().children('a').removeClass('coloring')
@@ -149,10 +178,10 @@ $(this).addClass('coloring').parent('li').nextAll().children('a').removeClass('c
 
 $('.law-profile button.okk').click(function(){
 $('button.okk').removeClass("done");
-$(this).addClass("done");	
-});   
+$(this).addClass("done");
+});
 
- 
+
 
 $('.modal-footer button').click(function(){
 
@@ -160,8 +189,8 @@ $(this).addClass('activated').siblings().removeClass('activated');
 
 if($(this).hasClass('yes')){
 $(".okk:not(.done)").css("visibility", "hidden");
-$('.okk').css({background:"#b31f24",color:"#fff"});    
-}  
+$('.okk').css({background:"#b31f24",color:"#fff"});
+}
 
 });
 

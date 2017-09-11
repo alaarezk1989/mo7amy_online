@@ -9,6 +9,7 @@
         "barryvdh/laravel-translation-manager": "^0.2.9",
         "dougsisk/laravel-country-state": "^2.0",
         "laravel/framework": "5.4.*",
+        "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
         "mcamara/laravel-localization": "^1.2",

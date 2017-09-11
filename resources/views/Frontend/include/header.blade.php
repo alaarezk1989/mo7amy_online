@@ -242,7 +242,13 @@
                   @else
                   <ul class="nav navbar-nav navbar-left">
                   <li class="dropdown">
-                    <a href="#" class="lk-profile"><img src="{{ asset('public/assets/'.FE .'/img/User%20Account.png')}}" alt="account" class="img-acc"></a>
+                    <a href="#" class="lk-profile">
+                      @if(user_auth()->image !='')
+                        <img src="{{ asset('public/uploads/user_img')}}/{{user_auth()->image}}" alt="account" class="img-acc">
+                      @else
+                        <img src="{{ asset('public/uploads')}}/avater.png" class="img-responsive"/>
+                      @endif
+                    </a>
                      <a href="#" class="dropdown-toggle prof-name" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                       <span class=""> {{user_auth()->name}} </span><span class="caret"></span></a>
                       <ul class="dropdown-menu user-menu">

@@ -8,7 +8,7 @@ box-sizing: border-box;
 
 body{
 direction: rtl;
-font-family: 'ARfont';  
+font-family: 'ARfont';
 overflow-x: hidden;
 }
 
@@ -16,7 +16,7 @@ overflow-x: hidden;
 @font-face {
 font-family: 'ARfont';
 /*src: url('../fonts/Al-Jazeera-Arabic-Regular.ttf');*/
-src: url('../fonts/Cairo-Regular.ttf');    
+src: url('../fonts/Cairo-Regular.ttf');
 }
 
 
@@ -28,7 +28,7 @@ src: url('../fonts/Roboto-Regular.ttf');
 @font-face {
 font-family: 'B-font';
 /*src: url('../fonts/Al-Jazeera-Arabic-Bold.ttf');*/
-src: url('../fonts/Cairo-Bold.ttf')   ;  
+src: url('../fonts/Cairo-Bold.ttf')   ;
 }
 
 .ma{
@@ -41,7 +41,7 @@ margin-top: 50px;
 
 .mb{
 margin-bottom: 15px;
-margin-top: 15px;    
+margin-top: 15px;
 }
 
 .margin-top{
@@ -97,7 +97,7 @@ margin-top: 50px;
 
 a{
 text-decoration: none !important;
-color: #999;    
+color: #999;
 }
 
 a:focus, a:hover{
@@ -117,7 +117,44 @@ display: block !important;
 
 
 /************navbar******************/
+.tooltip {
+position: relative;
+display: block;
+opacity: 1;
+}
 
+.tooltip .tooltiptext {
+visibility: hidden;
+width: 90px;
+background-color: #555;
+color: #fff;
+text-align: center;
+border-radius: 6px;
+padding: 5px 0;
+position: absolute;
+z-index: 1;
+bottom: 15%;
+left: 25%;
+margin-left: -60px;
+opacity: 0;
+transition: opacity 1s;
+}
+
+.tooltip .tooltiptext::after {
+content: "";
+position: absolute;
+top: 100%;
+left: 50%;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: #555 transparent transparent transparent;
+}
+
+/**.tooltip:hover .tooltiptext {
+visibility: visible;
+opacity: 1;
+} **/
 
 .navbar-nav li .lk-profile {
 padding:  0;
@@ -140,34 +177,34 @@ background-color: #fff;
 cursor: pointer
 }
 
-#login-dp{
+.login-dp{
 min-width: 307px;
 padding: 20px 20px;
 background-color: #fff;
 border-radius: 10px;
 }
 
-#login-dp .bottom{
+.login-dp .bottom{
 background-color:rgba(255,255,255,.8);
 border-top:1px solid #ddd;
 clear:both;
 padding:14px;
 }
 
-#login-dp .form-group {
+.login-dp .form-group {
 margin-bottom: 10px;
 }
 
 .btn-fb{
 color: #fff;
 background-color:#3b5998;
-font-size: 17px;    
-width: 285px;    
+font-size: 17px;
+width: 285px;
 }
 
 .btn-fb:hover{
 color: #fff;
-background-color:#496ebc 
+background-color:#496ebc
 }
 
 .form .forgetpass{
@@ -209,12 +246,11 @@ border-radius: 5px;
 
 
 .long-parag{
-font-size: 15px;
+font-size: 16px;
 color: #b31f24;
 text-align: center;
 font-family: 'B-font';
-margin-bottom: 30px;
-
+margin: 0 25px 30px 10px;
 }
 
 
@@ -315,7 +351,7 @@ transition: width .3s;
 }
 
 .main-ul li a:hover:after {
-width: 100%;   
+width: 100%;
 }
 
 .nav-sign li a{
@@ -346,7 +382,7 @@ right: -17px;
 }
 
 
-/*#login-dp.dropdown-menu{
+/*.login-dp.dropdown-menu{
 left: -60px !important;
 }*/
 
@@ -399,7 +435,7 @@ float: right;
 border: 2px solid #999;
 color: #999;
 font-size: 17px;
-outline: 0;    
+outline: 0;
 }
 
 
@@ -411,7 +447,7 @@ float: left;
 border: 2px solid #999;
 color: #999;
 font-size: 17px;
-outline: 0;    
+outline: 0;
 }
 
 .slct{
@@ -518,7 +554,7 @@ width: 2em;
 text-align: center;
 font-size: 16px;
 color: #cdcdcd;
-margin-top: 27px;    
+margin-top: 27px;
 }
 
 
@@ -539,7 +575,7 @@ overflow: hidden;
 
 #page_navigation i{
 color: #b31f24;
-}     
+}
 
 #page_navigation a{
 padding: 5px 10px;
@@ -551,21 +587,21 @@ float: right;
 .active_page{
 background:#b31f24;
 color:white !important;
-}	
+}
 
 #content{
 margin-top: 30px;
 overflow: hidden;
 border: 1px solid #e0cd85;
 border-radius: 5px;
-width: 100%;    
+width: 100%;
 }
 
 .law-profile .names{
 font-size: 20px;
 color: #b31f24;
 font-family: 'B-font';
-margin: 15px 0 10px 0;    
+margin: 15px 0 10px 0;
 }
 
 .law-profile .desc{
@@ -585,7 +621,7 @@ font-size: 20px;
 color: #b31f24;
 cursor: pointer;
 font-family: 'B-font';
-margin: 0px auto 20px auto; 
+margin: 0px auto 20px auto;
 }
 
 
@@ -606,7 +642,7 @@ margin: 0px auto 20px auto;
 .de-Fsection{
 border: 1px solid #e0cd85;
 padding: 20px;
-border-radius: 10px;   
+border-radius: 10px;
 }
 
 .de-Fsection p{
@@ -634,16 +670,16 @@ min-width: 180px;
 display: inline-block;
 font-size: 20px;
 color: #3cb54a;
-padding-right: 7px;    
-min-width: 180px;    
+padding-right: 7px;
+min-width: 180px;
 }
 
 .status-doing{
 display: inline-block;
 font-size: 20px;
 color: #2098d1;
-padding-right: 7px;    
-min-width: 180px;   
+padding-right: 7px;
+min-width: 180px;
 }
 
 .location,.time{
@@ -658,7 +694,7 @@ min-width: 180px;
 
 
 .time span{
-font-family: 'ENfont';       
+font-family: 'ENfont';
 }
 
 .location i,.time i{
@@ -674,7 +710,7 @@ line-height: 33px;
 
 .more-details{
 border: 1px solid #e0cd85 ;
-border-radius: 10px;    
+border-radius: 10px;
 padding:20px;
 min-height: 748px;
 }
@@ -683,7 +719,7 @@ min-height: 748px;
 color: #b31f24;
 font-size: 20px;
 font-family: 'B-font';
-margin-top: 0;    
+margin-top: 0;
 }
 
 
@@ -739,13 +775,13 @@ border-radius: 10px;
 color: #b31f24;
 font-size: 20px;
 font-family: 'B-font';
-padding: 20px;    
+padding: 20px;
 }
 
 .alcomm span{
 color: #777;
 font-size: 20px;
-font-family:'ENfont';     
+font-family:'ENfont';
 }
 
 .casedetails textarea,.tabs-content3 textarea{
@@ -818,14 +854,14 @@ padding-left: 0;
 .all-deatils{
 border: 1px solid #e0cd85;
 text-align: center;
-border-radius: 5px;    
+border-radius: 5px;
 }
 
 .account-case{
 padding: 20px;
 color: #b31f24;
 font-family: 'B-font';
-border-bottom: 1px solid #e0cd85;    
+border-bottom: 1px solid #e0cd85;
 }
 
 .account-case h3{
@@ -839,13 +875,13 @@ font-size: 25px;
 .case-price h4{
 font-size: 35px;
 color: #efa308;
-margin: 0 0 5px 0;   
+margin: 0 0 5px 0;
 }
 
 .case-price i{
 color: #efa308;
 font-size: 25px;
-padding-left: 10px;   
+padding-left: 10px;
 }
 
 .case-price{
@@ -856,41 +892,41 @@ font-size: 25px;
 }
 
 .numofviews{
-border-bottom: 1px solid #e0cd85;    
+border-bottom: 1px solid #e0cd85;
 padding: 20px;
-color: #777;    
-font-size: 25px; 
+color: #777;
+font-size: 25px;
 }
 
 .numofviews i{
-color: #777;    
-font-size: 25px; 
-padding-left: 10px;    
+color: #777;
+font-size: 25px;
+padding-left: 10px;
 }
 
 .numofviews h4{
 font-size: 35px;
 color: #777;
-margin: 0 0 5px 0;      
+margin: 0 0 5px 0;
 }
 
 .numooffers{
-border-bottom: 1px solid #e0cd85;    
+border-bottom: 1px solid #e0cd85;
 padding: 20px;
-color: #777;    
-font-size: 25px; 
+color: #777;
+font-size: 25px;
 }
 
 .numooffers i{
-color: #777;    
-font-size: 25px; 
-padding-left: 10px;    
+color: #777;
+font-size: 25px;
+padding-left: 10px;
 }
 
 .numooffers h4{
 font-size: 35px;
 color: #777;
-margin: 0 0 5px 0;     
+margin: 0 0 5px 0;
 }
 
 .forresvation{
@@ -960,13 +996,13 @@ margin-bottom: 15px;
 .casedetails{
 border-radius: 5px;
 border: 1px solid #e0cd85;
-padding: 20px; 
+padding: 20px;
 height: 534px;
 }
 
 .casere-servation{
 border-radius: 5px;
-border: 1px solid #e0cd85;  
+border: 1px solid #e0cd85;
 }
 
 .casere-servation select{
@@ -976,7 +1012,7 @@ height: 40px;
 border-radius: 5px;
 padding-right: 10px;
 font-size: 18px;
-color: #999;  
+color: #999;
 background-image: url(../img/Down%20Arrow.png);
 background-image: url(../img/Down%20Arrow.png);
 background-repeat: no-repeat;
@@ -1043,7 +1079,7 @@ background-size: cover;
 background-position: top center;
 min-height: 320px;
 margin-bottom: 75px;
-margin-top: 50px;   
+margin-top: 50px;
 }
 
 .cases .row{
@@ -1065,7 +1101,7 @@ border:1px solid #e0cd85;
 50%{
 -webkit-transform: scale(1.1);
 }
-100%{ 
+100%{
 -webkit-transform: scale(1);
 }
 }
@@ -1080,9 +1116,8 @@ background-repeat: no-repeat;
 background-size: cover;
 background-position: top center;
 color: #fff;
-padding: 10px; 
+padding: 10px;
 font-size: 18px;
-height: 64px;
 }
 
 .case-temp .casetype{
@@ -1182,12 +1217,12 @@ font-size: 20px;
 }
 
 .countries .text p{
-color:#b31f24; 
+color:#b31f24;
 margin-top: 15px;
 }
 
 .countries .text span{
-color:#efa308; 
+color:#efa308;
 }
 
 .consultants h1{
@@ -1248,12 +1283,12 @@ border: 1px solid gray;
 border-radius: 50%;
 width: 24px;
 height: 24px;
-line-height: 24px;    
+line-height: 24px;
 }
 
 footer .social-links li{
 display: inline-block;
-margin-left: 22px;    
+margin-left: 22px;
 }
 
 footer .social-links{
@@ -1430,7 +1465,7 @@ right: 43%;
 }*/
 
 /*.tabs-content,.tabs-content3{
-position: relative;   
+position: relative;
 }*/
 
 
@@ -1444,7 +1479,7 @@ margin-right: auto;
 border-radius: 20px;
 overflow: hidden;
 cursor: pointer;
-margin-top: 50px; 
+margin-top: 50px;
 }
 
 
@@ -1496,7 +1531,7 @@ margin-top: 40px;
 .arrange .dropdown-menu{
 right: 0;
 left: inherit;
-border-radius: 5px;    
+border-radius: 5px;
 }
 
 .btn.active, .btn:active{
@@ -1549,7 +1584,7 @@ border-color: transparent !important;
 color: #b31f24;
 font-size: 20px;
 margin-bottom: 10px;
-outline: none;    
+outline: none;
 }
 
 .content{
@@ -1557,7 +1592,7 @@ overflow: hidden;
 margin-top: 50px;
 border: 1px solid #e0cd85;
 padding: 20px;
-border-radius: 10px;    
+border-radius: 10px;
 }
 
 
@@ -1590,6 +1625,18 @@ font-size: 18px;
 
 /*************************************** setting*****************************/
 
+.label2 {
+background: #ccc;
+color: white;
+padding: 8px;
+width: 135px;
+text-align: center;
+display: block;
+margin: 30px 0;
+border-radius: 5px;
+outline: none;
+cursor: pointer;
+}
 
 
 .list-tabs3{
@@ -1604,7 +1651,7 @@ border-radius: 10px;
 cursor: pointer;
 margin-bottom: 20px;
 font-size: 20px;
-color: gray ;        
+color: gray ;
 }
 
 .special li{
@@ -1642,7 +1689,7 @@ background: white;
 padding-right: 15px;
 transition: all 0.4s ease;
 -webkit-transition: all 0.4s ease;
-border: 1px solid gray;    
+border: 1px solid gray;
 }
 
 .spec{
@@ -1651,7 +1698,7 @@ height: 40px !important;
 line-height: 37px;
 text-align: center;
 border-radius: 5px;
-padding-right: 0px;    
+padding-right: 0px;
 }
 
 label input[type=radio] {
@@ -1665,12 +1712,12 @@ display: none;
 
 label input[type=radio]:checked + span {
 border: 1px solid #b31f24;
-color: #b31f24;    
+color: #b31f24;
 }
 
 label input[type=checkbox]:checked + span {
 border: 1px solid #b31f24;
-color: #b31f24;    
+color: #b31f24;
 }
 
 .gen{
@@ -1686,7 +1733,7 @@ margin-left: 15px;
 
 .btn-fb.focus, .btn-fb:focus, .btn-fb:hover{
 color: #fff;
-outline: none;   
+outline: none;
 }
 
 .buttons-save .delet{
@@ -1724,7 +1771,7 @@ margin-top: 30px;
 .tabs-content3 .tab1,.tabs-content3 .tab2{
 border:1px solid #e0cd85;
 padding: 20px;
-border-radius: 5px;    
+border-radius: 5px;
 
 }
 
@@ -1735,7 +1782,7 @@ margin-top: 40px;
 
 .tabs-content3 .tab1 label,.tabs-content3 .tab2 label{
 color: #b31f24;
-font-size: 18px;    
+font-size: 18px;
 }
 
 .tabs-content3 .tab1 h4{
@@ -1842,7 +1889,7 @@ font-weight: bold;
 }
 
 .imp-button{
-float: left; 
+float: left;
 }
 
 #content .case-client p{
@@ -1878,7 +1925,7 @@ padding: 0px !important;
 margin: 0px 0 0 !important;
 }
 
-/*.case-client a{
+.case-client a{
 float: left;
 color: #b31f24;
 border: 2px solid #b31f24;
@@ -1886,13 +1933,13 @@ padding: 5px;
 border-radius: 5px;
 font-weight: bold;
 opacity: 0;
-transition: all 0.5s ease-in-out;    
+transition: all 0.5s ease-in-out;
 
 }
 
 .case-client:hover a{
 opacity: 1;
-}*/
+}
 
 
 
@@ -1903,7 +1950,7 @@ position: relative;
 .top-container {
 position: absolute;
 bottom: 57%;
-right: 47%;   
+right: 47%;
 }
 
 .child-img{
@@ -2011,17 +2058,17 @@ cursor: pointer;
 
 .prof-social li:nth-child(2){
 border: 2px solid #1da1f2;
-cursor: pointer;    
+cursor: pointer;
 }
 
 .prof-social li:nth-child(3){
 border: 2px solid #00a0dc;
-cursor: pointer;    
+cursor: pointer;
 }
 
 .prof-social li:nth-child(4){
 border: 2px solid #dd4b39;
-cursor: pointer;    
+cursor: pointer;
 }
 
 .prof-social{
@@ -2057,12 +2104,12 @@ font-size: 20px;
 .about-lawyer{
 border: 1px solid #e0cd85;
 border-radius: 10px;
-padding: 20px; 
+padding: 20px;
 }
 
 .about-lawyer p{
 font-size: 20px;
-color: #333; 
+color: #333;
 }
 
 .lawyer-info h4{
@@ -2074,14 +2121,14 @@ margin: 0;
 
 .lawyer-info{
 border: 1px solid #e0cd85;
-border-radius: 10px;    
+border-radius: 10px;
 
-}    
+}
 
 .ul-lawyer{
 padding: 20px;
 margin: 0;
-border-bottom: 1px solid #e0cd85;    
+border-bottom: 1px solid #e0cd85;
 }
 
 .ul-lawyer li{
@@ -2095,15 +2142,15 @@ margin: auto;
 display: block;
 font-size: 25px;
 color: #b31f24;
-margin-top: 10px;    
+margin-top: 10px;
 }
 
 .lawyer-info p{
 font-size: 25px;
 color: #b31f24;
-border-bottom: 1px solid #e0cd85; 
-padding-bottom: 10px;  
-margin: 0;    
+border-bottom: 1px solid #e0cd85;
+padding-bottom: 10px;
+margin: 0;
 }
 
 .lawyer-info a{
@@ -2164,7 +2211,7 @@ padding: 20px;
 .lawyers .sidebar2{
 margin-top: 50px;
 border: 1px solid #e0cd85;
-border-radius: 10px;   
+border-radius: 10px;
 }
 
 .lawyers .pro h3{
@@ -2205,7 +2252,7 @@ color: #999;
 
 .sidebar2 .forsearch,.sidebar2 .timee{
 font-size: 17px;
-color: #999; 
+color: #999;
 }
 
 .sidebar2 input[type=checkbox], input[type=radio]{
@@ -2222,8 +2269,8 @@ padding: 20px;
 @media(max-width:767px){
 
 .navbar {
-min-height: 50px;    
-}    
+min-height: 50px;
+}
 
 .lk-profile{
 display: inline-block !important;
@@ -2238,7 +2285,7 @@ display: inline-block !important;
 .navbar-collapse{
 border-top: 1px solid #fff;
 width: 100%;
-}    
+}
 
 .de-Fsection {
 margin-left: 15px;
@@ -2251,13 +2298,13 @@ display: block;
 
 #content{
 width: 100%
-}    
+}
 
 .sign-form,.login-form,.forget{
 float: right;
-}    
+}
 
-#login-dp.dropdown-menu{
+.login-dp.dropdown-menu{
 left: 0px !important;
 }
 
@@ -2271,7 +2318,7 @@ border: 1px solid #FFF;
 -webkit-box-shadow: none;
 box-shadow: none;
 margin-right: 13%;
-}   
+}
 
 .lang .dropdown-menu{
 float: right !important;
@@ -2279,11 +2326,11 @@ float: right !important;
 
 .details .col-md-4{
 padding-left: 15px;
-}  
+}
 
 .details .col-md-8{
 padding-right: 15px;
-} 
+}
 
 .addcase .col-md-4{
 padding-left: 15px;
@@ -2291,12 +2338,12 @@ padding-left: 15px;
 
 .addcase .col-md-8{
 padding-right: 15px;
-}    
+}
 
 .logo{
 width: 40%;
 margin-right: 10px;
-}    
+}
 
 .navbar-toggle {
 position: relative;
@@ -2331,13 +2378,13 @@ float: right;
 
 .navbar-right{
 float: none  !important;
-}    
-
-.main-ul li a:hover:after {
-width:0;   
 }
 
-#login-dp{
+.main-ul li a:hover:after {
+width:0;
+}
+
+.login-dp{
 position: static !important;
 }
 
@@ -2430,7 +2477,7 @@ padding: 6px 0px;
 
 #content .case-client p,.casetype,.location,.time,#content .case-client .price{
 font-size: 18px;
-}    
+}
 
 .status {
 display: inline-block;
@@ -2516,7 +2563,7 @@ background: #fff;
 
 .forresvation  button,.forresvation  input{
 width: 50%;
-}    
+}
 
 .forresvation  button,.forresvation  input{
 font-size: 22px;
@@ -2528,7 +2575,7 @@ font-size: 15px;
 
 .lawyers .pro p{
 font-size: 13px;
-}    
+}
 
 .sidebar2 button {
 background-color: transparent;
@@ -2548,9 +2595,9 @@ width: 100px;
 
 .list-tabs {
 position: static;
-z-index: 0; 
-top: 0; 
-right: 0;  
+z-index: 0;
+top: 0;
+right: 0;
 border:1px solid #ccc;
 }
 
@@ -2578,7 +2625,7 @@ float: none !important;
 
 .navbar-nav .open .user-menu {
 margin-right: 72px;
-} 
+}
 
 }
 
@@ -2586,7 +2633,7 @@ margin-right: 72px;
 
 @media(min-width:0) and (max-width:479px){
 
-#login-dp{
+.login-dp{
 max-width: 250px;
 min-width: 0;
 }
@@ -2613,7 +2660,7 @@ width: auto;
 
 .forresvation  button, .forresvation  input{
 font-size: 15px;
-}  
+}
 
 .circle-label.one {
 margin-left: 0;
@@ -2645,11 +2692,11 @@ margin-right: 15px;
 
 .details .col-md-4{
 padding-left: 15px;
-}  
+}
 
 .details .col-md-8{
 padding-right: 15px;
-} 
+}
 
 .logo{
 width: 50%;
@@ -2693,7 +2740,7 @@ font-size: 12px;
 
 .consultants .cons{
 text-align: center;
-}    
+}
 
 .addcase .col-md-8{
 padding-right: 15px;
@@ -2705,11 +2752,11 @@ padding-left: 15px;
 
 .seetings .col-md-8{
 margin-bottom: 20px;
-}    
+}
 
 .more-details{
 height: auto;
-}  
+}
 
 .border-rght{
 border-right: none;
@@ -2752,9 +2799,9 @@ display: none;
 
 .list-tabs {
 position: static;
-z-index: 0; 
-top: 0; 
-right: 0;  
+z-index: 0;
+top: 0;
+right: 0;
 border:1px solid #ccc;
 }
 
@@ -2779,21 +2826,21 @@ margin-right: 0;
 margin-top: 2%;
 }
 
-.nav>li>a 
+.nav>li>a
 {
 padding: 10px 15px;
 font-size: 16px;
-} 
+}
 
 .img-acc{
 width: 80%;
-}    
+}
 
 .logo{
 width: 80%;
 }
 
-#login-dp.dropdown-menu{
+.login-dp.dropdown-menu{
 left: 0 !important;
 }
 
@@ -2806,7 +2853,7 @@ font-size: 30px;
 position: absolute;
 bottom: 60%;
 right: 42%;
-} 
+}
 
 }
 
@@ -2823,14 +2870,14 @@ font-size: 15px;
 
 @media(min-width:1200px){
 
-#login-dp{
+.login-dp{
 padding: 10px;
-}	
+}
 
 .acc-tybe{
 font-size: 17px;
 margin-bottom: 10px;
-}	
+}
 
 .place-name{
 height: 32px;
@@ -2843,10 +2890,10 @@ margin-bottom: 10px;
 
 #login-nav input{
 height: 32px;
-font-size: 15px;	
+font-size: 15px;
 }
 
-#login-dp .form-group {
+.login-dp .form-group {
 margin-bottom: 7px;
 }
 
@@ -2900,11 +2947,11 @@ top: 10em;
 /**************************************************/
 
 @media(max-width:768px){
-#login-dp{
+.login-dp{
 background-color: #fff;
 color: #fff;
 }
-#login-dp .bottom{
+.login-dp .bottom{
 background-color: #fff;
 border-top:0 none;
 }
