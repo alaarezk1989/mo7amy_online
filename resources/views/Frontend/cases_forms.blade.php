@@ -30,7 +30,9 @@
 <div class="form-group inp1"> 
 <label> نوع القضية </label>
 
-{!! Form::select('type', $specialty,old('type'), ['id'=>'type']) !!}
+
+{!! Form::select('section_id', $sections,old('section_id'), ['id'=>'section_id','class' => 'sl-cou']) !!}
+
 </div> 
 
 

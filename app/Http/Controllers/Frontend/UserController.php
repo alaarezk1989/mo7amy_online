@@ -403,6 +403,23 @@ class UserController extends Controller
       public function list_lawyers(){
         $specialty  = User::GetAdminSpecialty();
 
+
+        /*sections*/
+
+       
+        $sess_locale= session('sess_locale');
+       $all_countries = DB::table('countries')
+          ->where('local', '=', $sess_locale)->orderBy('id')->get();
+          $first_country_id=0;
+          $countries=array();
+          foreach ($all_countries as $country) {
+            if($first_country_id <= 0){
+              $first_country_id=$country->id;
+            }
+
+            $countries[$country->id]=$country->name;
+          }
+
         $per_page = 8;
 
         $all_lawyers = DB::table('users')->where('permissions', '=', 'lawyer')
@@ -420,10 +437,20 @@ class UserController extends Controller
             'page_title'=>trans('cpanel.edit_admin'),
             'per_page'=>$per_page,
             'all_lawyers'=>$all_lawyers,
+            'countries'=>$countries,
             'specialty'=>$specialty,
         ];
           return view(FE.'.list_lawyers')->with($data);
       }
+
+
+
+
+   
+
+
+
+
 
 
       public function lawyer($locale='ar',$id){

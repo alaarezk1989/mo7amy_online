@@ -55,6 +55,9 @@ class HomeController extends Controller
       // $countries = CountryState::getCountries();
 
         $latest_cases = $this->LatestCases();
+        // echo '<pre>';
+        // print_r($latest_cases);
+        // echo '</pre>';
         $lawyers = $this->lawyers();
         $countDoneCases = $this->countDoneCases();
         $countLawyers = $this->countLawyers();
@@ -89,7 +92,7 @@ class HomeController extends Controller
 
 
     public function LatestCases(){
-
+/*
         $Latest_cases = DB::table('cases')
             ->join('countries', 'countries.id', '=', 'cases.country')
             ->join('cities', 'cities.id', '=', 'cases.city')
@@ -97,10 +100,30 @@ class HomeController extends Controller
             ->select('cases.*','countries.name as name1','cities.name as name2','bids.bids_val as bidValue')
             ->orderBy ('cases.created_at','desc')
             ->limit(9)
+            ->get();*/
+
+
+$Latest_cases = DB::table('cases')
+            ->where('status', '=', '1')
+            ->join('countries', 'countries.id', '=', 'cases.country')
+            ->join('cities', 'cities.id', '=', 'cases.city')
+            ->join('sections', 'sections.id', '=', 'cases.section_id')
+
+              ->Leftjoin(DB::raw('(SELECT MAX(bids_val) AS bidValue , case_id FROM bids) AS bids'), function ($join) {
+               $join->on('bids.case_id', '=', 'cases.id');
+        })
+            ->select('cases.*','countries.name as name1','cities.name as name2','bidValue','sections.name as sectionName')
+            ->orderBy ('cases.created_at','desc')
+            ->limit(9)
             ->get();
 
-
           return $Latest_cases;
+
+
+
+
+
+
 
       }
 

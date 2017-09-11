@@ -62,14 +62,14 @@ $locale = App::getLocale();
 <div class="case-client border-bott">
 <p> {{$value->title}}</p>
 <div>   
-<div class="casetype"> نوع القضية : <span>{{$value->type}}</span></div>    
+<div class="casetype"> نوع القضية : <span>{{$value->sectionName}}</span></div>    
 <div class="status"> الحالة :                    <?php
                          if($value->status ==1) echo '<span> متاح</span>';
                          else{echo '</span>غير متاحة</span>'; }
                               ?></div>   
 </div> 
 <div class="another-details">
-<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> مصر ,  القاهرة </div>   
+<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> {{$value->name1}} - {{$value->name2}}</div>   
 <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i><?php
                             Carbon::setLocale($locale);
                             $current = Carbon::now();
