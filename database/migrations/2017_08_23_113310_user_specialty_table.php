@@ -17,7 +17,7 @@ class UserSpecialtyTable extends Migration
 
         Schema::table('user_specialty', function (Blueprint $table) {
           // Schema::enableForeignKeyConstraints();
-          $table->integer('user_id')->unsigned()->after('id');
+          $table->string('user_id')->unsigned()->after('id');
 
       // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
 
