@@ -73,18 +73,16 @@
                            @endforeach
 
                         </div>
-                        <div class="count">
-                           <label> الدول </label>
-                           <input type="checkbox" name="" value="">  الكل <br>
-                           <input type="checkbox" name="" value=""> الامارات   <br>
-                           <input type="checkbox" name="" value="" > السعودية    <br>
-                           <input type="checkbox" name="" value="" > قطر    <br>
-                           <input type="checkbox" name="" value="" > البحرين   <br>
-                           <input type="checkbox" name="" value="" > الكويت   <br>
-                           <input type="checkbox" name="" value="" > مصر    <br>
-                           <input type="checkbox" name="" value="" > تونس  <br>
-                           <input type="checkbox" name="" value="" > المغرب  <br>
-                        </div>
+                    <div  id="filters2" class="count">
+<div class="filterblock2" id="all_countries">
+<label> الدول </label> 
+                <input type="checkbox" id="filter" class="AllCountries filter countries" >  الكل <br>    
+  <?php
+         foreach($countries as $key => $value){?>
+               <input  type="checkbox" id="filter" class="filter countries"  value="{{$key}}" data-tag="{{$value}}"  /> {{$value}} <br> 
+            <?php }?>
+</div>  
+</div>  
                      </form>
                   </div>
                </div>
