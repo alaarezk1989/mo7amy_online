@@ -81,10 +81,11 @@ class UserController extends Controller
           if($validator->fails())
           {
               Session::flash('error_msg',  trans('cpanel.form_error'));
-              Session::flash('alert-class', 'alert-success');
+              Session::flash('alert-class', 'alert-danger');
 
                 // return $request->all();
-              return back()->withInput()->withErrors($validator);
+              // return back()->withInput()->withErrors($validator);
+              return redirect('/#sign')->withInput()->withErrors($validator);
           }else{
             $user_id=uniqid('', true);
 // $user_id=date('YmdHis') . mt_rand();
@@ -241,7 +242,7 @@ class UserController extends Controller
           {
 
               Session::flash('error_msg',  trans('cpanel.form_error'));
-              Session::flash('alert-class', 'alert-success');
+              Session::flash('alert-class', 'alert-danger');
               return back()->withInput()->withErrors($validator);
           }else{
 
@@ -322,7 +323,10 @@ class UserController extends Controller
             ]);
         if($validator->fails())
         {
-            return back()->withInput()->withErrors($validator);
+            // return back()->withInput()->withErrors($validator);
+            Session::flash('error_login',  trans('cpanel.error_login'));
+            Session::flash('alert-class', 'alert-danger');
+            return redirect('/#login')->withInput()->withErrors($validator);
         }else{
             if($request->input('remember') ==1)
             {
@@ -346,8 +350,7 @@ class UserController extends Controller
                 }
             }else{
 
-                Session::flash('error_login',  trans('cpanel.error_login'));
-                Session::flash('alert-class', 'alert-success');
+
                 return redirect()->back();
             }
         }
@@ -365,17 +368,17 @@ class UserController extends Controller
 
         $validator = Validator::make($request->all(), $rules);
         $validator->SetAttributeNames([
-          'current_password'          =>trans('cpanel.current_password'),
+          'current_password'              =>trans('cpanel.current_password'),
           'new_password'                  =>trans('cpanel.password'),
-          'password_confirmation'     =>trans('cpanel.password_confirmation'),
+          'password_confirmation'         =>trans('cpanel.password_confirmation'),
         ]);
 
         if($validator->fails())
         {
           return $request->all();
-        
+
             Session::flash('error_msg',  trans('cpanel.form_error'));
-            Session::flash('alert-class', 'alert-success');
+            Session::flash('alert-class', 'alert-danger');
             return back()->withInput()->withErrors($validator);
         }else{
           $user = Auth::user();
@@ -406,7 +409,7 @@ class UserController extends Controller
 
         /*sections*/
 
-       
+
         $sess_locale= session('sess_locale');
        $all_countries = DB::table('countries')
           ->where('local', '=', $sess_locale)->orderBy('id')->get();
@@ -446,7 +449,7 @@ class UserController extends Controller
 
 
 
-   
+
 
 
 
@@ -461,7 +464,7 @@ class UserController extends Controller
 
         $lawyer_data = User::findOrFail($id);
 
-        $countLawyersCases = DB::table('bids') 
+        $countLawyersCases = DB::table('bids')
             ->where('bids.user_id','=',$id)
             ->count();
 

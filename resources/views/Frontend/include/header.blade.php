@@ -84,7 +84,7 @@
                      <img src="{{ asset('public/assets/'.FE .'/img/Vector%20Smart%20Object.png')}}" class="sign">
                      </a>
 
-                     <ul id="login-dp" class="dropdown-menu sign-form">
+                     <ul id="login-dp" class="dropdown-menu sign-form login-dp">
                         <li>
                            <div class="row">
                              @if(Session::has('error_msg'))
@@ -180,7 +180,7 @@
                         </li>
                      </ul>
                      <!--********************************************************-->
-                     <ul id="login-dp" class="dropdown-menu login-form">
+                     <ul id="login-dp" class="dropdown-menu login-form login-dp">
                         <li>
                            <div class="row">
                               <div class="col-md-12">
@@ -190,19 +190,25 @@
                                  <p class="acc-tybe"> {{ trans('cpanel.account_type') }}</p>
 
                                    {!! Form::open(['url'=>$sess_locale.'/login', 'class'=>'form','id'=>'login-nav','role'=>'form',' accept-charset'=>'UTF-8']) !!}
-                                    <div class="form-group">
-                                         {!! Form::email('email', old('email'), array('class'=>'form-control','placeholder'=>trans('cpanel.email_address'), 'id' => 'exampleInputEmail2')) !!}
-                                         @if($errors->has('email'))
-                                           <span class="help-block text-danger">{{ $errors->first('email') }}</span>
-                                         @endif
+                                    <div class="form-group tooltip">
+                                      <?php $error_class=''; ?>
+                                      @if($errors->has('email'))
+                                        <?php $error_class='error'; ?>
+                                        <span class="tooltiptext">{{ $errors->first('email') }}</span>
+                                      @endif
+                                         {!! Form::email('email', old('email'), array('class'=>'form-control '.$error_class,'placeholder'=>trans('cpanel.email_address'), 'id' => 'exampleInputEmail2')) !!}
+
                                     </div>
-                                    <div class="form-group">
-                                         {!! Form::password('password', array('class'=>'form-control','placeholder'=>trans('cpanel.enter_password'), 'id' => 'exampleInputPassword2')) !!}
-                                         @if($errors->has('password'))
-                   							          <span class="help-block text-danger">{{ $errors->first('password') }}</span>
-                   							        @endif
+                                    <div class="form-group tooltip">
+                                        <?php $error_class=''; ?>
+                                        @if($errors->has('password'))
+                                            <?php $error_class='error'; ?>
+                                         <span class="tooltiptext">{{ $errors->first('password') }}</span>
+                                       @endif
+                                         {!! Form::password('password', array('class'=>'form-control '.$error_class,'placeholder'=>trans('cpanel.enter_password'), 'id' => 'exampleInputPassword2')) !!}
+
                                     </div>
-                                    <a href="#" class="forgetpass"> {{ trans('cpanel.forgot_password') }}  ؟ </a>
+                                    <a href="#" class="forgetpass"> {{ trans('cpanel.forgot_password') }} </a>
                                     <div class="buttons form-group">
                                        <button type="submit" class="">  {{ trans('cpanel.login') }}   </button>
                                        <button type="button" class="register"> {{ trans('cpanel.signin') }} </button>
@@ -216,7 +222,7 @@
                            </div>
                         </li>
                      </ul>
-                     <ul id="login-dp" class="dropdown-menu forget">
+                     <ul id="login-dp" class="dropdown-menu forget login-dp">
                         <li>
                            <div class="row">
                               <div class="col-md-12">
@@ -224,11 +230,14 @@
 
 
                                  {!! Form::open(['method'=>'POST', 'class'=>'form','id'=>'login-nav','url'=>'password/email','role'=>'form',' accept-charset'=>'UTF-8']) !!}
-                                    <div class="form-group">
-                                       {!! Form::email('email','', array('id'=>'email', 'class'=>'form-control','required'=>'required','placeholder'=>trans('cpanel.email_address'))) !!}
-                                       @if($errors->has('email'))
-                                         <span class="help-block text-danger">{{ $errors->first('email') }}</span>
-                                       @endif
+                                    <div class="form-group tooltip">
+                                        <?php $error_class=''; ?>
+                                      @if($errors->has('email'))
+                                          <?php $error_class='error'; ?>
+                                        <span class="tooltiptext">{{ $errors->first('email') }}</span>
+                                      @endif
+                                       {!! Form::email('email','', array('id'=>'email', 'class'=>'form-control '.$error_class,'required'=>'required','placeholder'=>trans('cpanel.email_address'))) !!}
+
                                     </div>
                                     <div class="butn-send form-group">
                                        <button type="submit" class="send">  {{ trans('cpanel.submit') }}    </button>
