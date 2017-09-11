@@ -93,7 +93,8 @@ class HomeController extends Controller
         $Latest_cases = DB::table('cases')
             ->join('countries', 'countries.id', '=', 'cases.country')
             ->join('cities', 'cities.id', '=', 'cases.city')
-            ->select('cases.*','countries.name as name1','cities.name as name2')
+            ->Leftjoin('bids','bids.case_id','=','cases.id')
+            ->select('cases.*','countries.name as name1','cities.name as name2','bids.bids_val as bidValue')
             ->orderBy ('cases.created_at','desc')
             ->limit(9)
             ->get();
