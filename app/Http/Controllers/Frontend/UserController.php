@@ -446,47 +446,7 @@ class UserController extends Controller
 
 
 
-   public function filtering(Request $request){
-
-      $caseModel = DB::table('cases');
-    
-
-      if($request->sections){
-        $caseModel->whereIn('section_id', (array)$request->sections);
-      } 
-      if($request->countries){
-        $c_array=(array)$request->countries;
-         $c_array=array_unique($c_array);
-        $caseModel->whereIn('country', $c_array);
-      }
-    
-     /* $cases = $caseModel->join('countries', function ($join) {
-        $join->on('cases.country', '=', 'countries.id');
-      })->join('cities', function ($join) {
-        $join->on('cases.city', '=', 'cities.id');
-      })->join('sections', function ($join) {$join->on('cases.section_id', '=', 'sections.id');
-    })->select('cases.*', 'countries.name as CountryName', 'cities.name as Cityname', 'sections.name as SectionName')->get();
-*/
-
-
-
- $your_case =  DB::table('cases')
-                ->where('status', '=', '1')
-                
-                ->join('countries', 'countries.id', '=', 'cases.country')
-                ->join('cities', 'cities.id', '=', 'cases.city')
-                ->join('sections', 'sections.id', '=', 'cases.section_id')
-                ->select('cases.*','countries.name as name1','cities.name as name2','sections.name as sectionName')
-                ->orderBy('created_at', 'desc')
-
-      if($cases){
-        return response()->json(['code' => 200 , 'msg' => "success" , "data" => $cases]);
-      }else{
-        return response()->json(['code' => 404 , 'msg' => "not found" ]);
-      }
-      
-    }
-
+   
 
 
 
