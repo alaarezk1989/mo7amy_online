@@ -20,6 +20,8 @@ use Mail;
 use DB;
 use Response;
 use Carbon\Carbon;
+use Session;
+
 
 class UserController extends Controller
 {
@@ -78,7 +80,8 @@ class UserController extends Controller
           ]);
           if($validator->fails())
           {
-              session()->flash('error_msg', trans('cpanel.form_error'));
+              Session::flash('error_msg',  trans('cpanel.form_error'));
+              Session::flash('alert-class', 'alert-success');
 
                 // return $request->all();
               return back()->withInput()->withErrors($validator);
@@ -109,7 +112,9 @@ class UserController extends Controller
                 // $user_id=$add->id;
 
                 Auth::loginUsingId($user_id);
-              session()->flash('success_msg', trans('cpanel.form_success'));
+
+              Session::flash('success_msg',  trans('cpanel.form_success'));
+              Session::flash('alert-class', 'alert-success');
   // return auth()->user()->id;
               session(['user_id' => $user_id]);
               session(['user_obj' => $user_obj]);
@@ -234,7 +239,9 @@ class UserController extends Controller
           ]);
           if($validator->fails())
           {
-              session()->flash('error_msg', 'form_error');
+
+              Session::flash('error_msg',  trans('cpanel.form_error'));
+              Session::flash('alert-class', 'alert-success');
               return back()->withInput()->withErrors($validator);
           }else{
 
@@ -278,9 +285,9 @@ class UserController extends Controller
                   $add->save();
                 }
               }
-              session()->flash('success_msg', trans('cpanel.form_success'));
-
-    // dd($request->session()->get('sess_locale'));
+              // session()->flash('success_msg', trans('cpanel.form_success'));
+              Session::flash('message',  trans('cpanel.form_success'));
+              Session::flash('alert-class', 'alert-success');
             $sess_locale=$request->session()->get('sess_locale');
 
               return redirect($sess_locale.'/edit-profile/'.$sess_user_id);
@@ -338,7 +345,9 @@ class UserController extends Controller
                     return redirect('/');
                 }
             }else{
-                session()->flash('error_login',trans('cpanel.error_login'));
+
+                Session::flash('error_login',  trans('cpanel.error_login'));
+                Session::flash('alert-class', 'alert-success');
                 return redirect()->back();
             }
         }
@@ -364,7 +373,9 @@ class UserController extends Controller
         if($validator->fails())
         {
           return $request->all();
-            session()->flash('error_msg', 'form_error');
+        
+            Session::flash('error_msg',  trans('cpanel.form_error'));
+            Session::flash('alert-class', 'alert-success');
             return back()->withInput()->withErrors($validator);
         }else{
           $user = Auth::user();

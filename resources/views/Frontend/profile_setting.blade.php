@@ -11,6 +11,13 @@
    <div class="container">
       <div class="row">
          <div class="col-md-8">
+           @if(Session::has('message'))
+             <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+           @endif
+
+           @if(Session::has('error_msg'))
+             <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('error_msg') }}</p>
+           @endif
             <div class="tabs-content3">
                <div class="tab1">
                  {!! Form::model($admin_data,['method'=>'post','files'=>true,'url'=>'/update-profile/'.$sess_user_id]) !!}
@@ -128,6 +135,9 @@
                  {!! Form::close() !!}
                </div>
                <div class="tab2">
+                 @if(Session::has('error_msg'))
+                   <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('error_msg') }}</p>
+                 @endif
                  {!! Form::model($admin_data,['method'=>'post','url'=>'/change-password/'.$admin_data->id]) !!}
                      <div class="row">
                         <div class="col-md-12">

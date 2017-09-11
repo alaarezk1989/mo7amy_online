@@ -49,16 +49,16 @@
     //  }
 
 //echo $sess_user_id;
-//houida 
-//houida 
-//houida 
-//houida 
-//houida 
-//houida 
-//houida 
-//houida 
-//houida 
-//houida 
+//houida
+//houida
+//houida
+//houida
+//houida
+//houida
+//houida
+//houida
+//houida
+//houida
 ?>
 
    <body>
@@ -87,6 +87,12 @@
                      <ul id="login-dp" class="dropdown-menu sign-form">
                         <li>
                            <div class="row">
+                             @if(Session::has('error_msg'))
+                               <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('error_msg') }}</p>
+                             @endif
+                             @if(Session::has('success_msg'))
+                               <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('success_msg') }}</p>
+                             @endif
                             {!! Form::open(['method'=>'POST', 'class'=>'form','id'=>'register-nav','url'=>'register','role'=>'form',' accept-charset'=>'UTF-8']) !!}
                               <div class="col-md-12">
                                  <p class="acc-tybe"> {{ trans('cpanel.account_type') }}</p>
@@ -178,6 +184,9 @@
                         <li>
                            <div class="row">
                               <div class="col-md-12">
+                                @if(Session::has('error_login'))
+                                  <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('error_login') }}</p>
+                                @endif
                                  <p class="acc-tybe"> {{ trans('cpanel.account_type') }}</p>
 
                                    {!! Form::open(['url'=>$sess_locale.'/login', 'class'=>'form','id'=>'login-nav','role'=>'form',' accept-charset'=>'UTF-8']) !!}
