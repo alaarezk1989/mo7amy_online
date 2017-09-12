@@ -8,7 +8,7 @@ box-sizing: border-box;
 
 body{
 direction: rtl;
-font-family: 'ARfont';
+font-family: 'ARfont';  
 overflow-x: hidden;
 }
 
@@ -16,7 +16,7 @@ overflow-x: hidden;
 @font-face {
 font-family: 'ARfont';
 /*src: url('../fonts/Al-Jazeera-Arabic-Regular.ttf');*/
-src: url('../fonts/Cairo-Regular.ttf');
+src: url('../fonts/Cairo-Regular.ttf');    
 }
 
 
@@ -28,7 +28,7 @@ src: url('../fonts/Roboto-Regular.ttf');
 @font-face {
 font-family: 'B-font';
 /*src: url('../fonts/Al-Jazeera-Arabic-Bold.ttf');*/
-src: url('../fonts/Cairo-Bold.ttf')   ;
+src: url('../fonts/Cairo-Bold.ttf')   ;  
 }
 
 .ma{
@@ -41,7 +41,7 @@ margin-top: 50px;
 
 .mb{
 margin-bottom: 15px;
-margin-top: 15px;
+margin-top: 15px;    
 }
 
 .margin-top{
@@ -97,7 +97,7 @@ margin-top: 50px;
 
 a{
 text-decoration: none !important;
-color: #999;
+color: #999;    
 }
 
 a:focus, a:hover{
@@ -115,6 +115,77 @@ display: block !important;
 
 /*******************************************************************************************************/
 
+.img-acc{
+width: 70px;
+height: 70px;
+border: 1px solid #ccc;    
+}
+/*******************************/
+.addcase-img{
+background-image: url(../img/Add-Case-Image.jpg);
+background-repeat: no-repeat;
+margin-top: 100px;
+min-height: 222px;
+}
+
+
+.addcase-img p,.head-off p,.cases-img p,.clientcase-img p,.clientsett-img p,.lawyers-img p,.profilecase-img p,.clientcase-img p{
+color: #fff;
+text-align: center;
+font-size: 70px;
+font-weight: bold;
+vertical-align: middle;
+line-height: 222px;  
+}
+
+.head-off{
+margin-top: 40px;
+background-image: url(../img/Case-Details-Page-Image.jpg);
+background-repeat: no-repeat;
+min-height: 222px;    
+}
+
+.cases-img{
+margin-top: 100px;
+background-image: url(../img/Cases-Page-Image.jpg);
+background-repeat: no-repeat;
+min-height: 222px;   
+}
+
+.clientcase-img{
+margin-top: 100px;
+background-image: url(../img/Client-Cases-Page-Image.jpg);
+background-repeat: no-repeat;
+min-height: 222px;    
+}
+
+.clientsett-img{
+margin-top: 100px;
+background-image: url(../img/Lawyer-Settings-Page-Image.jpg);
+background-repeat: no-repeat;
+min-height: 222px;   
+}
+
+.lawyers-img{
+margin-top: 100px;
+background-image: url(../img/Lawyers-Page-Image.jpg);
+background-repeat: no-repeat;
+min-height: 222px;    
+}
+
+.profilecase-img{
+margin-top: 100px;
+background-image: url(../img/Lawyer-Profile-Page-Image-2.jpg);
+background-repeat: no-repeat;
+min-height: 222px;   
+}
+
+.clientcase-img{
+  margin-top: 100px;
+background-image: url(../img/Client-Cases-Page-Image.jpg);
+background-repeat: no-repeat;
+min-height: 222px;    
+}
 
 /************navbar******************/
 .tooltip {
@@ -125,15 +196,15 @@ opacity: 1;
 
 .tooltip .tooltiptext {
 visibility: hidden;
-width: 90px;
+min-width: 90px;
 background-color: #555;
 color: #fff;
 text-align: center;
 border-radius: 6px;
-padding: 5px 0;
+padding: 5px;
 position: absolute;
 z-index: 1;
-bottom: 15%;
+bottom: 100%;
 left: 25%;
 margin-left: -60px;
 opacity: 0;
@@ -151,10 +222,6 @@ border-style: solid;
 border-color: #555 transparent transparent transparent;
 }
 
-/**.tooltip:hover .tooltiptext {
-visibility: visible;
-opacity: 1;
-} **/
 
 .navbar-nav li .lk-profile {
 padding:  0;
@@ -198,13 +265,13 @@ margin-bottom: 10px;
 .btn-fb{
 color: #fff;
 background-color:#3b5998;
-font-size: 17px;
-width: 285px;
+font-size: 17px;    
+width: 285px;    
 }
 
 .btn-fb:hover{
 color: #fff;
-background-color:#496ebc
+background-color:#496ebc 
 }
 
 .form .forgetpass{
@@ -239,7 +306,7 @@ margin-bottom: 20px;
 .circle-label #lawyer,.circle-label #client,.circle-label #male,.circle-label #female{
 padding-right: 0;
 text-align: center;
-width: 117px;
+width: 147px;
 border-radius: 5px;
 }
 
@@ -351,7 +418,7 @@ transition: width .3s;
 }
 
 .main-ul li a:hover:after {
-width: 100%;
+width: 100%;   
 }
 
 .nav-sign li a{
@@ -435,7 +502,7 @@ float: right;
 border: 2px solid #999;
 color: #999;
 font-size: 17px;
-outline: 0;
+outline: 0;    
 }
 
 
@@ -447,7 +514,7 @@ float: left;
 border: 2px solid #999;
 color: #999;
 font-size: 17px;
-outline: 0;
+outline: 0;    
 }
 
 .slct{
@@ -554,7 +621,7 @@ width: 2em;
 text-align: center;
 font-size: 16px;
 color: #cdcdcd;
-margin-top: 27px;
+margin-top: 27px;    
 }
 
 
@@ -575,7 +642,7 @@ overflow: hidden;
 
 #page_navigation i{
 color: #b31f24;
-}
+}     
 
 #page_navigation a{
 padding: 5px 10px;
@@ -587,21 +654,21 @@ float: right;
 .active_page{
 background:#b31f24;
 color:white !important;
-}
+}	
 
 #content{
 margin-top: 30px;
 overflow: hidden;
 border: 1px solid #e0cd85;
 border-radius: 5px;
-width: 100%;
+width: 100%;    
 }
 
 .law-profile .names{
 font-size: 20px;
 color: #b31f24;
 font-family: 'B-font';
-margin: 15px 0 10px 0;
+margin: 15px 0 10px 0;    
 }
 
 .law-profile .desc{
@@ -621,7 +688,7 @@ font-size: 20px;
 color: #b31f24;
 cursor: pointer;
 font-family: 'B-font';
-margin: 0px auto 20px auto;
+margin: 0px auto 20px auto; 
 }
 
 
@@ -642,7 +709,7 @@ margin: 0px auto 20px auto;
 .de-Fsection{
 border: 1px solid #e0cd85;
 padding: 20px;
-border-radius: 10px;
+border-radius: 10px;   
 }
 
 .de-Fsection p{
@@ -670,16 +737,16 @@ min-width: 180px;
 display: inline-block;
 font-size: 20px;
 color: #3cb54a;
-padding-right: 7px;
-min-width: 180px;
+padding-right: 7px;    
+min-width: 180px;    
 }
 
 .status-doing{
 display: inline-block;
 font-size: 20px;
 color: #2098d1;
-padding-right: 7px;
-min-width: 180px;
+padding-right: 7px;    
+min-width: 180px;   
 }
 
 .location,.time{
@@ -694,7 +761,7 @@ min-width: 180px;
 
 
 .time span{
-font-family: 'ENfont';
+font-family: 'ENfont';       
 }
 
 .location i,.time i{
@@ -710,7 +777,7 @@ line-height: 33px;
 
 .more-details{
 border: 1px solid #e0cd85 ;
-border-radius: 10px;
+border-radius: 10px;    
 padding:20px;
 min-height: 748px;
 }
@@ -719,7 +786,7 @@ min-height: 748px;
 color: #b31f24;
 font-size: 20px;
 font-family: 'B-font';
-margin-top: 0;
+margin-top: 0;    
 }
 
 
@@ -775,13 +842,13 @@ border-radius: 10px;
 color: #b31f24;
 font-size: 20px;
 font-family: 'B-font';
-padding: 20px;
+padding: 20px;    
 }
 
 .alcomm span{
 color: #777;
 font-size: 20px;
-font-family:'ENfont';
+font-family:'ENfont';     
 }
 
 .casedetails textarea,.tabs-content3 textarea{
@@ -854,14 +921,14 @@ padding-left: 0;
 .all-deatils{
 border: 1px solid #e0cd85;
 text-align: center;
-border-radius: 5px;
+border-radius: 5px;    
 }
 
 .account-case{
 padding: 20px;
 color: #b31f24;
 font-family: 'B-font';
-border-bottom: 1px solid #e0cd85;
+border-bottom: 1px solid #e0cd85;    
 }
 
 .account-case h3{
@@ -875,13 +942,13 @@ font-size: 25px;
 .case-price h4{
 font-size: 35px;
 color: #efa308;
-margin: 0 0 5px 0;
+margin: 0 0 5px 0;   
 }
 
 .case-price i{
 color: #efa308;
 font-size: 25px;
-padding-left: 10px;
+padding-left: 10px;   
 }
 
 .case-price{
@@ -892,41 +959,41 @@ font-size: 25px;
 }
 
 .numofviews{
-border-bottom: 1px solid #e0cd85;
+border-bottom: 1px solid #e0cd85;    
 padding: 20px;
-color: #777;
-font-size: 25px;
+color: #777;    
+font-size: 25px; 
 }
 
 .numofviews i{
-color: #777;
-font-size: 25px;
-padding-left: 10px;
+color: #777;    
+font-size: 25px; 
+padding-left: 10px;    
 }
 
 .numofviews h4{
 font-size: 35px;
 color: #777;
-margin: 0 0 5px 0;
+margin: 0 0 5px 0;      
 }
 
 .numooffers{
-border-bottom: 1px solid #e0cd85;
+border-bottom: 1px solid #e0cd85;    
 padding: 20px;
-color: #777;
-font-size: 25px;
+color: #777;    
+font-size: 25px; 
 }
 
 .numooffers i{
-color: #777;
-font-size: 25px;
-padding-left: 10px;
+color: #777;    
+font-size: 25px; 
+padding-left: 10px;    
 }
 
 .numooffers h4{
 font-size: 35px;
 color: #777;
-margin: 0 0 5px 0;
+margin: 0 0 5px 0;     
 }
 
 .forresvation{
@@ -996,13 +1063,13 @@ margin-bottom: 15px;
 .casedetails{
 border-radius: 5px;
 border: 1px solid #e0cd85;
-padding: 20px;
+padding: 20px; 
 height: 534px;
 }
 
 .casere-servation{
 border-radius: 5px;
-border: 1px solid #e0cd85;
+border: 1px solid #e0cd85;  
 }
 
 .casere-servation select{
@@ -1012,13 +1079,14 @@ height: 40px;
 border-radius: 5px;
 padding-right: 10px;
 font-size: 18px;
-color: #999;
-background-image: url(../img/Down%20Arrow.png);
+color: #999;  
 background-image: url(../img/Down%20Arrow.png);
 background-repeat: no-repeat;
 background-position-x: 3%;
 background-position-y: 50%;
 -webkit-appearance: inherit;
+-moz-appearance: inherit;
+border:1px solid #ccc;
 }
 
 .casere-servation .inp1 ,.casere-servation .inp2{
@@ -1044,6 +1112,7 @@ border: 1px solid #999;
 outline: 0;
 padding: 5px;
 height: 40px;
+border: 1px solid #ccc;    
 }
 
 .casere-servation button{
@@ -1079,7 +1148,7 @@ background-size: cover;
 background-position: top center;
 min-height: 320px;
 margin-bottom: 75px;
-margin-top: 50px;
+margin-top: 50px;   
 }
 
 .cases .row{
@@ -1101,7 +1170,7 @@ border:1px solid #e0cd85;
 50%{
 -webkit-transform: scale(1.1);
 }
-100%{
+100%{ 
 -webkit-transform: scale(1);
 }
 }
@@ -1116,7 +1185,7 @@ background-repeat: no-repeat;
 background-size: cover;
 background-position: top center;
 color: #fff;
-padding: 10px;
+padding: 10px; 
 font-size: 18px;
 }
 
@@ -1217,12 +1286,12 @@ font-size: 20px;
 }
 
 .countries .text p{
-color:#b31f24;
+color:#b31f24; 
 margin-top: 15px;
 }
 
 .countries .text span{
-color:#efa308;
+color:#efa308; 
 }
 
 .consultants h1{
@@ -1283,12 +1352,12 @@ border: 1px solid gray;
 border-radius: 50%;
 width: 24px;
 height: 24px;
-line-height: 24px;
+line-height: 24px;    
 }
 
 footer .social-links li{
 display: inline-block;
-margin-left: 22px;
+margin-left: 22px;    
 }
 
 footer .social-links{
@@ -1465,7 +1534,7 @@ right: 43%;
 }*/
 
 /*.tabs-content,.tabs-content3{
-position: relative;
+position: relative;   
 }*/
 
 
@@ -1479,7 +1548,7 @@ margin-right: auto;
 border-radius: 20px;
 overflow: hidden;
 cursor: pointer;
-margin-top: 50px;
+margin-top: 50px; 
 }
 
 
@@ -1524,14 +1593,12 @@ color: #b31f24  !important;
 display: none;
 }
 
-.head-off{
-margin-top: 40px;
-}
+
 
 .arrange .dropdown-menu{
 right: 0;
 left: inherit;
-border-radius: 5px;
+border-radius: 5px;    
 }
 
 .btn.active, .btn:active{
@@ -1584,7 +1651,7 @@ border-color: transparent !important;
 color: #b31f24;
 font-size: 20px;
 margin-bottom: 10px;
-outline: none;
+outline: none;    
 }
 
 .content{
@@ -1592,7 +1659,7 @@ overflow: hidden;
 margin-top: 50px;
 border: 1px solid #e0cd85;
 padding: 20px;
-border-radius: 10px;
+border-radius: 10px;    
 }
 
 
@@ -1625,19 +1692,21 @@ font-size: 18px;
 
 /*************************************** setting*****************************/
 
-.label2 {
+.img-label {
 background: #ccc;
-color: white;
+color: white !important;
 padding: 8px;
 width: 135px;
-text-align: center;
 display: block;
-margin: 30px 0;
+margin: 30px auto;
 border-radius: 5px;
 outline: none;
 cursor: pointer;
 }
 
+.img-label:hover{
+background:#b31f24;
+} 
 
 .list-tabs3{
 border: 1px solid #e0cd85;
@@ -1651,7 +1720,7 @@ border-radius: 10px;
 cursor: pointer;
 margin-bottom: 20px;
 font-size: 20px;
-color: gray ;
+color: gray ;        
 }
 
 .special li{
@@ -1667,6 +1736,7 @@ border-radius: 5px;
 padding-right: 10px;
 font-size: 18px;
 color: #999;
+border-color: #ccc;    
 }
 
 .tabs-content3 .tab1 input{
@@ -1675,7 +1745,7 @@ height: 40px;
 
 .place-name{
 display: block;
-color: #333;
+color: #999999;
 position: relative;
 border-radius: 10px;
 font-size: 15px;
@@ -1690,6 +1760,7 @@ padding-right: 15px;
 transition: all 0.4s ease;
 -webkit-transition: all 0.4s ease;
 border: 1px solid gray;
+border: 1px solid #ccc;    
 }
 
 .spec{
@@ -1698,7 +1769,7 @@ height: 40px !important;
 line-height: 37px;
 text-align: center;
 border-radius: 5px;
-padding-right: 0px;
+padding-right: 0px;    
 }
 
 label input[type=radio] {
@@ -1712,12 +1783,12 @@ display: none;
 
 label input[type=radio]:checked + span {
 border: 1px solid #b31f24;
-color: #b31f24;
+color: #b31f24;    
 }
 
 label input[type=checkbox]:checked + span {
 border: 1px solid #b31f24;
-color: #b31f24;
+color: #b31f24;    
 }
 
 .gen{
@@ -1733,7 +1804,7 @@ margin-left: 15px;
 
 .btn-fb.focus, .btn-fb:focus, .btn-fb:hover{
 color: #fff;
-outline: none;
+outline: none;   
 }
 
 .buttons-save .delet{
@@ -1771,7 +1842,7 @@ margin-top: 30px;
 .tabs-content3 .tab1,.tabs-content3 .tab2{
 border:1px solid #e0cd85;
 padding: 20px;
-border-radius: 5px;
+border-radius: 5px;    
 
 }
 
@@ -1782,7 +1853,7 @@ margin-top: 40px;
 
 .tabs-content3 .tab1 label,.tabs-content3 .tab2 label{
 color: #b31f24;
-font-size: 18px;
+font-size: 18px;    
 }
 
 .tabs-content3 .tab1 h4{
@@ -1889,7 +1960,7 @@ font-weight: bold;
 }
 
 .imp-button{
-float: left;
+float: left; 
 }
 
 #content .case-client p{
@@ -1908,6 +1979,10 @@ padding: 20px;
 .arrang-menu li a{
 width: 100% !important;
 text-align: right !important;
+}
+
+.top-container img{
+border: 10px solid #a94442;
 }
 
 .top-container img{
@@ -1933,7 +2008,7 @@ padding: 5px;
 border-radius: 5px;
 font-weight: bold;
 opacity: 0;
-transition: all 0.5s ease-in-out;
+transition: all 0.5s ease-in-out;    
 
 }
 
@@ -1941,29 +2016,30 @@ transition: all 0.5s ease-in-out;
 opacity: 1;
 }
 
-
-
-.cover-container {
+/*.cover-container {
 position: relative;
 }
 
 .top-container {
 position: absolute;
 bottom: 57%;
-right: 47%;
+right: 47%;   
+}*/
+
+.cover-container{
+margin-bottom: -100px;
+}
+
+.top-container {
+margin: auto;
+display: block;
+text-align: center;
 }
 
 .child-img{
 position: relative
 }
 
-.profile-container {
-position: absolute;
-left: 39%;
-bottom: 39%;
-display: none;
-
-}
 
 .top-container:hover .profile-container{
 display: block;
@@ -2058,17 +2134,17 @@ cursor: pointer;
 
 .prof-social li:nth-child(2){
 border: 2px solid #1da1f2;
-cursor: pointer;
+cursor: pointer;    
 }
 
 .prof-social li:nth-child(3){
 border: 2px solid #00a0dc;
-cursor: pointer;
+cursor: pointer;    
 }
 
 .prof-social li:nth-child(4){
 border: 2px solid #dd4b39;
-cursor: pointer;
+cursor: pointer;    
 }
 
 .prof-social{
@@ -2104,12 +2180,12 @@ font-size: 20px;
 .about-lawyer{
 border: 1px solid #e0cd85;
 border-radius: 10px;
-padding: 20px;
+padding: 20px; 
 }
 
 .about-lawyer p{
 font-size: 20px;
-color: #333;
+color: #333; 
 }
 
 .lawyer-info h4{
@@ -2121,14 +2197,14 @@ margin: 0;
 
 .lawyer-info{
 border: 1px solid #e0cd85;
-border-radius: 10px;
+border-radius: 10px;    
 
-}
+}    
 
 .ul-lawyer{
 padding: 20px;
 margin: 0;
-border-bottom: 1px solid #e0cd85;
+border-bottom: 1px solid #e0cd85;    
 }
 
 .ul-lawyer li{
@@ -2142,15 +2218,15 @@ margin: auto;
 display: block;
 font-size: 25px;
 color: #b31f24;
-margin-top: 10px;
+margin-top: 10px;    
 }
 
 .lawyer-info p{
 font-size: 25px;
 color: #b31f24;
-border-bottom: 1px solid #e0cd85;
-padding-bottom: 10px;
-margin: 0;
+border-bottom: 1px solid #e0cd85; 
+padding-bottom: 10px;  
+margin: 0;    
 }
 
 .lawyer-info a{
@@ -2211,7 +2287,7 @@ padding: 20px;
 .lawyers .sidebar2{
 margin-top: 50px;
 border: 1px solid #e0cd85;
-border-radius: 10px;
+border-radius: 10px;   
 }
 
 .lawyers .pro h3{
@@ -2252,7 +2328,7 @@ color: #999;
 
 .sidebar2 .forsearch,.sidebar2 .timee{
 font-size: 17px;
-color: #999;
+color: #999; 
 }
 
 .sidebar2 input[type=checkbox], input[type=radio]{
@@ -2268,9 +2344,13 @@ padding: 20px;
 
 @media(max-width:767px){
 
+.addcase-img p,.head-off p,.cases-img p,.clientcase-img p,.clientsett-img p{
+font-size: 45px;
+}    
+
 .navbar {
-min-height: 50px;
-}
+min-height: 50px;    
+}    
 
 .lk-profile{
 display: inline-block !important;
@@ -2285,7 +2365,7 @@ display: inline-block !important;
 .navbar-collapse{
 border-top: 1px solid #fff;
 width: 100%;
-}
+}    
 
 .de-Fsection {
 margin-left: 15px;
@@ -2298,11 +2378,11 @@ display: block;
 
 #content{
 width: 100%
-}
+}    
 
 .sign-form,.login-form,.forget{
 float: right;
-}
+}    
 
 .login-dp.dropdown-menu{
 left: 0px !important;
@@ -2318,7 +2398,7 @@ border: 1px solid #FFF;
 -webkit-box-shadow: none;
 box-shadow: none;
 margin-right: 13%;
-}
+}   
 
 .lang .dropdown-menu{
 float: right !important;
@@ -2326,11 +2406,11 @@ float: right !important;
 
 .details .col-md-4{
 padding-left: 15px;
-}
+}  
 
 .details .col-md-8{
 padding-right: 15px;
-}
+} 
 
 .addcase .col-md-4{
 padding-left: 15px;
@@ -2338,12 +2418,12 @@ padding-left: 15px;
 
 .addcase .col-md-8{
 padding-right: 15px;
-}
+}    
 
 .logo{
 width: 40%;
 margin-right: 10px;
-}
+}    
 
 .navbar-toggle {
 position: relative;
@@ -2378,10 +2458,10 @@ float: right;
 
 .navbar-right{
 float: none  !important;
-}
+}    
 
 .main-ul li a:hover:after {
-width:0;
+width:0;   
 }
 
 .login-dp{
@@ -2477,7 +2557,7 @@ padding: 6px 0px;
 
 #content .case-client p,.casetype,.location,.time,#content .case-client .price{
 font-size: 18px;
-}
+}    
 
 .status {
 display: inline-block;
@@ -2500,70 +2580,27 @@ float: left;
 margin-top: 20px;
 }
 
-.profile .parent-img{
-height: 64px;
-}
-
 
 .top-container img {
-width: 150px;
-height: 150px;
+width: 100px;
+height: 100px;
 }
 
 .top-container {
-position: static;
-top: 0;
-right: 0;
-margin: auto;
-display: block;
-text-align: center;
 padding: 0 0 10px 0;
 }
 
-.profile-container {
-position: static;
-left: 0;
-bottom: 0;
-/* display: none; */
-}
-
-#form-profile {
-position: relative;
-margin: 0;
-left: 0;
-bottom: 100px;
-text-align: center;
-padding: 0 0;
+.cover-container {
+margin-bottom: 0;
 }
 
 .profile .container{
 margin-top: 0;
 }
 
-.cover-container {
-position: static;
-}
-
-.profile-container {
-position: static;
-height:0;
-}
-
-.profile .label2 {
-border: 1px solid;
-padding: 5px;
-border-radius: 50%;
-width: 50px;
-height: 50px;
-font-size: 20px;
-text-align: center;
-line-height: 40px;
-background: #fff;
-}
-
 .forresvation  button,.forresvation  input{
 width: 50%;
-}
+}    
 
 .forresvation  button,.forresvation  input{
 font-size: 22px;
@@ -2575,7 +2612,7 @@ font-size: 15px;
 
 .lawyers .pro p{
 font-size: 13px;
-}
+}    
 
 .sidebar2 button {
 background-color: transparent;
@@ -2595,9 +2632,9 @@ width: 100px;
 
 .list-tabs {
 position: static;
-z-index: 0;
-top: 0;
-right: 0;
+z-index: 0; 
+top: 0; 
+right: 0;  
 border:1px solid #ccc;
 }
 
@@ -2625,7 +2662,7 @@ float: none !important;
 
 .navbar-nav .open .user-menu {
 margin-right: 72px;
-}
+} 
 
 }
 
@@ -2660,21 +2697,18 @@ width: auto;
 
 .forresvation  button, .forresvation  input{
 font-size: 15px;
-}
+}  
 
 .circle-label.one {
 margin-left: 0;
 }
 
-.img-acc{
-width: 70%;
-}
+
 
 .prof-name {
 display: inline-block !important;
 padding: 0 !important;
 }
-
 
 
 
@@ -2692,11 +2726,11 @@ margin-right: 15px;
 
 .details .col-md-4{
 padding-left: 15px;
-}
+}  
 
 .details .col-md-8{
 padding-right: 15px;
-}
+} 
 
 .logo{
 width: 50%;
@@ -2710,11 +2744,11 @@ font-weight:bold;
 }
 
 .img-acc{
-width: 70%;
+margin-left: 10px;
 }
 
 .navbar-right {
-margin-right: -8%;
+margin-right: -9%;
 margin-top: 2%;
 }
 
@@ -2740,7 +2774,7 @@ font-size: 12px;
 
 .consultants .cons{
 text-align: center;
-}
+}    
 
 .addcase .col-md-8{
 padding-right: 15px;
@@ -2752,11 +2786,11 @@ padding-left: 15px;
 
 .seetings .col-md-8{
 margin-bottom: 20px;
-}
+}    
 
 .more-details{
 height: auto;
-}
+}  
 
 .border-rght{
 border-right: none;
@@ -2778,30 +2812,16 @@ float: left;
 margin-top: -34px;
 }
 
-
-.top-container {
-position: absolute;
-bottom: 67%;
-right: 41%;
+.profile .container{
+margin-top: 0;
 }
 
-.top-container img{
-width: 50%;
-height: 50%;
-}
-
-.profile-container {
-position: absolute;
-left: 66%;
-bottom: 30%;
-display: none;
-}
 
 .list-tabs {
 position: static;
-z-index: 0;
-top: 0;
-right: 0;
+z-index: 0; 
+top: 0; 
+right: 0;  
 border:1px solid #ccc;
 }
 
@@ -2809,6 +2829,19 @@ border:1px solid #ccc;
 position: static;
 }
 
+
+.top-container img {
+width: 150px;
+height: 150px;
+}
+
+.top-container {
+padding: 0 0 10px 0;
+}
+
+.cover-container {
+margin-bottom:0;
+}
 
 
 
@@ -2826,15 +2859,13 @@ margin-right: 0;
 margin-top: 2%;
 }
 
-.nav>li>a
+.nav>li>a 
 {
 padding: 10px 15px;
 font-size: 16px;
-}
+} 
 
-.img-acc{
-width: 80%;
-}
+
 
 .logo{
 width: 80%;
@@ -2849,11 +2880,15 @@ font-size: 30px;
 }
 
 
-.top-container {
+/*.top-container {
 position: absolute;
-bottom: 60%;
-right: 42%;
-}
+bottom: 67%;
+right: 40%;
+}*/ 
+
+.circle-label #lawyer, .circle-label #client, .circle-label #male, .circle-label #female{
+width: 125px;
+}    
 
 }
 
@@ -2872,16 +2907,16 @@ font-size: 15px;
 
 .login-dp{
 padding: 10px;
-}
+}	
 
 .acc-tybe{
 font-size: 17px;
 margin-bottom: 10px;
-}
+}	
 
 .place-name{
-height: 32px;
-line-height: 27px;
+height: 40px;
+line-height: 36px;
 }
 
 #login-nav label{
@@ -2890,7 +2925,7 @@ margin-bottom: 10px;
 
 #login-nav input{
 height: 32px;
-font-size: 15px;
+font-size: 15px;	
 }
 
 .login-dp .form-group {
@@ -2914,7 +2949,7 @@ margin-top: 10px;
 }
 
 .gen {
-font-size: 15px;
+font-size: 18px;
 }
 
 .circle-label.one {
