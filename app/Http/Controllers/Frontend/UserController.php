@@ -446,16 +446,6 @@ class UserController extends Controller
           return view(FE.'.list_lawyers')->with($data);
       }
 
-
-
-
-
-
-
-
-
-
-
       public function lawyer($locale='ar',$id){
 
         $user_specialty = DB::table('user_specialty')
