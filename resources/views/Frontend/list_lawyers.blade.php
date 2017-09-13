@@ -37,42 +37,29 @@
                   <input type='hidden' id='show_per_page' />
 
                   <div id='content'>
-                      @foreach($all_lawyers as $lawyers)
-                     <div class="col-md-3 col-xs-6 text-center">
-                        <a href="lawyer/{{$lawyers->id}}">
-                           <div class="pro">
-                             @if($lawyers->image !='')
-                               <img src="{{ asset('public/uploads/user_img')}}/{{$lawyers->image}}" class="img-responsive" />
-                             @else
-                                <img src="{{ asset('public/uploads')}}/avater.png" class="img-responsive">
-                             @endif
-                              <h3>{{$lawyers->name}}</h3>
-                              <p>{{$lawyers->career}} </p>
-                           </div>
-                        </a>
-                     </div>
-                     @endforeach
+                 
 
                   </div>
                </div>
                <!--***********************************************-->
                <div class="col-md-4">
                   <div class="sidebar2">
-                     <form>
+                     <form method="get" action="{{url('lawyers/filtering')}}">
                         <div class="forsearch">
                            <label> البحث </label>
                            <input type="search" class="form-control" placeholder="ابحث عن ">
                            <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
                         </div>
-                        <div class="dep">
-                           <label> الاقسام </label>
-                           <input type="checkbox" name="specialty[]" value="all">{{ trans('cpanel.all') }} <br>
-                             @foreach($specialty as $key=>$value)
-
-                             {!! Form::checkbox('specialty[]',$key, null, array('id' => 'ttt') ) !!} {{$value}}<br>
-                           @endforeach
-
+                      <div id="filters" class="dep">
+                         <div class="filterblock" id="all_sections">
+                             <label> الاقسام </label>  
+                                  <input type="checkbox" id="filter" class="AllSections filter sections" >  الكل <br>  
+                                     <?php
+                                         foreach($sections as $key => $value){?>
+                                                <input id="filter" class="filter sections"  type="checkbox"  value="{{$key}}" data-tag="{{$value}}"  /> {{$value}} <br> 
+                                    <?php }?>
                         </div>
+                       </div>
                     <div  id="filters2" class="count">
 <div class="filterblock2" id="all_countries">
 <label> الدول </label> 
@@ -93,6 +80,192 @@
       <!--*******************************************-->
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+
+
+      <script>
+      
+            var sections = []; 
+            var countries = [];
+            var filters = [] ;
+            var html = '' ;
+            //  Call the ajax request 
+            getData();
+
+            // Select all
+            allOf_filterationSections();
+
+
+
+          $(document).ready(function(){
+            
+          // $('.loader').hide();
+            $('.filter').on('change', function(){
+               // $('.loader').show();
+              var category_list = [];
+              $('body #filter').each(function(){
+                
+                if($(this).is(":checked")) {
+
+                
+                    
+                    if($(this).hasClass( "sections" )){
+                        if($(this).val()){
+                            sections.push($(this).val());
+
+                            sections = $.unique(sections);
+                        }
+                    }
+                  if($(this).hasClass( "countries" )){
+                        if($(this).val()){
+                            countries.push($(this).val());
+                            countries = $.unique(countries);
+                        }
+                        
+                    }
+                    
+                 
+                }
+               
+              });
+
+            filters = {'sections':sections,'countries':countries,} ;
+
+            //  Call the ajax request 
+            getData();
+            
+
+                 html = '' ;
+                 sections = [];
+                 countries = [];
+                 filters = [] ;
+
+
+              if(category_list.length == 0)
+                $('.resultblock').fadeIn();
+              else {
+                $('.resultblock').each(function(){
+                  var item = $(this).attr('data-tag');
+                  if(jQuery.inArray(item,category_list) > -1)
+                    $(this).fadeIn('slow');
+                  else
+                    $(this).hide();
+                });
+              }   
+            });
+          }); 
+
+
+          function getData(){
+
+            $.ajax({
+              type: "GET",
+              url: "http://localhost/mo7amy_online/ar/lawyers/filtering",
+              data: filters,
+              success: function(data){
+                $.each(data.data,function(k,v){
+                  
+                    html += '<div class="col-md-3 col-xs-6 text-center">'
+                    html += '<a href="<?= lang_url('lawyer').'/' ; ?>'+v.id+'">';
+                    html += '<div class="pro">';
+                    html += '<img src="{{ asset('public/uploads')}}/avater.png" class="img-responsive">';
+                    html += '<h3>'+v.name+'</h3>';
+                    html += '<h3>'+v.s_name+'</h3>';
+                    html += '<p>'+v.career+'</p>';
+                    html += '</div> ';
+                     html += '</a>';
+                    html += '</div>';
+       });
+            
+                $('#content').html(html);
+              // $('.loader').hide();
+                //
+                 
+              }
+            });
+
+          }
+
+
+          function allOf_filterationSections(){
+           /* $('#AllSections').change(function(){
+                $('.filter').each(function(){
+                    if($(this).hasClass('sections')){
+                        $(this).trigger('click');
+                    }
+              });
+            });
+*/
+
+            // $('#AllCountries').change(function(){
+            //     $('.filter').each(function(){
+            //         if($(this).hasClass('countries')){
+            //            // $(this).trigger('click');
+            //         }
+            //   });
+            // });
+
+           $(".AllCountries").click(function () {
+                if ($('input.AllCountries').is(':checked')) {
+                   // alert('x1');
+                    $("#all_countries input[type=checkbox]").each(function () {
+                      $(this).prop("checked", true);
+                    });
+                } else {
+                    $("#all_countries input[type=checkbox]").each(function () {
+                       $(this).prop("checked", false);
+                    });
+                }
+            });
+
+   $(".AllSections").click(function () {
+                if ($('input.AllSections').is(':checked')) {
+                   // alert('x1');
+                    $("#all_sections input[type=checkbox]").each(function () {
+                      $(this).prop("checked", true);
+                    });
+                } else {
+                    $("#all_sections input[type=checkbox]").each(function () {
+                       $(this).prop("checked", false);
+                    });
+                }
+            });
+
+
+
+            
+          }
+        </script>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <script type="text/javascript">
          $(document).ready(function(){
 

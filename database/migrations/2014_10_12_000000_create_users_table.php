@@ -23,7 +23,6 @@ class CreateUsersTable extends Migration
             $table->string('career')->nullable();
             $table->text('short_description')->nullable();
             $table->string('birthdate')->nullable();
-            $table->string('country');
             $table->string('city');
             $table->string('phone')->nullable();
             $table->enum('gender', ['male', 'female']);
