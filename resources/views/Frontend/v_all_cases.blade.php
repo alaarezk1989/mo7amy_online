@@ -226,12 +226,17 @@ $locale = App::getLocale();
             });
           });
 
-
+<?php
+  $page='';
+  if(isset($_GET['page']) && $_GET['page']>0){
+    //$page='?page='.$_GET['page'];
+  }
+?>
           function getData(){
 
             $.ajax({
               type: "GET",
-              url: "{!! lang_url('cases/filtering') !!}",
+              url: "{!! lang_url('cases/filtering').$page !!}",
               data: filters,
               success: function(data){
                 $.each(data.data,function(k,v){

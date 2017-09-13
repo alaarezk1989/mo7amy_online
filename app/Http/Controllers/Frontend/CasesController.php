@@ -266,7 +266,8 @@ public function create_case (Request $request)
            $sess_locale= session('sess_locale');
             return redirect($sess_locale.'/your-cases');
     }
-      public function AllCases($locale='ar'){
+
+ public function AllCases($locale='ar'){
               App::setLocale($locale);
               $locale = App::getLocale();
           //    $sess_locale= session('sess_locale');
@@ -482,6 +483,7 @@ $all_case_bids=array();
 
    public function filtering(Request $request){
     // print_r($request->all());return ;
+    $per_page=2;
         $locale = App::getLocale();
 
       $caseModel = DB::table('cases');
@@ -521,6 +523,7 @@ $all_case_bids=array();
       $join->on('cities.country_id', '=', 'countries.id');
     })->join('sections', function ($join) {$join->on('cases.section_id', '=', 'sections.id');
   })->select('cases.*', 'countries.'.$locale.'_name as CountryName', 'cities.'.$locale.'_name as Cityname', 'sections.'.$locale.'_name as SectionName')
+    // ->paginate(2);
   ->get();
   }
 
