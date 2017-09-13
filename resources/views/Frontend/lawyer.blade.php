@@ -50,17 +50,28 @@ $locale = App::getLocale();
                  <h2>{{$user_data->name}}  </h2>
                  <p>{{$user_data->career}}</p>
                  <span>
-                    {{trans('cpanel.type_of_specialization')}} :
+                   <!--  {{trans('cpanel.type_of_specialization')}} :
                     @php
                     $i=1;
                       foreach ($user_specialty as $row_specialty){
-                      echo trans('cpanel.'.$row_specialty->specialty);
+                      echo trans('cpanel.'.$row_specialty->sections_specialty);
                       if($i < count($user_specialty)){
                         echo ' - ';
                       }
                       $i++;
                     }
-                    @endphp
+                    @endphp -->
+                  {{trans('cpanel.type_of_specialization')}} :
+                    @php
+                    $i=1;
+                      foreach ($user_specialty as $row_specialty){
+                      echo trans($row_specialty->sections_specialty);
+                      if($i < count($user_specialty)){
+                        echo ' - ';
+                      }
+                      $i++;
+                    }
+@endphp
                     </span>
                  <ul class="list-unstyled prof-social">
                     <li> <a herf="">  <i class="fa fa-facebook"></i>  </a>  </li>
@@ -117,7 +128,7 @@ $locale = App::getLocale();
               <div class="case-client border-bott">
                  <p> {{$lawyerCase->description}}  </p>
                  <div>
-                    <div class="casetype"> نوع القضية : <span>{{$lawyerCase->type}}</span></div>
+                    <div class="casetype"> نوع القضية : <span>{{$lawyerCase->sectionName}}</span></div>
                      <div class="status"> الحالة : 
 
                      <?php

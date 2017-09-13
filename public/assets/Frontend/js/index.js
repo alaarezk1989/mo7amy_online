@@ -64,11 +64,29 @@ $('.forget').fadeIn();
 /**************************************************/
 
 if($('input').hasClass('error')){
-$(this).css("border-color","red") ;
-$(this).children('.tooltiptext').css({
-visibility:"visible",
-opacity:"1"
-})
+  $('.error').css("border-color","red") ;
+
+  $("input").hover(function(){
+      //  $(this).css("background-color", "pink");
+       $(this).prev('.tooltiptext').css({
+         visibility:"visible",
+         opacity:"1"
+         });
+       }, function(){
+         // $(this).css("background-color", "yellow");
+       $(this).prev('.tooltiptext').css({
+       visibility:"hidden",
+       opacity:"0"
+       });
+   });
+  /*
+    $('input').mouseover(function(){
+      $('.tooltiptext').css({
+      visibility:"visible",
+      opacity:"1"
+      });
+  });
+  */
 }
 
 /*************************************************************************************/
