@@ -97,7 +97,6 @@ class UserController extends Controller
               $add->career                  = $request->input('career');
               $add->short_description       = $request->input('short_description');
               $add->birthdate               = $request->input('birthdate');
-              $add->country                 = $request->input('country');
               $add->city                    = $request->input('city');
               $add->phone                   = $request->input('phone');
               $add->gender                  = $request->input('gender');
@@ -153,30 +152,43 @@ class UserController extends Controller
       //  $countries = CountryState::getCountries();
 
       $sess_locale= session('sess_locale');
+      $sess_user_id= session('user_id');
 
           $admin_data = User::findOrFail($id);
 
+          $locale_name=$locale.'_name';
+
           $all_countries = DB::table('countries')
-          ->where('local', '=', $locale)->orderBy('id')->get();
-          $first_country_id=0;
-          $countries=array();
-          foreach ($all_countries as $country) {
-            if($first_country_id <= 0){
-              $first_country_id=$country->id;
-            }
-            // if($country->id < $first_country_id){
-            //     $first_country_id=$country->id;
-            // }
-            $countries[$country->id]=$country->name;
-          }
+              ->select($locale.'_name','id')
+              ->orderBy('id')->get();
+
+              $first_country_id=0;
+              $countries=array();
+              foreach ($all_countries as $country) {
+                if($first_country_id <= 0){
+                  $first_country_id=$country->id;
+                }
+                $countries[$country->id]=$country->$locale_name;
+              }
 
           $states=array();
-          $all_states = DB::table('cities')
-         ->where('local', '=', $locale)
-         ->where('country_id', '=', $admin_data->country)
-          ->get();
+
+        $user_country_id =  DB::table('users')
+          ->join('cities', 'cities.id', '=', 'users.city')
+          ->join('countries', 'countries.id', '=', 'cities.country_id')
+          ->select('countries.*')
+           ->where('users.id', '=', $sess_user_id)
+          ->first();
+
+          $all_states =  DB::table('users')
+            ->join('cities', 'cities.id', '=', 'users.city')
+            ->join('countries', 'countries.id', '=', 'cities.country_id')
+            ->select('cities.*')
+             ->where('countries.id', '=', $user_country_id->id)
+            ->get();
+      
           foreach ($all_states as $state) {
-            $states[$state->id]=$state->name;
+            $states[$state->id]=$state->$locale_name;
           }
 
           $types  = User::GetAdminTypes();
@@ -189,7 +201,6 @@ class UserController extends Controller
           }
           // return $selected_user_specialty;
             // return ($user_specialty);
-            $sess_user_id= session('user_id');
           $data = [
               'title'=>trans('cpanel.site_name'),
               'page_title'=>trans('cpanel.edit_admin'),
@@ -246,7 +257,8 @@ class UserController extends Controller
               return back()->withInput()->withErrors($validator);
           }else{
 
-            $path = public_path() . '/uploads/user_img';
+            $deafult_path = public_path() . '/uploads/user_img';
+            $path = File::makeDirectory($deafult_path, 0775, true);
             if (!empty($request->file('profile_picture'))) {
                 $file_name = date('YmdHis') . mt_rand() . '_user_img.' . $request->file('profile_picture')->getClientOriginalExtension();
 
@@ -266,7 +278,6 @@ class UserController extends Controller
               // }
 
               $edit->short_description       = $request->input('short_description');
-              $edit->country                 = $request->input('country');
               $edit->city                    = $request->input('city');
               $edit->birthdate               = $request->input('birthdate');
               $edit->gender                  = $request->input('gender');
@@ -524,7 +535,7 @@ class UserController extends Controller
     ->get();
   }
 
-  
+
 /*
  echo "<pre>";
       print_r($users_ids);

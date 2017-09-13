@@ -793,6 +793,9 @@ margin-top: 0;
 .details .col-md-8{
 padding-right: 0;
 }
+.details{
+	margin-top:110px;
+}
 
 .box{
 overflow: hidden;

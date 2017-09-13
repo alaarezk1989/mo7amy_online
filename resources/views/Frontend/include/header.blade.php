@@ -284,7 +284,7 @@
                         <li> <a href="{{lang_url('create')}}"> اضف قضية </a></li>
                         <li> <a href="{{lang_url('your-cases')}}"> قضاياك </a></li>
                         <li> <a href="{{lang_url('edit-profile').'/'.$sess_user_id}}">{{ trans('cpanel.my_profile') }} </a></li>
-                        <li> <a href="client-setting.html">  اعداداتى </a></li>
+                        {{-- <li> <a href="client-setting.html">  اعداداتى </a></li> --}}
                         <li> <a href="{{lang_url('logout')}}">  {{ trans('cpanel.log_out') }} </a></li>
                       </ul>
                   </li>
