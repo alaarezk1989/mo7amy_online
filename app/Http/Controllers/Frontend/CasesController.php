@@ -382,8 +382,8 @@ return; */
    public function SingleCase($locale='ar',$id){
     $locale = App::getLocale();
 
-$case_bids=array();
-$all_case_bids=array();
+        $case_bids=array();
+        $all_case_bids=array();
 
      if(auth()->user()){
         $sess_user_id= session('user_id');
@@ -408,14 +408,32 @@ $all_case_bids=array();
               ->get();
       }
 // return $all_case_bids;
-        $case = Cases::findOrFail($id);
-           /* echo "<pre>";
-      print_r($case);
+        $case = DB::table('cases')
+              ->where('cases.id', '=', $id)
+              ->join('cities', 'cities.id', '=', 'cases.city')
+              ->join('countries', 'countries.id', '=', 'cities.country_id')
+              ->join('sections', 'sections.id', '=', 'cases.section_id')
+              ->Leftjoin(DB::raw('(SELECT MAX(bids_val) AS bidValue , case_id FROM bids) AS bids'), function ($join) {
+               $join->on('bids.case_id', '=', 'cases.id');
+              })
+              ->select('cases.*','countries.'.$locale.'_name as country_name','bidValue','cities.'.$locale.'_name as city_name','sections.'.$locale.'_name as sectionName')
+              ->first();
+
+         
+
+         $offerCount = DB::table('bids')           
+            ->where('bids.case_id','=', $id)
+            ->count();    
+
+
+           /*echo "<pre>";
+      print_r($offerCount);
       echo "</pre>";
       return;*/
+      
+      
         $user_id=$case->user_id;
         $user_case = User::findOrFail($user_id);
-
         $data = [
             'title'=>trans('cpanel.site_name'),
             'case'=>$case,
@@ -423,6 +441,8 @@ $all_case_bids=array();
             'user_case'=>$user_case,
             'case_bids'=>$case_bids,
             'all_case_bids'=>$all_case_bids,
+             'offerCount'=>$offerCount,
+
         ];
       /*echo "<pre>";
       print_r($data);
@@ -431,6 +451,7 @@ $all_case_bids=array();
           return view(FE . '/v_single_case')->with($data);
       }
 
+      
     public function store(Request $request)
     {
         //
