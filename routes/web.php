@@ -40,6 +40,9 @@ Route::group(['middlewareGroups' => ['web']], function() {
          Route::get('{locale?}/cases',FE.  '\CasesController@AllCases');
          Route::get('{locale?}/cases/filtering',FE.  '\CasesController@filtering');
 
+         Route::any('{locale?}/cases/searchview',FE.  '\CasesController@searchview');
+         Route::any('{locale?}/cases/search',FE.  '\CasesController@search');
+
 
 
 
