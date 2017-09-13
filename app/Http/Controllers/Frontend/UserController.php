@@ -420,10 +420,12 @@ class UserController extends Controller
         $specialty  = User::GetAdminSpecialty();
 
 
-                        /*sections*/
-        $sess_locale= session('sess_locale');
-      $all_sections = DB::table('sections')
-          ->where('local', '=', $sess_locale)->orderBy('id')->get();
+          $sess_locale= session('sess_locale');
+          $locale_name=$sess_locale.'_name';
+
+          
+         $all_sections = DB::table('sections')
+          ->select($sess_locale.'_name','id')->orderBy('id')->get();
           $first_section_id=0;
           $sections=array();
           foreach ($all_sections as $section) {
@@ -431,14 +433,14 @@ class UserController extends Controller
               $first_section_id=$section->id;
             }
 
-            $sections[$section->id]=$section->name;
+            $sections[$section->id]=$section->$locale_name;
           }
 /*sections*/
 
 
         $sess_locale= session('sess_locale');
        $all_countries = DB::table('countries')
-          ->where('local', '=', $sess_locale)->orderBy('id')->get();
+          ->select($sess_locale.'_name','id')->orderBy('id')->get();
           $first_country_id=0;
           $countries=array();
           foreach ($all_countries as $country) {
@@ -446,7 +448,7 @@ class UserController extends Controller
               $first_country_id=$country->id;
             }
 
-            $countries[$country->id]=$country->name;
+            $countries[$country->id]=$country->$locale_name;
           }
 
         $per_page = 8;
@@ -476,6 +478,7 @@ class UserController extends Controller
 
 
    public function filtering(Request $request){
+     $sess_locale= session('sess_locale');
 
     $users_ids=array();
     $users_ids_sections=array();
@@ -519,7 +522,7 @@ class UserController extends Controller
 
     ->join('cities', 'cities.id', '=', 'users.city')
     ->join('countries', 'countries.id', '=', 'cities.country_id')
-    ->select('users.*','sections.name as s_name','cities.name as city_name','countries.name as country_name')
+    ->select('users.*','sections.'.$sess_locale.'_name as s_name','cities.'.$sess_locale.'_name as city_name','countries.'.$sess_locale.'_name as country_name')
     ->groupBy('user_specialty.user_id')
     ->whereIn('users.id', $users_ids)
     ->get();
@@ -530,7 +533,7 @@ class UserController extends Controller
     ->join('sections', 'sections.id', '=', 'user_specialty.specialty')
     ->join('cities', 'cities.id', '=', 'users.city')
     ->join('countries', 'countries.id', '=', 'cities.country_id')
-    ->select('users.*','sections.name as s_name','cities.name as city_name','countries.name as country_name')
+    ->select('users.*','sections.'.$sess_locale.'_name as s_name','cities.'.$sess_locale.'_name as city_name','countries.'.$sess_locale.'_name as country_name')
     ->groupBy('user_specialty.user_id')
     ->get();
   }
@@ -568,7 +571,7 @@ public function lawyer($locale='ar',$id){
             ->join('cities', 'cities.id', '=', 'cases.city')
             ->Leftjoin('bids','bids.case_id','=','cases.id')
             ->where('bids.user_id','=',$id)
-            ->select('cases.*','countries.name as name1','cities.name as name2','bids.bids_val as bidValue')
+            ->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','bids.bids_val as bidValue')
             ->orderBy ('cases.created_at','desc')
             ->get();
 
