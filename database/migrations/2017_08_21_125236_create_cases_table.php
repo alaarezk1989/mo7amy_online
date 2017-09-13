@@ -14,12 +14,11 @@ class CreateCasesTable extends Migration
     public function up()
     {
         Schema::create('cases', function (Blueprint $table) {
-            
+
             $table->string('id')->primary()->index();
             $table->string('user_id');
             $table->string('title');
             $table->string('description');
-            $table->integer('country');
             $table->integer('city');
             $table->integer('section_id');
             $table->string('finished_date');
