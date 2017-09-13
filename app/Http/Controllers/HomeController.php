@@ -101,9 +101,9 @@ class HomeController extends Controller
             ->orderBy ('cases.created_at','desc')
             ->limit(9)
             ->get();*/
+      $locale = App::getLocale();
 
-
-$Latest_cases = DB::table('cases')
+          $Latest_cases = DB::table('cases')
             ->where('status', '=', '1')
             ->join('countries', 'countries.id', '=', 'cases.country')
             ->join('cities', 'cities.id', '=', 'cases.city')
@@ -112,7 +112,7 @@ $Latest_cases = DB::table('cases')
               ->Leftjoin(DB::raw('(SELECT MAX(bids_val) AS bidValue , case_id FROM bids) AS bids'), function ($join) {
                $join->on('bids.case_id', '=', 'cases.id');
         })
-            ->select('cases.*','countries.name as name1','cities.name as name2','bidValue','sections.name as sectionName')
+            ->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','bidValue','sections.'.$locale.'_name as sectionName')
             ->orderBy ('cases.created_at','desc')
             ->limit(9)
             ->get();
@@ -179,7 +179,7 @@ $Latest_cases = DB::table('cases')
     public function egyptCases(){
 
         $egyptCases = DB::table('cases')
-            ->where('country','=','1','or','6')
+            ->where('country','=','1')
              ->count();
              return $egyptCases;
 
@@ -188,7 +188,7 @@ $Latest_cases = DB::table('cases')
       public function saudiCases(){
 
         $saudiCases = DB::table('cases')
-            ->where('country','=','2','or','7')
+            ->where('country','=','2')
              ->count();
              return $saudiCases;
 
@@ -197,7 +197,7 @@ $Latest_cases = DB::table('cases')
       public function algeriaCases(){
 
         $algeriaCases = DB::table('cases')
-            ->where('country','=','5','or','10')
+            ->where('country','=','5')
              ->count();
              return $algeriaCases;
 
@@ -206,7 +206,7 @@ $Latest_cases = DB::table('cases')
       public function tunisiaCases(){
 
         $tunisiaCases = DB::table('cases')
-            ->where('country','=','3','or','8')
+            ->where('country','=','3')
              ->count();
              return $tunisiaCases;
 
@@ -215,7 +215,7 @@ $Latest_cases = DB::table('cases')
       public function libyaCases(){
 
         $libyaCases = DB::table('cases')
-            ->where('country','=','4','or','9')
+            ->where('country','=','4')
              ->count();
              return $libyaCases;
 
