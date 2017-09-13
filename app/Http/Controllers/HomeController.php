@@ -91,7 +91,7 @@ class HomeController extends Controller
     }
 
 
-    public function LatestCases(){
+    public function LatestCases($locale='ar'){
 /*
         $Latest_cases = DB::table('cases')
             ->join('countries', 'countries.id', '=', 'cases.country')
@@ -101,12 +101,13 @@ class HomeController extends Controller
             ->orderBy ('cases.created_at','desc')
             ->limit(9)
             ->get();*/
-      $locale = App::getLocale();
+          
+          $locale = App::getLocale();
 
           $Latest_cases = DB::table('cases')
             ->where('status', '=', '1')
-            ->join('countries', 'countries.id', '=', 'cases.country')
             ->join('cities', 'cities.id', '=', 'cases.city')
+          ->join('countries', 'countries.id', '=', 'cities.country_id')
             ->join('sections', 'sections.id', '=', 'cases.section_id')
 
               ->Leftjoin(DB::raw('(SELECT MAX(bids_val) AS bidValue , case_id FROM bids) AS bids'), function ($join) {
@@ -179,7 +180,9 @@ class HomeController extends Controller
     public function egyptCases(){
 
         $egyptCases = DB::table('cases')
-            ->where('country','=','1')
+            ->join('cities', 'cities.id', '=', 'cases.city')
+            ->join('countries', 'countries.id', '=', 'cities.country_id')
+            ->where('cities.country_id','=','1')
              ->count();
              return $egyptCases;
 
@@ -188,7 +191,9 @@ class HomeController extends Controller
       public function saudiCases(){
 
         $saudiCases = DB::table('cases')
-            ->where('country','=','2')
+         ->join('cities', 'cities.id', '=', 'cases.city')
+            ->join('countries', 'countries.id', '=', 'cities.country_id')
+            ->where('cities.country_id','=','2')
              ->count();
              return $saudiCases;
 
@@ -197,7 +202,9 @@ class HomeController extends Controller
       public function algeriaCases(){
 
         $algeriaCases = DB::table('cases')
-            ->where('country','=','5')
+         ->join('cities', 'cities.id', '=', 'cases.city')
+            ->join('countries', 'countries.id', '=', 'cities.country_id')
+            ->where('cities.country_id','=','5')
              ->count();
              return $algeriaCases;
 
@@ -206,7 +213,9 @@ class HomeController extends Controller
       public function tunisiaCases(){
 
         $tunisiaCases = DB::table('cases')
-            ->where('country','=','3')
+         ->join('cities', 'cities.id', '=', 'cases.city')
+            ->join('countries', 'countries.id', '=', 'cities.country_id')
+            ->where('cities.country_id','=','3')
              ->count();
              return $tunisiaCases;
 
@@ -215,7 +224,9 @@ class HomeController extends Controller
       public function libyaCases(){
 
         $libyaCases = DB::table('cases')
-            ->where('country','=','4')
+         ->join('cities', 'cities.id', '=', 'cases.city')
+            ->join('countries', 'countries.id', '=', 'cities.country_id')
+            ->where('cities.country_id','=','4')
              ->count();
              return $libyaCases;
 
