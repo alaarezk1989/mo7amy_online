@@ -12,7 +12,7 @@ use Carbon\Carbon;
 use App;
 use DB;
 class CasesController extends Controller
-{
+{//yoseffffff
     /**
      * Display a listing of the resource.
      *
