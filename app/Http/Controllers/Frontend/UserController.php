@@ -464,50 +464,6 @@ class UserController extends Controller
 
 
 
- public function filtering_al(Request $request){
-
-
-
-      if($request->sections){
-      $user_specialtyModel = DB::table('user_specialty')
-        ->select('user_id')
-        ->whereIn('specialty', (array)$request->sections)->distinct()->get();
-        $user_ids=(array)$user_specialtyModel;
-       // return $user_ids;
-      }
-      if($request->countries){
-        $c_array=(array)$request->countries;
-         $c_array=array_unique($c_array);
-        $user_specialtyModel->whereIn('country', $c_array);
-
-      }
-
-
-$data_join = DB::table('users')
-    ->join('user_specialty', 'users.id', '=', 'user_specialty.user_id')
-    ->join('sections', 'sections.id', '=', 'user_specialty.specialty')
-
-    ->join('cities', 'cities.id', '=', 'users.city')
-    ->join('countries', 'countries.id', '=', 'cities.country_id')
-    ->select('users.*','sections.name as s_name','cities.name as city_name','countries.name as country_name')
-    ->groupBy('user_specialty.user_id')
-    // ->where('followers.follower_id', '=', 3)
-    ->get();
-
-   /*
- echo "<pre>";
-      print_r($user_specialtyModel);
-      echo "</pre>";*/
-      return;
-      if($data_join){
-        return response()->json(['code' => 200 , 'msg' => "success" , "data" => $data_join]);
-      }else{
-        return response()->json(['code' => 404 , 'msg' => "not found" ]);
-      }
-
-    }
-
-
    public function filtering(Request $request){
 
     $users_ids=array();
