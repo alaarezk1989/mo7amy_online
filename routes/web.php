@@ -41,7 +41,7 @@ Route::group(['middlewareGroups' => ['web']], function() {
          Route::get('{locale?}/cases/filtering',FE.  '\CasesController@filtering');
 
          //Route::get('{locale?}/cases/searchview',FE.  '\CasesController@searchview');
-         // Route::any('cases/search',FE.  '\CasesController@search');
+          Route::any('cases/search',FE.  '\CasesController@search');
         // Route::get('cases/search', ['as' => 'search', 'uses' => FE.'\CasesController@search']);
 
 
