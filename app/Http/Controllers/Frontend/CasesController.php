@@ -575,8 +575,8 @@ public function search(Request $request){
 
     // $q = $request->input('q');
   $q =Input::get('q');
-    echo $q;
-    return;
+    /*echo $q;
+    return;*/
    $Cases = Cases::where('title','LIKE','%'.$q.'%')->orWhere('description','LIKE','%'.$q.'%')->get();
              /* $Cases = DB::table('cases')
                      ->where ( 'title', 'LIKE', '%' . $q . '%' )->orWhere ( 'description', 'LIKE', '%' . $q . '%' )
