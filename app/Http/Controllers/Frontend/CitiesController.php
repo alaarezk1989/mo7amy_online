@@ -106,8 +106,7 @@ class CitiesController extends Controller
         // ->where('country_id', '=', $country_id)
         // ->get();
 
-        $cities = Cities::where('local', '=', $sess_locale)
-        ->where('country_id', '=', $country_id)->get();
+        $cities = Cities::where('country_id', '=', $country_id)->select($sess_locale.'_name as name')->get();
 
         $data = [
             'cities_data' => $cities,
