@@ -409,7 +409,20 @@ class UserController extends Controller
         $specialty  = User::GetAdminSpecialty();
 
 
-        /*sections*/
+                        /*sections*/
+        $sess_locale= session('sess_locale');
+      $all_sections = DB::table('sections')
+          ->where('local', '=', $sess_locale)->orderBy('id')->get();
+          $first_section_id=0;
+          $sections=array();
+          foreach ($all_sections as $section) {
+            if($first_section_id <= 0){
+              $first_section_id=$section->id;
+            }
+
+            $sections[$section->id]=$section->name;
+          }
+/*sections*/
 
 
         $sess_locale= session('sess_locale');
@@ -443,20 +456,136 @@ class UserController extends Controller
             'per_page'=>$per_page,
             'all_lawyers'=>$all_lawyers,
             'countries'=>$countries,
-            'specialty'=>$specialty,
+            'sections'=>$sections,
         ];
           return view(FE.'.list_lawyers')->with($data);
       }
 
-      public function lawyer($locale='ar',$id){
-        App::setLocale($locale);
 
-        $locale = App::getLocale();
+
+
+ public function filtering_al(Request $request){
+     
+         
+
+      if($request->sections){
+      $user_specialtyModel = DB::table('user_specialty')
+        ->select('user_id')
+        ->whereIn('specialty', (array)$request->sections)->distinct()->get();
+        $user_ids=(array)$user_specialtyModel;
+       // return $user_ids;
+      } 
+      if($request->countries){
+        $c_array=(array)$request->countries;
+         $c_array=array_unique($c_array);
+        $user_specialtyModel->whereIn('country', $c_array);
+
+      }
+
+
+$data_join = DB::table('users')
+    ->join('user_specialty', 'users.id', '=', 'user_specialty.user_id')
+    ->join('sections', 'sections.id', '=', 'user_specialty.specialty')
+
+    ->join('cities', 'cities.id', '=', 'users.city')
+    ->join('countries', 'countries.id', '=', 'cities.country_id')
+    ->select('users.*','sections.name as s_name','cities.name as city_name','countries.name as country_name')
+    ->groupBy('user_specialty.user_id')
+    // ->where('followers.follower_id', '=', 3)
+    ->get();
+
+   /*    
+ echo "<pre>";
+      print_r($user_specialtyModel);
+      echo "</pre>";*/
+      return;
+      if($data_join){
+        return response()->json(['code' => 200 , 'msg' => "success" , "data" => $data_join]);
+      }else{
+        return response()->json(['code' => 404 , 'msg' => "not found" ]);
+      }
+      
+    }
+
+
+   public function filtering(Request $request){
+     
+    $users_ids=array();
+    $users_ids_sections=array();
+    $users_ids_countries=array();
+
+      if($request->sections){
+         $user_specialtyModel = DB::table('user_specialty')
+           ->select('user_id')
+           ->whereIn('specialty',(array)$request->sections)->distinct()->get();
+        foreach ($user_specialtyModel as  $key => $value_user_ids) {
+         $users_ids_sections[]=$value_user_ids->user_id;
+        }
+      }
+       $users_ids=array_merge($users_ids,$users_ids_sections);
+   
+      if($request->countries){
+
+      $user_countries= DB::table('users')
+                          ->select('users.id')
+                          ->join('cities', 'cities.id', '=', 'users.city')
+                          ->join('countries', 'countries.id', '=', 'cities.country_id')
+                          ->whereIn('countries.id',(array)$request->countries)
+                         ->distinct()->get();
+
+        foreach ($user_countries as  $key => $value_user_ids) {
+         $users_ids_countries[]=$value_user_ids->id;
+        }
+       /* print_r($users_ids_countries);
+        return;*/
+// return $users_ids;
+       }
+
+     $users_ids=array_merge($users_ids,$users_ids_countries);
+     $users_ids=array_unique($users_ids);
+
+
+ if(!empty($users_ids)){
+  $data_join = DB::table('users')
+  ->join('user_specialty', 'users.id', '=', 'user_specialty.user_id')
+    ->join('sections', 'sections.id', '=', 'user_specialty.specialty')
+
+    ->join('cities', 'cities.id', '=', 'users.city')
+    ->join('countries', 'countries.id', '=', 'cities.country_id')
+    ->select('users.*','sections.name as s_name','cities.name as city_name','countries.name as country_name')
+    ->groupBy('user_specialty.user_id')
+    ->whereIn('users.id', $users_ids)
+    ->get();
+  }else{
+
+    $data_join = DB::table('users')
+    ->join('user_specialty', 'users.id', '=', 'user_specialty.user_id')
+    ->join('sections', 'sections.id', '=', 'user_specialty.specialty')
+    ->join('cities', 'cities.id', '=', 'users.city')
+    ->join('countries', 'countries.id', '=', 'cities.country_id')
+    ->select('users.*','sections.name as s_name','cities.name as city_name','countries.name as country_name')
+    ->groupBy('user_specialty.user_id')
+    ->get();
+  }
+  
+/*
+ echo "<pre>";
+      print_r($users_ids);
+      echo "</pre>";
+      return;*/
+      if($data_join){
+        return response()->json(['code' => 200 , 'msg' => "success" , "data" => $data_join]);
+      }else{
+        return response()->json(['code' => 404 , 'msg' => "not found" ]);
+      }
+      
+    }
+
+
+public function lawyer($locale='ar',$id){
 
         $user_specialty = DB::table('user_specialty')
         ->where('user_id', '=', $id)
-        ->join('sections','sections.id' , '=', 'user_specialty.specialty')
-        ->select('user_specialty.*','sections.'.$locale.'_name as sections_specialty')
         ->orderBy('id')->get();
 
         $lawyer_data = User::findOrFail($id);
@@ -469,10 +598,9 @@ class UserController extends Controller
         $lawyerCases = DB::table('cases')
             ->join('countries', 'countries.id', '=', 'cases.country')
             ->join('cities', 'cities.id', '=', 'cases.city')
-            ->join('sections', 'sections.id', '=', 'cases.type')
             ->Leftjoin('bids','bids.case_id','=','cases.id')
             ->where('bids.user_id','=',$id)
-            ->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','bids.bids_val as bidValue','sections.'.$locale.'_name as sectionName')
+            ->select('cases.*','countries.name as name1','cities.name as name2','bids.bids_val as bidValue')
             ->orderBy ('cases.created_at','desc')
             ->get();
 
