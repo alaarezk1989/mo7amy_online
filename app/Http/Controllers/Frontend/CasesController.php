@@ -135,7 +135,9 @@ public function create_case (Request $request)
      */
     public function edit($locale='ar',$id)
     {
-
+      App::setLocale($locale);
+      $locale = App::getLocale();
+      $locale_name=$locale.'_name';
 
 /*sections*/
         $sess_locale= session('sess_locale');
@@ -145,11 +147,7 @@ public function create_case (Request $request)
           $first_section_id=0;
           $countries=array();
           foreach ($all_sections as $section) {
-            if($first_section_id <= 0){
-              $first_section_id=$section->id;
-            }
-
-            $sections[$section->id]=$section->id;
+            $sections[$section->id]=$section->$locale_name;
           }
 /*sections*/
 
@@ -157,29 +155,40 @@ public function create_case (Request $request)
       $sess_locale= session('sess_locale');
 
  //$specialty  = User::GetAdminSpecialty();
- $sess_user_id= session('user_id');
+        $sess_user_id= session('user_id');
          $cases_data = Cases::findOrFail($id);
 
-        $all_countries = DB::table('countries')
-          ->select($locale.'_name','id')
-          ->orderBy('id')->get();
-          $first_country_id=0;
-          $countries=array();
-          foreach ($all_countries as $country) {
-            if($first_country_id <= 0){
-              $first_country_id=$country->id;
-            }
+         $all_countries = DB::table('countries')
+             ->select($locale.'_name','id')
+             ->orderBy('id')->get();
 
-            $countries[$country->id]=$country->id;
-          }
-          $states=array();
-          $all_states = DB::table('cities')
-          ->select($locale.'_name','id')
-         ->where('country_id', '=', $cases_data->country)
-          ->get();
-          foreach ($all_states as $state) {
-            $states[$state->id]=$state->id;
-          }
+             $first_country_id=0;
+             $countries=array();
+             foreach ($all_countries as $country) {
+               if($first_country_id <= 0){
+                 $first_country_id=$country->id;
+               }
+               $countries[$country->id]=$country->$locale_name;
+             }
+
+         $states=array();
+
+          $user_country_id =  DB::table('users')
+            ->join('cities', 'cities.id', '=', 'users.city')
+            ->join('countries', 'countries.id', '=', 'cities.country_id')
+            ->select('countries.*')
+             ->where('users.id', '=', $sess_user_id)
+            ->first();
+
+            $all_states =  DB::table('users')
+              ->join('cities', 'cities.id', '=', 'users.city')
+              ->join('countries', 'countries.id', '=', 'cities.country_id')
+              ->select('cities.*')
+               ->where('countries.id', '=', $user_country_id->id)
+              ->get();
+              foreach ($all_states as $state) {
+                $states[$state->id]=$state->$locale_name;
+              }
 
           $data = [
                'title'=>trans('cpanel.site_name'),
