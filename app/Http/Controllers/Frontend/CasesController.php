@@ -566,24 +566,29 @@ $all_case_bids=array();
 
     }
 
- public function searchview()
+ /*public function searchview()
  {
   return view(FE . '/v_all_cases2');
 
- }
-public function search(){
+ }*/
+public function search(Request $request){
 
-    $q = Input::get ( 'q' );
-    $Cases = Cases::where ( 'title', 'LIKE', '%' . $q . '%' )->orWhere ( 'description', 'LIKE', '%' . $q . '%' )->get ();
-              /*$Cases = DB::table('cases')
+    // $q = $request->input('q');
+  $q =Input::get('q');
+    echo $q;
+    return;
+   $Cases = Cases::where('title','LIKE','%'.$q.'%')->orWhere('description','LIKE','%'.$q.'%')->get();
+             /* $Cases = DB::table('cases')
                      ->where ( 'title', 'LIKE', '%' . $q . '%' )->orWhere ( 'description', 'LIKE', '%' . $q . '%' )
                      ->get ();*/
 /*print_r($Cases);
 return;*/
-  if (count ($Cases) > 0)
-    return view(FE . '/v_all_cases2')->Cases( $Cases )->withQuery ( $q );
-  else
-    return view(FE . '/v_all_cases2')->withMessage ( 'No Details found. Try to search again !' );
+  if(count($Cases) > 0){
+    return view(FE . '/v_all_cases2')->withDetails($Cases)->withQuery($q);
+    }
+  else{
+    return view(FE . '/v_all_cases2')->withMessage('No Details found. Try to search again !')->withQuery($q);
+    }
 }
 
 
