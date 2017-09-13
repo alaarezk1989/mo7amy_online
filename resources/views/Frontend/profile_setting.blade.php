@@ -2,11 +2,10 @@
 @section('content')
 
 
-<div class="container-fluid">
-   <div class="row">
-      <img src="{{ asset('public/assets/'.FE .'/img/Lawyer%20Settings%20Page%20Image.png')}}" class="img-responsive">
-   </div>
-</div>
+  <div class="clientsett-img">
+  <p>{{trans('cpanel.setting')}} </p>
+  </div>
+
 <section class="seetings">
    <div class="container">
       <div class="row">
@@ -21,6 +20,27 @@
             <div class="tabs-content3">
                <div class="tab1">
                  {!! Form::model($admin_data,['method'=>'post','files'=>true,'url'=>'/update-profile/'.$sess_user_id]) !!}
+
+                     <div class="profile-cont text-center">
+                       @if($admin_data->image !='')
+                         <img src="{{ asset('public/uploads/user_img')}}/{{$admin_data->image}}" width="20%" alt="profile" />
+                       @else
+                         <img src="{{ asset('public/uploads')}}/avater.png"  width="20%" alt="profile"/>
+                       @endif
+                        <label tabindex="0" for="my-file" class="input-file-trigger img-label">{{trans('cpanel.upload_your_image')}} </label>
+                       {{-- <input class="input-file" id="my-file" type="file"> --}}
+                        {!! Form::file('profile_picture',null, array('id'=>'my-file', 'class'=>'input-file')) !!}
+                     </div>
+
+                     <div class="row">
+
+                        <div class="col-md-6">
+                           <label for="u_image" class="mb">  {{trans('cpanel.user_image')}} </label>
+                             {!! Form::file('profile_picture',null) !!}
+                        </div>
+                     </div>
+
+
 
                      <div class="row">
                         <div class="col-md-6">
@@ -93,22 +113,6 @@
                              @endif
                         </div>
                      </div>
-
-
-                     <div class="row">
-                        <div class="col-md-6 ">
-                          @if($admin_data->image !='')
-                            <img src="{{ asset('public/uploads/user_img')}}/{{$admin_data->image}}" class="img-responsive" />
-                          @else
-                            <img src="{{ asset('public/uploads')}}/avater.png" class="img-responsive"/>
-                          @endif
-                        </div>
-                        <div class="col-md-6">
-                           <label for="u_image" class="mb">  {{trans('cpanel.user_image')}} </label>
-                             {!! Form::file('profile_picture',null) !!}
-                        </div>
-                     </div>
-
 
                      @if($admin_data->permissions=='lawyer')
                     <div class="row">
