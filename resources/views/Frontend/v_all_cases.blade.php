@@ -62,15 +62,22 @@ $locale = App::getLocale();
 
 
 <div class="col-md-4">
+
+
+
 <div class="sidebar2">
 
-<form method="get" action="{{url('/cases/filtering')}}">
-
+<form>
 <div class="forsearch">
 <label> البحث </label>
 <input type="search" class="form-control" placeholder="ابحث عن ">
 <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
 </div>
+</form>
+
+<form method="get" action="{{url('/cases/filtering')}}">
+
+
 
 <div id="filters2" class="dep">
 <div class="filterblock2" id="all_sections">
