@@ -571,7 +571,7 @@ public function lawyer($locale='ar',$id){
             ->join('cities', 'cities.id', '=', 'cases.city')
             ->Leftjoin('bids','bids.case_id','=','cases.id')
             ->where('bids.user_id','=',$id)
-            ->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','bids.bids_val as bidValue')
+            ->select('cases.*','countries.'.$sess_locale.'_name as name1','cities.'.$sess_locale.'_name as name2','bids.bids_val as bidValue')
             ->orderBy ('cases.created_at','desc')
             ->get();
 
