@@ -107,7 +107,7 @@ class HomeController extends Controller
           $Latest_cases = DB::table('cases')
             ->where('status', '=', '1')
             ->join('cities', 'cities.id', '=', 'cases.city')
-          ->join('countries', 'countries.id', '=', 'cities.country_id')
+            ->join('countries', 'countries.id', '=', 'cities.country_id')
             ->join('sections', 'sections.id', '=', 'cases.section_id')
 
               ->Leftjoin(DB::raw('(SELECT MAX(bids_val) AS bidValue , case_id FROM bids) AS bids'), function ($join) {
@@ -127,6 +127,8 @@ class HomeController extends Controller
 
 
       }
+
+      
 
        public function countDoneCases(){
 

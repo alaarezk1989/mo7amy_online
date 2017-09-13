@@ -16,14 +16,14 @@ $locale = App::getLocale();
             {{$case->title}}
             </p>
             <div>
-               <div class="casetype"> نوع القضية : <span>{{$case->type}}</span></div>
+               <div class="casetype"> نوع القضية : <span>{{$case->sectionName}}</span></div>
                <div class="status"> الحالة :                    <?php
                   if($case->status) echo '<span> متاح</span>';
                   else{echo '</span>غير متاحة</span>'; }
                        ?></div>
             </div>
             <div style="margin-top:5px">
-               <div class="location"><i class="fa fa-map-marker" aria-hidden="true">{{$case->country_name}} - {{$case->city_name}} </i> </div>
+               <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> {{$case->country_name}} - {{$case->city_name}} </div>
                <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i>
                         <?php
                             Carbon::setLocale($locale);
@@ -62,15 +62,22 @@ $locale = App::getLocale();
                   </div>
                </div>
                <div class="case-price">
-                  <h4>$ 20,000</h4>
+               @if (empty($case->bidValue))
+                      <h4>0$</h4>
                   اعلى سعر
                </div>
+                @else
+                  <h4>{{$case->bidValue}}$</h4>
+                  اعلى سعر
+               </div>
+                            @endif
+
                <div class="numofviews">
-                  <h4>$ 100,000</h4>
+                  <h4>50</h4>
                   عدد المشاهدات
                </div>
                <div class="numooffers">
-                  <h4>$ 1000</h4>
+                  <h4>{{$offerCount}}</h4>
                   عدد العروض
                </div>
 
@@ -110,7 +117,7 @@ $locale = App::getLocale();
 <!--***********************************************************************-->
 
 @if(auth()->user())
-@if(user_auth()->permissions=='client' and $sess_user_id= session('user_id') == $case->user_id)
+@if(user_auth()->permissions=='client')
 
 <div class="container-fluid head-off">
    <div class="row">
@@ -164,8 +171,12 @@ $locale = App::getLocale();
                        <span> {{$user_bids->country_name}} , {{$user_bids->city_name}} </span>
                      </p>
                   </a>
+                   @if($sess_user_id= session('user_id') == $case->user_id) 
                   <div class="offers">سعر العرض:  $ {{$user_bids->bids_val}}  </div>
                   <button onclick="" class="okk">قبلت عرضك </button>
+                  @else
+                  <div class="offers">سعر العرض:  $ {{$user_bids->bids_val}}  </div>
+                  @endif
                </div>
             </div>
                @endforeach
