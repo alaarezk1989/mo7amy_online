@@ -286,6 +286,8 @@ public function create_case (Request $request)
 
 
                 /*sections*/
+
+                
         
           $all_sections = DB::table('sections')
           ->select($locale.'_name','id')
