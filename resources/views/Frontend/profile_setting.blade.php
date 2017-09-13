@@ -29,18 +29,8 @@
                        @endif
                         <label tabindex="0" for="my-file" class="input-file-trigger img-label">{{trans('cpanel.upload_your_image')}} </label>
                        {{-- <input class="input-file" id="my-file" type="file"> --}}
-                        {!! Form::file('profile_picture',null, array('id'=>'my-file', 'class'=>'input-file')) !!}
+                        {!! Form::file('profile_picture',array('id'=>'my-file', 'class'=>'input-file')) !!}
                      </div>
-
-                     <div class="row">
-
-                        <div class="col-md-6">
-                           <label for="u_image" class="mb">  {{trans('cpanel.user_image')}} </label>
-                             {!! Form::file('profile_picture',null) !!}
-                        </div>
-                     </div>
-
-
 
                      <div class="row">
                         <div class="col-md-6">

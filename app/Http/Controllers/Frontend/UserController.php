@@ -21,6 +21,7 @@ use DB;
 use Response;
 use Carbon\Carbon;
 use Session;
+use File;
 
 
 class UserController extends Controller
@@ -186,7 +187,7 @@ class UserController extends Controller
             ->select('cities.*')
              ->where('countries.id', '=', $user_country_id->id)
             ->get();
-      
+
           foreach ($all_states as $state) {
             $states[$state->id]=$state->$locale_name;
           }
@@ -256,20 +257,30 @@ class UserController extends Controller
               Session::flash('alert-class', 'alert-danger');
               return back()->withInput()->withErrors($validator);
           }else{
-
-            $deafult_path = public_path() . '/uploads/user_img';
-            $path = File::makeDirectory($deafult_path, 0775, true);
-            if (!empty($request->file('profile_picture'))) {
-                $file_name = date('YmdHis') . mt_rand() . '_user_img.' . $request->file('profile_picture')->getClientOriginalExtension();
-
-                if ($request->file('profile_picture')->move($path, $file_name)) {
-                    $img = $file_name;
-                }
-            } else {
-                $img = '';
-            }
               $sess_user_id= session('user_id');
               $edit = User::findOrFail($id);
+
+              if (!empty($request->file('profile_picture'))) {
+                $date_path=date("Y").'/'.date("m").'/';
+                $path = public_path() . '/uploads/user_img/'.$date_path;
+
+                if(!File::exists($path)) {
+                   File::makeDirectory($path, 0777, true);
+                  //  $result = File::makeDirectory($path, 0775, true, true);
+
+                 }
+                  $file_name = date('YmdHis') . mt_rand() . '_user_img.' . $request->file('profile_picture')->getClientOriginalExtension();
+
+                  if ($request->file('profile_picture')->move($path, $file_name)) {
+                      $img = $date_path.$file_name;
+                      $edit->image                   = $img;
+                      
+
+                  }
+              } else {
+                //  $img = '';
+              }
+
               $edit->name              = $request->input('name');
               $edit->career             = $request->input('career');
               // if(!empty($request->input('password')))
@@ -282,7 +293,6 @@ class UserController extends Controller
               $edit->birthdate               = $request->input('birthdate');
               $edit->gender                  = $request->input('gender');
               $edit->phone                   = $request->input('phone');
-              $edit->image                   = $img;
               $edit->save();
 
               if(!empty($request->input('specialty'))){
@@ -302,6 +312,9 @@ class UserController extends Controller
               Session::flash('alert-class', 'alert-success');
             $sess_locale=$request->session()->get('sess_locale');
 
+            $user_obj = DB::table('users')
+            ->where('id', '=', $id)->first();
+            session(['user_obj' => $user_obj]);
               return redirect($sess_locale.'/edit-profile/'.$sess_user_id);
           }
     }
@@ -423,7 +436,7 @@ class UserController extends Controller
           $sess_locale= session('sess_locale');
           $locale_name=$sess_locale.'_name';
 
-          
+
          $all_sections = DB::table('sections')
           ->select($sess_locale.'_name','id')->orderBy('id')->get();
           $first_section_id=0;
@@ -569,7 +582,7 @@ public function lawyer($locale='ar',$id){
 
 
         $lawyerCases = DB::table('cases')
-           
+
             ->join('cities', 'cities.id', '=', 'cases.city')
              ->join('countries', 'countries.id', '=', 'cities.country_id')
             ->Leftjoin('bids','bids.case_id','=','cases.id')
