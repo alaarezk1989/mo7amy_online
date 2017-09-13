@@ -30,8 +30,8 @@ $locale = App::getLocale();
                             $current = Carbon::now();
                             $old = Carbon::parse($case->created_at);
                             echo $old->diffForHumans($current);
- 
-                        ?> 
+
+                        ?>
 
 
 
@@ -42,14 +42,14 @@ $locale = App::getLocale();
                             $current = Carbon::parse($case->created_at);
                             $old = Carbon::parse($case->finished_date);
                            echo $old->diffForHumans($current);
-                         ?> 
+                         ?>
                </div>
             </div>
          </div>
          <div class="col-md-4 ma">
             <div class="all-deatils">
                <div class="account-case">
-                  <img src="img/Case%20Account.png">
+                  <img class="img-circle" src="img/Case%20Account.png">
                   <h3>{{$user_case->name}}</h3>
                   <i class="fa fa-star-o" aria-hidden="true"></i>
                   <i class="fa fa-star-o" aria-hidden="true"></i>
@@ -114,7 +114,7 @@ $locale = App::getLocale();
 
 <div class="container-fluid head-off">
    <div class="row">
-      <img src="{{ URL::to('public/assets/Frontend/img/Case%20Details%20Page%20Image.png') }}" class="img-responsive">
+      <img src="{{ URL::to('public/assets/Frontend/img/Case%20Details%20Page%20Image.png') }}" class="img-responsive img-circle">
    </div>
 </div>
 <section class="offers">
@@ -151,9 +151,9 @@ $locale = App::getLocale();
                   <a href="lawyer/{{$user_bids->id}}">
 
                     @if($user_bids->image !='')
-                      <img src="{{ asset('public/uploads/user_img')}}/{{$user_bids->image}}" class="imgs" />
+                      <img src="{{ asset('public/uploads/user_img')}}/{{$user_bids->image}}" class="imgs img-circle" />
                     @else
-                       <img src="{{ asset('public/uploads')}}/avater.png" class="imgs">
+                       <img src="{{ asset('public/uploads')}}/avater.png" class="imgs img-circle">
                     @endif
                   </a>
                   <a href="lawyer/{{$user_bids->id}}">
@@ -169,7 +169,7 @@ $locale = App::getLocale();
                </div>
             </div>
                @endforeach
-            
+
          </div>
       </div>
    </div>

@@ -84,7 +84,7 @@
                      <img src="{{ asset('public/assets/'.FE .'/img/Vector%20Smart%20Object.png')}}" class="sign">
                      </a>
 
-                     <ul id="login-dp" class="dropdown-menu sign-form login-dp">
+                     <ul class="dropdown-menu sign-form login-dp">
                         <li>
                            <div class="row">
                              @if(Session::has('error_msg'))
@@ -95,9 +95,14 @@
                              @endif
                             {!! Form::open(['method'=>'POST', 'class'=>'form','id'=>'register-nav','url'=>'register','role'=>'form',' accept-charset'=>'UTF-8']) !!}
                               <div class="col-md-12">
+                                <button type="button" class="close">&times;</button>
                                  <p class="acc-tybe"> {{ trans('cpanel.account_type') }}</p>
                                     <div class="form-group text-center">
                                        <label class="circle-label one">
+
+                                         @if($errors->has('permissions'))
+                                          <span class="tooltiptext">{{ $errors->first('permissions') }}</span>
+                                        @endif
 
                                        {!! Form::radio('permissions', 'lawyer','',array('checked'=>'checked')) !!}
                                        <span class="place-name" id="lawyer"> {{trans('cpanel.lawyer')}}  </span>
@@ -107,47 +112,60 @@
                                        <span class="place-name" id="client"> {{ trans('cpanel.client') }}   </span>
                                        </label>
 
-                                       @if($errors->has('permissions'))
-                   						          <span class="help-block text-danger">{{ $errors->first('permissions') }}</span>
-                   						        @endif
                                     </div>
 
-                                    <div class="form-group">
-                                       {!! Form::text('name',old('name'), array('id'=>'name', 'class'=>'form-control','required'=>'required','placeholder'=>trans('cpanel.name'))) !!}
-                                       @if($errors->has('name'))
-                   						          <span class="help-block text-danger">{{ $errors->first('name') }}</span>
-                   						        @endif
+                                    <div class="form-group tooltip">
+                                        <?php $error_class=''; ?>
+                                        @if($errors->has('name'))
+                                            <?php $error_class='error'; ?>
+                                         <span class="tooltiptext">{{ $errors->first('name') }}</span>
+                                       @endif
+                                       {!! Form::text('name',old('name'), array('id'=>'name', 'class'=>'form-control '.$error_class,'required'=>'required','placeholder'=>trans('cpanel.name'))) !!}
+
                                     </div>
 
-                                    <div class="form-group">
-                                      {!! Form::tel('phone',old('phone'), array('id'=>'phone', 'class'=>'form-control','required'=>'required','placeholder'=>trans('cpanel.phone_number'))) !!}
-                                      @if($errors->has('phone'))
-                                        <span class="help-block text-danger">{{ $errors->first('phone') }}</span>
-                                      @endif
-                                    </div>
-
-                                    <div class="form-group">
-                                         {!! Form::email('email',old('email'), array('id'=>'email', 'class'=>'form-control','required'=>'required','placeholder'=>trans('cpanel.email_address'))) !!}
-                                         @if($errors->has('email'))
-                                           <span class="help-block text-danger">{{ $errors->first('email') }}</span>
-                                         @endif
-                                    </div>
-
-                                    <div class="form-group">
-                                         {!! Form::password('password', array('id'=>'password', 'class'=>'form-control','placeholder'=>trans('cpanel.enter_password'))) !!}
-                                         @if($errors->has('password'))
-                                          <span class="help-block text-danger">{{ $errors->first('password') }}</span>
+                                    <div class="form-group tooltip">
+                                        <?php $error_class=''; ?>
+                                        @if($errors->has('phone'))
+                                            <?php $error_class='error'; ?>
+                                          <span class="tooltiptext">{{ $errors->first('phone') }}</span>
                                         @endif
+                                      {!! Form::tel('phone',old('phone'), array('id'=>'phone', 'class'=>'form-control '.$error_class,'required'=>'required','placeholder'=>trans('cpanel.phone_number'))) !!}
+
                                     </div>
 
-                                    <div class="form-group">
-                                       {!! Form::password('password_confirmation', array('id'=>'password_confirmation', 'class'=>'form-control','placeholder'=>trans('cpanel.confirm_password'))) !!}
-                                       @if($errors->has('password_confirmation'))
-                 							          <span class="help-block text-danger">{{ $errors->first('password_confirmation') }}</span>
-                 							        @endif
+                                    <div class="form-group tooltip">
+                                      <?php $error_class=''; ?>
+                                      @if($errors->has('email'))
+                                        <?php $error_class='error'; ?>
+                                        <span class="tooltiptext">{{ $errors->first('email') }}</span>
+                                      @endif
+                                         {!! Form::email('email',old('email'), array('id'=>'email', 'class'=>'form-control '.$error_class,'required'=>'required','placeholder'=>trans('cpanel.email_address'))) !!}
+
+                                    </div>
+
+                                    <div class="form-group  tooltip">
+                                        <?php $error_class=''; ?>
+                                        @if($errors->has('password'))
+                                            <?php $error_class='error'; ?>
+                                         <span class="tooltiptext">{{ $errors->first('password') }}</span>
+                                       @endif
+                                         {!! Form::password('password', array('id'=>'password', 'class'=>'form-control '.$error_class,'placeholder'=>trans('cpanel.enter_password'))) !!}
+
+                                    </div>
+
+                                    <div class="form-group tooltip">
+                                        <?php $error_class=''; ?>
+                                        @if($errors->has('password_confirmation'))
+                                            <?php $error_class='error'; ?>
+                                         <span class="tooltiptext">{{ $errors->first('password_confirmation') }}</span>
+                                       @endif
+                                       {!! Form::password('password_confirmation', array('id'=>'password_confirmation', 'class'=>'form-control '.$error_class,'placeholder'=>trans('cpanel.confirm_password'))) !!}
+
                                     </div>
 
                                     <div class=" slct form-group">
+
                                       {!! Form::select('country', get_countries_cities()['countries'],'', array('id'=>'country') ) !!}
 
                                       {!! Form::select('city', get_countries_cities()['states'],'', array('id'=>'city')) !!}
@@ -167,7 +185,7 @@
                                       {!! Form::hidden('status',1) !!}
                                     <div class="buttons">
                                        <button type="submit" class="">  {{ trans('cpanel.register') }}  </button>
-                                       <button class="already-mem">  {{ trans('cpanel.have_account') }}   </button>
+                                       <button type="button" class="already-mem">  {{ trans('cpanel.have_account') }}   </button>
                                     </div>
                                     <hr class="or">
                                     <span class="span_Or"> {{ trans('cpanel.or') }} </span>
@@ -180,13 +198,14 @@
                         </li>
                      </ul>
                      <!--********************************************************-->
-                     <ul id="login-dp" class="dropdown-menu login-form login-dp">
+                     <ul  class="dropdown-menu login-form login-dp">
                         <li>
                            <div class="row">
                               <div class="col-md-12">
                                 @if(Session::has('error_login'))
                                   <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('error_login') }}</p>
                                 @endif
+                                  <button type="button" class="close">&times;</button>
                                  <p class="acc-tybe"> {{ trans('cpanel.account_type') }}</p>
 
                                    {!! Form::open(['url'=>$sess_locale.'/login', 'class'=>'form','id'=>'login-nav','role'=>'form',' accept-charset'=>'UTF-8']) !!}
@@ -196,7 +215,7 @@
                                         <?php $error_class='error'; ?>
                                         <span class="tooltiptext">{{ $errors->first('email') }}</span>
                                       @endif
-                                         {!! Form::email('email', old('email'), array('class'=>'form-control '.$error_class,'placeholder'=>trans('cpanel.email_address'), 'id' => 'exampleInputEmail2')) !!}
+                                         {!! Form::email('email', old('email'), array('class'=>'form-control '.$error_class,'required'=>'required','placeholder'=>trans('cpanel.email_address'), 'id' => 'exampleInputEmail2')) !!}
 
                                     </div>
                                     <div class="form-group tooltip">
@@ -205,7 +224,7 @@
                                             <?php $error_class='error'; ?>
                                          <span class="tooltiptext">{{ $errors->first('password') }}</span>
                                        @endif
-                                         {!! Form::password('password', array('class'=>'form-control '.$error_class,'placeholder'=>trans('cpanel.enter_password'), 'id' => 'exampleInputPassword2')) !!}
+                                         {!! Form::password('password', array('class'=>'form-control '.$error_class,'required'=>'required','placeholder'=>trans('cpanel.enter_password'), 'id' => 'exampleInputPassword2')) !!}
 
                                     </div>
                                     <a href="#" class="forgetpass"> {{ trans('cpanel.forgot_password') }} </a>
@@ -222,10 +241,11 @@
                            </div>
                         </li>
                      </ul>
-                     <ul id="login-dp" class="dropdown-menu forget login-dp">
+                     <ul  class="dropdown-menu forget login-dp">
                         <li>
                            <div class="row">
                               <div class="col-md-12">
+                                  <button type="button" class="close">&times;</button>
                                  <p class="long-parag"> {{ trans('cpanel.forgot_password_msg') }}   </p>
 
 
@@ -253,9 +273,9 @@
                   <li class="dropdown">
                     <a href="#" class="lk-profile">
                       @if(user_auth()->image !='')
-                        <img src="{{ asset('public/uploads/user_img')}}/{{user_auth()->image}}" alt="account" class="img-acc">
+                        <img src="{{ asset('public/uploads/user_img')}}/{{user_auth()->image}}" alt="account" class="img-acc img-circle">
                       @else
-                        <img src="{{ asset('public/uploads')}}/avater.png" class="img-responsive"/>
+                        <img src="{{ asset('public/uploads')}}/avater.png" class="img-acc img-circle"/>
                       @endif
                     </a>
                      <a href="#" class="dropdown-toggle prof-name" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">

@@ -1,11 +1,10 @@
 
 @extends(FEI.'.master')
 @section('content')
-<div class="container-fluid">
-<div class="row">
-<img src="{{ URL::to('public/assets/Frontend/img/Add%20Case%20Image.png') }}" alt="addcase" class="img-responsive">    
-</div>        
-</div>    
+
+<div class="addcase-img">
+<p>اضف قضيتك </p>
+</div>
 
 
 
@@ -19,9 +18,9 @@
 
 <div class="col-md-4 maa">
 
-<div class="casere-servation">    
+<div class="casere-servation">
 
-<div class="form-group inp1"> 
+<div class="form-group inp1">
 <label> نوع القضية </label>
 <select name="type">
 <option value="0">أختار نوع قضيتك</option>
@@ -29,10 +28,10 @@
 <option value="زوجية">زوجية </option>
 <option value="أسرية "> أسرية  </option>
 </select>
-</div> 
+</div>
 
 
-<div class="form-group inp2"> 
+<div class="form-group inp2">
 <label> البلد والمدينة </label>
 <select class="sl-cou" name="country" id="country">
 <option value="0">   اختار البلد </option>
@@ -46,21 +45,21 @@
 <option value="">القاهرة  </option>
 <option value="">الجيزة  </option>
 <option value=""> اسكندرية  </option>
-</select>  
-</div>    
+</select>
+</div>
 
 
-<div class="form-group inp3"> 
-<label> تاريخ الانتهاء </label>    
-<input type="date" placeholder="اختار التاريخ" name="finished_date">      
-</div> 
+<div class="form-group inp3">
+<label> تاريخ الانتهاء </label>
+<input type="date" placeholder="اختار التاريخ" name="finished_date">
+</div>
 
 
-<button type="submit"> اضف قضيتك </button>   
+<button type="submit"> اضف قضيتك </button>
 
-</div>    
+</div>
 
-</div>    
+</div>
 
 
 <div class="col-md-8 maa">
@@ -73,9 +72,9 @@
 
 <div class="casedetails">
 
-<div class="form-group inp-addcase"> 
+<div class="form-group inp-addcase">
 <label> عنوان القضية </label>
-<input name="title" type="text" class="form-control" placeholder="أضف عنوان لقضيتك"> 
+<input name="title" type="text" class="form-control" placeholder="أضف عنوان لقضيتك">
 @if ($errors->has('title'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('title') }}</strong>
@@ -83,23 +82,23 @@
                                 @endif
 
 
-</div>   
+</div>
 
-<div class="form-group inp-details">     
-<label>التفاصيل </label>  
-<textarea  name ="description" rows="11" cols="93" placeholder="أضف تفاصيل قضيتك "></textarea>    
-</div> 
-
-
-
-</div>    
-</div> 
-</form>   
+<div class="form-group inp-details">
+<label>التفاصيل </label>
+<textarea  name ="description" rows="11" cols="93" placeholder="أضف تفاصيل قضيتك "></textarea>
+</div>
 
 
-</div> 
-<hr>    
-   
-</div> 
-</section>  
+
+</div>
+</div>
+</form>
+
+
+</div>
+<hr>
+
+</div>
+</section>
 @stop
