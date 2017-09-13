@@ -18,37 +18,35 @@ class CasesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($locale='ar')
     {
 
+      App::setLocale($locale);
+      $locale = App::getLocale();
 /*sections*/
-        $sess_locale= session('sess_locale');
+      //  $sess_locale= session('sess_locale');
       $all_sections = DB::table('sections')
           ->select($locale.'_name','id')
           ->orderBy('id')->get();
-          $first_section_id=0;
-          $countries=array();
-          foreach ($all_sections as $section) {
-            if($first_section_id <= 0){
-              $first_section_id=$section->id;
-            }
 
-            $sections[$section->id]=$section->id;
+          $sections=array();
+            $locale_name=$locale.'_name';
+          foreach ($all_sections as $section) {
+            $sections[$section->id]=$section->$locale_name;
           }
 /*sections*/
 
-        $sess_locale= session('sess_locale');
       $all_countries = DB::table('countries')
           ->select($locale.'_name','id')
           ->orderBy('id')->get();
+
           $first_country_id=0;
           $countries=array();
           foreach ($all_countries as $country) {
             if($first_country_id <= 0){
               $first_country_id=$country->id;
             }
-
-            $countries[$country->id]=$country->id;
+            $countries[$country->id]=$country->$locale_name;
           }
           $states=array();
           $all_states = DB::table('cities')
@@ -56,7 +54,7 @@ class CasesController extends Controller
          ->where('country_id', '=', $first_country_id)
           ->get();
           foreach ($all_states as $state) {
-            $states[$state->id]=$state->id;
+            $states[$state->id]=$state->$locale_name;
           }
  //$specialty  = User::GetAdminSpecialty();
  $sess_user_id= session('user_id');
@@ -116,9 +114,7 @@ public function create_case (Request $request)
             $add->id                       =uniqid('',true);
             $add->title                    = $request->input('title');
             $add->description              = $request->input('description');
-
             $add->section_id               = $request->input('section_id');
-            $add->country                  = $request->input('country');
             $add->city                     = $request->input('city');
             $add->finished_date            = $request->input('finished_date');
             $add->user_id                  = $sess_user_id;
@@ -173,7 +169,7 @@ public function create_case (Request $request)
             if($first_country_id <= 0){
               $first_country_id=$country->id;
             }
-          
+
             $countries[$country->id]=$country->id;
           }
           $states=array();
@@ -273,7 +269,7 @@ public function create_case (Request $request)
       public function AllCases($locale='ar'){
               App::setLocale($locale);
               $locale = App::getLocale();
-              $sess_locale= session('sess_locale');
+          //    $sess_locale= session('sess_locale');
 
               $per_page = 20;
               $all_cases =  DB::table('cases')
@@ -286,7 +282,7 @@ public function create_case (Request $request)
 
 
                 /*sections*/
-        
+
           $all_sections = DB::table('sections')
           ->select($locale.'_name','id')
           ->orderBy('id')->get();
@@ -295,30 +291,29 @@ public function create_case (Request $request)
           $first_section_id=0;
           $sections=array();
           $locale_name=$locale.'_name';
-         
+
           foreach ($all_sections as $section) {
             if($first_section_id <= 0){
               $first_section_id=$section->id;
             }
-            
+
             $sections[$section->id]=$section->$locale_name;
           }
 /*sections*/
 
        //$specialty = User::GetAdminSpecialty();
-        
+
        $all_countries = DB::table('countries')
           ->select($locale.'_name','id')
           ->orderBy('id')->get();
           $first_country_id=0;
           $countries=array();
-                    $locale_name=$locale.'_name';
 
+          $locale_name=$locale.'_name';
           foreach ($all_countries as $country) {
             if($first_country_id <= 0){
               $first_country_id=$country->id;
             }
-
             $countries[$country->id]=$country->$locale_name;
           }
 /*echo "<pre>";
@@ -342,7 +337,7 @@ return; */
 
         $sess_user_id= session('user_id');
         $per_page = 10;
-  
+
 
       $your_case =  DB::table('cases')
                 ->where('status', '=', '1')
@@ -361,7 +356,7 @@ return; */
       print_r($cases);
       echo "</pre>";
       return;*/
-    
+
 
 
 
@@ -473,26 +468,26 @@ $all_case_bids=array();
       }
 
       //return response()->json(['types' => $request->types , 'countries' => $request->countries]);
-        
+
       if($cases){
         return response()->json(['code' => 200 , 'msg' => "success" , "data" => $cases]);
       }else{
         return response()->json(['code' => 404 , 'msg' => "not found" ]);
       }
-      
+
 
 
     }*/
 
 
    public function filtering(Request $request){
-    print_r($request->all());return ;
+    // print_r($request->all());return ;
         $locale = App::getLocale();
 
       $caseModel = DB::table('cases');
       if($request->sections){
         $caseModel->whereIn('section_id', (array)$request->sections);
-      } 
+      }
       if($request->status){
         $caseModel->whereIn('status', (array)$request->status);
       }
@@ -516,26 +511,30 @@ $all_case_bids=array();
       })->join('countries', function ($join) {
         $join->on('cities.country_id', '=', 'countries.id');
       })->join('sections', function ($join) {$join->on('cases.section_id', '=', 'sections.id');
-    })->select('cases.*', 'countries.'.$locale.'_name as CountryName', 'cities.'.$locale.'_name as Cityname', 'sections.'.$locale.'_name as SectionName')->whereIn('countries.id', $c_array)->get();
-          
-      }
- 
+    })->select('cases.*', 'countries.'.$locale.'_name as CountryName', 'cities.'.$locale.'_name as Cityname', 'sections.'.$locale.'_name as SectionName')
+    ->whereIn('countries.id', $c_array)->get();
+
+  }else{
+    $cases = $caseModel ->join('cities', function ($join) {
+      $join->on('cases.city', '=', 'cities.id');
+    })->join('countries', function ($join) {
+      $join->on('cities.country_id', '=', 'countries.id');
+    })->join('sections', function ($join) {$join->on('cases.section_id', '=', 'sections.id');
+  })->select('cases.*', 'countries.'.$locale.'_name as CountryName', 'cities.'.$locale.'_name as Cityname', 'sections.'.$locale.'_name as SectionName')
+  ->get();
+  }
 
 
-if(empty($request->all())){
-      $cases = $caseModel ->join('cities', function ($join) {
-        $join->on('cases.city', '=', 'cities.id');
-      })->join('countries', function ($join) {
-        $join->on('cities.country_id', '=', 'countries.id');
-      })->join('sections', function ($join) {$join->on('cases.section_id', '=', 'sections.id');
-    })->select('cases.*', 'countries.'.$locale.'_name as CountryName', 'cities.'.$locale.'_name as Cityname', 'sections.'.$locale.'_name as SectionName')->get();
-}
+
+// if(empty($request->all())){
+
+// }
 
       if($cases){
         return response()->json(['code' => 200 , 'msg' => "success" , "data" => $cases]);
       }else{
         return response()->json(['code' => 404 , 'msg' => "not found" ]);
       }
-      
+
     }
 }

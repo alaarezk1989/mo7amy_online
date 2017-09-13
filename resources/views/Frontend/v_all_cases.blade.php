@@ -7,15 +7,9 @@ $locale = App::getLocale();
 <!--*******************************************************************-->
 
 
-
-<div class="container-fluid ">
-<div class="row">
-<img src="{{ URL::to('public/assets/Frontend/img/Cases%20Page%20Image.png') }}" class="img-responsive">      
-</div>        
-</div>    
-
-
-
+<div class="cases-img">
+<p> القضايا المعروضة </p>
+</div>
 
 <!--***********************************************************************-->
 
@@ -49,10 +43,9 @@ $locale = App::getLocale();
 
 
 <input type='hidden' id='current_page' />
-<input type='hidden' id='show_per_page' />      
+<input type='hidden' id='show_per_page' />
 
 <div id='content' >
-    
 
 
 
@@ -60,10 +53,11 @@ $locale = App::getLocale();
 
 
 
-</div>      
-</div>    
 
-<!--***********************************************-->    
+</div>
+</div>
+
+<!--***********************************************-->
 
 
 
@@ -73,45 +67,45 @@ $locale = App::getLocale();
 <form method="get" action="{{url('/cases/filtering')}}">
 
 <div class="forsearch">
-<label> البحث </label>    
-<input type="search" class="form-control" placeholder="ابحث عن ">  
-<button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>    
-</div>    
+<label> البحث </label>
+<input type="search" class="form-control" placeholder="ابحث عن ">
+<button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
+</div>
 
 <div id="filters2" class="dep">
 <div class="filterblock2" id="all_sections">
-<label> الاقسام </label>  
-<input type="checkbox" id="filter" class="AllSections filter sections" >  الكل <br>  
+<label> الاقسام </label>
+<input type="checkbox" id="filter" class="AllSections filter sections" >  الكل <br>
   <?php
          foreach($sections as $key => $value){?>
-               <input id="filter" class="filter sections"  type="checkbox"  value="{{$key}}" data-tag="{{$value}}"  /> {{$value}} <br> 
+               <input id="filter" class="filter sections"  type="checkbox"  value="{{$key}}" data-tag="{{$value}}"  /> {{$value}} <br>
             <?php }?>
 </div>
 </div>
 
 <div  id="filters2" class="count">
 <div class="filterblock2" id="all_countries">
-<label> الدول </label> 
-                <input type="checkbox" id="filter" class="AllCountries filter countries" >  الكل <br>    
+<label> الدول </label>
+                <input type="checkbox" id="filter" class="AllCountries filter countries" >  الكل <br>
   <?php
          foreach($countries as $key => $value){?>
-               <input  type="checkbox" id="filter" class="filter countries"  value="{{$key}}" data-tag="{{$value}}"  /> {{$value}} <br> 
+               <input  type="checkbox" id="filter" class="filter countries"  value="{{$key}}" data-tag="{{$value}}"  /> {{$value}} <br>
             <?php }?>
-</div>  
-</div>  
+</div>
+</div>
 
 
 <div class="case" id="all_status">
-<label> الحالة </label>    
+<label> الحالة </label>
 <input   type="checkbox" id="filter" class="AllStatus filter status">  الكل <br>
 <input id="filter" class="filter status" type="checkbox"  value="1"> المتاح   <br>
 <input id="filter" class="filter status" type="checkbox"  value="0" > المنتهى    <br>
 <!--<input id="filter" class="filter status" type="checkbox" name="" value="" > تحت التنفيذ    <br>
-!--></div>   
+!--></div>
 
 
 <div class="timee">
-<label> المدة الزمنية </label>    
+<label> المدة الزمنية </label>
 <input type="checkbox" name="" value="">  الكل <br>
 <input id="filter" class="filter created_date" type="checkbox"  value=""> اخر 6 ساعات <br>
 <input id="filter" class="filter created_date" type="checkbox"  value="" > اخر 12 ساعة  <br>
@@ -119,41 +113,41 @@ $locale = App::getLocale();
 <input id="filter" class="filter created_date" type="checkbox"  value="" > اخر 7 اسبوع  <br>
 <input id="filter" class="filter created_date" type="checkbox"  value="" > اخر شهر  <br>
 
-</div>       
+</div>
 
 
-</form>   
-</div> 
-</div>   
+</form>
+</div>
+</div>
 
 
 
-</div>    
-</div>    
+</div>
+</div>
 </section>
 
-<div id='page_navigation'></div>    
+<div id='page_navigation'></div>
 
 
 
 
-<!--*******************************************--> 
+<!--*******************************************-->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
       <script >
-      
-      
+
+
       </script>
 
 
       <script>
-      
+
             var sections = [];
             var countries = [];
             var filters = [] ;
             var Case_status = [] ;
             var created_date = [] ;
             var html = '' ;
-            //  Call the ajax request 
+            //  Call the ajax request
             getData();
 
             // Select all
@@ -162,13 +156,13 @@ $locale = App::getLocale();
 
 
           $(document).ready(function(){
-            
+
           // $('.loader').hide();
             $('.filter').on('change', function(){
                // $('.loader').show();
               var category_list = [];
               $('body #filter').each(function(){
-                
+
                 if($(this).is(":checked")) {
 
                     if($(this).hasClass( "countries" )){
@@ -176,9 +170,9 @@ $locale = App::getLocale();
                             countries.push($(this).val());
                             countries = $.unique(countries);
                         }
-                        
+
                     }
-                    
+
                     if($(this).hasClass( "sections" )){
                         if($(this).val()){
                             sections.push($(this).val());
@@ -201,14 +195,14 @@ $locale = App::getLocale();
                         }
                     }
                 }
-               
+
               });
 
             filters = {'countries':countries,'sections':sections , 'status':Case_status, 'created_date':created_date} ;
 
-            //  Call the ajax request 
+            //  Call the ajax request
             getData();
-            
+
 
                  html = '' ;
                  sections = [];
@@ -228,16 +222,16 @@ $locale = App::getLocale();
                   else
                     $(this).hide();
                 });
-              }   
+              }
             });
-          }); 
+          });
 
 
           function getData(){
 
             $.ajax({
               type: "GET",
-              url: "http://localhost/mo7amy_online/ar/cases/filtering",
+              url: "{!! lang_url('cases/filtering') !!}",
               data: filters,
               success: function(data){
                 $.each(data.data,function(k,v){
@@ -263,11 +257,11 @@ $locale = App::getLocale();
 
 
                 });
-            
+
                 $('#content').html(html);
               // $('.loader').hide();
                 //
-                 
+
               }
             });
 
@@ -332,8 +326,8 @@ $locale = App::getLocale();
                     });
                 }
             });
-            
+
           }
         </script>
-        
+
     @stop
