@@ -5,7 +5,7 @@ use Carbon\Carbon;
 $locale = App::getLocale();
 ?>
 <div class="cases-img">
- <p> The Search results for your query <b> {{ $query }} </b> are :</p>
+ <p>  <b> {{ $query }} </b> نتيجة بحثك تكون</p>
 </div>
 
 <section class="offers">
