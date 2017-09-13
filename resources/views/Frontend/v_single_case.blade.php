@@ -23,7 +23,7 @@ $locale = App::getLocale();
                        ?></div>
             </div>
             <div style="margin-top:5px">
-               <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> </div>
+               <div class="location"><i class="fa fa-map-marker" aria-hidden="true">{{$case->country_name}} - {{$case->city_name}} </i> </div>
                <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i>
                         <?php
                             Carbon::setLocale($locale);
@@ -110,7 +110,7 @@ $locale = App::getLocale();
 <!--***********************************************************************-->
 
 @if(auth()->user())
-@if(user_auth()->permissions=='client')
+@if(user_auth()->permissions=='client' and $sess_user_id= session('user_id') == $case->user_id)
 
 <div class="container-fluid head-off">
    <div class="row">
