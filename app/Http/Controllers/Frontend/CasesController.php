@@ -332,7 +332,11 @@ return; */
         ];
           return view(FE . '/v_all_cases')->with($data);
       }
-      public function your_cases(){
+
+/*
+
+*/
+  public function your_cases(){
 
         $locale = App::getLocale();
 
@@ -343,23 +347,17 @@ return; */
       $your_case =  DB::table('cases')
                 ->where('status', '=', '1')
                 ->where('user_id', '=', $sess_user_id)
-                ->join('countries', 'countries.id', '=', 'cases.country')
                 ->join('cities', 'cities.id', '=', 'cases.city')
+                ->join('countries', 'countries.id', '=', 'cities.country_id')
                 ->join('sections', 'sections.id', '=', 'cases.section_id')
 ->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','sections.'.$locale.'_name as sectionName')
                 ->orderBy('created_at', 'desc')
                 ->paginate($per_page);
-
-
-
-
-      /* echo "<pre>";
-      print_r($cases);
+/*
+       echo "<pre>";
+      print_r($your_case);
       echo "</pre>";
       return;*/
-
-
-
 
         $data = [
             'title'=>trans('cpanel.site_name'),
@@ -369,6 +367,8 @@ return; */
         ];
           return view(FE . '/v_your_case')->with($data);
       }
+
+
    public function SingleCase($locale='ar',$id){
     $locale = App::getLocale();
 
