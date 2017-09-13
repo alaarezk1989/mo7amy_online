@@ -159,7 +159,7 @@ $locale = App::getLocale();
       <div class="row">
       @foreach($lawyers as $law)
          <div class="col-lg-2 col-md-4 col-sm-6 cons">
-            <a href="profile-case.html" class="img1"> <img src="{{ URL::to('public/assets/Frontend/img/2.png') }}" class="img-responsive">  <span class="name">{{$law->name}} <span class="title">{{$law->career}} </span></span> </a>
+            <a href="{{lang_url('lawyer').'/'.$law->id}}" class="img1"> <img src="{{ URL::to('public/assets/Frontend/img/2.png') }}" class="img-responsive">  <span class="name">{{$law->name}} <span class="title">{{$law->career}} </span></span> </a>
          </div>
          @endforeach
       </div>
