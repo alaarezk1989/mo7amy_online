@@ -1,5 +1,5 @@
 <ul class="nav navbar-nav navbar-right main-ul">
-  <li class="active"><a href="index-ar.html">الرئيسية</a></li>
+  <li class="active"><a href="{{url($locale)}}">الرئيسية</a></li>
  <li><a href="{{lang_url('cases')}}">القضايا</a></li>
 
   <li><a href="{{lang_url('lawyers')}}">المستشارين</a></li>
