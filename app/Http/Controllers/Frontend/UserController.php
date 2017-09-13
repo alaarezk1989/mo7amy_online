@@ -307,6 +307,8 @@ class UserController extends Controller
     }
 
 
+
+
     /**
      * Ckeck if this user already exist in database or not.
     */
