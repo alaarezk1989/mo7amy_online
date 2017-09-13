@@ -274,7 +274,7 @@ class UserController extends Controller
                   if ($request->file('profile_picture')->move($path, $file_name)) {
                       $img = $date_path.$file_name;
                       $edit->image                   = $img;
-                      
+
 
                   }
               } else {
@@ -568,38 +568,59 @@ class UserController extends Controller
 
 public function lawyer($locale='ar',$id){
 
-  App::setLocale($locale);
+    App::setLocale($locale);
       $locale = App::getLocale();
-        $user_specialty = DB::table('user_specialty')
-        ->where('user_id', '=', $id)
-        ->orderBy('id')->get();
 
+        // $user_specialty = DB::table('user_specialty')
+        // ->where('user_id', '=', $id)
+        // ->orderBy('id')->get();
+
+        $user_specialty = DB::table('user_specialty')
+          ->join('sections', 'sections.id', '=', 'user_specialty.specialty')
+          ->select('sections.'.$locale.'_name as s_name')
+          ->where('user_specialty.user_id','=',$id)
+          ->get();
+
+//         print_r($user_specialty);
+// // pr($id);
+// return;
         $lawyer_data = User::findOrFail($id);
 
         $countLawyersCases = DB::table('bids')
             ->where('bids.user_id','=',$id)
             ->count();
 
-
         $lawyerCases = DB::table('cases')
-
             ->join('cities', 'cities.id', '=', 'cases.city')
-             ->join('countries', 'countries.id', '=', 'cities.country_id')
+            ->join('countries', 'countries.id', '=', 'cities.country_id')
+            ->join('sections', 'sections.id', '=', 'cases.section_id')
             ->Leftjoin('bids','bids.case_id','=','cases.id')
             ->where('bids.user_id','=',$id)
-            ->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','bids.bids_val as bidValue')
+            ->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','bids.bids_val as bidValue','sections.'.$locale.'_name as sectionName')
             ->orderBy ('cases.created_at','desc')
             ->get();
 
+            $country_data=DB::table('users')
+             ->join('cities', 'cities.id', '=', 'users.city')
+             ->join('countries', 'countries.id', '=', 'cities.country_id')
+             ->select('countries.*')
+              ->where('users.id', '=', $id)
+             ->first();
+        $country_id=$country_data->id;
 
 
-
-
-        $country_id=$lawyer_data->country;
-        $user_country = Countries::findOrFail($country_id);
+        $user_country=DB::table('countries')
+         ->select($locale.'_name as name')
+          ->where('id', '=', $country_id)
+         ->first();
+      //  $user_country = Countries::findOrFail($country_id);
 
         $city_id=$lawyer_data->city;
-        $user_city = Cities::findOrFail($city_id);
+        // $user_city = Cities::findOrFail($city_id);
+        $user_city=DB::table('cities')
+         ->select($locale.'_name as name')
+          ->where('id', '=', $city_id)
+         ->first();
 
         $birthdate= $lawyer_data->birthdate;
         $birthdate= strtotime($lawyer_data->birthdate);

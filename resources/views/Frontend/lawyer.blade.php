@@ -10,25 +10,26 @@ $locale = App::getLocale();
      <div class="container-fluid">
         <div class="row">
            <div class="cover-container">
-              <img src="{{ asset('public/assets/'.FE .'/img/Lawyer%20Profile%20Page%20Image%201.png')}}" alt="cover" class="parent-img">
+              <img src="{{ asset('public/assets/'.FE .'/img/Lawyer-Profile-Page-Image-1.jpg')}}" alt="cover" class="parent-img margin-top">
            </div>
            <div class="top-container">
              @if($user_data->image !='')
-               <img src="{{ asset('public/uploads/user_img')}}/{{$user_data->image}}" alt="{{$user_data->name}}" class="child-img" />
+               <img src="{{ asset('public/uploads/user_img')}}/{{$user_data->image}}" alt="{{$user_data->name}}" class="child-img img-circle"" />
              @else
-               <img src="{{ asset('public/uploads')}}/avater.png" alt="profile" class="child-img"/>
+               <img src="{{ asset('public/uploads')}}/avater.png" alt="profile" class="child-img img-circle""/>
              @endif
 
-              <div class="profile-container">
+              {{-- <div class="profile-container">
                  <form id="form-profile">
                     <label tabindex="0" for="my-file" class="input-file-trigger label2">
                       <i class="fa fa-camera" aria-hidden="true"></i></label>
                     <input class="input-file" id="my-file" type="file">
                  </form>
-              </div>
+              </div> --}}
            </div>
         </div>
      </div>
+
      <div class="container">
         <div class="row">
            <div class="col-md-4">
@@ -50,22 +51,12 @@ $locale = App::getLocale();
                  <h2>{{$user_data->name}}  </h2>
                  <p>{{$user_data->career}}</p>
                  <span>
-                   <!--  {{trans('cpanel.type_of_specialization')}} :
-                    @php
-                    $i=1;
-                      foreach ($user_specialty as $row_specialty){
-                      echo trans('cpanel.'.$row_specialty->sections_specialty);
-                      if($i < count($user_specialty)){
-                        echo ' - ';
-                      }
-                      $i++;
-                    }
-                    @endphp -->
+
                   {{trans('cpanel.type_of_specialization')}} :
                     @php
                     $i=1;
                       foreach ($user_specialty as $row_specialty){
-                      echo trans($row_specialty->sections_specialty);
+                      echo $row_specialty->s_name;
                       if($i < count($user_specialty)){
                         echo ' - ';
                       }
@@ -73,12 +64,12 @@ $locale = App::getLocale();
                     }
 @endphp
                     </span>
-                 <ul class="list-unstyled prof-social">
+                 {{-- <ul class="list-unstyled prof-social">
                     <li> <a herf="">  <i class="fa fa-facebook"></i>  </a>  </li>
                     <li> <a herf="">  <i class="fa fa-twitter"></i>  </a>  </li>
                     <li> <a herf="">  <i class="fa fa-linkedin"></i>  </a>  </li>
                     <li> <a herf="">  <i class="fa fa-google-plus"></i> </a>  </li>
-                 </ul>
+                 </ul> --}}
                  <div class="about-lawyer">
 
                     <h4>{{trans('cpanel.about_lawyer')}} </h4>
@@ -92,11 +83,10 @@ $locale = App::getLocale();
      </div>
   </section>
   <!--*************************************************************************-->
-  <div class="container-fluid head-off">
-     <div class="row">
-        <img src="img/Client%20Cases%20Page%20Image.png" class="img-responsive">
-     </div>
+  <div class="clientcase-img">
+  <p> القضايا  المرفوعة  </p>
   </div>
+      
   <section class="offers">
      <div class="container">
         <div class="row">
@@ -129,7 +119,7 @@ $locale = App::getLocale();
                  <p> {{$lawyerCase->description}}  </p>
                  <div>
                     <div class="casetype"> نوع القضية : <span>{{$lawyerCase->sectionName}}</span></div>
-                     <div class="status"> الحالة : 
+                     <div class="status"> الحالة :
 
                      <?php
                          if($lawyerCase->status ==1) echo '<span> متاح</span>';
@@ -145,7 +135,7 @@ $locale = App::getLocale();
                             $current = Carbon::now();
                             $old = Carbon::parse($lawyerCase->created_at);
                             echo $old->diffForHumans($current);
- 
+
                         ?> </div>
                     <div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span></span> <?php
                             Carbon::setLocale($locale);

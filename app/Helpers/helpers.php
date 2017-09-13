@@ -18,6 +18,7 @@ if (!function_exists('lang_url')) {
 }
 
 
+
 if (!function_exists('get_countries_cities')) {
     function get_countries_cities()
     {
@@ -48,11 +49,20 @@ if (!function_exists('get_countries_cities')) {
         $states[$state->id]=$state->$locale_name;
       }
 
-      
+
         $data=[
           'countries'=>$countries,
           'states'=>$states,
       ];
       return $data;
+    }
+}
+
+if (!function_exists('pr')) {
+    function pr($data)
+    {
+      echo "<pre>\n";
+          print_r($data, true);
+      echo "</pre>\n";
     }
 }

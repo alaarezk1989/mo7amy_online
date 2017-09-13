@@ -2,11 +2,10 @@
 @section('content')
 
       <!--*******************************************************************-->
-      <div class="container-fluid ">
-         <div class="row">
-            <img src="{{ asset('public/assets/'.FE .'/img/Lawyers%20Page%20Image.png')}}" class="img-responsive">
-         </div>
+      <div class="lawyers-img">
+      <p>  قائمة المستشارين </p>
       </div>
+
       <!--***********************************************************************-->
       <section class="lawyers">
          <div class="container">
@@ -37,7 +36,7 @@
                   <input type='hidden' id='show_per_page' />
 
                   <div id='content'>
-                 
+
 
                   </div>
                </div>
@@ -52,24 +51,24 @@
                         </div>
                       <div id="filters" class="dep">
                          <div class="filterblock" id="all_sections">
-                             <label> الاقسام </label>  
-                                  <input type="checkbox" id="filter" class="AllSections filter sections" >  الكل <br>  
+                             <label> الاقسام </label>
+                                  <input type="checkbox" id="filter" class="AllSections filter sections" >  الكل <br>
                                      <?php
                                          foreach($sections as $key => $value){?>
-                                                <input id="filter" class="filter sections"  type="checkbox"  value="{{$key}}" data-tag="{{$value}}"  /> {{$value}} <br> 
+                                                <input id="filter" class="filter sections"  type="checkbox"  value="{{$key}}" data-tag="{{$value}}"  /> {{$value}} <br>
                                     <?php }?>
                         </div>
                        </div>
                     <div  id="filters2" class="count">
 <div class="filterblock2" id="all_countries">
-<label> الدول </label> 
-                <input type="checkbox" id="filter" class="AllCountries filter countries" >  الكل <br>    
+<label> الدول </label>
+                <input type="checkbox" id="filter" class="AllCountries filter countries" >  الكل <br>
   <?php
          foreach($countries as $key => $value){?>
-               <input  type="checkbox" id="filter" class="filter countries"  value="{{$key}}" data-tag="{{$value}}"  /> {{$value}} <br> 
+               <input  type="checkbox" id="filter" class="filter countries"  value="{{$key}}" data-tag="{{$value}}"  /> {{$value}} <br>
             <?php }?>
-</div>  
-</div>  
+</div>
+</div>
                      </form>
                   </div>
                </div>
@@ -84,12 +83,12 @@
 
 
       <script>
-      
-            var sections = []; 
+
+            var sections = [];
             var countries = [];
             var filters = [] ;
             var html = '' ;
-            //  Call the ajax request 
+            //  Call the ajax request
             getData();
 
             // Select all
@@ -98,17 +97,17 @@
 
 
           $(document).ready(function(){
-            
+
           // $('.loader').hide();
             $('.filter').on('change', function(){
                // $('.loader').show();
               var category_list = [];
               $('body #filter').each(function(){
-                
+
                 if($(this).is(":checked")) {
 
-                
-                    
+
+
                     if($(this).hasClass( "sections" )){
                         if($(this).val()){
                             sections.push($(this).val());
@@ -121,19 +120,19 @@
                             countries.push($(this).val());
                             countries = $.unique(countries);
                         }
-                        
+
                     }
-                    
-                 
+
+
                 }
-               
+
               });
 
             filters = {'sections':sections,'countries':countries,} ;
 
-            //  Call the ajax request 
+            //  Call the ajax request
             getData();
-            
+
 
                  html = '' ;
                  sections = [];
@@ -151,20 +150,20 @@
                   else
                     $(this).hide();
                 });
-              }   
+              }
             });
-          }); 
+          });
 
 
           function getData(){
 
             $.ajax({
               type: "GET",
-              url: "http://localhost/mo7amy_online/ar/lawyers/filtering",
+              url: "{{lang_url('lawyers/filtering')}}",
               data: filters,
               success: function(data){
                 $.each(data.data,function(k,v){
-                  
+
                     html += '<div class="col-md-3 col-xs-6 text-center">'
                     html += '<a href="<?= lang_url('lawyer').'/' ; ?>'+v.id+'">';
                     html += '<div class="pro">';
@@ -176,11 +175,11 @@
                      html += '</a>';
                     html += '</div>';
        });
-            
+
                 $('#content').html(html);
               // $('.loader').hide();
                 //
-                 
+
               }
             });
 
@@ -233,10 +232,10 @@
 
 
 
-            
+
           }
         </script>
-        
+
 
 
 
