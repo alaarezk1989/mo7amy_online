@@ -587,7 +587,7 @@ return;*/
     return view(FE . '/v_all_cases2')->withDetails($Cases)->withQuery($q);
     }
   else{
-    return view(FE . '/v_all_cases2')->withMessage('No Details found. Try to search again !')->withQuery($q);
+    return view(FE . '/v_all_cases2')->withMessage('لا يوجد نتيجة لبحثك من فضلك حاول مرة اخرى')->withQuery($q);
     }
 }
 

@@ -5,7 +5,7 @@ use Carbon\Carbon;
 $locale = App::getLocale();
 ?>
 <div class="cases-img">
- <p>  <b> {{ $query }} </b> نتيجة بحثك تكون</p>
+ <p>   نتيجة بحثك تكون <b> {{ $query }} </b></p>
 </div>
 
 <section class="offers">
@@ -73,7 +73,7 @@ $locale = App::getLocale();
 </a>
 <a href="{{lang_url('delete-case').'/'.$value->id}} "onclick="return confirm('Are you sure you want to delete this item?');" >
 <button class="delt">مسح</button></a>
-</div>  
+</div> 
 </div> 
 </div>
 @endforeach 
