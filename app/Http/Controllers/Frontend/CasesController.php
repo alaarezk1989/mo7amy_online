@@ -491,9 +491,13 @@ $all_case_bids=array();
 
       $cases = $caseModel->join('countries', function ($join) {
         $join->on('cases.country', '=', 'countries.id');
+
       })->join('cities', function ($join) {
         $join->on('cases.city', '=', 'cities.id');
-      })->join('sections', function ($join) {$join->on('cases.section_id', '=', 'sections.id');
+
+      })->join('sections', function ($join) {
+        $join->on('cases.section_id', '=', 'sections.id');
+        
     })->select('cases.*', 'countries.name as CountryName', 'cities.name as Cityname', 'sections.name as SectionName')->get();
 
 

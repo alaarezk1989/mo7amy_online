@@ -145,7 +145,7 @@ $(function() {
 </script>
 
 
-<script>
+<script>/*
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '{your-app-id}',
@@ -167,7 +167,7 @@ $(function() {
 
 FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
-});
+});*/
 </script>
 
 </body>
