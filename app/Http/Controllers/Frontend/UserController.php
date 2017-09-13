@@ -555,6 +555,8 @@ class UserController extends Controller
 
 public function lawyer($locale='ar',$id){
 
+  App::setLocale($locale);
+      $locale = App::getLocale();
         $user_specialty = DB::table('user_specialty')
         ->where('user_id', '=', $id)
         ->orderBy('id')->get();
@@ -567,11 +569,12 @@ public function lawyer($locale='ar',$id){
 
 
         $lawyerCases = DB::table('cases')
-            ->join('countries', 'countries.id', '=', 'cases.country')
+           
             ->join('cities', 'cities.id', '=', 'cases.city')
+             ->join('countries', 'countries.id', '=', 'cities.country_id')
             ->Leftjoin('bids','bids.case_id','=','cases.id')
             ->where('bids.user_id','=',$id)
-            ->select('cases.*','countries.'.$sess_locale.'_name as name1','cities.'.$sess_locale.'_name as name2','bids.bids_val as bidValue')
+            ->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','bids.bids_val as bidValue')
             ->orderBy ('cases.created_at','desc')
             ->get();
 
