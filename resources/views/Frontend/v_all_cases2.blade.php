@@ -65,15 +65,7 @@ $locale = App::getLocale();
                            echo $old->diffForHumans($current);
                            ?></div>    
 <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div> 
-<div class="imp-button">
-  
-
-<a href="{{lang_url('edit-case').'/'.$value->id}}">
-<button class="edit">تعديل</button>
-</a>
-<a href="{{lang_url('delete-case').'/'.$value->id}} "onclick="return confirm('Are you sure you want to delete this item?');" >
-<button class="delt">مسح</button></a>
-</div> 
+ 
 </div> 
 </div>
 @endforeach 
