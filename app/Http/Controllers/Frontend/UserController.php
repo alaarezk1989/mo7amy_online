@@ -22,6 +22,7 @@ use Response;
 use Carbon\Carbon;
 use Session;
 use File;
+use Illuminate\Support\Facades\Input;
 
 
 class UserController extends Controller
@@ -651,4 +652,23 @@ foreach ($lawyerCases as $caser_row) {
 
           return view(FE.'.lawyer')->with($data);
       }
+
+
+public function search(Request $request,$locale='ar'){
+
+  
+    $q =Input::get('q');
+    $Users =  DB::table('users')
+           ->where('name','LIKE','%'.$q.'%')->orWhere('career','LIKE','%'.$q.'%')->get();
+
+  if(count($Users) > 0){
+    return view(FE . '/v_lawyer_search')->withDetails($Users)->withQuery($q);
+    }
+  else{
+    return view(FE . '/v_lawyer_search')->withMessage('لا يوجد نتيجة لبحثك من فضلك حاول مرة اخرى')->withQuery($q);
+    }
+}
+
+
+
 }

@@ -58,6 +58,7 @@ Route::group(['middlewareGroups' => ['web']], function() {
     // Agent Area
     Route::get('{locale?}/lawyers', FE . '\UserController@list_lawyers');
    Route::get('{locale?}/lawyers/filtering', FE . '\UserController@filtering');
+   Route::any('{locale?}/lawyers/search',FE.  '\UserController@search');
 
     Route::get('{locale?}/lawyer/{id}', FE . '\UserController@lawyer');
     Route::any('cities_country/{id?}', FE . '\CitiesController@cities_country');
