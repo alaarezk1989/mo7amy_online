@@ -171,9 +171,9 @@ $locale = App::getLocale();
                        <span> {{$user_bids->country_name}} , {{$user_bids->city_name}} </span>
                      </p>
                   </a>
-                   @if($sess_user_id= session('user_id') == $case->user_id) 
+                   @if($sess_user_id= session('user_id') == $case->user_id)
                   <div class="offers">سعر العرض:  $ {{$user_bids->bids_val}}  </div>
-                  <button onclick="" class="okk">قبلت عرضك </button>
+                  <button data-target="#confirmation" data-toggle="modal" class="okk">قبلت عرضك </button>
                   @else
                   <div class="offers">سعر العرض:  $ {{$user_bids->bids_val}}  </div>
                   @endif
