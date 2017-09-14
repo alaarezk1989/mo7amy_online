@@ -36,7 +36,7 @@ $locale = App::getLocale();
               <div class="lawyer-info">
                  <h4>معلومات عن المحامى </h4>
                  <ul class="list-unstyled ul-lawyer">
-                    <li> <i class="fa fa-map-marker" aria-hidden="true"></i>  {{$user_country->name}} , {{$user_city->name}}  </li>
+                    <li> <i class="fa fa-map-marker" aria-hidden="true"></i>  {{$user_country}} , {{$user_city}}  </li>
                     <li> <i class="fa fa-birthday-cake" aria-hidden="true"></i>  {{$birthdate_year}} {{trans('cpanel.year')}} </li>
 
                     <li> <i class="fa fa-phone" aria-hidden="true"></i> @if($show_lowyer_contact_flag) {{$user_data->phone}} @endif</li>

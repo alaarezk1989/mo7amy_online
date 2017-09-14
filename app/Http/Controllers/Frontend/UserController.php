@@ -582,31 +582,21 @@ public function lawyer($locale='ar',$id){
 
         $sess_user_id= session('user_id');
         $show_lowyer_contact_flag=0;
-        $lawyer_data = User::findOrFail($id);
+        //$lawyer_data = User::findOrFail($id);
+
+        $lawyer_data = DB::table('users')
+          ->join('cities', 'cities.id', '=', 'users.city')
+          ->join('countries', 'countries.id', '=', 'cities.country_id')
+          ->select('users.*','cities.'.$locale.'_name as city_name','countries.'.$locale.'_name as country_name')
+          ->where('users.id','=', $id)
+          ->first();
+
+// print_r($lawyer_data->birthdate);return;
         $user_specialty = DB::table('user_specialty')
           ->join('sections', 'sections.id', '=', 'user_specialty.specialty')
           ->select('sections.'.$locale.'_name as s_name')
           ->where('user_specialty.user_id','=',$id)
           ->get();
-
-          $country_data=DB::table('users')
-           ->join('cities', 'cities.id', '=', 'users.city')
-           ->join('countries', 'countries.id', '=', 'cities.country_id')
-           ->select('countries.*')
-            ->where('users.id', '=', $id)
-           ->first();
-        $country_id=$country_data->id;
-
-        $user_country=DB::table('countries')
-        ->select($locale.'_name as name')
-        ->where('id', '=', $country_id)
-        ->first();
-
-        $city_id=$lawyer_data->city;
-        $user_city=DB::table('cities')
-         ->select($locale.'_name as name')
-          ->where('id', '=', $city_id)
-         ->first();
 
          $birthdate= $lawyer_data->birthdate;
          $birthdate= strtotime($lawyer_data->birthdate);
@@ -641,8 +631,8 @@ foreach ($lawyerCases as $caser_row) {
             'page_title'=>trans('cpanel.edit_admin'),
             'user_data'=>$lawyer_data,
             'user_specialty'=>$user_specialty,
-            'user_country'=>$user_country,
-            'user_city'=>$user_city,
+            'user_country'=>$lawyer_data->country_name,
+            'user_city'=>$lawyer_data->city_name,
             'countLawyersCases'=>$countLawyersCases,
             'birthdate_year'=>$birthdate_year,
             'lawyerCases'=>$lawyerCases,
@@ -656,7 +646,7 @@ foreach ($lawyerCases as $caser_row) {
 
 public function search(Request $request,$locale='ar'){
 
-  
+
     $q =Input::get('q');
     $Users =  DB::table('users')
            ->where('name','LIKE','%'.$q.'%')->orWhere('career','LIKE','%'.$q.'%')->get();
