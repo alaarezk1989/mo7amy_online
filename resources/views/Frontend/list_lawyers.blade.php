@@ -43,12 +43,18 @@
                <!--***********************************************-->
                <div class="col-md-4">
                   <div class="sidebar2">
+
+<form method="get" role="search" action="{{lang_url('lawyers/search')}}">
+  {{ csrf_field() }}
+<div class="forsearch">
+<label> البحث </label>
+<input type="search" name="q" class="form-control" placeholder="ابحث عن ">
+<button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
+</div>
+</form>
+                    
                      <form method="get" action="{{url('lawyers/filtering')}}">
-                        <div class="forsearch">
-                           <label> البحث </label>
-                           <input type="search" class="form-control" placeholder="ابحث عن ">
-                           <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
-                        </div>
+                      
                       <div id="filters" class="dep">
                          <div class="filterblock" id="all_sections">
                              <label> الاقسام </label>

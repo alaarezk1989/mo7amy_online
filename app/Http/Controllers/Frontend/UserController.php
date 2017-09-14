@@ -22,6 +22,7 @@ use Response;
 use Carbon\Carbon;
 use Session;
 use File;
+use Illuminate\Support\Facades\Input;
 
 
 class UserController extends Controller
@@ -641,4 +642,10 @@ public function lawyer($locale='ar',$id){
 
           return view(FE.'.lawyer')->with($data);
       }
+
+
+
+
+
+
 }
