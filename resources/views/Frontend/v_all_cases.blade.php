@@ -254,6 +254,12 @@ $locale = App::getLocale();
                     }else{
                         v.status = "غير متاح" ;
                     }
+
+                    if(v.bidValue == null){
+                        v.bidValue = "0" ;
+                    }else{
+                        v.bidValue =  v.bidValue ;
+                    }
                     html += '<a href="<?= lang_url('case').'/' ; ?>'+v.id+'">';
                     html += '<div class="case-client border-bott">';
                     html += '<p>'+v.title+'</p>  ';
@@ -265,7 +271,7 @@ $locale = App::getLocale();
                     html += '<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> '+v.CountryName+' ,  '+v.Cityname+' </div>';
                     html += '<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> '+jQuery.format.prettyDate(v.created_at)+'</div>';
                     html += '<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>';
-                    html += '<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div>';
+                    html += '<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :'+v.bidValue+' $</div>';
                     html += '</div> </div>';
                     html += '</a>';
 

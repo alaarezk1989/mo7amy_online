@@ -565,7 +565,11 @@ return; */
       })->join('countries', function ($join) {
         $join->on('cities.country_id', '=', 'countries.id');
       })->join('sections', function ($join) {$join->on('cases.section_id', '=', 'sections.id');
-    })->select('cases.*', 'countries.'.$locale.'_name as CountryName', 'cities.'.$locale.'_name as Cityname', 'sections.'.$locale.'_name as SectionName')
+
+      })->leftJoin(\DB::raw('(SELECT * FROM bids A WHERE bids_val = (SELECT MAX(bids_val) AS bidValue FROM bids B WHERE A.case_id=B.case_id)) AS t2'), function($join) {
+               $join->on('cases.id', '=', 't2.case_id');
+
+    })->select('cases.*', 'countries.'.$locale.'_name as CountryName', 'cities.'.$locale.'_name as Cityname', 'sections.'.$locale.'_name as SectionName', 'bids_val as bidValue')
     ->whereIn('countries.id', $c_array)->get();
 
   }else{
@@ -574,7 +578,10 @@ return; */
     })->join('countries', function ($join) {
       $join->on('cities.country_id', '=', 'countries.id');
     })->join('sections', function ($join) {$join->on('cases.section_id', '=', 'sections.id');
-  })->select('cases.*', 'countries.'.$locale.'_name as CountryName', 'cities.'.$locale.'_name as Cityname', 'sections.'.$locale.'_name as SectionName')
+
+     })->leftJoin(\DB::raw('(SELECT * FROM bids A WHERE bids_val = (SELECT MAX(bids_val) AS bidValue FROM bids B WHERE A.case_id=B.case_id)) AS t2'), function($join) {
+               $join->on('cases.id', '=', 't2.case_id');
+  })->select('cases.*', 'countries.'.$locale.'_name as CountryName', 'cities.'.$locale.'_name as Cityname', 'sections.'.$locale.'_name as SectionName','bids_val as bidValue')
     // ->paginate(2);
   ->get();
   }
