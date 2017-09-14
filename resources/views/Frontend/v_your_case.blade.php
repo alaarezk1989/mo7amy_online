@@ -60,7 +60,9 @@ $locale = App::getLocale();
 
 @foreach($your_case as $value)
 <div class="case-client border-bott">
+<a href="{{lang_url('case').'/'.$value->id}}">
 <p> {{$value->title}}</p>
+</a>
 <div>   
 <div class="casetype"> نوع القضية : <span>{{$value->sectionName}}</span></div>    
 <div class="status"> الحالة :                    <?php
@@ -87,7 +89,6 @@ $locale = App::getLocale();
                             @if (empty($value->bidValue))
 <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :0 $</div> 
                             @else
-
 <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :{{$value->bidValue}} $</div> 
                             @endif
 
