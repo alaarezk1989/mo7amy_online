@@ -28,7 +28,7 @@
 @foreach($details as $value)
 
 <div class="col-md-3 col-xs-6 text-center">
-<a href="profile-case.html">    
+<a href="{{lang_url('lawyer').'/'.$value->id}}">    
 <div class="pro">    
 <img src="{{ asset('public/uploads')}}/avater.png" class="img-responsive">
 <h3> {{$value->name}}</h3>    
