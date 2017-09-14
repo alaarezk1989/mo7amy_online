@@ -505,7 +505,13 @@ class UserController extends Controller
          $users_ids_sections[]=$value_user_ids->user_id;
         }
       }
-       $users_ids=array_merge($users_ids,$users_ids_sections);
+      //  if(count($users_ids)>0){
+      //    $users_ids=array_intersect($users_ids,$users_ids_sections);
+       //
+      //  }else{
+         $users_ids=array_merge($users_ids,$users_ids_sections);
+      //     $users_ids=array_unique($users_ids);
+      //  }
 
       if($request->countries){
 
@@ -519,16 +525,16 @@ class UserController extends Controller
         foreach ($user_countries as  $key => $value_user_ids) {
          $users_ids_countries[]=$value_user_ids->id;
         }
-       /* print_r($users_ids_countries);
-        return;*/
-// return $users_ids;
-       }
-
-     $users_ids=array_merge($users_ids,$users_ids_countries);
-     $users_ids=array_unique($users_ids);
+        $users_ids=array_intersect($users_ids,$users_ids_countries);
+    }else{
+      $users_ids=array_merge($users_ids,$users_ids_countries);
+      $users_ids=array_unique($users_ids);
+    }
 
 
- if(!empty($users_ids)){
+
+ // if(!empty($users_ids)){
+   if($request->sections || $request->countries){
   $data_join = DB::table('users')
   ->join('user_specialty', 'users.id', '=', 'user_specialty.user_id')
     ->join('sections', 'sections.id', '=', 'user_specialty.specialty')
@@ -539,6 +545,7 @@ class UserController extends Controller
     ->groupBy('user_specialty.user_id')
     ->whereIn('users.id', $users_ids)
     ->get();
+
   }else{
 
     $data_join = DB::table('users')
@@ -549,6 +556,7 @@ class UserController extends Controller
     ->select('users.*','sections.'.$sess_locale.'_name as s_name','cities.'.$sess_locale.'_name as city_name','countries.'.$sess_locale.'_name as country_name')
     ->groupBy('user_specialty.user_id')
     ->get();
+
   }
 
 
@@ -571,20 +579,38 @@ public function lawyer($locale='ar',$id){
     App::setLocale($locale);
       $locale = App::getLocale();
 
-        // $user_specialty = DB::table('user_specialty')
-        // ->where('user_id', '=', $id)
-        // ->orderBy('id')->get();
-
+        $lawyer_data = User::findOrFail($id);
         $user_specialty = DB::table('user_specialty')
           ->join('sections', 'sections.id', '=', 'user_specialty.specialty')
           ->select('sections.'.$locale.'_name as s_name')
           ->where('user_specialty.user_id','=',$id)
           ->get();
 
-//         print_r($user_specialty);
-// // pr($id);
-// return;
-        $lawyer_data = User::findOrFail($id);
+          $country_data=DB::table('users')
+           ->join('cities', 'cities.id', '=', 'users.city')
+           ->join('countries', 'countries.id', '=', 'cities.country_id')
+           ->select('countries.*')
+            ->where('users.id', '=', $id)
+           ->first();
+        $country_id=$country_data->id;
+
+        $user_country=DB::table('countries')
+        ->select($locale.'_name as name')
+        ->where('id', '=', $country_id)
+        ->first();
+
+        $city_id=$lawyer_data->city;
+        // $user_city = Cities::findOrFail($city_id);
+        $user_city=DB::table('cities')
+         ->select($locale.'_name as name')
+          ->where('id', '=', $city_id)
+         ->first();
+
+         $birthdate= $lawyer_data->birthdate;
+         $birthdate= strtotime($lawyer_data->birthdate);
+         $birthdate= date("Y, m, d", $birthdate);
+         $birthdate= (int)$birthdate;
+         $birthdate_year=Carbon::createFromDate($birthdate)->diff(Carbon::now())->format('%y');
 
         $countLawyersCases = DB::table('bids')
             ->where('bids.user_id','=',$id)
@@ -600,33 +626,6 @@ public function lawyer($locale='ar',$id){
             ->orderBy ('cases.created_at','desc')
             ->get();
 
-            $country_data=DB::table('users')
-             ->join('cities', 'cities.id', '=', 'users.city')
-             ->join('countries', 'countries.id', '=', 'cities.country_id')
-             ->select('countries.*')
-              ->where('users.id', '=', $id)
-             ->first();
-        $country_id=$country_data->id;
-
-
-        $user_country=DB::table('countries')
-         ->select($locale.'_name as name')
-          ->where('id', '=', $country_id)
-         ->first();
-      //  $user_country = Countries::findOrFail($country_id);
-
-        $city_id=$lawyer_data->city;
-        // $user_city = Cities::findOrFail($city_id);
-        $user_city=DB::table('cities')
-         ->select($locale.'_name as name')
-          ->where('id', '=', $city_id)
-         ->first();
-
-        $birthdate= $lawyer_data->birthdate;
-        $birthdate= strtotime($lawyer_data->birthdate);
-        $birthdate= date("Y, m, d", $birthdate);
-        $birthdate= (int)$birthdate;
-        $birthdate_year=Carbon::createFromDate($birthdate)->diff(Carbon::now())->format('%y');
         $data = [
             'title'=>trans('cpanel.site_name'),
             'page_title'=>trans('cpanel.edit_admin'),
