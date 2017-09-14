@@ -518,10 +518,11 @@ return; */
     }*/
 
 
-   public function filtering(Request $request){
+   public function filtering(Request $request,$locale='ar'){
     // print_r($request->all());return ;
-    $per_page=2;
-        $locale = App::getLocale();
+              $per_page=2;
+              App::setLocale($locale);
+              $locale = App::getLocale();
 
       $caseModel = DB::table('cases');
       if($request->sections){

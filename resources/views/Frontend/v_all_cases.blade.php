@@ -77,7 +77,7 @@ $locale = App::getLocale();
 </div>
 </form>
 
-<form method="get" action="{{url('/cases/filtering')}}">
+<form method="get" action="{{lang_url('cases/filtering')}}">
 
 
 
