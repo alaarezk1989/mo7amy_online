@@ -595,16 +595,30 @@ return; */
   return view(FE . '/v_all_cases2');
 
  }*/
-public function search(Request $request){
-
+public function search(Request $request,$locale='ar'){
+              App::setLocale($locale);
+              $locale = App::getLocale();
     // $q = $request->input('q');
   $q =Input::get('q');
     /*echo $q;
     return;*/
-   $Cases = Cases::where('title','LIKE','%'.$q.'%')->orWhere('description','LIKE','%'.$q.'%')->get();
+  // $Cases = Cases::where('title','LIKE','%'.$q.'%')->orWhere('description','LIKE','%'.$q.'%')->get();
              /* $Cases = DB::table('cases')
                      ->where ( 'title', 'LIKE', '%' . $q . '%' )->orWhere ( 'description', 'LIKE', '%' . $q . '%' )
                      ->get ();*/
+
+     $Cases =  DB::table('cases')
+                ->where('cases.title','LIKE','%'.$q.'%')->orWhere('cases.description','LIKE','%'.$q.'%')->orWhere('countries.'.$locale.'_name','LIKE','%'.$q.'%')->orWhere('cities.'.$locale.'_name','LIKE','%'.$q.'%')->orWhere('sections.'.$locale.'_name','LIKE','%'.$q.'%')
+                ->join('cities', 'cities.id', '=', 'cases.city')
+                ->join('countries', 'countries.id', '=', 'cities.country_id')
+               ->join('sections', 'sections.id', '=', 'cases.section_id')      
+                ->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','sections.'.$locale.'_name as sectionName')
+                ->get();
+
+
+
+
+
 /*print_r($Cases);
 return;*/
   if(count($Cases) > 0){

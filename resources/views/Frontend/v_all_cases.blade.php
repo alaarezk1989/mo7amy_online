@@ -68,7 +68,7 @@ $locale = App::getLocale();
 <div class="sidebar2">
 
 
-<form method="get" role="search" action="{{url('/cases/search')}}">
+<form method="get" role="search" action="{{lang_url('cases/search')}}">
   {{ csrf_field() }}
 <div class="forsearch">
 <label> البحث </label>
