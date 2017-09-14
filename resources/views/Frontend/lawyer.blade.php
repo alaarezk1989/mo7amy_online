@@ -38,12 +38,15 @@ $locale = App::getLocale();
                  <ul class="list-unstyled ul-lawyer">
                     <li> <i class="fa fa-map-marker" aria-hidden="true"></i>  {{$user_country->name}} , {{$user_city->name}}  </li>
                     <li> <i class="fa fa-birthday-cake" aria-hidden="true"></i>  {{$birthdate_year}} {{trans('cpanel.year')}} </li>
-                    <li> <i class="fa fa-phone" aria-hidden="true"></i>  {{$user_data->phone}} </li>
-                    <li> <i class="fa fa-envelope" aria-hidden="true"></i>   {{$user_data->email}}</li>
+
+                    <li> <i class="fa fa-phone" aria-hidden="true"></i> @if($show_lowyer_contact_flag) {{$user_data->phone}} @endif</li>
+                    <li> <i class="fa fa-envelope" aria-hidden="true"></i>  @if($show_lowyer_contact_flag)  {{$user_data->email}}@endif</li>
                  </ul>
                  <span class="text-center"> {{$countLawyersCases}} </span>
                  <p class="text-center"> عدد القضايا المشترك بها </p>
+                 @if($show_lowyer_contact_flag)
                  <a href="tel:{{$user_data->phone}}" class="text-center"> اتصل بالمحامى </a>
+                 @endif
               </div>
            </div>
            <div class="col-md-8">
