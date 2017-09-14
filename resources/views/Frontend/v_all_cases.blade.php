@@ -104,11 +104,11 @@ $locale = App::getLocale();
 </div>
 
 
-<div class="case" id="all_status">
+<div class="case" id="all_status2">
 <label> الحالة </label>
-<input   type="checkbox" id="filter" class="AllStatus filter status">  الكل <br>
-<input id="filter" class="filter status" type="checkbox"  value="1"> المتاح   <br>
-<input id="filter" class="filter status" type="checkbox"  value="0" > المنتهى    <br>
+<input   type="checkbox" id="filter" class="AllStatus2 filter status2">  الكل <br>
+<input id="filter" class="filter status2" type="checkbox"  value="1"> المتاح   <br>
+<input id="filter" class="filter status2" type="checkbox"  value="0" > المنتهى    <br>
 <!--<input id="filter" class="filter status" type="checkbox" name="" value="" > تحت التنفيذ    <br>
 !--></div>
 
@@ -153,7 +153,7 @@ $locale = App::getLocale();
             var sections = [];
             var countries = [];
             var filters = [] ;
-            var Case_status = [] ;
+            var Case_status2 = [] ;
             var created_date = [] ;
             var html = '' ;
             //  Call the ajax request
@@ -190,10 +190,10 @@ $locale = App::getLocale();
                         }
                     }
 
-                    if($(this).hasClass( "status" )){
+                    if($(this).hasClass( "status2" )){
                         if($(this).val()){
-                            Case_status.push($(this).val());
-                            Case_status = $.unique(Case_status);
+                            Case_status2.push($(this).val());
+                            Case_status2 = $.unique(Case_status2);
                         }
                     }
 
@@ -207,7 +207,7 @@ $locale = App::getLocale();
 
               });
 
-            filters = {'countries':countries,'sections':sections , 'status':Case_status, 'created_date':created_date} ;
+            filters = {'countries':countries,'sections':sections , 'status2':Case_status2, 'created_date':created_date} ;
 
             //  Call the ajax request
             getData();
@@ -217,7 +217,7 @@ $locale = App::getLocale();
                  sections = [];
                  countries = [];
                  filters = [] ;
-                 Case_status = [] ;
+                 Case_status2 = [] ;
 
                created_date = [] ;
 
@@ -328,14 +328,14 @@ $locale = App::getLocale();
 
 
 
-   $(".AllStatus").click(function () {
-                if ($('input.AllStatus').is(':checked')) {
+   $(".AllStatus2").click(function () {
+                if ($('input.AllStatus2').is(':checked')) {
                    // alert('x1');
-                    $("#all_status input[type=checkbox]").each(function () {
+                    $("#all_status2 input[type=checkbox]").each(function () {
                       $(this).prop("checked", true);
                     });
                 } else {
-                    $("#all_status input[type=checkbox]").each(function () {
+                    $("#all_status2 input[type=checkbox]").each(function () {
                        $(this).prop("checked", false);
                     });
                 }

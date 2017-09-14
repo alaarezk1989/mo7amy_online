@@ -527,8 +527,8 @@ return; */
       if($request->sections){
         $caseModel->whereIn('section_id', (array)$request->sections);
       }
-      if($request->status){
-        $caseModel->whereIn('status', (array)$request->status);
+      if($request->status2){
+        $caseModel->whereIn('status', (array)$request->status2);
       }
        if($request->created_date){
         $new_time = date("Y-m-d H:i:s", strtotime('-1 hours'));
@@ -614,8 +614,12 @@ public function search(Request $request,$locale='ar'){
                 ->where('cases.title','LIKE','%'.$q.'%')->orWhere('cases.description','LIKE','%'.$q.'%')->orWhere('countries.'.$locale.'_name','LIKE','%'.$q.'%')->orWhere('cities.'.$locale.'_name','LIKE','%'.$q.'%')->orWhere('sections.'.$locale.'_name','LIKE','%'.$q.'%')
                 ->join('cities', 'cities.id', '=', 'cases.city')
                 ->join('countries', 'countries.id', '=', 'cities.country_id')
-               ->join('sections', 'sections.id', '=', 'cases.section_id')      
-                ->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','sections.'.$locale.'_name as sectionName')
+               ->join('sections', 'sections.id', '=', 'cases.section_id') 
+                   ->leftJoin(\DB::raw('(SELECT * FROM bids A WHERE bids_val = (SELECT MAX(bids_val) AS bidValue FROM bids B WHERE A.case_id=B.case_id)) AS t2'), function($join) {
+               $join->on('cases.id', '=', 't2.case_id');
+
+                  })    
+                ->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','sections.'.$locale.'_name as sectionName','bids_val as bidValue')
                 ->get();
 
 
