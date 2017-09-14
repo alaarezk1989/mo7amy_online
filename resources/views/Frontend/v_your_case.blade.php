@@ -83,7 +83,7 @@ $locale = App::getLocale();
                             $old = Carbon::parse($value->finished_date);
                            echo $old->diffForHumans($current);
                            ?></div>    
-<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div> 
+<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :{{$value->bidValue}} $</div> 
 <div class="imp-button">
   
 

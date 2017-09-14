@@ -360,7 +360,10 @@ return; */
                 ->join('cities', 'cities.id', '=', 'cases.city')
                 ->join('countries', 'countries.id', '=', 'cities.country_id')
                 ->join('sections', 'sections.id', '=', 'cases.section_id')
-->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','sections.'.$locale.'_name as sectionName')
+                ->Leftjoin(DB::raw('(SELECT MAX(bids_val) AS bidValue , case_id FROM bids) AS bids'), function ($join) {
+               $join->on('bids.case_id', '=', 'cases.id');
+              })
+->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','bidValue','sections.'.$locale.'_name as sectionName')
                 ->orderBy('created_at', 'desc')
                 ->paginate($per_page);
 /*
