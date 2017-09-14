@@ -356,18 +356,20 @@ return; */
 
       $your_case =  DB::table('cases')
                 ->where('status', '=', '1')
-                ->where('user_id', '=', $sess_user_id)
+                ->where('cases.user_id', '=', $sess_user_id)
                 ->join('cities', 'cities.id', '=', 'cases.city')
                 ->join('countries', 'countries.id', '=', 'cities.country_id')
                 ->join('sections', 'sections.id', '=', 'cases.section_id')
-                ->Leftjoin(DB::raw('(SELECT MAX(bids_val) AS bidValue , case_id FROM bids) AS bids'), function ($join) {
-               $join->on('bids.case_id', '=', 'cases.id');
-              })
-->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','bidValue','sections.'.$locale.'_name as sectionName')
+                ->leftJoin(\DB::raw('(SELECT * FROM bids A WHERE bids_val = (SELECT MAX(bids_val) AS bidValue FROM bids B WHERE A.case_id=B.case_id)) AS t2'), function($join) {
+               $join->on('cases.id', '=', 't2.case_id');
+
+                  })
+->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','bids_val as bidValue','sections.'.$locale.'_name as sectionName')
+                
                 ->orderBy('created_at', 'desc')
                 ->paginate($per_page);
-/*
-       echo "<pre>";
+
+      /* echo "<pre>";
       print_r($your_case);
       echo "</pre>";
       return;*/
@@ -416,10 +418,11 @@ return; */
               ->join('cities', 'cities.id', '=', 'cases.city')
               ->join('countries', 'countries.id', '=', 'cities.country_id')
               ->join('sections', 'sections.id', '=', 'cases.section_id')
-              ->Leftjoin(DB::raw('(SELECT MAX(bids_val) AS bidValue , case_id FROM bids) AS bids'), function ($join) {
-               $join->on('bids.case_id', '=', 'cases.id');
-              })
-              ->select('cases.*','countries.'.$locale.'_name as country_name','bidValue','cities.'.$locale.'_name as city_name','sections.'.$locale.'_name as sectionName')
+              ->leftJoin(\DB::raw('(SELECT * FROM bids A WHERE bids_val = (SELECT MAX(bids_val) AS bidValue FROM bids B WHERE A.case_id=B.case_id)) AS t2'), function($join) {
+               $join->on('cases.id', '=', 't2.case_id');
+
+                  })
+              ->select('cases.*','countries.'.$locale.'_name as country_name','bids_val as bidValue','cities.'.$locale.'_name as city_name','sections.'.$locale.'_name as sectionName')
               ->first();
 
          
