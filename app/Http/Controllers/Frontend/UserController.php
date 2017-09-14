@@ -577,9 +577,11 @@ class UserController extends Controller
 
 public function lawyer($locale='ar',$id){
 
-    App::setLocale($locale);
-      $locale = App::getLocale();
+        App::setLocale($locale);
+        $locale = App::getLocale();
 
+        $sess_user_id= session('user_id');
+        $show_lowyer_contact_flag=0;
         $lawyer_data = User::findOrFail($id);
         $user_specialty = DB::table('user_specialty')
           ->join('sections', 'sections.id', '=', 'user_specialty.specialty')
@@ -601,7 +603,6 @@ public function lawyer($locale='ar',$id){
         ->first();
 
         $city_id=$lawyer_data->city;
-        // $user_city = Cities::findOrFail($city_id);
         $user_city=DB::table('cities')
          ->select($locale.'_name as name')
           ->where('id', '=', $city_id)
@@ -627,6 +628,14 @@ public function lawyer($locale='ar',$id){
             ->orderBy ('cases.created_at','desc')
             ->get();
 
+foreach ($lawyerCases as $caser_row) {
+  if($caser_row->is_bids==1 && $caser_row->user_id==$sess_user_id){
+    $show_lowyer_contact_flag=1;
+    break;
+  }
+
+}
+// print_r($lawyerCases);return;
         $data = [
             'title'=>trans('cpanel.site_name'),
             'page_title'=>trans('cpanel.edit_admin'),
@@ -637,6 +646,7 @@ public function lawyer($locale='ar',$id){
             'countLawyersCases'=>$countLawyersCases,
             'birthdate_year'=>$birthdate_year,
             'lawyerCases'=>$lawyerCases,
+            'show_lowyer_contact_flag'=>$show_lowyer_contact_flag,
         ];
         // return Carbon::createFromDate(1991, 7, 19)->diff(Carbon::now())->format('%y years, %m months and %d days');
 
