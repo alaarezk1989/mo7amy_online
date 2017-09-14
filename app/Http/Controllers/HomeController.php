@@ -110,10 +110,11 @@ class HomeController extends Controller
             ->join('countries', 'countries.id', '=', 'cities.country_id')
             ->join('sections', 'sections.id', '=', 'cases.section_id')
 
-              ->Leftjoin(DB::raw('(SELECT MAX(bids_val) AS bidValue , case_id FROM bids) AS bids'), function ($join) {
-               $join->on('bids.case_id', '=', 'cases.id');
-        })
-            ->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','bidValue','sections.'.$locale.'_name as sectionName')
+               ->leftJoin(\DB::raw('(SELECT * FROM bids A WHERE bids_val = (SELECT MAX(bids_val) AS bidValue FROM bids B WHERE A.case_id=B.case_id)) AS t2'), function($join) {
+               $join->on('cases.id', '=', 't2.case_id');
+
+                  })
+            ->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','bids_val as bidValue','sections.'.$locale.'_name as sectionName')
             ->orderBy ('cases.created_at','desc')
             ->limit(9)
             ->get();
@@ -128,7 +129,7 @@ class HomeController extends Controller
 
       }
 
-      
+
 
        public function countDoneCases(){
 
