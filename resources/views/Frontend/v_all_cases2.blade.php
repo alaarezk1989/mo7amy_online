@@ -40,6 +40,7 @@ $locale = App::getLocale();
 
 
 @foreach($details as $value)
+<a href="{{lang_url('case').'/'.$value->id}}">
 <div class="case-client border-bott">
 <p> {{$value->title}}</p>
 <div>   
@@ -63,11 +64,12 @@ $locale = App::getLocale();
                             $current = Carbon::parse($value->created_at);
                             $old = Carbon::parse($value->finished_date);
                            echo $old->diffForHumans($current);
-                           ?></div>    
-<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :150,000 $</div> 
- 
+                           ?></div> 
+<div class="price"><i class="fa fa-money" aria-hidden="true"></i> {{$value->bidValue}} $</div> 
+
 </div> 
 </div>
+</a>
 @endforeach 
 @elseif(isset($message))
          <p>{{ $message }}</p>
