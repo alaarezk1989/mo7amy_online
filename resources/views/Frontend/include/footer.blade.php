@@ -66,6 +66,36 @@ map: map
 </script>
 
 
+<!--************************modal for confirmation ***************************-->
+
+<div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+
+<div class="modal-dialog" role="document">
+
+<div class="modal-content">
+
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<h4 class="modal-title" id="exampleModalLabel"><!--<i class="fa fa-trash" aria-hidden="true"></i>--> رسالة تأكيد </h4>
+</div>
+
+
+<div class="modal-body">
+<p>هل انت متاكد من قبول هذا العرض ؟</p>
+</div>
+
+<div class="modal-footer">
+<button type="button" class="btn btn-default yes " data-dismiss="modal">نعم </button>
+<button type="button" class="btn btn-primary no"  data-dismiss="modal">لا</button>
+</div>
+
+
+</div>
+</div>
+</div>
+
+<!--*******************************************************-->
+
  <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IUR6CYZb2rgw-8Pu1eUMOinqqq3XN9c&callback=initMap">
 </script>
