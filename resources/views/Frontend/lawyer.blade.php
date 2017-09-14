@@ -43,7 +43,7 @@ $locale = App::getLocale();
                  </ul>
                  <span class="text-center"> {{$countLawyersCases}} </span>
                  <p class="text-center"> عدد القضايا المشترك بها </p>
-                 <a href="tel:5555555555" class="text-center"> اتصل بالمحامى </a>
+                 <a href="tel:{{$user_data->phone}}" class="text-center"> اتصل بالمحامى </a>
               </div>
            </div>
            <div class="col-md-8">
@@ -83,10 +83,12 @@ $locale = App::getLocale();
      </div>
   </section>
   <!--*************************************************************************-->
-  <div class="clientcase-img">
-  <p> القضايا  المرفوعة  </p>
+
+  <div class="profilecase-img">
+  <p> القضايا المشترك بها  </p>
   </div>
-      
+
+
   <section class="offers">
      <div class="container">
         <div class="row">
