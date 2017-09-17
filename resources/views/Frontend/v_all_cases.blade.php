@@ -36,7 +36,7 @@ $locale = App::getLocale();
                        {{trans('cpanel.show')}}
                         <span> 0- {{ $all_cases->perPage() }} </span>
                         {{trans('cpanel.of')}}
-                        <span> {{$all_cases->total()}} </span>{{trans('cpanel.result')}}
+                        <span id="total_per_page">  </span> {{trans('cpanel.result')}}
                      </p>
                      <div id='page_navigation'>{{ $all_cases->links() }}</div>
                   </div>
@@ -210,13 +210,16 @@ $locale = App::getLocale();
             filters = {'countries':countries,'sections':sections , 'status2':Case_status2, 'created_date':created_date} ;
 
             //  Call the ajax request
-            getData();
+              
+        var page_url = $('.active_page').html(); 
+        // alert(page_url);
+                getData(page_url);
 
 
                  html = '' ;
                  sections = [];
                  countries = [];
-                 filters = [] ;
+                 // filters = [] ;
                  Case_status2 = [] ;
 
                created_date = [] ;
@@ -236,19 +239,25 @@ $locale = App::getLocale();
           });
 
 <?php
-  $page='';
+  //$page='?page=1';
   if(isset($_GET['page']) && $_GET['page']>0){
     //$page='?page='.$_GET['page'];
   }
 ?>
-          function getData(){
-
+          function getData(p='1'){
+var page ='?page='+p;
+var url =  "{!! lang_url('cases/filtering') !!}"+page;
+// alert(url);
             $.ajax({
               type: "GET",
-              url: "{!! lang_url('cases/filtering').$page !!}",
+              url: "{!! lang_url('cases/filtering') !!}"+page,
               data: filters,
-              success: function(data){
-                $.each(data.data,function(k,v){
+              success: function(result){
+              html='';
+              var total_per_page=result.data['total'];
+             // console.log(total_per_page);
+              $('#total_per_page').text(total_per_page);
+                $.each(result.data.data,function(k,v){
                     if(v.status == 1){
                         v.status = "متاح" ;
                     }else{
@@ -277,7 +286,6 @@ $locale = App::getLocale();
 
 
                 });
-
                 $('#content').html(html);
               // $('.loader').hide();
                 //
@@ -349,5 +357,38 @@ $locale = App::getLocale();
 
           }
         </script>
+
+
+        <script type="text/javascript">
+
+$(function() {
+    $('body').on('click', '#page_navigation a', function(e) {
+        e.preventDefault();
+
+        $('#load a').css('color', '#dfecf6');
+        $('#load').append('<img style="position: absolute; left: 0; top: 0; z-index: 100000;" src="/images/loading.gif" />');
+
+        // var url = $(this).attr('href'); 
+
+
+$(this).addClass('active_page').siblings().removeClass("active_page");
+        var url = $(this).html(); 
+        
+        getData(url);
+        // window.history.pushStates("", "", url);
+    });
+
+    function getArticles(url) {
+        $.ajax({
+            url : url  
+        }).done(function (data) {
+            $('.articles').html(data);  
+        }).fail(function () {
+            alert('Articles could not be loaded.');
+        });
+    }
+});
+
+</script>
 
     @stop

@@ -37,18 +37,18 @@ $locale = App::getLocale();
 </div>
 <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-<span class="sr-only">Previous</span>
+<span class="sr-only">{{trans('cpanel.Previous')}}</span>
 </a>
 <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-<span class="sr-only">Next</span>
+<span class="sr-only">{{trans('cpanel.Next')}}</span>
 </a>
 </div>    
 </div>    
 </div>
 <ul class="list-unstyled list-tabs">
-<li class="selected custom-js" data-class="tab1">الخريطة  </li>   
-<li data-class="tab2"> الصور   </li>   
+<li class="selected custom-js" data-class="tab1"> {{trans('cpanel.Map')}} </li>   
+<li data-class="tab2">{{trans('cpanel.Images')}} </li>   
 </ul>     
 </div>    
 </div>
@@ -100,7 +100,7 @@ $locale = App::getLocale();
 
 <section class="latestcases">
    <div class="container">
-      <h1 class="text-center m-top-bott">احدث القضايا </h1>
+      <h1 class="text-center m-top-bott">{{trans('cpanel.Latest_Cases')}}</h1>
       <div class="row">
       @foreach($latest_cases as $value)
          <div class="col-md-4 m_bottom">
@@ -108,8 +108,8 @@ $locale = App::getLocale();
                <div class="case-temp">
                   <p style="height: 64px;">{{$value->description}}</p>
                   <div class="tempp">
-                     <div class="casetype"> نوع القضية : <span>{{$value->sectionName}}</span></div>
-                     <div class="status"> الحالة : 
+                     <div class="casetype"> {{trans('cpanel.Case_type')}} : <span>{{$value->sectionName}}</span></div>
+                     <div class="status"> {{trans('cpanel.Status')}} : 
 
                      <?php
                          if($value->status ==1) echo '<span> متاح</span>';
@@ -142,9 +142,9 @@ $locale = App::getLocale();
                   </ul>
                      @if (empty($value->bidValue))
 
-                  <div class="price"> <i class="fa fa-money" aria-hidden="true"></i>  اعلى سعر :<span>0$</span> 
+                  <div class="price"> <i class="fa fa-money" aria-hidden="true"></i>  {{trans('cpanel.Price_top')}}:<span>0$</span> 
                   @else 
-                  <div class="price"> <i class="fa fa-money" aria-hidden="true"></i>  اعلى سعر :<span>{{$value->bidValue}}$</span> 
+                  <div class="price"> <i class="fa fa-money" aria-hidden="true"></i>  {{trans('cpanel.Price_top')}} :<span>{{$value->bidValue}}$</span> 
                   @endif
                   </div>
                </div>
@@ -160,7 +160,7 @@ $locale = App::getLocale();
 <!--**********************************************************-->
 <section class="consultants">
    <div class="container-fluid">
-      <h1 class="text-center"> افضل الاستشاريين</h1>
+      <h1 class="text-center"> {{trans('cpanel.The_best_lawyers')}}</h1>
       <div class="row">
       @foreach($lawyers as $law)
          <div class="col-lg-2 col-md-4 col-sm-6 cons">
@@ -173,7 +173,7 @@ $locale = App::getLocale();
 <!--***********************************************-->
 <section class="countries">
    <div class="container">
-      <h1 class="text-center">  الدول والقضايا </h1>
+      <h1 class="text-center"> {{trans('cpanel.Cases_and_Countries')}}  </h1>
       <div class="row">
          <div class="col-md-3 col-sm-6 m_bottom">
 
@@ -181,59 +181,59 @@ $locale = App::getLocale();
 
             <div class="text text-center">
                <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c1.png') }}"> </a>
-               <p>السعودية  </p>
-               <span>{{$saudiCases}} قضية </span>
+               <p> {{trans('cpanel.Saudi_Arabia')}}  </p>
+               <span>{{$saudiCases}} {{trans('cpanel.Case')}} </span>
             </div>
          </div>
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
                <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c2.png') }}"> </a>
-               <p>مصر   </p>
-               <span>{{$egyptCases}}  قضية </span>
+               <p>{{trans('cpanel.Egypt')}}   </p>
+               <span>{{$egyptCases}}  {{trans('cpanel.Case')}} </span>
             </div>
          </div>
          
         <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
                <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c3.png') }}"> </a>
-               <p>الامارات   </p>
-               <span>0 قضية </span>
+               <p>{{trans('cpanel.United_Arab_Emirates')}}   </p>
+               <span>0 {{trans('cpanel.Case')}} </span>
             </div>
          </div>
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
                <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c4.png') }}"> </a>
-               <p>الكويت   </p>
-               <span>0 قضية </span>
+               <p>  {{trans('cpanel.Kuwait')}}  </p>
+               <span>0 {{trans('cpanel.Case')}} </span>
             </div>
          </div>
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
                <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c5.png') }}"> </a>
-               <p>تونس    </p>
-               <span>{{$tunisiaCases}} قضية </span>
+               <p>{{trans('cpanel.Tunisia')}}    </p>
+               <span>{{$tunisiaCases}} {{trans('cpanel.Case')}}</span>
             </div>
          </div>
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
                <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c6.png') }}"> </a>
-               <p>المغرب </p>
-               <span>0 قضية </span>
+               <p>{{trans('cpanel.Morocco')}}  </p>
+               <span>0 {{trans('cpanel.Case')}}</span>
             </div>
          </div>
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
                <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c7.png') }}"> </a>
-               <p>  الجزائر </p>
-               <span>{{$algeriaCases}} قضية </span>
+               <p> {{trans('cpanel.Algeria')}} </p>
+               <span>{{$algeriaCases}} {{trans('cpanel.Case')}} </span>
             </div>
          </div>
 
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
                <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c8.png') }}"> </a>
-               <p>  البحرين </p>
-               <span>0 قضية </span>
+               <p> {{trans('cpanel.Bahrain')}}  </p>
+               <span>0 {{trans('cpanel.Case')}} </span>
             </div>
          </div>
       </div>
@@ -244,24 +244,24 @@ $locale = App::getLocale();
    <div class="container">
       <div class="row">
             <div class="col-md-3 col-sm-6 m-top">
-            <p class="count-text "> القضايا المنجزة </p>      
+            <p class="count-text ">{{trans('cpanel.Finished_cases')}}  </p>      
             <h2 class="timer count-title counter" data-count="{{$countDoneCases}}"></h2>
             </div>    
 
             <div class="col-md-3 col-sm-6 m-top">
-            <p class="count-text "> عدد الاستشاريين </p>      
+            <p class="count-text ">{{trans('cpanel.Lawyers_count')}}  </p>      
             <h2 class="timer count-title counter" data-count="{{$countLawyers}}" ></h2>
             </div>
 
 
             <div class="col-md-3 col-sm-6 m-top">
-            <p class="count-text "> عدد العملاء </p> 
+            <p class="count-text ">{{trans('cpanel.Clients_count')}}  </p> 
             <h2 class="timer count-title counter" data-count="{{$countUsers}}"></h2>
             </div>   
 
 
             <div class="col-md-3 col-sm-6 m-top">
-            <p class="count-text ">عدد القضايا </p>       
+            <p class="count-text ">{{trans('cpanel.Cases_count')}} </p>       
             <h2 class="timer count-title counter" data-count="{{$countAllCases}}"></h2>
             </div>    
       </div>       
