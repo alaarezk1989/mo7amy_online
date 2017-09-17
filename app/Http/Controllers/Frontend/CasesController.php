@@ -44,6 +44,7 @@ class CasesController extends Controller
 
           $first_country_id=0;
           $countries=array();
+          $locale_name=$locale.'_name';
           foreach ($all_countries as $country) {
             if($first_country_id <= 0){
               $first_country_id=$country->id;
@@ -55,6 +56,7 @@ class CasesController extends Controller
           ->select($locale.'_name','id')
          ->where('country_id', '=', $first_country_id)
           ->get();
+          $locale_name=$locale.'_name';
           foreach ($all_states as $state) {
             $states[$state->id]=$state->$locale_name;
           }
@@ -107,10 +109,10 @@ public function create_case (Request $request)
           echo $errors;
           return;*/
             session()->flash('error_msg', trans('cpanel.form_error'));
-            // return $request->all();
+            //return $request->all();
             return back()->withInput()->withErrors($validator);
         }else{
-
+//return $request->all();
             $add = new Cases;
            // $add->id                    =date('YmdHis') . mt_rand();
             $add->id                       =uniqid('',true);
