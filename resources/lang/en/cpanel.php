@@ -5,6 +5,40 @@ return array (
   'admin_panel' => 'Mo7amy Online Admin Panel',
   'dashboard' => 'Dashboard',
   'home' => 'Home',
+  'cases' => 'Cases',
+  'lawyers' => 'Lawyers',
+  'Who_we_are' => 'Who we are',
+  'Contact_us' => 'Contact us',
+
+  'Previous' => 'Previous',
+  'Next' => 'Next',
+  'Map' => 'Map',
+  'Images' => 'Images',
+  'Latest_Cases' => 'Latest Cases',
+
+  'Case_type' => 'Case type',
+  'Status' => 'Status',
+  'Price_top' => 'Price top',
+  'The_best_lawyers' => 'The best lawyers',
+  'Cases_and_Countries' => 'Cases and Countries',
+
+  'Saudi_Arabia' => 'Saudi Arabia',
+  'Egypt' => 'Egypt',
+  'United_Arab_Emirates' => 'United Arab Emirates',
+  'Kuwait' => 'Kuwait',
+  'Tunisia' => 'Tunisia',
+  'Morocco' => 'Morocco',
+  'Algeria' => 'Algeria',
+  'Bahrain' => 'Bahrain',
+
+  'Finished_cases' => 'Finished cases',
+  'Lawyers_count' => 'Lawyers count',
+  'Clients_count' => 'Clients count',
+  'Cases_count' => 'Cases count',
+
+
+  'Case' => 'Case',
+
   'settings' => 'Settings',
   'or' => 'or',
   'Welcome_in' => 'Welcome in',

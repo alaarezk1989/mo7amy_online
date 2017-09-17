@@ -4,7 +4,43 @@ return array (
   'site_name' => 'Mo7amy Online',
   'admin_panel' => 'Mo7amy Online Admin Panel',
   'dashboard' => 'Dashboard',
-  'home' => 'Home',
+  'home' => 'الرئيسية',
+  'cases' => 'القضايا',
+  'lawyers' => 'المستشارين',
+  'Who_we_are' => 'من نحن',
+  'Contact_us' => 'اتصل بينا',
+
+  'Previous' => 'السابق',
+  'Next' => 'التالى',
+  'Map' => 'الخريطة',
+  'Images' => 'الصور',
+  'Latest_Cases' => 'احدث القضايا',
+
+  'Case_type' => 'نوع القضية',
+  'Status' => 'الحالة',
+  'Price_top' => 'اعلى سعر',
+  'The_best_lawyers' => 'افضل الاستشاريين',
+  'Cases_and_Countries' => 'الدول والقضايا',
+
+  'Saudi_Arabia' => 'السعودية',
+  'Egypt' => 'مصر',
+  'United_Arab_Emirates' => 'الامارات',
+  'Kuwait' => 'الكويت',
+  'Tunisia' => 'تونس',
+  'Morocco' => 'المغرب',
+  'Algeria' => 'الجزائر',
+  'Bahrain' => 'البحرين',
+
+  'Finished_cases' => 'القضايا المنجزة',
+  'Lawyers_count' => 'عدد الاستشاريين',
+  'Clients_count' => 'عدد العملاء',
+  'Cases_count' => 'عدد القضايا',
+
+
+  'Case' => 'القضية',
+
+
+
   'settings' => 'الضبط',
   'setting'=>'الضبط',
   'or' => 'او',

@@ -1,10 +1,10 @@
 <ul class="nav navbar-nav navbar-right main-ul">
-  <li class="active"><a href="{{url($locale)}}">الرئيسية</a></li>
- <li><a href="{{lang_url('cases')}}">القضايا</a></li>
+  <li class="active"><a href="{{url($locale)}}">{{trans('cpanel.home')}} </a></li>
+ <li><a href="{{lang_url('cases')}}">{{trans('cpanel.cases')}}</a></li>
 
-  <li><a href="{{lang_url('lawyers')}}">المستشارين</a></li>
-  <li><a href="who%20are%20we.html">من نحن</a></li>
-  <li><a href="contact.html">اتصل بنا</a></li>
+  <li><a href="{{lang_url('lawyers')}}">{{trans('cpanel.lawyers')}}</a></li>
+  <li><a href="who%20are%20we.html">{{trans('cpanel.Who_we_are')}}</a></li>
+  <li><a href="contact.html">{{trans('cpanel.Contact_us')}}</a></li>
 </ul>
 
 <?php

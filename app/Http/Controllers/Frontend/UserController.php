@@ -85,10 +85,11 @@ class UserController extends Controller
               Session::flash('error_msg',  trans('cpanel.form_error'));
               Session::flash('alert-class', 'alert-danger');
 
-                // return $request->all();
+                 // return $request->all();
               // return back()->withInput()->withErrors($validator);
               return redirect('/#sign')->withInput()->withErrors($validator);
           }else{
+             // return $request->all();
             $user_id=uniqid('', true);
 // $user_id=date('YmdHis') . mt_rand();
               $add = new User;
@@ -119,6 +120,9 @@ class UserController extends Controller
               Session::flash('alert-class', 'alert-success');
   // return auth()->user()->id;
               session(['user_id' => $user_id]);
+              $user_obj = DB::table('users')
+            ->where('id', '=', $user_id)->first();
+
               session(['user_obj' => $user_obj]);
               $sess_locale=$request->session()->get('sess_locale');
                 return redirect($sess_locale.'/edit-profile/'.$user_id);

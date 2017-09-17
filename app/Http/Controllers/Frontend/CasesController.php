@@ -21,6 +21,7 @@ class CasesController extends Controller
      */
     public function index($locale='ar')
     {
+      
 
       App::setLocale($locale);
       $locale = App::getLocale();
@@ -282,7 +283,7 @@ public function create_case (Request $request)
               $locale = App::getLocale();
           //    $sess_locale= session('sess_locale');
 
-              $per_page = 20;
+              $per_page = 5;
               $all_cases =  DB::table('cases')
                 ->where('status', '=', '1')
                 ->join('cities', 'cities.id', '=', 'cases.city')
@@ -541,19 +542,7 @@ return; */
       //   $caseModel->whereIn('country', $c_array);
       // }
 
- /*if($request->search2){
-        $caseModel->whereIn('section_id', (array)$request->sections);
 
-
-         $q = Input::get ( 'q' );
-    $Cases = Cases::where ( 'title', 'LIKE', '%' . $q . '%' )->orWhere ( 'description', 'LIKE', '%' . $q . '%' )->get ();
-  if (count ($Cases) > 0)
-    return view(FE . '/v_all_cases')->$caseModel ( $Cases )->withQuery ( $q );
-  else
-    return view(FE . '/v_all_cases');//->withMessage ( 'No Details found. Try to search again !' );
-      }
-
-*/
 
 
       if($request->countries){
