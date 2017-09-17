@@ -246,13 +246,14 @@ $locale = App::getLocale();
 ?>
           function getData(p='1'){
 var page ='?page='+p;
-var url =  "{!! lang_url('cases/filtering') !!}"+page;
+//var url =  "{!! lang_url('cases/filtering') !!}"+page;
 // alert(url);
             $.ajax({
               type: "GET",
               url: "{!! lang_url('cases/filtering') !!}"+page,
               data: filters,
               success: function(result){
+                console.log(result);
               html='';
               var total_per_page=result.data['total'];
              // console.log(total_per_page);

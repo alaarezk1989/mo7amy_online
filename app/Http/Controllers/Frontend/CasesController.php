@@ -58,7 +58,7 @@ class CasesController extends Controller
           foreach ($all_states as $state) {
             $states[$state->id]=$state->$locale_name;
           }
- //$specialty  = User::GetAdminSpecialty();
+
  $sess_user_id= session('user_id');
         $data = [
               'title'=>trans('cpanel.site_name'),
@@ -298,8 +298,10 @@ public function create_case (Request $request)
           $all_sections = DB::table('sections')
           ->select($locale.'_name','id')
           ->orderBy('id')->get();
-          // print_r($all_sections);
-          // return;
+        /*  echo "<pre>";
+           print_r($all_cases);
+           echo "</pre>";
+           return;*/
           $first_section_id=0;
           $sections=array();
           $locale_name=$locale.'_name';
@@ -581,8 +583,8 @@ return; */
 
 // echo "<pre>";
 // print_r($cases);
-// echo "</pre>";
-// return;
+//  echo "</pre>";
+//  return;
 // if(empty($request->all())){
 
 // }
