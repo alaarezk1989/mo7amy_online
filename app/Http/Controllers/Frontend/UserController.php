@@ -435,6 +435,7 @@ class UserController extends Controller
       }
 
       public function list_lawyers(){
+        $per_page = 3;
         $specialty  = User::GetAdminSpecialty();
 
 
@@ -469,7 +470,7 @@ class UserController extends Controller
             $countries[$country->id]=$country->$locale_name;
           }
 
-        $per_page = 8;
+       // $per_page = 8;
 
         $all_lawyers = DB::table('users')->where('permissions', '=', 'lawyer')
                 ->Where('status', '=', '1')
@@ -497,7 +498,7 @@ class UserController extends Controller
 
    public function filtering(Request $request){
      $sess_locale= session('sess_locale');
-
+    $per_page = 3;
     $users_ids=array();
     $users_ids_sections=array();
     $users_ids_countries=array();
@@ -549,7 +550,8 @@ class UserController extends Controller
     ->select('users.*','sections.'.$sess_locale.'_name as s_name','cities.'.$sess_locale.'_name as city_name','countries.'.$sess_locale.'_name as country_name')
     ->groupBy('user_specialty.user_id')
     ->whereIn('users.id', $users_ids)
-    ->get();
+    ->paginate($per_page);
+   // ->get();
 
   }else{
 
@@ -560,7 +562,8 @@ class UserController extends Controller
     ->join('countries', 'countries.id', '=', 'cities.country_id')
     ->select('users.*','sections.'.$sess_locale.'_name as s_name','cities.'.$sess_locale.'_name as city_name','countries.'.$sess_locale.'_name as country_name')
     ->groupBy('user_specialty.user_id')
-    ->get();
+    ->paginate($per_page);
+    //->get();
 
   }
 
@@ -583,6 +586,7 @@ public function lawyer($locale='ar',$id){
 
         App::setLocale($locale);
         $locale = App::getLocale();
+        $per_page=3;
 
         $sess_user_id= session('user_id');
         $show_lowyer_contact_flag=0;

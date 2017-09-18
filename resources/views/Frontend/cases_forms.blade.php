@@ -38,7 +38,7 @@
 <label> البلد والمدينة </label>
 
 
- {!! Form::select('country', $countries,old('country'), ['id'=>'country','class' => 'sl-cou']) !!}
+ {!! Form::select('country', $countries,$case_country_id, ['id'=>'country','class' => 'sl-cou']) !!}
 
 
  {!! Form::select('city', $states,old('city'), ['id'=>'city','class' => 'sl-cou']) !!}

@@ -38,7 +38,7 @@ $locale = App::getLocale();
                         {{trans('cpanel.of')}}
                         <span id="total_per_page">  </span> {{trans('cpanel.result')}}
                      </p>
-                     <div id='page_navigation'>{{ $all_cases->links() }}</div>
+                     <div id='page_navigation' class="test">{{ $all_cases->links() }}</div>
                   </div>
 
 
@@ -253,11 +253,13 @@ var page ='?page='+p;
               url: "{!! lang_url('cases/filtering') !!}"+page,
               data: filters,
               success: function(result){
-                console.log(result);
+               console.log(result);
               html='';
               var total_per_page=result.data['total'];
+            // var next_page_test=result.data['last_page'];
              // console.log(total_per_page);
               $('#total_per_page').text(total_per_page);
+             // $('.test').hide(next_page_test);
                 $.each(result.data.data,function(k,v){
                     if(v.status == 1){
                         v.status = "متاح" ;

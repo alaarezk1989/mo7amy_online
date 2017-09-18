@@ -28,7 +28,7 @@
                        {{trans('cpanel.show')}}
                         <span> 0- {{ $all_lawyers->perPage() }} </span>
                         {{trans('cpanel.of')}}
-                        <span> {{$all_lawyers->total()}} </span>{{trans('cpanel.result')}}
+                        <span id="total_per_page"> </span>{{trans('cpanel.result')}}
                      </p>
                      <div id='page_navigation'>{{ $all_lawyers->links() }}</div>
                   </div>
@@ -136,14 +136,15 @@
 
             filters = {'sections':sections,'countries':countries,} ;
 
-            //  Call the ajax request
-            getData();
+            var page_url = $('.active_page').html(); 
+        // alert(page_url);
+                getData(page_url);
 
 
                  html = '' ;
                  sections = [];
                  countries = [];
-                 filters = [] ;
+                // filters = [] ;
 
 
               if(category_list.length == 0)
@@ -160,15 +161,28 @@
             });
           });
 
-
-          function getData(){
+<?php
+  //$page='?page=1';
+  if(isset($_GET['page']) && $_GET['page']>0){
+    //$page='?page='.$_GET['page'];
+  }
+?>
+          function getData(p='1'){
+var page ='?page='+p;
 
             $.ajax({
               type: "GET",
-              url: "{{lang_url('lawyers/filtering')}}",
+              url: "{{lang_url('lawyers/filtering')}}"+page,
               data: filters,
-              success: function(data){
-                $.each(data.data,function(k,v){
+              success: function(result){
+                   console.log(result);
+              html='';
+              var total_per_page=result.data['total'];
+              //var last=result.data['last_page'];
+             // console.log(total_per_page);
+              $('#total_per_page').text(total_per_page);
+              //$('.test').text(last);
+                $.each(result.data.data,function(k,v){
 
                     html += '<div class="col-md-3 col-xs-6 text-center">'
                     html += '<a href="<?= lang_url('lawyer').'/' ; ?>'+v.id+'">';
@@ -243,6 +257,37 @@
         </script>
 
 
+        <script type="text/javascript">
+
+$(function() {
+    $('body').on('click', '#page_navigation a', function(e) {
+        e.preventDefault();
+
+        $('#load a').css('color', '#dfecf6');
+        $('#load').append('<img style="position: absolute; left: 0; top: 0; z-index: 100000;" src="/images/loading.gif" />');
+
+        // var url = $(this).attr('href'); 
+
+
+$(this).addClass('active_page').siblings().removeClass("active_page");
+        var url = $(this).html(); 
+        
+        getData(url);
+        // window.history.pushStates("", "", url);
+    });
+
+    function getArticles(url) {
+        $.ajax({
+            url : url  
+        }).done(function (data) {
+            $('.articles').html(data);  
+        }).fail(function () {
+            alert('Articles could not be loaded.');
+        });
+    }
+});
+
+</script>
 
 
 

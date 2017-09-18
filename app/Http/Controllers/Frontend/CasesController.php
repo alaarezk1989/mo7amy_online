@@ -70,6 +70,7 @@ class CasesController extends Controller
               'form_title'=>trans('cpanel.admin_form'),
               'sections'=>$sections,
               'countries'=>$countries,
+              'case_country_id'=>$first_country_id,
               'states'=>$states,
               'sess_user_id'=>$sess_user_id,
           ];
@@ -204,6 +205,7 @@ return;*/
               'form_title'=>trans('cpanel.admin_form'),
               'sections'=>$sections,
               'countries'=>$countries,
+              'case_country_id'=>$case_country_id->id,
               'states'=>$states,
               'sess_user_id'=>$sess_user_id,
               'cases_data'=>$cases_data,
