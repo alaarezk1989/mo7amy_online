@@ -177,23 +177,25 @@ public function create_case (Request $request)
 
          $states=array();
 
-          $user_country_id =  DB::table('users')
-            ->join('cities', 'cities.id', '=', 'users.city')
+          $case_country_id =  DB::table('cases')
+            ->join('cities', 'cities.id', '=', 'cases.city')
             ->join('countries', 'countries.id', '=', 'cities.country_id')
             ->select('countries.*')
-             ->where('users.id', '=', $sess_user_id)
+             ->where('cases.id', '=',$id)
             ->first();
-
-            $all_states =  DB::table('users')
-              ->join('cities', 'cities.id', '=', 'users.city')
+/*print_r($case_country_id);
+return;*/
+            $all_states =  DB::table('cases')
+              ->join('cities', 'cities.id', '=', 'cases.city')
               ->join('countries', 'countries.id', '=', 'cities.country_id')
               ->select('cities.*')
-               ->where('countries.id', '=', $user_country_id->id)
+               ->where('countries.id', '=', $case_country_id->id)
               ->get();
               foreach ($all_states as $state) {
                 $states[$state->id]=$state->$locale_name;
               }
-
+/*print_r($all_states);
+return;*/
           $data = [
                'title'=>trans('cpanel.site_name'),
               'page_title'=>trans('cpanel.edit_admin'),
@@ -253,7 +255,7 @@ public function create_case (Request $request)
             $case->title                   = $request->input('title');
             $case->description             = $request->input('description');
             $case->section_id              = $request->input('section_id');
-            $case->country                 = $request->input('country');
+           // $case->country                 = $request->input('country');
             $case->city                    = $request->input('city');
             $case->finished_date           =$request->input('finished_date');
             $case->status                  = 1;
