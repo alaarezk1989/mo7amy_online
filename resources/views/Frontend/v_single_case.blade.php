@@ -57,8 +57,8 @@ $locale = App::getLocale();
                   <i class="fa fa-star-o" aria-hidden="true"></i>
                   <i class="fa fa-star-o" aria-hidden="true"></i>
                   <div class="opinion">
-                     <span> (4.25) </span>
-                     <span> 99</span> أراء
+                     <span> (0) </span>
+                     <span> 0</span> أراء
                   </div>
                </div>
                <div class="case-price">
@@ -73,7 +73,7 @@ $locale = App::getLocale();
                             @endif
 
                <div class="numofviews">
-                  <h4>50</h4>
+                  <h4>{{$view_counter}}</h4>
                   عدد المشاهدات
                </div>
                <div class="numooffers">
@@ -117,7 +117,7 @@ $locale = App::getLocale();
 <!--***********************************************************************-->
 
 @if(auth()->user())
-@if(user_auth()->permissions=='client')
+@if(user_auth()->permissions=='lawyer' or 'client')
 
 <div class="container-fluid head-off">
    <div class="row">

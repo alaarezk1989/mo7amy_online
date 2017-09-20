@@ -240,7 +240,15 @@ class UserController extends Controller
           $rules=[
             'name'                      =>'required',
             'phone'                     =>'required|min:10',
+            'birthdate'                     =>'required|before:20 years ago',
+
           ];
+
+
+          $messages = [
+        'birthdate.before' => 'You must be at least 20 years old',
+    ];
+
           // Check if He/She want to change password
           if(!empty($request->input('password')) && $request->input('password')!= null)
           {
@@ -248,12 +256,13 @@ class UserController extends Controller
               $rules['password_confirmation']='min:8';
           }
 
-          $validator = Validator::make($request->all(), $rules);
+          $validator = Validator::make($request->all(), $rules, $messages);
           $validator->SetAttributeNames([
             'name'                      =>trans('cpanel.name'),
             'password'                  =>trans('cpanel.password'),
             'password_confirmation'     =>trans('cpanel.password_confirmation'),
             'phone'                     =>trans('cpanel.phone'),
+            'birthdate'                 =>'birthdate',
           ]);
           if($validator->fails())
           {
@@ -586,7 +595,7 @@ public function lawyer($locale='ar',$id){
 
         App::setLocale($locale);
         $locale = App::getLocale();
-        $per_page=3;
+        
 
         $sess_user_id= session('user_id');
         $show_lowyer_contact_flag=0;
@@ -615,7 +624,7 @@ public function lawyer($locale='ar',$id){
         $countLawyersCases = DB::table('bids')
             ->where('bids.user_id','=',$id)
             ->count();
-
+          $per_page = 1;
         $lawyerCases = DB::table('cases')
             ->join('cities', 'cities.id', '=', 'cases.city')
             ->join('countries', 'countries.id', '=', 'cities.country_id')
@@ -624,7 +633,7 @@ public function lawyer($locale='ar',$id){
             ->where('bids.user_id','=',$id)
             ->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','bids.bids_val as bidValue','sections.'.$locale.'_name as sectionName')
             ->orderBy ('cases.created_at','desc')
-            ->get();
+            ->paginate($per_page);
 
 foreach ($lawyerCases as $caser_row) {
   if($caser_row->is_bids==1 && $caser_row->user_id==$sess_user_id){
@@ -644,6 +653,7 @@ foreach ($lawyerCases as $caser_row) {
             'countLawyersCases'=>$countLawyersCases,
             'birthdate_year'=>$birthdate_year,
             'lawyerCases'=>$lawyerCases,
+            'per_page'=>$per_page,
             'show_lowyer_contact_flag'=>$show_lowyer_contact_flag,
         ];
         // return Carbon::createFromDate(1991, 7, 19)->diff(Carbon::now())->format('%y years, %m months and %d days');

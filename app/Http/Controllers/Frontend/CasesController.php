@@ -448,11 +448,22 @@ return; */
       
       
         $user_id=$case->user_id;
+        //$case->increment('view_counter');
+        $view_counter = $case->view_counter + 1;
+
+         $case_update_counter = Cases::findOrFail($id);
+            $case_update_counter->view_counter             = $view_counter;
+            $case_update_counter->save();
+
+        /* echo $view_counter;
+         return;
+*/
         $user_case = User::findOrFail($user_id);
         $data = [
             'title'=>trans('cpanel.site_name'),
             'case'=>$case,
             'id'=>$id,
+            'view_counter'=>$view_counter,
             'user_case'=>$user_case,
             'case_bids'=>$case_bids,
             'all_case_bids'=>$all_case_bids,
@@ -544,11 +555,12 @@ return; */
         $new_time = date("Y-m-d H:i:s", strtotime('-1 hours'));
         $caseModel->where('created_dte','>=', $new_time);
       }
-      // if($request->countries){
-      //   $c_array=(array)$request->countries;
-      //    $c_array=array_unique($c_array);
-      //   $caseModel->whereIn('country', $c_array);
-      // }
+
+      if($request->sort){
+        $c_array=(array)$request->countries;
+         $c_array=array_unique($c_array);
+        $caseModel->whereIn('country', $c_array);
+     }
 
 
 

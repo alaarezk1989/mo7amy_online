@@ -23,14 +23,28 @@
 
                      <div class="profile-cont text-center">
                        @if($admin_data->image !='')
-                         <img src="{{ asset('public/uploads/user_img')}}/{{$admin_data->image}}" width="20%" alt="profile" />
+                         <img  id="blah" src="{{ asset('public/uploads/user_img')}}/{{$admin_data->image}}" width="20%" alt="profile" />
                        @else
-                         <img src="{{ asset('public/uploads')}}/avater.png"  width="20%" alt="profile"/>
+                         <img id="blah"  src="{{ asset('public/uploads')}}/avater.png"  width="20%" alt="profile"/>
                        @endif
-                        <label tabindex="0" for="my-file" class="input-file-trigger img-label">{{trans('cpanel.upload_your_image')}} </label>
+                        <label tabindex="0" for="imgInp" class="input-file-trigger img-label">{{trans('cpanel.upload_your_image')}} </label>
+                      
                        {{-- <input class="input-file" id="my-file" type="file"> --}}
-                        {!! Form::file('profile_picture',array('id'=>'my-file', 'class'=>'input-file')) !!}
+
+                       <!-- <input type='file' onchange="readURL(this);" />-->
+                        {!! Form::file('profile_picture',array('onchange'=>'readURL(this);','id'=>'imgInp')) !!}
+                    
+
+
+
+                        
                      </div>
+
+
+
+
+
+
 
                      <div class="row">
                         <div class="col-md-6">
@@ -45,6 +59,7 @@
                              @endif
                         </div>
                      </div>
+
 
                      <div class="row">
                         <div class="col-md-12">
@@ -79,6 +94,10 @@
                               <label for="basic-url" class="mb">{{trans('cpanel.birthdate')}} </label>
 
                               {{ Form::text('birthdate',old('birthdate'), array('id' => 'datepicker','class' => 'form-control')) }}
+                           
+                            @if($errors->has('birthdate'))
+                              <span class="help-block text-danger">{{ $errors->first('birthdate') }}</span>
+                            @endif
                            </div>
                         </div>
                      </div>
@@ -122,11 +141,15 @@
                     </div>
                     @endif
 
-                     <div class="buttons-save">
+                   <div class="buttons-save">
                         <button class="done" type="submit">  {{ trans('cpanel.save') }} </button>
-                        <button type="reset" class="delet">  {{ trans('cpanel.cancel') }} </button>
-                     </div>
                  {!! Form::close() !!}
+
+                      
+                     </div>
+                     <div class="buttons-save">
+                        <a href="{{lang_url('')}}">
+                        <button  class="delet">  {{ trans('cpanel.cancel') }} </button></a></div>
                </div>
                <div class="tab2">
                  @if(Session::has('error_msg'))
@@ -158,7 +181,10 @@
                         <div class="col-md-12">
                            <div class="pass-buttons">
                               <button class="saveme" type="submit">{{ trans('cpanel.save') }} </button>
+                             
                               <button class="cancelme" type="reset">{{ trans('cpanel.cancel') }} </button>
+
+
                            </div>
                         </div>
                      </div>
@@ -175,5 +201,32 @@
       </div>
    </div>
 </section>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
 
+
+
+
+
+
+
+     function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+/*$("#imgInp").change(function(){
+
+    readURL(this);
+
+});*/
+    </script>
 @stop

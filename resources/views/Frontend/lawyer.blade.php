@@ -95,33 +95,37 @@ $locale = App::getLocale();
   <section class="offers">
      <div class="container">
         <div class="row">
-           <div class="arrange">
-              <i class="fa fa-sort " aria-hidden="true"></i>
-              <div class="dropdown">
-                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                 ترتيب
-                 <span class="caret"></span>
-                 </button>
-                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">اعلى سعر </a></li>
-                    <li><a href="#">اقل سعر  </a></li>
-                    <li><a href="#"> احدث عرض  </a></li>
-                 </ul>
-              </div>
-              <p>
-                 يظهر
-                 <spa> 0- 8 </spa>
-                 من <span> 25 </span>  نتيجة
-              </p>
-              <div id='page_navigation'></div>
-           </div>
+  <div class="arrange">
+                     <i class="fa fa-sort " aria-hidden="true"></i>
+                     <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        {{ trans('cpanel.arranging') }}
+                        <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu arrang-menu" aria-labelledby="dropdownMenu1">
+                           <li><a href="#">{{ trans('cpanel.highest_price') }}</a></li>
+                           <li><a href="#">{{ trans('cpanel.lowest_price') }}</a></li>
+                           <li><a href="#">{{ trans('cpanel.latest_show') }} </a></li>
+                        </ul>
+                     </div>
+                     <p>
+                       {{trans('cpanel.show')}}
+                        <span> 0- {{ $lawyerCases->perPage() }} </span>
+                        {{trans('cpanel.of')}}
+                        <span> {{$lawyerCases->total()}} </span>{{trans('cpanel.result')}}
+                     </p>
+                     <div id='page_navigation'>{{ $lawyerCases->links() }}</div>
+                  </div>
+
+
            <!--***********************************************-->
            <input type='hidden' id='current_page' />
            <input type='hidden' id='show_per_page' />
             @foreach($lawyerCases as $lawyerCase)
            <div id='content'>
+            <a href="{{lang_url('case').'/'.$lawyerCase->id}}">
               <div class="case-client border-bott">
-                 <p> {{$lawyerCase->description}}  </p>
+                 <p> {{$lawyerCase->title}}  </p>
                  <div>
                     <div class="casetype"> نوع القضية : <span>{{$lawyerCase->sectionName}}</span></div>
                      <div class="status"> الحالة :
@@ -150,9 +154,10 @@ $locale = App::getLocale();
                            ?> </div>
 
                     <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر {{$lawyerCase->bidValue}} $</div>
-                    <a href="{{lang_url('case').'/'.$lawyerCase->id}}"> عرض المزيد </a>
+                   
                  </div>
               </div>
+            </a>
               </div>
               @endforeach
            </div>
