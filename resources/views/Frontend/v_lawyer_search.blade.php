@@ -14,7 +14,28 @@
 
 <div class="col-md-12">
 
- 
+  <div class="arrange">
+                     <i class="fa fa-sort " aria-hidden="true"></i>
+                     <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        {{ trans('cpanel.arranging') }}
+                        <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu arrang-menu" aria-labelledby="dropdownMenu1">
+                           <li><a href="#">{{ trans('cpanel.highest_price') }}</a></li>
+                           <li><a href="#">{{ trans('cpanel.lowest_price') }}</a></li>
+                           <li><a href="#">{{ trans('cpanel.latest_show') }} </a></li>
+                        </ul>
+                     </div>
+                     <p>
+                       {{trans('cpanel.show')}}
+                        <span> 0- {{ $details->perPage() }} </span>
+                        {{trans('cpanel.of')}}
+                        <span> {{$details->total()}} </span>{{trans('cpanel.result')}}
+                     </p>
+                     <div id='page_navigation'>{{ $details->links() }}</div>
+                  </div>
+
 
 
 <input type='hidden' id='current_page' />

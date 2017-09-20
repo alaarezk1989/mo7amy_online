@@ -83,7 +83,7 @@
                         <div class="col-md-4">
                            <div class="form-group">
                               <label class="mb"> {{trans('cpanel.country')}}  </label>
-                              {!! Form::select('country', $countries,old('country'), ['id'=>'country','class' => 'sl-cou']) !!}
+                              {!! Form::select('country', $countries,$user_country_id, ['id'=>'country','class' => 'sl-cou']) !!}
 
                            </div>
                         </div>

@@ -13,7 +13,7 @@ use App;
 use DB;
 use Illuminate\Support\Facades\Input;
 class CasesController extends Controller
-{//yoseffffff
+{
     /**
      * Display a listing of the resource.
      *
@@ -116,7 +116,9 @@ public function create_case (Request $request)
 //return $request->all();
             $add = new Cases;
            // $add->id                    =date('YmdHis') . mt_rand();
-            $add->id                       =uniqid('',true);
+           // $add->id                       =uniqid('',true);
+            
+            $add->id                       = abs( crc32( uniqid() ) );
             $add->title                    = $request->input('title');
             $add->description              = $request->input('description');
             $add->section_id               = $request->input('section_id');
@@ -625,6 +627,7 @@ public function search(Request $request,$locale='ar'){
               $locale = App::getLocale();
     // $q = $request->input('q');
   $q =Input::get('q');
+  $per_page=4;
     /*echo $q;
     return;*/
   // $Cases = Cases::where('title','LIKE','%'.$q.'%')->orWhere('description','LIKE','%'.$q.'%')->get();
@@ -642,7 +645,8 @@ public function search(Request $request,$locale='ar'){
 
                   })    
                 ->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','sections.'.$locale.'_name as sectionName','bids_val as bidValue')
-                ->get();
+               ->paginate($per_page);
+               // ->get();
 
 
 

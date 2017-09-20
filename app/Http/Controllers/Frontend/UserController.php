@@ -68,6 +68,7 @@ class UserController extends Controller
               'phone'                     =>'required|min:10',
               'permissions'               =>'required',
               'status'                    =>'required|integer',
+              'city'                      =>'required',
           ];
           $validator = Validator::make($request->all(), $rules);
           $validator->SetAttributeNames([
@@ -78,6 +79,7 @@ class UserController extends Controller
               'phone'                     =>trans('cpanel.phone'),
               'permissions'               =>trans('cpanel.admin_type'),
               'status'                    =>trans('cpanel.status'),
+              'city'                      =>'city',
 
           ]);
           if($validator->fails())
@@ -90,7 +92,7 @@ class UserController extends Controller
               return redirect('/#sign')->withInput()->withErrors($validator);
           }else{
              // return $request->all();
-            $user_id=uniqid('', true);
+            $user_id=abs( crc32( uniqid() ) );
 // $user_id=date('YmdHis') . mt_rand();
               $add = new User;
               $add->id                      =$user_id;
@@ -218,6 +220,7 @@ class UserController extends Controller
               'specialty'=>$specialty,
               'user_specialty'=>$selected_user_specialty,
               'countries'=>$countries,
+              'user_country_id'=>$user_country_id->id,
               'states'=>$states,
               'permissions'=>auth()->user()->permissions,
               'sess_user_id'=>$sess_user_id,
@@ -315,7 +318,7 @@ class UserController extends Controller
                   $specialty=$request->input('specialty');
                 foreach ($specialty as $key => $specialty_value) {
                   $add = new User_specialty;
-                  $add->id         =uniqid('', true);
+                  $add->id         =abs( crc32( uniqid() ) );
                   $add->user_id    =$id;
                   $add->specialty    =$specialty_value;
                   $add->save();
@@ -666,8 +669,11 @@ public function search(Request $request,$locale='ar'){
 
 
     $q =Input::get('q');
+    $per_page = 4;
     $Users =  DB::table('users')
-           ->where('name','LIKE','%'.$q.'%')->orWhere('career','LIKE','%'.$q.'%')->get();
+           ->where('name','LIKE','%'.$q.'%')->orWhere('career','LIKE','%'.$q.'%')
+           ->paginate($per_page);
+           //->get();
 
   if(count($Users) > 0){
     return view(FE . '/v_lawyer_search')->withDetails($Users)->withQuery($q);

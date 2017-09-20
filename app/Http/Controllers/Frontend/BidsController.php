@@ -101,7 +101,7 @@ class BidsController extends Controller
 
       $sess_user_id= session('user_id');
       $add = new bids;
-      $add->id         =uniqid('', true);
+      $add->id         =abs( crc32( uniqid() ) );
       $add->user_id    =$sess_user_id;
       $add->case_id    =$case_id;
       $add->bids_val    =$bids_val;

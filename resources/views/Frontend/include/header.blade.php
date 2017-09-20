@@ -167,9 +167,13 @@
                                     <div class=" slct form-group">
 
                                       {!! Form::select('country', get_countries_cities()['countries'],'', array('id'=>'country') ) !!}
-
+                               @if($errors->has('country'))
+                                 <span class="help-block text-danger"style="color: red;">{{ $errors->first('country') }}</span>
+                               @endif
                                       {!! Form::select('city', get_countries_cities()['states'],'', array('id'=>'city')) !!}
-
+                                @if($errors->has('city'))
+                                   <span class="help-block text-danger"style="color: red;">{{ $errors->first('city') }}</span>
+                                @endif
                                     </div>
                                     <div class="gender text-center">
                                        <span class="gen mb text-center">{{ trans('cpanel.gender')}} </span>
