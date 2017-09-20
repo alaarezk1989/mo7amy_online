@@ -77,17 +77,36 @@ $locale = App::getLocale();
 </div>
 </form>
 
+<?php 
+$get_section = 0;
+$get_country = 0;
+
+if(isset($_GET['section'])){
+$get_section = $_GET['section']; 
+}
+
+if(isset($_GET['country'])){
+$get_country = $_GET['country']; 
+}
+?>
+<input type="hidden" value="<?php echo $get_section; ?>" id="get_section">
+<input type="hidden" value="<?php echo $get_country; ?>" id="get_country">
+
+
 <form method="get" action="{{lang_url('cases/filtering')}}">
-
-
 
 <div id="filters2" class="dep">
 <div class="filterblock2" id="all_sections">
 <label> الاقسام </label>
 <input type="checkbox" id="filter" class="AllSections filter sections" >  الكل <br>
   <?php
-         foreach($sections as $key => $value){?>
-               <input id="filter" class="filter sections"  type="checkbox"  value="{{$key}}" data-tag="{{$value}}"  /> {{$value}} <br>
+         foreach($sections as $key => $value){
+          $checked ='';
+            if($get_section == $key){
+              $checked = "checked = 'checked'";
+            }
+          ?>
+               <input id="filter" class="filter sections"  type="checkbox" {{$checked}} value="{{$key}}" data-tag="{{$value}}"  /> {{$value}} <br>
             <?php }?>
 </div>
 </div>
@@ -97,8 +116,14 @@ $locale = App::getLocale();
 <label> الدول </label>
                 <input type="checkbox" id="filter" class="AllCountries filter countries" >  الكل <br>
   <?php
-         foreach($countries as $key => $value){?>
-               <input  type="checkbox" id="filter" class="filter countries"  value="{{$key}}" data-tag="{{$value}}"  /> {{$value}} <br>
+         foreach($countries as $key => $value){
+            $checked ='';
+            if($get_country == $key){
+              $checked = "checked = 'checked'";
+            }
+          ?>
+
+                         <input  type="checkbox" id="filter" class="filter countries" {{$checked}} value="{{$key}}" data-tag="{{$value}}"  /> {{$value}} <br>
             <?php }?>
 </div>
 </div>
@@ -113,14 +138,24 @@ $locale = App::getLocale();
 !--></div>
 
 
+
+
+
+
+
+
+
+
+
+
 <div class="timee">
 <label> المدة الزمنية </label>
 <input type="checkbox" name="" value="">  الكل <br>
-<input id="filter" class="filter created_date" type="checkbox"  value=""> اخر 6 ساعات <br>
-<input id="filter" class="filter created_date" type="checkbox"  value="" > اخر 12 ساعة  <br>
-<input id="filter" class="filter created_date" type="checkbox"  value="" > اخر 24 ساعة <br>
-<input id="filter" class="filter created_date" type="checkbox"  value="" > اخر 7 اسبوع  <br>
-<input id="filter" class="filter created_date" type="checkbox"  value="" > اخر شهر  <br>
+<input id="filter" class="filter created_date" type="checkbox"  value="6"> اخر 6 ساعات <br>
+<input id="filter" class="filter created_date" type="checkbox"  value="12" > اخر 12 ساعة  <br>
+<input id="filter" class="filter created_date" type="checkbox"  value="24" > اخر 24 ساعة <br>
+<input id="filter" class="filter created_date" type="checkbox"  value="7" > اخر 7 ايام <br>
+<input id="filter" class="filter created_date" type="checkbox"  value="30" > اخر شهر  <br>
 
 </div>
 
@@ -139,7 +174,6 @@ $locale = App::getLocale();
 
 
 
-
 <!--*******************************************-->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
       <script >
@@ -154,7 +188,7 @@ $locale = App::getLocale();
             var countries = [];
             var filters = [] ;
             var Case_status2 = [] ;
-            var created_date = [] ;
+            var created_date = '' ;
             var html = '' ;
             //  Call the ajax request
             getData();
@@ -165,6 +199,25 @@ $locale = App::getLocale();
 
 
           $(document).ready(function(){
+/*This part to make sections and countries at home page */
+     var get_section = $('#get_section').val(); 
+     var get_country = $('#get_country').val(); 
+
+        if(get_section>0){
+        sections.push(get_section);
+         filters = {'sections':sections};
+         var page_url = $('.active_page').html(); 
+        // alert(page_url);
+                getData(page_url);
+            }
+        if(get_country>0){
+        countries.push(get_country);
+         filters = {'countries':countries};
+         var page_url = $('.active_page').html(); 
+        // alert(page_url);
+                getData(page_url);
+            }
+/*This part to make sections and countries at home page */
 
           // $('.loader').hide();
             $('.filter').on('change', function(){
@@ -197,10 +250,9 @@ $locale = App::getLocale();
                         }
                     }
 
-                        if($(this).hasClass( "created_date" )){
+                     if($(this).hasClass( "created_date" )){
                         if($(this).val()){
-                            created_date.push($(this).val());
-                            created_date = $.unique(created_date);
+                            created_date = $(this).val();
                         }
                     }
                 }
@@ -222,7 +274,7 @@ $locale = App::getLocale();
                  // filters = [] ;
                  Case_status2 = [] ;
 
-               created_date = [] ;
+               created_date = '' ;
 
               if(category_list.length == 0)
                 $('.resultblock').fadeIn();

@@ -57,40 +57,40 @@ $locale = App::getLocale();
    <div class="container">
       <div class="row">
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s1.png') }}" class="img-responsive"></a>
+            <a href="{{lang_url('cases').'?section=6'}}"><img src="{{ URL::to('public/assets/Frontend/img/s1.png') }}" class="img-responsive"></a>
          </div>
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s2.png') }}" class="img-responsive"></a>
+            <a href="{{lang_url('cases').'?section=5'}}"><img src="{{ URL::to('public/assets/Frontend/img/s2.png') }}" class="img-responsive"></a>
          </div>
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s3.png') }}" class="img-responsive"></a>
+            <a href="{{lang_url('cases').'?section=4'}}"><img src="{{ URL::to('public/assets/Frontend/img/s3.png') }}" class="img-responsive"></a>
          </div>
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s4.png') }}" class="img-responsive"></a>
+            <a href="{{lang_url('cases').'?section=3'}}"><img src="{{ URL::to('public/assets/Frontend/img/s4.png') }}" class="img-responsive"></a>
          </div>
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s5.png') }}" class="img-responsive"></a>
+            <a href="{{lang_url('cases').'?section=2'}}"><img src="{{ URL::to('public/assets/Frontend/img/s5.png') }}" class="img-responsive"></a>
          </div>
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s6.png') }}" class="img-responsive"></a>
+            <a href="{{lang_url('cases').'?section=1'}}"><img src="{{ URL::to('public/assets/Frontend/img/s6.png') }}" class="img-responsive"></a>
          </div>
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s12.png') }}" class="img-responsive"></a>
+            <a href="{{lang_url('cases').'?section=12'}}"><img src="{{ URL::to('public/assets/Frontend/img/s12.png') }}" class="img-responsive"></a>
          </div>
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s8.png') }}" class="img-responsive"></a>
+            <a href="{{lang_url('cases').'?section=10'}}"><img src="{{ URL::to('public/assets/Frontend/img/s8.png') }}" class="img-responsive"></a>
          </div>
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s9.png') }}" class="img-responsive"></a>
+            <a href="{{lang_url('cases').'?section=9'}}"><img src="{{ URL::to('public/assets/Frontend/img/s9.png') }}" class="img-responsive"></a>
          </div>
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s10.png') }}" class="img-responsive"></a>
+            <a href="{{lang_url('cases').'?section=8'}}"><img src="{{ URL::to('public/assets/Frontend/img/s10.png') }}" class="img-responsive"></a>
          </div>
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s11.png') }}" class="img-responsive"></a>
+            <a href="{{lang_url('cases').'?section=7'}}"><img src="{{ URL::to('public/assets/Frontend/img/s11.png') }}" class="img-responsive"></a>
          </div>
          <div class="col-md-2 col-sm-4 col-xs-6">
-            <a href="#"><img src="{{ URL::to('public/assets/Frontend/img/s7.png') }}" class="img-responsive"></a>
+            <a href="{{lang_url('cases').'?section=11'}}"><img src="{{ URL::to('public/assets/Frontend/img/s7.png') }}" class="img-responsive"></a>
          </div>
       </div>
    </div>
@@ -180,14 +180,14 @@ $locale = App::getLocale();
          
 
             <div class="text text-center">
-               <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c1.png') }}"> </a>
+               <a href="{{lang_url('cases').'?country=2'}}"> <img src="{{ URL::to('public/assets/Frontend/img/c1.png') }}"> </a>
                <p> {{trans('cpanel.Saudi_Arabia')}}  </p>
                <span>{{$saudiCases}} {{trans('cpanel.Case')}} </span>
             </div>
          </div>
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
-               <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c2.png') }}"> </a>
+               <a href="{{lang_url('cases').'?country=1'}}"> <img src="{{ URL::to('public/assets/Frontend/img/c2.png') }}"> </a>
                <p>{{trans('cpanel.Egypt')}}   </p>
                <span>{{$egyptCases}}  {{trans('cpanel.Case')}} </span>
             </div>
@@ -195,35 +195,35 @@ $locale = App::getLocale();
          
         <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
-               <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c3.png') }}"> </a>
+               <a href="{{lang_url('cases').'?country='}}"> <img src="{{ URL::to('public/assets/Frontend/img/c3.png') }}"> </a>
                <p>{{trans('cpanel.United_Arab_Emirates')}}   </p>
                <span>0 {{trans('cpanel.Case')}} </span>
             </div>
          </div>
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
-               <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c4.png') }}"> </a>
+               <a href="{{lang_url('cases').'?country='}}"> <img src="{{ URL::to('public/assets/Frontend/img/c4.png') }}"> </a>
                <p>  {{trans('cpanel.Kuwait')}}  </p>
                <span>0 {{trans('cpanel.Case')}} </span>
             </div>
          </div>
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
-               <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c5.png') }}"> </a>
+               <a href="{{lang_url('cases').'?country=3'}}"> <img src="{{ URL::to('public/assets/Frontend/img/c5.png') }}"> </a>
                <p>{{trans('cpanel.Tunisia')}}    </p>
                <span>{{$tunisiaCases}} {{trans('cpanel.Case')}}</span>
             </div>
          </div>
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
-               <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c6.png') }}"> </a>
+               <a href="{{lang_url('cases').'?country='}}"> <img src="{{ URL::to('public/assets/Frontend/img/c6.png') }}"> </a>
                <p>{{trans('cpanel.Morocco')}}  </p>
                <span>0 {{trans('cpanel.Case')}}</span>
             </div>
          </div>
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
-               <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c7.png') }}"> </a>
+               <a href="{{lang_url('cases').'?country=5'}}"> <img src="{{ URL::to('public/assets/Frontend/img/c7.png') }}"> </a>
                <p> {{trans('cpanel.Algeria')}} </p>
                <span>{{$algeriaCases}} {{trans('cpanel.Case')}} </span>
             </div>
@@ -231,7 +231,7 @@ $locale = App::getLocale();
 
          <div class="col-md-3 col-sm-6 m_bottom">
             <div class="text text-center">
-               <a href=""> <img src="{{ URL::to('public/assets/Frontend/img/c8.png') }}"> </a>
+               <a href="{{lang_url('cases').'?country='}}"> <img src="{{ URL::to('public/assets/Frontend/img/c8.png') }}"> </a>
                <p> {{trans('cpanel.Bahrain')}}  </p>
                <span>0 {{trans('cpanel.Case')}} </span>
             </div>

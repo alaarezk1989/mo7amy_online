@@ -553,10 +553,7 @@ return; */
       if($request->status2){
         $caseModel->whereIn('status', (array)$request->status2);
       }
-       if($request->created_date){
-        $new_time = date("Y-m-d H:i:s", strtotime('-1 hours'));
-        $caseModel->where('created_dte','>=', $new_time);
-      }
+ 
 
       if($request->sort){
         $c_array=(array)$request->countries;
@@ -564,7 +561,18 @@ return; */
         $caseModel->whereIn('country', $c_array);
      }
 
+  if($request->created_date){
+         if($request->created_date != 7 AND $request->created_date != 30){
 
+          $new_time = date("Y-m-d H:i:s", strtotime('-'.$request->created_date.' hours'));
+      }
+else{
+
+$new_time = date("Y-m-d H:i:s", strtotime('-'.$request->created_date.' days'));
+   
+   }
+         $caseModel->where('cases.created_at','>=', $new_time);
+      }
 
 
       if($request->countries){
