@@ -19,9 +19,8 @@
                         <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu arrang-menu" aria-labelledby="dropdownMenu1">
-                           <li><a href="#">{{ trans('cpanel.highest_price') }}</a></li>
-                           <li><a href="#">{{ trans('cpanel.lowest_price') }}</a></li>
-                           <li><a href="#">{{ trans('cpanel.latest_show') }} </a></li>
+                           <li><a id="max" href="#">الاسماء ابجدى</a></li>
+                          
                         </ul>
                      </div>
                      <p>
@@ -93,6 +92,7 @@
             var sections = [];
             var countries = [];
             var filters = [] ;
+            var sortBy = '' ;
             var html = '' ;
             //  Call the ajax request
             getData();
@@ -102,7 +102,7 @@
 
 
 
-          $(document).ready(function(){
+          /*$(document).ready(function(){
 
           // $('.loader').hide();
             $('.filter').on('change', function(){
@@ -159,7 +159,97 @@
                 });
               }
             });
+          });*/
+
+
+
+
+
+
+
+
+
+  $(document).ready(function(){
+ 
+            filterIt() ;  
           });
+
+          function filterIt(){
+              // $('.loader').hide();
+            $('body .filter ,body #sort ,body #max').each(function(){
+                $(this).on('change click', function(){
+                if($(this).attr('id') == 'max'){
+                    sortBy = $(this).attr('id');
+                  }
+                 
+               // $('.loader').show();
+              var category_list = [];
+              $('body #filter').each(function(){
+                  
+                if($(this).is(":checked")) {
+
+                    if($(this).hasClass( "countries" )){
+                        if($(this).val()){
+                            countries.push($(this).val());
+                            countries = $.unique(countries);
+                        }
+
+                    }
+
+                    if($(this).hasClass( "sections" )){
+                        if($(this).val()){
+                            sections.push($(this).val());
+
+                            sections = $.unique(sections);
+                        }
+                    }
+
+           
+                }
+
+              });
+
+            filters = {'countries':countries,'sections':sections ,'sortBy':sortBy} ;
+
+            //  Call the ajax request
+              
+        var page_url = $('.active_page').html(); 
+        // alert(page_url);
+                getData(page_url);
+
+
+                 html = '' ;
+                 sections = [];
+                 countries = [];
+                 // filters = [] ;
+                
+
+
+              if(category_list.length == 0)
+                $('.resultblock').fadeIn();
+              else {
+                $('.resultblock').each(function(){
+                  var item = $(this).attr('data-tag');
+                  if(jQuery.inArray(item,category_list) > -1)
+                    $(this).fadeIn('slow');
+                  else
+                    $(this).hide();
+                });
+              }
+            });
+            });
+            
+          }
+
+
+
+
+
+
+
+
+
+
 
 <?php
   //$page='?page=1';

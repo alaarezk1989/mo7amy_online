@@ -523,17 +523,11 @@ class UserController extends Controller
          $users_ids_sections[]=$value_user_ids->user_id;
         }
       }
-      //  if(count($users_ids)>0){
-      //    $users_ids=array_intersect($users_ids,$users_ids_sections);
-       //
-      //  }else{
-         $users_ids=array_merge($users_ids,$users_ids_sections);
-      //     $users_ids=array_unique($users_ids);
-      //  }
-
+    
+    $users_ids=array_merge($users_ids,$users_ids_sections);
+     
       if($request->countries){
-
-      $user_countries= DB::table('users')
+         $user_countries= DB::table('users')
                           ->select('users.id')
                           ->join('cities', 'cities.id', '=', 'users.city')
                           ->join('countries', 'countries.id', '=', 'cities.country_id')
@@ -543,41 +537,46 @@ class UserController extends Controller
         foreach ($user_countries as  $key => $value_user_ids) {
          $users_ids_countries[]=$value_user_ids->id;
         }
+        if(!empty($users_ids)){
         $users_ids=array_intersect($users_ids,$users_ids_countries);
-    }else{
-      $users_ids=array_merge($users_ids,$users_ids_countries);
-      $users_ids=array_unique($users_ids);
+        }else{
+        $users_ids=array_merge($users_ids,$users_ids_countries);
+        $users_ids=array_unique($users_ids);
+      }
     }
 
-
-
- // if(!empty($users_ids)){
-   if($request->sections || $request->countries){
-  $data_join = DB::table('users')
+  $data_join1 = DB::table('users')
   ->join('user_specialty', 'users.id', '=', 'user_specialty.user_id')
     ->join('sections', 'sections.id', '=', 'user_specialty.specialty')
 
     ->join('cities', 'cities.id', '=', 'users.city')
     ->join('countries', 'countries.id', '=', 'cities.country_id')
-    ->select('users.*','sections.'.$sess_locale.'_name as s_name','cities.'.$sess_locale.'_name as city_name','countries.'.$sess_locale.'_name as country_name')
-    ->groupBy('user_specialty.user_id')
-    ->whereIn('users.id', $users_ids)
-    ->paginate($per_page);
-   // ->get();
-
-  }else{
-
-    $data_join = DB::table('users')
-    ->join('user_specialty', 'users.id', '=', 'user_specialty.user_id')
-    ->join('sections', 'sections.id', '=', 'user_specialty.specialty')
-    ->join('cities', 'cities.id', '=', 'users.city')
-    ->join('countries', 'countries.id', '=', 'cities.country_id')
-    ->select('users.*','sections.'.$sess_locale.'_name as s_name','cities.'.$sess_locale.'_name as city_name','countries.'.$sess_locale.'_name as country_name')
-    ->groupBy('user_specialty.user_id')
-    ->paginate($per_page);
-    //->get();
-
+    ->groupBy('user_specialty.user_id');
+    if($request->sortBy == 'max'){
+    $data_join1->orderBy('users.name','desc');
   }
+   // if($request->sections || $request->countries){
+   if(!empty($users_ids)){
+    $data_join1->whereIn('users.id', $users_ids);
+  }
+    $data_join = $data_join1->select('users.*','sections.'.$sess_locale.'_name as s_name','cities.'.$sess_locale.'_name as city_name','countries.'.$sess_locale.'_name as country_name')
+   
+    ->paginate($per_page);
+
+  // }else{
+
+  //   $data_join = DB::table('users')
+  //   ->join('user_specialty', 'users.id', '=', 'user_specialty.user_id')
+  //   ->join('sections', 'sections.id', '=', 'user_specialty.specialty')
+  //   ->join('cities', 'cities.id', '=', 'users.city')
+  //   ->join('countries', 'countries.id', '=', 'cities.country_id')
+  //   ->select('users.*','sections.'.$sess_locale.'_name as s_name','cities.'.$sess_locale.'_name as city_name','countries.'.$sess_locale.'_name as country_name')
+  //   ->groupBy('user_specialty.user_id')
+  //   // ->orderBy('users.name','desc')
+  //   ->paginate($per_page);
+  //   //->get();
+
+  // }
 
 
 /*
@@ -639,7 +638,7 @@ public function lawyer($locale='ar',$id){
             ->paginate($per_page);
 
 foreach ($lawyerCases as $caser_row) {
-  if($caser_row->is_bids==1 && $caser_row->user_id==$sess_user_id){
+  if($caser_row->status==2 && $caser_row->user_id==$sess_user_id){
     $show_lowyer_contact_flag=1;
     break;
   }

@@ -555,24 +555,19 @@ return; */
       }
  
 
-      if($request->sort){
-        $c_array=(array)$request->countries;
-         $c_array=array_unique($c_array);
-        $caseModel->whereIn('country', $c_array);
-     }
 
-  if($request->created_date){
-         if($request->created_date != 7 AND $request->created_date != 30){
-
+   if($request->created_date){
+         //print_r( $request->created_date[0]) ; 
+         //return  ;
+         if($request->created_date == 7 OR $request->created_date == 30){
+          $new_time = date("Y-m-d H:i:s", strtotime('-'.$request->created_date.' days'));
+         }else{
           $new_time = date("Y-m-d H:i:s", strtotime('-'.$request->created_date.' hours'));
+         }
+        $caseModel->where('cases.created_at','>=', $new_time);
       }
-else{
 
-$new_time = date("Y-m-d H:i:s", strtotime('-'.$request->created_date.' days'));
-   
-   }
-         $caseModel->where('cases.created_at','>=', $new_time);
-      }
+
 
 
       if($request->countries){
@@ -580,23 +575,33 @@ $new_time = date("Y-m-d H:i:s", strtotime('-'.$request->created_date.' days'));
         $c_array=(array)$request->countries;
         $c_array=array_unique($c_array);
 
-        $cases = $caseModel ->join('cities', function ($join) {
+        $caseModel ->join('cities', function ($join) {
         $join->on('cases.city', '=', 'cities.id');
       })->join('countries', function ($join) {
         $join->on('cities.country_id', '=', 'countries.id');
-      })->join('sections', function ($join) {$join->on('cases.section_id', '=', 'sections.id');
+      })->join('sections', function ($join) {
+        $join->on('cases.section_id', '=', 'sections.id');
 
       })->leftJoin(\DB::raw('(SELECT * FROM bids A WHERE bids_val = (SELECT MAX(bids_val) AS bidValue FROM bids B WHERE A.case_id=B.case_id)) AS t2'), function($join) {
                $join->on('cases.id', '=', 't2.case_id');
+      });
 
-    })->select('cases.*', 'countries.'.$locale.'_name as CountryName', 'cities.'.$locale.'_name as Cityname', 'sections.'.$locale.'_name as SectionName', 'bids_val as bidValue')
+        if($request->sortBy == 'max'){
+              $caseModel->orderBy('bids_val','desc');
+            }elseif($request->sortBy == 'low'){
+              $caseModel->orderBy('bids_val','asc');
+            }elseif($request->sortBy == 'latest'){
+              $caseModel->orderBy('cases.created_at','desc');
+      }
+
+      $cases = $caseModel->select('cases.*', 'countries.'.$locale.'_name as CountryName', 'cities.'.$locale.'_name as Cityname', 'sections.'.$locale.'_name as SectionName', 'bids_val as bidValue')
     ->whereIn('countries.id', $c_array)
      ->paginate($per_page);
 
     // ->get();
 
   }else{
-    $cases = $caseModel ->join('cities', function ($join) {
+    $caseModel->join('cities', function ($join) {
       $join->on('cases.city', '=', 'cities.id');
     })->join('countries', function ($join) {
       $join->on('cities.country_id', '=', 'countries.id');
@@ -604,7 +609,19 @@ $new_time = date("Y-m-d H:i:s", strtotime('-'.$request->created_date.' days'));
 
      })->leftJoin(\DB::raw('(SELECT * FROM bids A WHERE bids_val = (SELECT MAX(bids_val) AS bidValue FROM bids B WHERE A.case_id=B.case_id)) AS t2'), function($join) {
                $join->on('cases.id', '=', 't2.case_id');
-  })->select('cases.*', 'countries.'.$locale.'_name as CountryName', 'cities.'.$locale.'_name as Cityname', 'sections.'.$locale.'_name as SectionName','bids_val as bidValue')
+  });
+
+  if($request->sortBy == 'max'){
+     $caseModel->orderBy('bids_val','desc');
+  }elseif($request->sortBy == 'low'){
+    $caseModel->orderBy('bids_val','asc');
+  }elseif($request->sortBy == 'latest'){
+    $caseModel->orderBy('cases.created_at','desc');
+  }
+  
+
+  
+  $cases = $caseModel->select('cases.*', 'countries.'.$locale.'_name as CountryName', 'cities.'.$locale.'_name as Cityname', 'sections.'.$locale.'_name as SectionName','bids_val as bidValue')
      ->paginate($per_page);
   // ->get();
   }

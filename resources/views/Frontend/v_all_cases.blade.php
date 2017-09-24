@@ -27,9 +27,9 @@ $locale = App::getLocale();
                         <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu arrang-menu" aria-labelledby="dropdownMenu1">
-                           <li><a href="#">{{ trans('cpanel.highest_price') }}</a></li>
-                           <li><a href="#">{{ trans('cpanel.lowest_price') }}</a></li>
-                           <li><a href="#">{{ trans('cpanel.latest_show') }} </a></li>
+                           <li><a id="max"href="#">{{ trans('cpanel.highest_price') }}</a></li>
+                           <li><a id="low"href="#">{{ trans('cpanel.lowest_price') }}</a></li>
+                           <li><a id="latest"href="#">{{ trans('cpanel.latest_show') }} </a></li>
                         </ul>
                      </div>
                      <p>
@@ -189,6 +189,7 @@ $get_country = $_GET['country'];
             var filters = [] ;
             var Case_status2 = [] ;
             var created_date = '' ;
+            var sortBy = '' ;
             var html = '' ;
             //  Call the ajax request
             getData();
@@ -196,10 +197,9 @@ $get_country = $_GET['country'];
             // Select all
             allOf_filterationSections();
 
-
-
           $(document).ready(function(){
-/*This part to make sections and countries at home page */
+
+            /*This part to make sections and countries at home page */
      var get_section = $('#get_section').val(); 
      var get_country = $('#get_country').val(); 
 
@@ -219,12 +219,28 @@ $get_country = $_GET['country'];
             }
 /*This part to make sections and countries at home page */
 
-          // $('.loader').hide();
-            $('.filter').on('change', function(){
+            filterIt() ;
+
+          
+          });
+
+          function filterIt(){
+              // $('.loader').hide();
+            $('body .filter ,body #sort ,body #max ,body #low ,body #latest').each(function(){
+                $(this).on('change click', function(){
+                if($(this).attr('id') == 'max'){
+                    sortBy = $(this).attr('id');
+                  }
+                  if($(this).attr('id') == 'low'){
+                    sortBy = $(this).attr('id');
+                  }
+                  if($(this).attr('id') == 'latest'){
+                    sortBy = $(this).attr('id');
+                  }  
                // $('.loader').show();
               var category_list = [];
               $('body #filter').each(function(){
-
+                  
                 if($(this).is(":checked")) {
 
                     if($(this).hasClass( "countries" )){
@@ -250,16 +266,16 @@ $get_country = $_GET['country'];
                         }
                     }
 
-                     if($(this).hasClass( "created_date" )){
+                        if($(this).hasClass( "created_date" )){
                         if($(this).val()){
-                            created_date = $(this).val();
+                            created_date =$(this).val();
                         }
                     }
                 }
 
               });
 
-            filters = {'countries':countries,'sections':sections , 'status2':Case_status2, 'created_date':created_date} ;
+            filters = {'countries':countries,'sections':sections , 'status2':Case_status2, 'created_date':created_date , 'sortBy':sortBy} ;
 
             //  Call the ajax request
               
@@ -288,7 +304,9 @@ $get_country = $_GET['country'];
                 });
               }
             });
-          });
+            });
+            
+          }
 
 <?php
   //$page='?page=1';
@@ -312,6 +330,9 @@ var page ='?page='+p;
              // console.log(total_per_page);
               $('#total_per_page').text(total_per_page);
              // $('.test').hide(next_page_test);
+             if(result.data.data ==false){
+             html += '<div class="status" style="font-size: 48px; padding-right: 167px;"> There are no data :)<span>';
+             }
                 $.each(result.data.data,function(k,v){
                     if(v.status == 1){
                         v.status = "متاح" ;
