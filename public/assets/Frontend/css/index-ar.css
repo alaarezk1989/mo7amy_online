@@ -2343,11 +2343,141 @@ margin: 10px 0 0;
 padding: 20px;
 }
 
+/********************** about us *****************/
+
+.aboutus-img{
+margin-top: 100px;
+background-image: url(../img/About-Page-Image.jpg);
+background-repeat: no-repeat;
+min-height: 222px;    
+}
+
+
+.aboutus-img p
+{
+color: #fff;
+text-align: center;
+font-size: 70px;
+font-weight: bold;
+vertical-align: middle;
+line-height: 222px;  
+}
+
+.brief{
+margin-top: 80px;
+}
+
+.brief h2{
+color: #b31f24 ;
+margin: 0 0 55px 0;
+}
+
+.brief p{
+font-size: 16px;
+line-height: 26px;
+}
+
+.features p{
+font-size: 18px;
+margin: 10px 0 0 0;
+color: #999;
+}
+
+.features{
+overflow: hidden;
+}
+
+.features span{
+font-size: 25px;
+padding: 0 20px 0 0;
+color: #b31f24;
+vertical-align: middle;
+}
+
+.feature-div{
+margin: 20px 0;
+}
+
+.contact h3{
+font-size: 20px;    
+margin: 60px 0 60px 0;
+padding:0 15px 0 15px;
+}
+
+.contact form{
+border: 1px solid #e0cd85;
+padding: 0 15px 0 15px;
+border-radius: 5px;
+}
+
+.contact form textarea{
+display: block;
+width: 100%;
+height: 150px;
+}
+
+.contact form button{
+background: #b31f24;
+border: none;
+width: 133px;
+height: 40px;
+font-size: 20px;
+margin: 20px 0;
+padding: 0;
+outline: none;
+color: #fff;
+border-radius: 5px;    
+}
+
+.contact form label{
+color: #b31f24;
+margin-bottom: 15px;
+margin-top: 15px;
+}
+
+.contact h4{
+color:#b31f24;  
+font-weight: bold;
+}
+
+.emailadd{
+border: 1px solid #e0cd85;
+padding: 0 15px 15px 0;
+border-radius: 5px;  
+}
+
+.contact .leave-msg{
+display: block;
+padding: 0 15px 0 15px;
+font-size: 20px;
+margin: 20px 0 30px 0;
+color:#b31f24;  
+}
+
+.contact-img p{
+color: #fff;
+text-align: center;
+font-size: 70px;
+font-weight: bold;
+vertical-align: middle;
+line-height: 222px;  
+}
+
+
+.contact-img{
+margin-top: 100px;
+background-image: url(../img/Contact-Us-Page-Image.jpg);
+background-repeat: no-repeat;
+min-height: 222px;      
+}
+
 /************************responsive************************************/
 
 
 @media(max-width:767px){
-
+.emailadd{
+margin-top: 20px;    
+}
 .addcase-img p,.head-off p,.cases-img p,.clientcase-img p,.clientsett-img p{
 font-size: 45px;
 }    
@@ -2722,7 +2852,9 @@ padding: 0 !important;
 /*********************************************************/
 
 @media(min-width:768px) and (max-width:991px){
-
+.emailadd{
+margin-top: 20px;    
+} 
 .de-Fsection {
 margin-left: 15px;
 margin-right: 15px;

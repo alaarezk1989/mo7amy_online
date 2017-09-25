@@ -3,8 +3,8 @@
  <li><a href="{{lang_url('cases')}}">{{trans('cpanel.cases')}}</a></li>
 
   <li><a href="{{lang_url('lawyers')}}">{{trans('cpanel.lawyers')}}</a></li>
-  <li><a href="who%20are%20we.html">{{trans('cpanel.Who_we_are')}}</a></li>
-  <li><a href="contact.html">{{trans('cpanel.Contact_us')}}</a></li>
+  <li><a href="{{lang_url('about')}}">{{trans('cpanel.Who_we_are')}}</a></li>
+  <li><a href="{{lang_url('contact-us')}}">{{trans('cpanel.Contact_us')}}</a></li>
 </ul>
 
 <?php

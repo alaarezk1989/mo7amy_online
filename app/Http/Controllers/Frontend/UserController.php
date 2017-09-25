@@ -666,11 +666,12 @@ foreach ($lawyerCases as $caser_row) {
 
 public function search(Request $request,$locale='ar'){
 
-
-    $q =Input::get('q');
+$q = $request->input('q');
+    //$q =Input::get('q');
     $per_page = 4;
     $Users =  DB::table('users')
            ->where('name','LIKE','%'.$q.'%')->orWhere('career','LIKE','%'.$q.'%')
+           ->orderBy('name','desc')
            ->paginate($per_page);
            //->get();
 
@@ -680,6 +681,42 @@ public function search(Request $request,$locale='ar'){
   else{
     return view(FE . '/v_lawyer_search')->withMessage('لا يوجد نتيجة لبحثك من فضلك حاول مرة اخرى')->withQuery($q);
     }
+}
+
+
+public function searchFiltering(Request $request,$locale='ar'){
+
+              App::setLocale($locale);
+              $locale = App::getLocale();
+              $q = $request->input('q');
+              // $q =Input::get('q');
+              $per_page=4;
+   
+
+     $Users1 =  DB::table('users')
+            ->where('name','LIKE','%'.$q.'%')->orWhere('career','LIKE','%'.$q.'%')
+            ->join('user_specialty', 'users.id', '=', 'user_specialty.user_id')
+            ->join('sections', 'sections.id', '=', 'user_specialty.specialty')
+
+            ->join('cities', 'cities.id', '=', 'users.city')
+            ->join('countries', 'countries.id', '=', 'cities.country_id')
+            ->groupBy('user_specialty.user_id');
+    if($request->sortBy == 'max'){
+    $Users1->orderBy('users.name','desc');
+  }
+
+    $users = $Users1->select('users.*','users.name as username','users.career as usercareer')
+   
+    ->paginate($per_page);
+
+
+    if($users){
+        return response()->json(['code' => 200 , 'msg' => "success" , "data" => $users]);
+      }else{
+        return response()->json(['code' => 404 , 'msg' => "not found" ]);
+      }
+
+
 }
 
 

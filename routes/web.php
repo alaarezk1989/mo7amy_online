@@ -36,12 +36,14 @@ Route::group(['middlewareGroups' => ['web']], function() {
 /*houida*/
 
 
-
+         Route::get('{locale?}/about',  'HomeController@AboutPage');
+         Route::get('{locale?}/contact-us',  'HomeController@ContactUsPage');
          Route::get('{locale?}/cases',FE.  '\CasesController@AllCases');
          Route::get('{locale?}/cases/filtering',FE.  '\CasesController@filtering');
 
          //Route::get('{locale?}/cases/searchview',FE.  '\CasesController@searchview');
-          Route::any('{locale?}/cases/search',FE.  '\CasesController@search');
+          Route::get('{locale?}/cases/search',FE.  '\CasesController@search');
+          Route::get('{locale?}/cases/searchFiltering',FE.  '\CasesController@searchFiltering');
         // Route::get('cases/search', ['as' => 'search', 'uses' => FE.'\CasesController@search']);
 
 
@@ -59,6 +61,7 @@ Route::group(['middlewareGroups' => ['web']], function() {
     Route::get('{locale?}/lawyers', FE . '\UserController@list_lawyers');
    Route::get('{locale?}/lawyers/filtering', FE . '\UserController@filtering');
    Route::any('{locale?}/lawyers/search',FE.  '\UserController@search');
+   Route::get('{locale?}/lawyers/searchFiltering',FE.  '\UserController@searchFiltering');
 
     Route::get('{locale?}/lawyer/{id}', FE . '\UserController@lawyer');
     Route::any('cities_country/{id?}', FE . '\CitiesController@cities_country');

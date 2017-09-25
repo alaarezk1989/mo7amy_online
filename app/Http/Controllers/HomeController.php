@@ -90,7 +90,16 @@ class HomeController extends Controller
         return view(FE . '/home')->with($data);
     }
 
+public function AboutPage()
+{
+  return view(FE . '/v_about');
 
+}
+public function ContactUsPage()
+{
+  return view(FE . '/v_contact_us');
+
+}
     public function LatestCases($locale='ar'){
 /*
         $Latest_cases = DB::table('cases')

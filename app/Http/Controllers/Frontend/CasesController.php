@@ -512,32 +512,6 @@ return; */
         //
     }
 
-   /* public function filtering(Request $request){
-
-      if($request->types AND $request->countries){
-        //$cases = Cases::where('country' ,'=', $request->countries)->get();
-        $cases = Cases::whereIn('type', (array)$request->types)
-        ->whereIn('country', (array)$request->countries)
-        ->get();
-      }elseif($request->types AND !$request->countries){
-        $cases = Cases::whereIn('type', (array)$request->types)->get();
-      }elseif($request->countries AND !$request->types){
-        $cases = Cases::whereIn('country' , (array)$request->countries)->get();
-      }else{
-        $cases = Cases::get();
-      }
-
-      //return response()->json(['types' => $request->types , 'countries' => $request->countries]);
-
-      if($cases){
-        return response()->json(['code' => 200 , 'msg' => "success" , "data" => $cases]);
-      }else{
-        return response()->json(['code' => 404 , 'msg' => "not found" ]);
-      }
-
-
-
-    }*/
 
 
    public function filtering(Request $request,$locale='ar'){
@@ -652,7 +626,7 @@ public function search(Request $request,$locale='ar'){
               $locale = App::getLocale();
     // $q = $request->input('q');
   $q =Input::get('q');
-  $per_page=4;
+  $per_page = 4;
     /*echo $q;
     return;*/
   // $Cases = Cases::where('title','LIKE','%'.$q.'%')->orWhere('description','LIKE','%'.$q.'%')->get();
@@ -665,13 +639,12 @@ public function search(Request $request,$locale='ar'){
                 ->join('cities', 'cities.id', '=', 'cases.city')
                 ->join('countries', 'countries.id', '=', 'cities.country_id')
                ->join('sections', 'sections.id', '=', 'cases.section_id') 
-                   ->leftJoin(\DB::raw('(SELECT * FROM bids A WHERE bids_val = (SELECT MAX(bids_val) AS bidValue FROM bids B WHERE A.case_id=B.case_id)) AS t2'), function($join) {
+              ->leftJoin(\DB::raw('(SELECT * FROM bids A WHERE bids_val = (SELECT MAX(bids_val) AS bidValue FROM bids B WHERE A.case_id=B.case_id)) AS t2'), function($join) {
                $join->on('cases.id', '=', 't2.case_id');
 
                   })    
                 ->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','sections.'.$locale.'_name as sectionName','bids_val as bidValue')
-               ->paginate($per_page);
-               // ->get();
+                 ->paginate($per_page);
 
 
 
@@ -687,5 +660,64 @@ return;*/
     }
 }
 
+
+
+
+
+public function searchFiltering(Request $request,$locale='ar'){
+              App::setLocale($locale);
+              $locale = App::getLocale();
+    $q = $request->input('q');
+  // $q =Input::get('q');
+  $per_page=4;
+    /*echo $q;
+    return;*/
+  // $Cases = Cases::where('title','LIKE','%'.$q.'%')->orWhere('description','LIKE','%'.$q.'%')->get();
+             /* $Cases = DB::table('cases')
+                     ->where ( 'title', 'LIKE', '%' . $q . '%' )->orWhere ( 'description', 'LIKE', '%' . $q . '%' )
+                     ->get ();*/
+
+     $Cases1 =  DB::table('cases')
+                ->where('cases.title','LIKE','%'.$q.'%')->orWhere('cases.description','LIKE','%'.$q.'%')->orWhere('countries.'.$locale.'_name','LIKE','%'.$q.'%')->orWhere('cities.'.$locale.'_name','LIKE','%'.$q.'%')->orWhere('sections.'.$locale.'_name','LIKE','%'.$q.'%')
+                ->join('cities', 'cities.id', '=', 'cases.city')
+                ->join('countries', 'countries.id', '=', 'cities.country_id')
+               ->join('sections', 'sections.id', '=', 'cases.section_id') 
+               ->leftJoin(\DB::raw('(SELECT * FROM bids A WHERE bids_val = (SELECT MAX(bids_val) AS bidValue FROM bids B WHERE A.case_id=B.case_id)) AS t2'), function($join) {
+               $join->on('cases.id', '=', 't2.case_id');
+              });
+
+      if($request->sortBy == 'max'){
+     $Cases1->orderBy('bids_val','desc');
+  }elseif($request->sortBy == 'low'){
+    $Cases1->orderBy('bids_val','asc');
+  }elseif($request->sortBy == 'latest'){
+    $Cases1->orderBy('cases.created_at','desc');
+  }
+      
+                $cases = $Cases1->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','sections.'.$locale.'_name as sectionName','bids_val as bidValue')
+               ->paginate($per_page);
+               // ->get();
+
+
+
+
+
+/*print_r($Cases);
+return;*/
+  // if(count($cases) > 0){
+  //   return view(FE . '/v_all_cases2')->withDetails($cases)->withQuery($q);
+  //   }
+  // else{
+  //   return view(FE . '/v_all_cases2')->withMessage('لا يوجد نتيجة لبحثك من فضلك حاول مرة اخرى')->withQuery($q);
+  //   }
+
+    if($cases){
+        return response()->json(['code' => 200 , 'msg' => "success" , "data" => $cases]);
+      }else{
+        return response()->json(['code' => 404 , 'msg' => "not found" ]);
+      }
+
+
+}
 
 }
