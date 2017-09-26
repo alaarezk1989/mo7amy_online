@@ -68,7 +68,8 @@
 <div class="row">    
 <div class="col-md-12">
 <div class="form-group">
-{!! Form::textarea('message',old('message'), array('id'=>'addres', 'class'=>'form-control')) !!}
+	<label for="addres"> الرسالة  </label>
+{!! Form::textarea('message',old('message'), array('class'=>'form-control')) !!}
 
 </div>
 </div>    

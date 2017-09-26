@@ -285,11 +285,14 @@
                      <a href="#" class="dropdown-toggle prof-name" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                       <span class=""> {{user_auth()->name}} </span><span class="caret"></span></a>
                       <ul class="dropdown-menu user-menu">
-                        <li> <a href="{{lang_url('create')}}"> اضف قضية </a></li>
-                        <li> <a href="{{lang_url('your-cases')}}"> قضاياك </a></li>
-                        <li> <a href="{{lang_url('edit-profile').'/'.$sess_user_id}}">{{ trans('cpanel.my_profile') }} </a></li>
-                        {{-- <li> <a href="client-setting.html">  اعداداتى </a></li> --}}
-                        <li> <a href="{{lang_url('logout')}}">  {{ trans('cpanel.log_out') }} </a></li>
+                        <li> <a href="{{lang_url('create')}}"> <i class="fa fa-plus" aria-hidden="true"></i>
+اضف قضية </a></li>
+                        <li> <a href="{{lang_url('your-cases')}}"> <i class="fa fa-briefcase" aria-hidden="true"></i>
+ القضايا المرفوعة  </a></li>
+                        <li> <a href="{{lang_url('edit-profile').'/'.$sess_user_id}}"><i class="fa fa-cogs" aria-hidden="true"></i>{{ trans('cpanel.my_profile') }} </a></li>
+               
+                        <li> <a href="{{lang_url('logout')}}"> <i class="fa fa-sign-out" aria-hidden="true"></i>
+ {{ trans('cpanel.log_out') }} </a></li>
                       </ul>
                   </li>
 

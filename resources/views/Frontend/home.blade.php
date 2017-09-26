@@ -15,7 +15,7 @@ $locale = App::getLocale();
 
 <div class="tabs-content margin-top">
 
-<div class="tab1">
+<div class="tab1 hidden-xs">
 <div id="map"></div>  
 </div>
 
@@ -29,11 +29,25 @@ $locale = App::getLocale();
 </ol>
 <div class="carousel-inner" role="listbox">
 <div class="item active">
-<img src="{{ URL::to('public/assets/Frontend/img/Slider1.png') }}" alt="slide1" class="img-responsive">
+<img src="{{ URL::to('public/assets/Frontend/img/Slider1.jpg') }}" alt="slide1" class="img-responsive">
+<div class="carousel-caption d-none d-md-block">
+<a href="{{lang_url('create')}}">
+<button class="btn-add-case">اضف قضيتك</button></a>
+</div>
 </div>
 <div class="item">
-<img src="{{ URL::to('public/assets/Frontend/img/Slider1.png') }}" alt="slide2" class="img-responsive">
+<img src="{{ URL::to('public/assets/Frontend/img/Slider2.jpg') }}" alt="slide2" class="img-responsive">
+<div class="carousel-caption d-none d-md-block">
+<a href="{{lang_url('create')}}">
+<button class="btn-add-case">اضف قضيتك</button></a>
 </div>
+</div>
+
+<div class="item">
+<img src="{{ URL::to('public/assets/Frontend/img/Slider3.jpg') }}" alt="slide3" class="img-responsive">
+</div>
+
+
 </div>
 <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -103,7 +117,7 @@ $locale = App::getLocale();
       <h1 class="text-center m-top-bott">{{trans('cpanel.Latest_Cases')}}</h1>
       <div class="row">
       @foreach($latest_cases as $value)
-         <div class="col-md-4 m_bottom">
+         <div class="col-md-4 m_bottom pull-right">
             <a href="{{lang_url('case').'/'.$value->id}}">
                <div class="case-temp">
                   <p style="height: 64px;">{{$value->title}}</p>

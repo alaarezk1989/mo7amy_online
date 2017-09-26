@@ -119,10 +119,8 @@ $locale = App::getLocale();
 @if(auth()->user())
 @if(user_auth()->permissions=='lawyer' or 'client')
 
-<div class="container-fluid head-off">
-   <div class="row">
-      <img src="{{ URL::to('public/assets/Frontend/img/Case%20Details%20Page%20Image.png') }}" class="img-responsive img-circle">
-   </div>
+<div class=" head-off">
+ <p> العروض المقدمة </P>
 </div>
 <section class="offers">
    <div class="container">
