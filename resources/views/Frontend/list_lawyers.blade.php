@@ -19,7 +19,8 @@
                         <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu arrang-menu" aria-labelledby="dropdownMenu1">
-                           <li><a id="max" href="#">الاسماء ابجدى</a></li>
+                           <li><a id="max" href="#">Z to A</a></li>
+                           <li><a id="low" href="#">A to Z</a></li>
                           
                         </ul>
                      </div>
@@ -176,9 +177,12 @@
 
           function filterIt(){
               // $('.loader').hide();
-            $('body .filter ,body #sort ,body #max').each(function(){
+            $('body .filter ,body #sort ,body #max ,body #low').each(function(){
                 $(this).on('change click', function(){
                 if($(this).attr('id') == 'max'){
+                    sortBy = $(this).attr('id');
+                  }
+                    if($(this).attr('id') == 'low'){
                     sortBy = $(this).attr('id');
                   }
                  

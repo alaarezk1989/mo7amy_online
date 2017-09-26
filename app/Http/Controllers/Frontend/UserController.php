@@ -552,9 +552,13 @@ class UserController extends Controller
     ->join('cities', 'cities.id', '=', 'users.city')
     ->join('countries', 'countries.id', '=', 'cities.country_id')
     ->groupBy('user_specialty.user_id');
+    
     if($request->sortBy == 'max'){
     $data_join1->orderBy('users.name','desc');
-  }
+       }
+  elseif($request->sortBy == 'low'){
+              $data_join1->orderBy('users.name','asc');
+            }
    // if($request->sections || $request->countries){
    if(!empty($users_ids)){
     $data_join1->whereIn('users.id', $users_ids);
