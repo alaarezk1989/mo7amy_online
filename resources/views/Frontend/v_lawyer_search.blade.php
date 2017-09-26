@@ -8,7 +8,7 @@
 
 <!--***********************************************************************-->
 
-<section class="lawyers">
+<section class="lawyers wrapper">
 <div class="container">
 <div class="row">
 

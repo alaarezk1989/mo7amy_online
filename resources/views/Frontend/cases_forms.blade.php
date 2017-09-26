@@ -119,7 +119,7 @@
 
 
 </div>
-<hr>
+
 
 </div>
 </section>

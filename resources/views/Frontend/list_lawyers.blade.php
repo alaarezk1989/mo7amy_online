@@ -277,7 +277,7 @@ var page ='?page='+p;
                     html += '<div class="col-md-3 col-xs-6 text-center">'
                     html += '<a href="<?= lang_url('lawyer').'/' ; ?>'+v.id+'">';
                     html += '<div class="pro">';
-                    html += '<img src="{{ asset('public/uploads')}}/avater.png" class="img-responsive">';
+                    html += '<img src="{{ asset('public/uploads')}}/avater.png" class="img-responsive img-circle">';
                     html += '<h3>'+v.name+'</h3>';
                     html += '<h3>'+v.s_name+'</h3>';
                     html += '<p>'+v.career+'</p>';

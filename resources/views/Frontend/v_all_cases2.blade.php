@@ -8,7 +8,7 @@ $locale = App::getLocale();
  <p>   نتيجة البحث  <b> {{ $query }} </b></p>
 </div>
 
-<section class="offers">
+<section class="offers wrapper">
 <div class="container">
 <div class="row">
 
@@ -41,7 +41,7 @@ $locale = App::getLocale();
                      </p>
 
                      <div id='page_navigation'>{{ $details->links() }}</div>
-                     
+
                   </div>
  @endif
 

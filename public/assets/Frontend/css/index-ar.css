@@ -59,9 +59,10 @@ border-color:#b31f24 !important;
 color:#b31f24 !important;
 }
 
-.border-bott{
+.case-client{
 border-bottom: 1px solid #e0cd85;
 }
+
 
 .padd-top{
 padding-top: 20px;
@@ -112,6 +113,23 @@ color: #b31f24 !important;
 display: block !important;
 }
 
+body,html{
+height: 100%;
+margin:0;
+}
+
+.wrapper{
+min-height: 100%;
+margin-bottom: -219px;
+}
+
+.footer{
+height: 219px;
+}
+
+.close{
+opacity: 1;
+}
 
 /*******************************************************************************************************/
 
@@ -181,7 +199,7 @@ min-height: 222px;
 }
 
 .clientcase-img{
-  margin-top: 100px;
+margin-top: 100px;
 background-image: url(../img/Client-Cases-Page-Image.jpg);
 background-repeat: no-repeat;
 min-height: 222px;    
@@ -306,7 +324,7 @@ margin-bottom: 20px;
 .circle-label #lawyer,.circle-label #client,.circle-label #male,.circle-label #female{
 padding-right: 0;
 text-align: center;
-width: 147px;
+width: 128px;
 border-radius: 5px;
 }
 
@@ -794,7 +812,7 @@ margin-top: 0;
 padding-right: 0;
 }
 .details{
-	margin-top:110px;
+margin-top:110px;
 }
 
 .box{
@@ -1192,7 +1210,7 @@ padding: 10px;
 font-size: 18px;
 }
 
-.case-temp .casetype{
+/*.case-temp .casetype{
 display: inline-block;
 font-size: 20px;
 color: #777777;
@@ -1200,14 +1218,14 @@ border-left: 2px solid #777777;
 padding-left: 10px;
 min-width: inherit;
 }
-
-.case-temp .status {
+*/
+/*.case-temp .status {
 display: inline-block;
 font-size: 20px;
 color: #3cb54a;
 padding-right: 10px;
 min-width: inherit;
-}
+}*/
 
 .case-temp .tempp{
 padding-right: 10px;
@@ -1820,7 +1838,7 @@ height: 43px;
 line-height: 22px;
 float: left;
 border-radius: 5px;
-margin-left: 20px;
+/*margin-left: 20px;*/
 }
 
 .buttons-save .done{
@@ -1988,7 +2006,7 @@ text-align: right !important;
 border: 10px solid #a94442;
 }
 
-.top-container img{
+.top-container img,.profile-cont img{
 width: 190px;
 height: 190px;
 }
@@ -3002,7 +3020,6 @@ font-size: 16px;
 } 
 
 
-
 .logo{
 width: 80%;
 }
@@ -3051,8 +3068,8 @@ margin-bottom: 10px;
 }	
 
 .place-name{
-height: 40px;
-line-height: 36px;
+height: 32px;
+line-height: 27px;
 }
 
 #login-nav label{
@@ -3089,7 +3106,7 @@ font-size: 18px;
 }
 
 .circle-label.one {
-margin-left: 40px;
+margin-left: 20px;
 }
 
 .buttons button:nth-child(1),.buttons button:nth-child(2) {

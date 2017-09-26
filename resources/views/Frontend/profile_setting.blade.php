@@ -23,7 +23,7 @@
 
                      <div class="profile-cont text-center">
                        @if($admin_data->image !='')
-                         <img  id="blah" src="{{ asset('public/uploads/user_img')}}/{{$admin_data->image}}" width="20%" alt="profile" />
+                         <img  id="blah" src="{{ asset('public/uploads/user_img')}}/{{$admin_data->image}}" class="img-responsive img-circle" alt="profile" />
                        @else
                          <img id="blah"  src="{{ asset('public/uploads')}}/avater.png"  width="20%" alt="profile"/>
                        @endif
@@ -142,15 +142,18 @@
                     @endif
 
                    <div class="buttons-save">
-                        <button class="done" type="submit">  {{ trans('cpanel.save') }} </button>
+                        <button class="done" type="submit">  {{ trans('cpanel.save') }} </button>  </div>
                  {!! Form::close() !!}
 
-                      
-                     </div>
+                 
+               </div>
+
+  
                      <div class="buttons-save">
                         <a href="{{lang_url('')}}">
                         <button  class="delet">  {{ trans('cpanel.cancel') }} </button></a></div>
-               </div>
+
+
                <div class="tab2">
                  @if(Session::has('error_msg'))
                    <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('error_msg') }}</p>

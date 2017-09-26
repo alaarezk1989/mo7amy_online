@@ -10,7 +10,7 @@ $locale = App::getLocale();
 </div> 
 </div> 
 
-<section class="offers">
+<section class="offers wrapper">
 <div class="container">
 <div class="row">
 

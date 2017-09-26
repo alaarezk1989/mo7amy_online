@@ -346,7 +346,7 @@ var page ='?page='+p;
                         v.bidValue =  v.bidValue ;
                     }
                     html += '<a href="<?= lang_url('case').'/' ; ?>'+v.id+'">';
-                    html += '<div class="case-client border-bott">';
+                    html += '<div class="case-client">';
                     html += '<p>'+v.title+'</p>  ';
                     html += '<div> ';
                     html += '<div class="casetype"> نوع القضية : <span>'+v.SectionName+'</span></div>';
