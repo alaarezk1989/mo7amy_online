@@ -19,8 +19,8 @@
                         <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu arrang-menu" aria-labelledby="dropdownMenu1">
-                           <li><a id="max" href="#">Z to A</a></li>
-                           <li><a id="low" href="#">A to Z</a></li>
+                           <li><a id="max" href="#">الترتيب تصاعديا</a></li>
+                           <li><a id="low" href="#">الترتيب تنازليا</a></li>
                           
                         </ul>
                      </div>
@@ -100,71 +100,6 @@
 
             // Select all
             allOf_filterationSections();
-
-
-
-          /*$(document).ready(function(){
-
-          // $('.loader').hide();
-            $('.filter').on('change', function(){
-               // $('.loader').show();
-              var category_list = [];
-              $('body #filter').each(function(){
-
-                if($(this).is(":checked")) {
-
-
-
-                    if($(this).hasClass( "sections" )){
-                        if($(this).val()){
-                            sections.push($(this).val());
-
-                            sections = $.unique(sections);
-                        }
-                    }
-                  if($(this).hasClass( "countries" )){
-                        if($(this).val()){
-                            countries.push($(this).val());
-                            countries = $.unique(countries);
-                        }
-
-                    }
-
-
-                }
-
-              });
-
-            filters = {'sections':sections,'countries':countries,} ;
-
-            var page_url = $('.active_page').html(); 
-        // alert(page_url);
-                getData(page_url);
-
-
-                 html = '' ;
-                 sections = [];
-                 countries = [];
-                // filters = [] ;
-
-
-              if(category_list.length == 0)
-                $('.resultblock').fadeIn();
-              else {
-                $('.resultblock').each(function(){
-                  var item = $(this).attr('data-tag');
-                  if(jQuery.inArray(item,category_list) > -1)
-                    $(this).fadeIn('slow');
-                  else
-                    $(this).hide();
-                });
-              }
-            });
-          });*/
-
-
-
-
 
 
 
@@ -281,10 +216,10 @@ var page ='?page='+p;
                     html += '<div class="col-md-3 col-xs-6 text-center">'
                     html += '<a href="<?= lang_url('lawyer').'/' ; ?>'+v.id+'">';
                     html += '<div class="pro">';
-                    html += '<img src="{{ asset('public/uploads')}}/avater.png" class="img-responsive img-circle">';
+                    html += '<img src="{{ asset('public/uploads/user_img').'/'}}'+v.image+'" class="img-responsive img-circle">';
                     html += '<h3>'+v.name+'</h3>';
-                    html += '<h3>'+v.s_name+'</h3>';
-                    html += '<p>'+v.career+'</p>';
+                   // html += '<h3>'+v.s_name+'</h3>';
+                    html += '<h4>'+v.career+'</h4>';
                     html += '</div> ';
                      html += '</a>';
                     html += '</div>';
@@ -301,22 +236,7 @@ var page ='?page='+p;
 
 
           function allOf_filterationSections(){
-           /* $('#AllSections').change(function(){
-                $('.filter').each(function(){
-                    if($(this).hasClass('sections')){
-                        $(this).trigger('click');
-                    }
-              });
-            });
-*/
-
-            // $('#AllCountries').change(function(){
-            //     $('.filter').each(function(){
-            //         if($(this).hasClass('countries')){
-            //            // $(this).trigger('click');
-            //         }
-            //   });
-            // });
+      
 
            $(".AllCountries").click(function () {
                 if ($('input.AllCountries').is(':checked')) {

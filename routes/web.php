@@ -36,8 +36,12 @@ Route::group(['middlewareGroups' => ['web']], function() {
 /*houida*/
 
 
-         Route::get('{locale?}/about',  'HomeController@AboutPage');
-         Route::get('{locale?}/contact-us',  'HomeController@ContactUsPage');
+         Route::get('{locale?}/about',FE. '\StaticpagesController@AboutPage');
+         Route::get('{locale?}/contact-us',FE. '\StaticpagesController@ContactUsPage');
+
+         
+        Route::post('store',FE.'\StaticpagesController@store');
+
          Route::get('{locale?}/cases',FE.  '\CasesController@AllCases');
          Route::get('{locale?}/cases/filtering',FE.  '\CasesController@filtering');
 
@@ -51,6 +55,7 @@ Route::group(['middlewareGroups' => ['web']], function() {
 
          Route::get('{locale?}/case/{id}',FE.  '\CasesController@SingleCase');
          Route::get('{locale?}/your-cases',FE.  '\CasesController@your_cases');
+         Route::get('{locale?}/cases/your_cases_filtering',FE.  '\CasesController@your_cases_filtering');
   /*houida*/
     // Route::get('{locale?}/login', AD . '\AdminController@login');
     Route::get('{locale?}/logout', AD . '\AdminController@logout');

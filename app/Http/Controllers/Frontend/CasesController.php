@@ -99,7 +99,7 @@ public function create_case (Request $request)
         $validator->SetAttributeNames([
             'title'                     =>'title',
             'description'               =>'description',
-            'section_id'                      =>'section_id',
+            'section_id'                =>'section_id',
             'country'                   =>'country',
             'city'                      =>'city',
            'finished_date'              =>'finished date',
@@ -287,6 +287,10 @@ return;*/
     }
 
  public function AllCases($locale='ar'){
+
+
+
+
               App::setLocale($locale);
               $locale = App::getLocale();
           //    $sess_locale= session('sess_locale');
@@ -363,8 +367,6 @@ return; */
 
         $sess_user_id= session('user_id');
         $per_page = 10;
-
-
       $your_case =  DB::table('cases')
                 ->where('status', '=', '1')
                 ->where('cases.user_id', '=', $sess_user_id)
@@ -380,11 +382,6 @@ return; */
                 ->orderBy('created_at', 'desc')
                 ->paginate($per_page);
 
-      /* echo "<pre>";
-      print_r($your_case);
-      echo "</pre>";
-      return;*/
-
         $data = [
             'title'=>trans('cpanel.site_name'),
             'page_title'=>trans('cpanel.edit_admin'),
@@ -393,6 +390,54 @@ return; */
         ];
           return view(FE . '/v_your_case')->with($data);
       }
+
+
+
+
+
+public function your_cases_filtering(Request $request,$locale='ar'){
+              App::setLocale($locale);
+              $locale = App::getLocale();
+
+              $sess_user_id= session('user_id');
+              $per_page = 10;
+
+              $Cases1 =   DB::table('cases')
+                ->where('status', '=', '1')
+                ->where('cases.user_id', '=', $sess_user_id)
+                ->join('cities', 'cities.id', '=', 'cases.city')
+                ->join('countries', 'countries.id', '=', 'cities.country_id')
+                ->join('sections', 'sections.id', '=', 'cases.section_id')
+                ->leftJoin(\DB::raw('(SELECT * FROM bids A WHERE bids_val = (SELECT MAX(bids_val) AS bidValue FROM bids B WHERE A.case_id=B.case_id)) AS t2'), function($join) {
+               $join->on('cases.id', '=', 't2.case_id');
+              });
+
+      if($request->sortBy == 'max'){
+     $Cases1->orderBy('bids_val','desc');
+  }elseif($request->sortBy == 'low'){
+    $Cases1->orderBy('bids_val','asc');
+  }elseif($request->sortBy == 'latest'){
+    $Cases1->orderBy('cases.created_at','desc');
+  }
+      
+                $cases = $Cases1->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','bids_val as bidValue','sections.'.$locale.'_name as sectionName')
+    
+               ->paginate($per_page);
+               // ->get();
+
+    if($cases){
+        return response()->json(['code' => 200 , 'msg' => "success" , "data" => $cases]);
+      }else{
+        return response()->json(['code' => 404 , 'msg' => "not found" ]);
+      }
+
+
+}
+
+
+
+
+
 
 
    public function SingleCase($locale='ar',$id){
@@ -479,40 +524,7 @@ return; */
           return view(FE . '/v_single_case')->with($data);
       }
 
-      
-    public function store(Request $request)
-    {
-        //
-    }
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Cases  $cases
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Cases $cases)
-    {
-        //
-    }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Cases  $cases
-     * @return \Illuminate\Http\Response
-     */
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Cases  $cases
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Cases $cases)
-    {
-        //
-    }
-
-
+ 
 
    public function filtering(Request $request,$locale='ar'){
     // print_r($request->all());return ;
@@ -521,6 +533,7 @@ return; */
               $locale = App::getLocale();
 
       $caseModel = DB::table('cases');
+                //  ->orderBy('created_at', 'desc');
       if($request->sections){
         $caseModel->whereIn('section_id', (array)$request->sections);
       }
@@ -570,6 +583,7 @@ return; */
 
       $cases = $caseModel->select('cases.*', 'countries.'.$locale.'_name as CountryName', 'cities.'.$locale.'_name as Cityname', 'sections.'.$locale.'_name as SectionName', 'bids_val as bidValue')
     ->whereIn('countries.id', $c_array)
+    ->orderBy('cases.created_at', 'desc')
      ->paginate($per_page);
 
     // ->get();
@@ -596,6 +610,7 @@ return; */
 
   
   $cases = $caseModel->select('cases.*', 'countries.'.$locale.'_name as CountryName', 'cities.'.$locale.'_name as Cityname', 'sections.'.$locale.'_name as SectionName','bids_val as bidValue')
+    ->orderBy('cases.created_at', 'desc')
      ->paginate($per_page);
   // ->get();
   }
@@ -699,17 +714,6 @@ public function searchFiltering(Request $request,$locale='ar'){
                // ->get();
 
 
-
-
-
-/*print_r($Cases);
-return;*/
-  // if(count($cases) > 0){
-  //   return view(FE . '/v_all_cases2')->withDetails($cases)->withQuery($q);
-  //   }
-  // else{
-  //   return view(FE . '/v_all_cases2')->withMessage('لا يوجد نتيجة لبحثك من فضلك حاول مرة اخرى')->withQuery($q);
-  //   }
 
     if($cases){
         return response()->json(['code' => 200 , 'msg' => "success" , "data" => $cases]);

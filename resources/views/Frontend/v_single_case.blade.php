@@ -8,7 +8,7 @@ use Carbon\Carbon;
 $locale = App::getLocale();
 
 ?>
-<section class="details wrapper">
+<section class="details">
    <div class="container">
       <div class="row">
          <div class="de-Fsection">
