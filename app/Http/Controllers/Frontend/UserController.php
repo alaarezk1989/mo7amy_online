@@ -180,6 +180,7 @@ class UserController extends Controller
               }
 
           $states=array();
+          $user_country_id=array();
 
         $user_country_id =  DB::table('users')
           ->join('cities', 'cities.id', '=', 'users.city')
@@ -188,25 +189,37 @@ class UserController extends Controller
            ->where('users.id', '=', $sess_user_id)
           ->first();
 
-          $all_states =  DB::table('users')
-            ->join('cities', 'cities.id', '=', 'users.city')
-            ->join('countries', 'countries.id', '=', 'cities.country_id')
-            ->select('cities.*')
-             ->where('countries.id', '=', $user_country_id->id)
-            ->get();
+          if($user_country_id){
+              $selected_user_country_id=$user_country_id->id;
 
-          foreach ($all_states as $state) {
-            $states[$state->id]=$state->$locale_name;
+            $all_states =  DB::table('users')
+              ->join('cities', 'cities.id', '=', 'users.city')
+              ->join('countries', 'countries.id', '=', 'cities.country_id')
+              ->select('cities.*')
+               ->where('countries.id', '=',$selected_user_country_id)
+              ->get();
+
+            foreach ($all_states as $state) {
+              $states[$state->id]=$state->$locale_name;
+            }
+          }else{
+            $selected_user_country_id=0;
           }
+
 
           $types  = User::GetAdminTypes();
           $specialty  = User::GetAdminSpecialty();
+          // if(User::GetRole() == 'admin')
+
           $user_specialty  = user_specialty::where('user_id', '=', $id)->get();
           $selected_user_specialty = [];
-          foreach( $user_specialty as $sp )
-          {
-              $selected_user_specialty[$sp->specialty] = $sp->specialty;
+          if(!empty($user_specialty)){
+            foreach( $user_specialty as $sp )
+            {
+                $selected_user_specialty[$sp->specialty] = $sp->specialty;
+            }
           }
+
           // return $selected_user_specialty;
             // return ($user_specialty);
           $data = [
@@ -220,7 +233,7 @@ class UserController extends Controller
               'specialty'=>$specialty,
               'user_specialty'=>$selected_user_specialty,
               'countries'=>$countries,
-              'user_country_id'=>$user_country_id->id,
+              'user_country_id'=>$selected_user_country_id,
               'states'=>$states,
               'permissions'=>auth()->user()->permissions,
               'sess_user_id'=>$sess_user_id,
@@ -523,9 +536,9 @@ class UserController extends Controller
          $users_ids_sections[]=$value_user_ids->user_id;
         }
       }
-    
+
     $users_ids=array_merge($users_ids,$users_ids_sections);
-     
+
       if($request->countries){
          $user_countries= DB::table('users')
                           ->select('users.id')
@@ -552,7 +565,7 @@ class UserController extends Controller
     ->join('cities', 'cities.id', '=', 'users.city')
     ->join('countries', 'countries.id', '=', 'cities.country_id')
     ->groupBy('user_specialty.user_id');
-    
+
     if($request->sortBy == 'max'){
     $data_join1->orderBy('users.name','desc');
        }
@@ -564,7 +577,7 @@ class UserController extends Controller
     $data_join1->whereIn('users.id', $users_ids);
   }
     $data_join = $data_join1->select('users.*','sections.'.$sess_locale.'_name as s_name','cities.'.$sess_locale.'_name as city_name','countries.'.$sess_locale.'_name as country_name')
-   
+
     ->paginate($per_page);
 
   // }else{
@@ -601,7 +614,7 @@ public function lawyer($locale='ar',$id){
 
         App::setLocale($locale);
         $locale = App::getLocale();
-        
+
 
         $sess_user_id= session('user_id');
         $show_lowyer_contact_flag=0;
@@ -695,7 +708,7 @@ public function searchFiltering(Request $request,$locale='ar'){
               $q = $request->input('q');
               // $q =Input::get('q');
               $per_page=4;
-   
+
 
      $Users1 =  DB::table('users')
             ->where('name','LIKE','%'.$q.'%')->orWhere('career','LIKE','%'.$q.'%')
@@ -710,7 +723,7 @@ public function searchFiltering(Request $request,$locale='ar'){
   }
 
     $users = $Users1->select('users.*','users.name as username','users.career as usercareer')
-   
+
     ->paginate($per_page);
 
 

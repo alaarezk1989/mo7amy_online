@@ -64,7 +64,7 @@ class User extends Authenticatable
     public function scopeGetAdminSpecialty()
     {
             $locale = App::getLocale();
- $locale_name=$locale.'_name';
+            $locale_name=$locale.'_name';
          $specialty_query = DB::table('sections')
         ->get();
         foreach ($specialty_query as $value) {
