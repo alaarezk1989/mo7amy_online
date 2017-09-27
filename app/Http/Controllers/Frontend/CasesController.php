@@ -403,7 +403,7 @@ public function your_cases_filtering(Request $request,$locale='ar'){
               $per_page = 10;
 
               $Cases1 =   DB::table('cases')
-                ->where('status', '=', '1')
+                //->where('status', '=', '1')
                 ->where('cases.user_id', '=', $sess_user_id)
                 ->join('cities', 'cities.id', '=', 'cases.city')
                 ->join('countries', 'countries.id', '=', 'cities.country_id')

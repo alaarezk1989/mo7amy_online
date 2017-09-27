@@ -635,12 +635,17 @@ public function lawyer($locale='ar',$id){
             ->join('cities', 'cities.id', '=', 'cases.city')
             ->join('countries', 'countries.id', '=', 'cities.country_id')
             ->join('sections', 'sections.id', '=', 'cases.section_id')
-            ->Leftjoin('bids','bids.case_id','=','cases.id')
-            ->where('bids.user_id','=',$id)
-            ->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','bids.bids_val as bidValue','sections.'.$locale.'_name as sectionName')
-            ->orderBy ('cases.created_at','desc')
-            ->paginate($per_page);
+           // ->Leftjoin('bids','bids.case_id','=','cases.id')
+             ->leftJoin(\DB::raw('(SELECT * FROM bids A WHERE bids_val = (SELECT MAX(bids_val) AS bidValue FROM bids B WHERE A.case_id=B.case_id)) AS t2'), function($join) {
+               $join->on('cases.id', '=', 't2.case_id');
+  })
+          //  ->where('bids.user_id','=',$id)
 
+            ->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','bids_val as bidValue','sections.'.$locale.'_name as sectionName')
+           // ->orderBy ('cases.created_at','desc')
+            ->paginate($per_page);
+print_r($lawyerCases);
+return;
 foreach ($lawyerCases as $caser_row) {
   if($caser_row->status==2 && $caser_row->user_id==$sess_user_id){
     $show_lowyer_contact_flag=1;
@@ -666,6 +671,73 @@ foreach ($lawyerCases as $caser_row) {
 
           return view(FE.'.lawyer')->with($data);
       }
+
+
+
+
+
+
+public function lawyer_cases_filtering(Request $request,$locale='ar',$id){
+  // return $id;
+              App::setLocale($locale);
+              $locale = App::getLocale();
+
+              $per_page = 1;
+
+ /* $lawyerCases = DB::table('cases')
+            ->join('cities', 'cities.id', '=', 'cases.city')
+            ->join('countries', 'countries.id', '=', 'cities.country_id')
+            ->join('sections', 'sections.id', '=', 'cases.section_id')
+            ->Leftjoin('bids','bids.case_id','=','cases.id')
+            ->where('bids.user_id','=',$id)
+            ->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','bids.bids_val as bidValue','sections.'.$locale.'_name as sectionName')
+            ->orderBy ('cases.created_at','desc')
+            ->paginate($per_page);*/
+
+
+
+              $Cases1 =   DB::table('cases')          
+                ->join('cities', 'cities.id', '=', 'cases.city')
+                ->join('countries', 'countries.id', '=', 'cities.country_id')
+                ->join('sections', 'sections.id', '=', 'cases.section_id')
+
+                ->leftJoin('bids', function ($join) {
+                $join->on('bids.case_id','=','cases.id');
+              });
+   
+      
+
+      if($request->sortBy == 'max'){
+         $Cases1->orderBy('bids_val','desc');
+      }elseif($request->sortBy == 'low'){
+        $Cases1->orderBy('bids_val','asc');
+      }elseif($request->sortBy == 'latest'){
+        $Cases1->orderBy('cases.created_at','desc');
+      }
+      
+                $cases = $Cases1->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','bids_val as bidValue','sections.'.$locale.'_name as sectionName')
+               ->where('bids.user_id','=',$id)
+               ->paginate($per_page);
+       /* echo "<pre>";
+      print_r($cases);
+      echo "</pre>";
+      return;*/       // ->get();
+
+    if($cases){
+        return response()->json(['code' => 200 , 'msg' => "success" , "data" => $cases]);
+      }else{
+        return response()->json(['code' => 404 , 'msg' => "not found" ]);
+      }
+
+
+}
+
+
+
+
+
+
+
 
 
 public function search(Request $request,$locale='ar'){

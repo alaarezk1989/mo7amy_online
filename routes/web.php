@@ -69,6 +69,9 @@ Route::group(['middlewareGroups' => ['web']], function() {
    Route::get('{locale?}/lawyers/searchFiltering',FE.  '\UserController@searchFiltering');
 
     Route::get('{locale?}/lawyer/{id}', FE . '\UserController@lawyer');
+  Route::get('{locale?}/lawyer/lawyer_cases_filtering/{id}',FE.  '\UserController@lawyer_cases_filtering');
+
+
     Route::any('cities_country/{id?}', FE . '\CitiesController@cities_country');
     Route::post('set_your_bids/{case_id}', FE . '\BidsController@set_your_bids');
 
