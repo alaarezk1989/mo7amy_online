@@ -81,6 +81,7 @@ Route::group(['middlewareGroups' => ['web']], function() {
 
     Route::any('cities_country/{id?}', FE . '\CitiesController@cities_country');
     Route::post('set_your_bids/{case_id}', FE . '\BidsController@set_your_bids');
+    Route::any('{locale?}/apply-bids', FE . '\BidsController@apply_bids');
 
       Route::group(['middleware' => 'auth'], function() {
 

@@ -146,8 +146,30 @@ $(document).ready(function() {
             }); //end ajax
               return false;
     }); //end on click on bids
+
+
 });  //End Document.Ready
 
+function apply_bids_fun(user_bids_id,case_id){
+  // alert(user_bids_id+'--'+case_id);
+  var url = "{!! lang_url('apply-bids') !!}";
+  $.ajax({
+      type: 'Get', // Request method
+      url: url, // Request url
+      data: {user_bids_id: user_bids_id,case_id: case_id},
+      dataType: 'json', // Define data type will be JSON
+      success: function(result) { // define function which will happen on success
+        console.log(result.msg);
+        if(result.msg=='success'){
+          $('okk').prop('disabled', true);
+        }
+      },
+      error: function(error) {
+          //            console.log(error);
+      }
+  });
+
+}
 
 $(function() {
     $( "#datepicker" ).datepicker();

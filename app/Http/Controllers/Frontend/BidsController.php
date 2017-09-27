@@ -115,4 +115,27 @@ class BidsController extends Controller
 
       return response($data, 200)->header('Content-Type', 'text/plain');
     }
+
+    public function apply_bids(Request $request){
+      // return $request->all();
+      $user_bids_id= $request->input('user_bids_id');
+      $case_id= $request->input('case_id');
+
+      $AcceptOffer =  DB::table('bids')
+               ->where('bids.user_id','=', $user_bids_id)
+               ->where('bids.case_id','=',$case_id)
+               ->update(array('is_pids'=> 1));
+
+    $AcceptOfferCase =  DB::table('cases')
+               ->where('cases.id','=',$case_id)
+               ->update(array('status'=> 2));
+
+        // return redirect($sess_locale.'/case/'.$case_id);
+      $data = [
+          'msg' => 'success',
+      ];
+
+      return response($data, 200)->header('Content-Type', 'text/plain');
+    }
+
 }
