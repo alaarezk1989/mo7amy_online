@@ -2,7 +2,7 @@
 @section('content')
       <!--*******************************************************************-->
   <div class="lawyers-img">
-       <p>   نتيجة بحثك تكون <b> {{ $query }} </b></p>
+       <p>   نتيجة بحثك</p>
       </div> 
 
 
@@ -11,6 +11,15 @@
 <section class="lawyers wrapper">
 <div class="container">
 <div class="row">
+
+<form method="get" role="search" action="{{lang_url('lawyers/search')}}">
+  {{ csrf_field() }}
+<div class="forsearch">
+<label> البحث </label>
+<input type="search" name="q" class="form-control" value="{{$query}}">
+<button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
+</div>
+</form>
 
 <div class="col-md-12">
 @if(isset($details))
@@ -22,13 +31,14 @@
                         <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu arrang-menu" aria-labelledby="dropdownMenu1">
-                           <li><a id="low" href="#">الترتيب الابجدى</a></li>
+                              <li><a id="max" href="#">الترتيب تصاعديا</a></li>
+                              <li><a id="low" href="#">الترتيب تنازليا</a></li>
                           
                         </ul>
                      </div>
                      <p>
                        {{trans('cpanel.show')}}
-                        <span> 0- {{ $details->perPage() }} </span>
+                        <span> 0- {{ $details->total() }} </span>
                         {{trans('cpanel.of')}}
                         <span> {{$details->total()}} </span>{{trans('cpanel.result')}}
                      </p>
@@ -49,8 +59,8 @@
 
 <div class="col-md-3 col-xs-6 text-center">
 <a href="{{lang_url('lawyer').'/'.$value->id}}">    
-<div class="pro">    
-<img src="{{ asset('public/uploads')}}/avater.png" class="img-responsive">
+<div class="pro">
+<img src="{{ asset('public/uploads/user_img')}}/{{$value->image}}" class="img-responsive img-circle">
 <h3> {{$value->name}}</h3>    
 <p>{{$value->career}} </p>    
 </div>   
@@ -101,12 +111,14 @@
 
           function filterIt(){
               // $('.loader').hide();
-            $('body #sort ,body #max ,body #low ,body #latest').each(function(){
+            $('body #sort ,body #max ,body #low').each(function(){
                 $(this).on('change click', function(){
                 if($(this).attr('id') == 'max'){
                     sortBy = $(this).attr('id');
                   }
-               
+                  if($(this).attr('id') == 'low'){
+                    sortBy = $(this).attr('id');
+                  }
 
 
             filters = {'sortBy':sortBy,'q':'{{ $query }}'} ;

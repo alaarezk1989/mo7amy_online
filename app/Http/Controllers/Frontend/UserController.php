@@ -675,7 +675,8 @@ $q = $request->input('q');
     $per_page = 4;
     $Users =  DB::table('users')
            ->where('name','LIKE','%'.$q.'%')->orWhere('career','LIKE','%'.$q.'%')
-           ->orderBy('name','desc')
+           ->where('permissions','=','lawyer')
+          
            ->paginate($per_page);
            //->get();
 
@@ -699,6 +700,7 @@ public function searchFiltering(Request $request,$locale='ar'){
 
      $Users1 =  DB::table('users')
             ->where('name','LIKE','%'.$q.'%')->orWhere('career','LIKE','%'.$q.'%')
+            ->where('users.permissions','=','lawyer')
             ->join('user_specialty', 'users.id', '=', 'user_specialty.user_id')
             ->join('sections', 'sections.id', '=', 'user_specialty.specialty')
 
@@ -707,6 +709,8 @@ public function searchFiltering(Request $request,$locale='ar'){
             ->groupBy('user_specialty.user_id');
     if($request->sortBy == 'max'){
     $Users1->orderBy('users.name','desc');
+  }elseif($request->sortBy == 'low'){
+    $Users1->orderBy('users.name','asc');
   }
 
     $users = $Users1->select('users.*','users.name as username','users.career as usercareer')

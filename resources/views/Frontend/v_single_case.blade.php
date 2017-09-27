@@ -152,8 +152,32 @@ $locale = App::getLocale();
 
              @foreach($all_case_bids as $user_bids)
 
-            @if($user_bids->status == 1)
-            <div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            
+            <div class="col-md-3 text-center border-bott padd-top border-rght">
+               <div class="law-profile">
+                  <a href="{{lang_url('lawyer').'/'.$user_bids->id}}">
+
+                    @if($user_bids->image !='')
+                      <img src="{{ asset('public/uploads/user_img')}}/{{$user_bids->image}}" class="imgs img-circle" />
+                    @else
+                       <img src="{{ asset('public/uploads')}}/avater.png" class="imgs img-circle">
+                    @endif
+                  </a>
+                  <a href="{{lang_url('lawyer').'/'.$user_bids->id}}">
+                     <p class="names">{{$user_bids->name}} </p>
+                  </a>
+                  <a href="{{lang_url('lawyer').'/'.$user_bids->id}}">
+                     <p class="desc">{{$user_bids->career}}
+                       <span> {{$user_bids->country_name}} , {{$user_bids->city_name}} </span>
+                     </p>
+                  </a>
+                   @if($sess_user_id= session('user_id') == $case->user_id)
+                  <div class="offers">سعر العرض:  $ {{$user_bids->bids_val}}  </div>
+                    @if($user_bids->status == 1)
+                  <button data-target="#confirmation_{{$user_bids->id}}" data-toggle="modal" class="okk">قبلت عرضك </button>
+
+                
+            <div class="modal fade" id="confirmation_{{$user_bids->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 
             <div class="modal-dialog" role="document">
 
@@ -168,45 +192,21 @@ $locale = App::getLocale();
             <div class="modal-body">
             <p>هل انت متاكد من قبول هذا العرض ؟</p>
             </div>
+<form method="post"  action="">
+  <input type="hidden" value="{{$user_bids->id}}">
+  <input type="hidden" value="{{$user_bids->case_id}}">
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-default yes " data-dismiss="modal">نعم </button>
                 <button type="button" class="btn btn-primary no"  data-dismiss="modal">لا</button>
             </div>
-
+</form>
 
           </div>
           </div>
           </div>
             @endif
 
-
-
-
-
-
-
-            <div class="col-md-3 text-center border-bott padd-top border-rght">
-               <div class="law-profile">
-                  <a href="lawyer/{{$user_bids->id}}">
-
-                    @if($user_bids->image !='')
-                      <img src="{{ asset('public/uploads/user_img')}}/{{$user_bids->image}}" class="imgs img-circle" />
-                    @else
-                       <img src="{{ asset('public/uploads')}}/avater.png" class="imgs img-circle">
-                    @endif
-                  </a>
-                  <a href="lawyer/{{$user_bids->id}}">
-                     <p class="names">{{$user_bids->name}} </p>
-                  </a>
-                  <a href="lawyer/{{$user_bids->id}}">
-                     <p class="desc">{{$user_bids->career}}
-                       <span> {{$user_bids->country_name}} , {{$user_bids->city_name}} </span>
-                     </p>
-                  </a>
-                   @if($sess_user_id= session('user_id') == $case->user_id)
-                  <div class="offers">سعر العرض:  $ {{$user_bids->bids_val}}  </div>
-                  <button data-target="#confirmation" data-toggle="modal" class="okk">قبلت عرضك </button>
                   @else
                   <div class="offers">سعر العرض:  $ {{$user_bids->bids_val}}  </div>
                   @endif
