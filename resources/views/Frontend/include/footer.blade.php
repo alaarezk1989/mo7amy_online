@@ -161,7 +161,7 @@ function apply_bids_fun(user_bids_id,case_id){
       success: function(result) { // define function which will happen on success
         console.log(result.msg);
         if(result.msg=='success'){
-          $('okk').prop('disabled', true);
+          $('.okk').attr("disabled","disabled");
         }
       },
       error: function(error) {
