@@ -39,7 +39,7 @@ Route::group(['middlewareGroups' => ['web']], function() {
          Route::get('{locale?}/about',FE. '\StaticpagesController@AboutPage');
          Route::get('{locale?}/contact-us',FE. '\StaticpagesController@ContactUsPage');
 
-         
+
         Route::post('store',FE.'\StaticpagesController@store');
 
          Route::get('{locale?}/cases',FE.  '\CasesController@AllCases');
@@ -61,6 +61,13 @@ Route::group(['middlewareGroups' => ['web']], function() {
     Route::get('{locale?}/logout', AD . '\AdminController@logout');
     Route::post('{locale?}/login', FE . '\UserController@user_login');
     Route::post('register', FE . '\UserController@store');
+
+    // Route::get('{locale?}/redirect', 'SocialAuthFacebookController@redirect');
+    // Route::get('{locale?}/callback', 'SocialAuthFacebookController@callback');
+
+    Route::get('{locale?}/auth/facebook', 'SocialAuthFacebookController@redirectToProvider');
+    Route::get('{locale?}/auth/facebook/callback', 'SocialAuthFacebookController@handleProviderCallback');
+
     // Route::resource('password/reset', AD . '\AdminController@reset_password');
     // Agent Area
     Route::get('{locale?}/lawyers', FE . '\UserController@list_lawyers');

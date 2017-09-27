@@ -193,7 +193,7 @@
                                     </div>
                                     <hr class="or">
                                     <span class="span_Or"> {{ trans('cpanel.or') }} </span>
-                                    <a href="#" class="btn btn-fb btn-block">
+                                    <a href="{{lang_url('auth/facebook')}}" class="btn btn-fb btn-block">
                                       <i class="fa fa-facebook"></i> {{ trans('cpanel.signin_using_facebook') }}</a>
 
                               </div>
@@ -238,7 +238,7 @@
                                     </div>
                                     <hr class="or">
                                     <span class="span_Orr"> {{ trans('cpanel.or') }} </span>
-                                    <a href="#" class="btn btn-fb btn-block">
+                                    <a href="{{lang_url('auth/facebook')}}" class="btn btn-fb btn-block">
                                       <i class="fa fa-facebook"></i> {{ trans('cpanel.signin_using_facebook') }}</a>
                                 {!! Form::close() !!}
                               </div>
@@ -290,7 +290,7 @@
                         <li> <a href="{{lang_url('your-cases')}}"> <i class="fa fa-briefcase" aria-hidden="true"></i>
  القضايا المرفوعة  </a></li>
                         <li> <a href="{{lang_url('edit-profile').'/'.$sess_user_id}}"><i class="fa fa-cogs" aria-hidden="true"></i>{{ trans('cpanel.my_profile') }} </a></li>
-               
+
                         <li> <a href="{{lang_url('logout')}}"> <i class="fa fa-sign-out" aria-hidden="true"></i>
  {{ trans('cpanel.log_out') }} </a></li>
                       </ul>
