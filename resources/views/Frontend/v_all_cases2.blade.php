@@ -5,14 +5,21 @@ use Carbon\Carbon;
 $locale = App::getLocale();
 ?>
 <div class="cases-img">
- <p>   نتيجة البحث  <b> {{ $query }} </b></p>
+ <p>   نتيجة البحث </p>
 </div>
 
 <section class="offers wrapper">
 <div class="container">
 <div class="row">
 
-
+<form method="get" role="search" action="{{lang_url('cases/search')}}">
+  {{ csrf_field() }}
+<div class="forsearch">
+<label> البحث </label>
+<input type="search" name="q" class="form-control" value="{{$query}}">
+<button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
+</div>
+</form>
   
 
 
@@ -91,7 +98,8 @@ $locale = App::getLocale();
                             $old = Carbon::parse($value->finished_date);
                            echo $old->diffForHumans($current);
                            ?></div> 
-<div class="price"><i class="fa fa-money" aria-hidden="true"></i> {{$value->bidValue}} $</div> 
+                           <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :{{$value->bidValue}} $ $</div>
+
 
 </div> 
 </div>
