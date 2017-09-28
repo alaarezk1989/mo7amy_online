@@ -77,16 +77,16 @@ $locale = App::getLocale();
 </div>
 </form>
 
-<?php 
+<?php
 $get_section = 0;
 $get_country = 0;
 
 if(isset($_GET['section'])){
-$get_section = $_GET['section']; 
+$get_section = $_GET['section'];
 }
 
 if(isset($_GET['country'])){
-$get_country = $_GET['country']; 
+$get_country = $_GET['country'];
 }
 ?>
 <input type="hidden" value="<?php echo $get_section; ?>" id="get_section">
@@ -159,23 +159,17 @@ $get_country = $_GET['country'];
 
 </div>
 
-
 </form>
 </div>
 </div>
-
-
 
 </div>
 </div>
 </section>
 
-<div id='page_navigation'></div>
-
-
 
 <!--*******************************************-->
-        
+
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
       <script >
@@ -202,20 +196,20 @@ $get_country = $_GET['country'];
           $(document).ready(function(){
 
             /*This part to make sections and countries at home page */
-     var get_section = $('#get_section').val(); 
-     var get_country = $('#get_country').val(); 
+     var get_section = $('#get_section').val();
+     var get_country = $('#get_country').val();
 
         if(get_section>0){
         sections.push(get_section);
          filters = {'sections':sections};
-         var page_url = $('.active_page').html(); 
+         var page_url = $('.active_page').html();
         // alert(page_url);
                 getData(page_url);
             }
         if(get_country>0){
         countries.push(get_country);
          filters = {'countries':countries};
-         var page_url = $('.active_page').html(); 
+         var page_url = $('.active_page').html();
         // alert(page_url);
                 getData(page_url);
             }
@@ -223,7 +217,7 @@ $get_country = $_GET['country'];
 
             filterIt() ;
 
-          
+
           });
 
           function filterIt(){
@@ -238,11 +232,11 @@ $get_country = $_GET['country'];
                   }
                   if($(this).attr('id') == 'latest'){
                     sortBy = $(this).attr('id');
-                  }  
+                  }
                // $('.loader').show();
               var category_list = [];
               $('body #filter').each(function(){
-                  
+
                 if($(this).is(":checked")) {
 
                     if($(this).hasClass( "countries" )){
@@ -280,8 +274,8 @@ $get_country = $_GET['country'];
             filters = {'countries':countries,'sections':sections , 'status2':Case_status2, 'created_date':created_date , 'sortBy':sortBy} ;
 
             //  Call the ajax request
-              
-        var page_url = $('.active_page').html(); 
+
+        var page_url = $('.active_page').html();
         // alert(page_url);
                 getData(page_url);
 
@@ -307,7 +301,7 @@ $get_country = $_GET['country'];
               }
             });
             });
-            
+
           }
 
 <?php
@@ -318,6 +312,7 @@ $get_country = $_GET['country'];
 ?>
           function getData(p='1'){
 var page ='?page='+p;
+var page_link=0;
 //var url =  "{!! lang_url('cases/filtering') !!}"+page;
 // alert(url);
             $.ajax({
@@ -328,10 +323,18 @@ var page ='?page='+p;
                console.log(result);
               html='';
               var total_per_page=result.data['total'];
-            // var next_page_test=result.data['last_page'];
-             // console.log(total_per_page);
               $('#total_per_page').text(total_per_page);
-             // $('.test').hide(next_page_test);
+
+              var last_page=result.data['last_page'];
+              $('#page_navigation').find('a').each(function() {
+                  // console.log($(this).attr('href'));
+                   page_link=$(this).text();
+                   if(page_link > last_page){
+                     $(this).hide();
+                   }
+                    // alert('mmss'+$(this).text());
+              });
+
              if(result.data.data ==false){
              html += '<div class="status" style="font-size: 48px; padding-right: 167px;"> There are no data :)<span>';
              }
@@ -446,21 +449,21 @@ $(function() {
         $('#load a').css('color', '#dfecf6');
         $('#load').append('<img style="position: absolute; left: 0; top: 0; z-index: 100000;" src="/images/loading.gif" />');
 
-        // var url = $(this).attr('href'); 
+        // var url = $(this).attr('href');
 
 
 $(this).addClass('active_page').siblings().removeClass("active_page");
-        var url = $(this).html(); 
-        
+        var url = $(this).html();
+
         getData(url);
         // window.history.pushStates("", "", url);
     });
 
     function getArticles(url) {
         $.ajax({
-            url : url  
+            url : url
         }).done(function (data) {
-            $('.articles').html(data);  
+            $('.articles').html(data);
         }).fail(function () {
             alert('Articles could not be loaded.');
         });
