@@ -234,16 +234,22 @@ var page_link=0;
               var total_per_page=result.data['total'];
               $('#total_per_page').text(total_per_page);
 
-              var last_page=result.data['last_page'];
-              $('#page_navigation').find('a').each(function() {
-                  // console.log($(this).attr('href'));
-                   page_link=$(this).text();
-                   if(page_link > last_page){
-                     $(this).hide();
-                   }
-                    // alert('mmss'+$(this).text());
-              });
-              
+              if(total_per_page ==0){
+                $('#page_navigation').hide();
+              }
+              if(total_per_page >0){
+                $('#page_navigation').show();
+                var last_page=result.data['last_page'];
+                $('#page_navigation').children().show();
+                $('#page_navigation').find('a').each(function() {
+                     page_link=$(this).text();
+                     if(page_link > last_page){
+                       $(this).hide();
+                     }
+                      // alert('mmss'+$(this).text());
+                });
+              }
+
              if(result.data.data ==false){
              html += '<div class="status" style="font-size: 48px; padding-right: 167px;"> There are no data :)<span>';
              }

@@ -95,7 +95,7 @@ $locale = App::getLocale();
   <section class="offers">
      <div class="container">
         <div class="row">
-      
+
            <div class="arrange">
                      <i class="fa fa-sort " aria-hidden="true"></i>
                      <div class="dropdown">
@@ -124,10 +124,10 @@ $locale = App::getLocale();
            <input type='hidden' id='show_per_page' />
 
 
-           
+
         <div id='content'>
 
- 
+
 
            @foreach($lawyerCases as $lawyerCase)
             <a href="{{lang_url('case').'/'.$lawyerCase->id}}">
@@ -162,22 +162,21 @@ $locale = App::getLocale();
 
                     <div class="price"><i class="fa fa-money" aria-hidden="true"></i> العرض المقدم {{$lawyerCase->bid_value}} $</div>
                    <div class="price" style="padding-right: 67px;"><i class="fa fa-money" aria-hidden="true"></i> اعلى سعر {{$lawyerCase->max_bid_value}} $</div>
-                   
+
                  </div>
               </div>
             </a>
 
               @endforeach
-              
+
         </div>
-            
+
 
 
            </div>
         </div>
      </div>
   </section>
-  <div id='page_navigation'></div>
   <!--*******************************************-->
   <!--******************************Modal******************************-->
   <div class="modal fade" id="editvideo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -244,10 +243,10 @@ $locale = App::getLocale();
            // getData();
 
             // Select all
-         
+
 
           $(document).ready(function(){
-            filterIt() ;        
+            filterIt() ;
           });
 
           function filterIt(){
@@ -262,26 +261,26 @@ $locale = App::getLocale();
                   }
                   if($(this).attr('id') == 'latest'){
                     sortBy = $(this).attr('id');
-                  }  
+                  }
                // $('.loader').show();
 
 
             filters = {'sortBy':sortBy} ;
 
             //  Call the ajax request
-              
-        var page_url = $('.active_page').html(); 
+
+        var page_url = $('.active_page').html();
         // alert(page_url);
                 getData(page_url);
 
 
                  html = '' ;
-           
 
-             
+
+
             });
             });
-            
+
           }
 
 <?php
@@ -292,6 +291,7 @@ $locale = App::getLocale();
 ?>
           function getData(p='1'){
 var page ='/{{$user_data->id}}'+'?page='+p;
+var page_link=0;
 //var url =  "{!! lang_url('cases/filtering') !!}"+page;
 // alert(url);
             $.ajax({
@@ -302,10 +302,24 @@ var page ='/{{$user_data->id}}'+'?page='+p;
                console.log(result);
               html='';
               var total_per_page=result.data['total'];
-            // var next_page_test=result.data['last_page'];
-             // console.log(total_per_page);
               $('#total_per_page').text(total_per_page);
-             // $('.test').hide(next_page_test);
+
+              if(total_per_page ==0){
+                $('#page_navigation').hide();
+              }
+              if(total_per_page >0){
+                $('#page_navigation').show();
+                var last_page=result.data['last_page'];
+                $('#page_navigation').children().show();
+                $('#page_navigation').find('a').each(function() {
+                     page_link=$(this).text();
+                     if(page_link > last_page){
+                       $(this).hide();
+                     }
+                      // alert('mmss'+$(this).text());
+                });
+              }
+
              if(result.data.data ==false){
              html += '<div class="status" style="font-size: 48px; padding-right: 167px;"> There are no data :)<span>';
              }
@@ -323,7 +337,7 @@ var page ='/{{$user_data->id}}'+'?page='+p;
                     }
                     html += '<a href="<?= lang_url('case').'/' ; ?>'+v.id+'">';
                     html += '<div class="case-client border-bott">';
-                    
+
                     html += '<p>'+v.title+'</p>  ';
                     html += '</a>';
                     html += '<div> ';
@@ -337,7 +351,7 @@ var page ='/{{$user_data->id}}'+'?page='+p;
                     html += '<div class="price"><i class="fa fa-money" aria-hidden="true"></i> العرض المقدم :'+v.bid_value+' $</div>';
                     html +='<div class="price" style="padding-right: 67px;"><i class="fa fa-money" aria-hidden="true"></i> اعلى سعر : '+v.max_bid_value+'  $</div>'
 
-                 
+
                     html += '</div>';
                     html += '</div>';
                     html += '</a>';
@@ -370,21 +384,21 @@ $(function() {
         $('#load a').css('color', '#dfecf6');
         $('#load').append('<img style="position: absolute; left: 0; top: 0; z-index: 100000;" src="/images/loading.gif" />');
 
-        // var url = $(this).attr('href'); 
+        // var url = $(this).attr('href');
 
 
 $(this).addClass('active_page').siblings().removeClass("active_page");
-        var url = $(this).html(); 
-        
+        var url = $(this).html();
+
         getData(url);
         // window.history.pushStates("", "", url);
     });
 
     function getArticles(url) {
         $.ajax({
-            url : url  
+            url : url
         }).done(function (data) {
-            $('.articles').html(data);  
+            $('.articles').html(data);
         }).fail(function () {
             alert('Articles could not be loaded.');
         });

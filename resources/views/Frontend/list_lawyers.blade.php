@@ -81,7 +81,6 @@
             </div>
          </div>
       </section>
-      <div id='page_navigation'></div>
       <!--*******************************************-->
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -209,16 +208,22 @@ var page_link=0;
               var total_per_page=result.data['total'];
               $('#total_per_page').text(total_per_page);
 
-              var last_page=result.data['last_page'];
-              $('#page_navigation').find('a').each(function() {
-                  // console.log($(this).attr('href'));
-                   page_link=$(this).text();
-                   if(page_link > last_page){
-                     $(this).hide();
-                   }
-                    // alert('mmss'+$(this).text());
-              });
-              
+              if(total_per_page ==0){
+                $('#page_navigation').hide();
+              }
+              if(total_per_page >0){
+                $('#page_navigation').show();
+                var last_page=result.data['last_page'];
+                $('#page_navigation').children().show();
+                $('#page_navigation').find('a').each(function() {
+                     page_link=$(this).text();
+                     if(page_link > last_page){
+                       $(this).hide();
+                     }
+                      // alert('mmss'+$(this).text());
+                });
+              }
+
                 $.each(result.data.data,function(k,v){
 
                     html += '<div class="col-md-3 col-xs-6 text-center">'

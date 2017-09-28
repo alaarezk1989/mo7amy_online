@@ -20,7 +20,7 @@ $locale = App::getLocale();
 <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
 </div>
 </form>
-  
+
 
 
 
@@ -39,7 +39,7 @@ $locale = App::getLocale();
                            <li><a id="latest"href="#">{{ trans('cpanel.latest_show') }} </a></li>
                         </ul>
                      </div>
-                    
+
                      <p>
                        {{trans('cpanel.show')}}
                         <span> 0- {{ $details->perPage() }} </span>
@@ -58,57 +58,57 @@ $locale = App::getLocale();
 
 
 <input type='hidden' id='current_page' />
-<input type='hidden' id='show_per_page' />   
+<input type='hidden' id='show_per_page' />
    @if(Session::has('message'))
 <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
 @endif
-<div id='content'>   
+<div id='content'>
 
 
 
 
  @if(isset($details))
-        
-         
+
+
 
 
 @foreach($details as $value)
 <a href="{{lang_url('case').'/'.$value->id}}">
 <div class="case-client border-bott">
 <p> {{$value->title}}</p>
-<div>   
-<div class="casetype"> نوع القضية : <span>{{$value->sectionName}}</span></div>    
+<div>
+<div class="casetype"> نوع القضية : <span>{{$value->sectionName}}</span></div>
 <div class="status"> الحالة :                    <?php
                          if($value->status ==1) echo '<span> متاح</span>';
                          else{echo '</span>غير متاحة</span>'; }
-                              ?></div>   
-</div> 
+                              ?></div>
+</div>
 <div class="another-details">
-<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> {{$value->name1}} - {{$value->name2}}</div>   
+<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> {{$value->name1}} - {{$value->name2}}</div>
 <div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i><?php
                             Carbon::setLocale($locale);
                             $current = Carbon::now();
                             $old = Carbon::parse($value->created_at);
                             echo $old->diffForHumans($current);
- 
-?></div>    
+
+?></div>
 <div class="time"><i class="fa fa-calendar" aria-hidden="true"></i><?php
                             Carbon::setLocale($locale);
                             $current = Carbon::parse($value->created_at);
                             $old = Carbon::parse($value->finished_date);
                            echo $old->diffForHumans($current);
-                           ?></div> 
+                           ?></div>
                            <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :{{$value->bidValue}} $ $</div>
 
 
-</div> 
+</div>
 </div>
 </a>
 
-@endforeach 
+@endforeach
 @elseif(isset($message))
          <p>{{ $message }}</p>
-         @endif 
+         @endif
 
 
 
@@ -116,21 +116,18 @@ $locale = App::getLocale();
 
 
 
-    
 
 
 
-</div>   
 
 </div>
-</div>    
+
+</div>
+</div>
 </section>
 
-<div id='page_navigation'></div> 
 
-
-
-<!--*******************************************-->   
+<!--*******************************************-->
 
 <!--******************************Modal******************************-->
 
@@ -171,13 +168,13 @@ $locale = App::getLocale();
 
 </div>
 
-</div>    
-
-  
+</div>
 
 
 
-<!--*************************************************-->    
+
+
+<!--*************************************************-->
 
 
 
@@ -203,10 +200,10 @@ $locale = App::getLocale();
            // getData();
 
             // Select all
-         
+
 
           $(document).ready(function(){
-            filterIt() ;        
+            filterIt() ;
           });
 
           function filterIt(){
@@ -221,26 +218,26 @@ $locale = App::getLocale();
                   }
                   if($(this).attr('id') == 'latest'){
                     sortBy = $(this).attr('id');
-                  }  
+                  }
                // $('.loader').show();
 
 
             filters = {'sortBy':sortBy,'q':'{{ $query }}'} ;
 
             //  Call the ajax request
-              
-        var page_url = $('.active_page').html(); 
+
+        var page_url = $('.active_page').html();
         // alert(page_url);
                 getData(page_url);
 
 
                  html = '' ;
-           
 
-             
+
+
             });
             });
-            
+
           }
 
 <?php
@@ -251,6 +248,7 @@ $locale = App::getLocale();
 ?>
           function getData(p='1'){
 var page ='?page='+p;
+var page_link=0;
 //var url =  "{!! lang_url('cases/filtering') !!}"+page;
 // alert(url);
             $.ajax({
@@ -261,9 +259,24 @@ var page ='?page='+p;
                console.log(result);
               html='';
               var total_per_page=result.data['total'];
-            // var next_page_test=result.data['last_page'];
-             // console.log(total_per_page);
               $('#total_per_page').text(total_per_page);
+
+              if(total_per_page ==0){
+                $('#page_navigation').hide();
+              }
+              if(total_per_page >0){
+                $('#page_navigation').show();
+                var last_page=result.data['last_page'];
+                $('#page_navigation').children().show();
+                $('#page_navigation').find('a').each(function() {
+                     page_link=$(this).text();
+                     if(page_link > last_page){
+                       $(this).hide();
+                     }
+                      // alert('mmss'+$(this).text());
+                });
+              }
+
              // $('.test').hide(next_page_test);
              if(result.data.data ==false){
              html += '<div class="status" style="font-size: 48px; padding-right: 167px;"> There are no data :)<span>';
@@ -320,21 +333,21 @@ $(function() {
         $('#load a').css('color', '#dfecf6');
         $('#load').append('<img style="position: absolute; left: 0; top: 0; z-index: 100000;" src="/images/loading.gif" />');
 
-        // var url = $(this).attr('href'); 
+        // var url = $(this).attr('href');
 
 
 $(this).addClass('active_page').siblings().removeClass("active_page");
-        var url = $(this).html(); 
-        
+        var url = $(this).html();
+
         getData(url);
         // window.history.pushStates("", "", url);
     });
 
     function getArticles(url) {
         $.ajax({
-            url : url  
+            url : url
         }).done(function (data) {
-            $('.articles').html(data);  
+            $('.articles').html(data);
         }).fail(function () {
             alert('Articles could not be loaded.');
         });
@@ -348,4 +361,4 @@ $(this).addClass('active_page').siblings().removeClass("active_page");
 
  @stop
 
-<!--*******************************************-->    
+<!--*******************************************-->
