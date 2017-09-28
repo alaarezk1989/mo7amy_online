@@ -160,8 +160,8 @@ $locale = App::getLocale();
                            echo $old->diffForHumans($current);
                            ?> </div>
 
-                    <div class="price"><i class="fa fa-money" aria-hidden="true"></i> العرض المقدم الداتا بتاعه الفوراتش{{$lawyerCase->bid_value}} $</div>
-                   <div class="price" style="padding-right: 67px;"><i class="fa fa-money" aria-hidden="true"></i> اعلى سعر الداتا بتاعه الفور اتش{{$lawyerCase->max_bid_value}} $</div>
+                    <div class="price"><i class="fa fa-money" aria-hidden="true"></i> العرض المقدم {{$lawyerCase->bid_value}} $</div>
+                   <div class="price" style="padding-right: 67px;"><i class="fa fa-money" aria-hidden="true"></i> اعلى سعر {{$lawyerCase->max_bid_value}} $</div>
                    
                  </div>
               </div>
@@ -332,10 +332,10 @@ var page ='/{{$user_data->id}}'+'?page='+p;
                     html += '</div> ';
                     html += '<div class="another-details">';
                     html += '<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> '+v.name1+' ,  '+v.name2+' </div>';
-                    html += '<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> '+jQuery.format.prettyDate(v.created_at)+'</div>';
-                    html += '<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>';
-                    html += '<div class="price"><i class="fa fa-money" aria-hidden="true"></i> العرض المقدم الداتا اجكس:'+v.bid_value+' $</div>';
-                    html +='<div class="price" style="padding-right: 67px;"><i class="fa fa-money" aria-hidden="true"></i> اعلى سعر الداتا اجكس: '+v.max_bid_value+'  $</div>'
+                    html += '<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> '+v.created_at+'</div>';
+                    html += '<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>'+v.finished_date+'</div>';
+                    html += '<div class="price"><i class="fa fa-money" aria-hidden="true"></i> العرض المقدم :'+v.bid_value+' $</div>';
+                    html +='<div class="price" style="padding-right: 67px;"><i class="fa fa-money" aria-hidden="true"></i> اعلى سعر : '+v.max_bid_value+'  $</div>'
 
                  
                     html += '</div>';
