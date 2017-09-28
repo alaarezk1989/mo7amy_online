@@ -162,6 +162,7 @@ function apply_bids_fun(user_bids_id,case_id){
         console.log(result.msg);
         if(result.msg=='success'){
           $('.okk').attr("disabled","disabled");
+          $('.okk').css({background:"#b31f24",color:"#fff"});
         }
       },
       error: function(error) {

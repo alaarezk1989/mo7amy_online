@@ -54,6 +54,9 @@ Route::group(['middlewareGroups' => ['web']], function() {
 
 
          Route::get('{locale?}/case/{id}',FE.  '\CasesController@SingleCase');
+  Route::get('{locale?}/case/single_cases_filtering/{id}',FE.  '\CasesController@single_cases_filtering');
+
+
          Route::get('{locale?}/your-cases',FE.  '\CasesController@your_cases');
          Route::get('{locale?}/cases/your_cases_filtering',FE.  '\CasesController@your_cases_filtering');
   /*houida*/

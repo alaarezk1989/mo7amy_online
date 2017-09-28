@@ -368,7 +368,7 @@ return; */
         $sess_user_id= session('user_id');
         $per_page = 10;
       $your_case =  DB::table('cases')
-                ->where('status', '=', '1')
+               // ->where('status', '=', '1')
                 ->where('cases.user_id', '=', $sess_user_id)
                 ->join('cities', 'cities.id', '=', 'cases.city')
                 ->join('countries', 'countries.id', '=', 'cities.country_id')
@@ -452,7 +452,7 @@ public function your_cases_filtering(Request $request,$locale='ar'){
          ->where('user_id', '=', $sess_user_id)
          ->where('case_id', '=', $id)->first();
 
-         $per_page = 25;
+         $per_page = 1;
         /* $all_case_bids=DB::table('bids')
           ->where('case_id', '=', $id)
           ->orderBy('created_at', 'desc')
@@ -464,9 +464,9 @@ public function your_cases_filtering(Request $request,$locale='ar'){
                 ->join('cities', 'cities.id', '=', 'users.city')
           ->join('countries', 'countries.id', '=', 'cities.country_id')
               ->select('bids.*','users.*','countries.'.$locale.'_name as country_name','cities.'.$locale.'_name as city_name')
-              ->orderBy ('bids.created_at')
-              ->limit($per_page)
-              ->get();
+            //  ->orderBy ('bids.created_at')
+              ->paginate($per_page);
+              //->get();
       }
 // return $all_case_bids;
         $case = DB::table('cases')
@@ -525,6 +525,59 @@ public function your_cases_filtering(Request $request,$locale='ar'){
       }
 
  
+
+public function single_cases_filtering(Request $request,$locale='ar',$id){
+              App::setLocale($locale);
+              $locale = App::getLocale();
+
+              $sess_user_id= session('user_id');
+
+              $per_page = 1;
+
+          $all_case_bids = DB::table('bids')
+              ->where('case_id', '=', $id)
+               ->join('cases', 'cases.id', '=', 'bids.case_id')
+              ->join('users', 'users.id', '=', 'bids.user_id')
+              ->join('cities', 'cities.id', '=', 'users.city')
+              ->join('countries', 'countries.id', '=', 'cities.country_id');
+           //   ->orderBy ('bids.created_at');
+           
+
+      if($request->sortBy == 'max'){
+     $all_case_bids->orderBy('bids_val','desc');
+  }elseif($request->sortBy == 'low'){
+    $all_case_bids->orderBy('bids_val','asc');
+  }elseif($request->sortBy == 'latest'){
+    $all_case_bids->orderBy('bids.created_at','desc');
+  }
+      
+                $cases = $all_case_bids->select('bids.*','users.*','users.id as lawyer_id','cases.*','countries.'.$locale.'_name as country_name','cities.'.$locale.'_name as city_name')
+
+    
+               ->paginate($per_page);
+               // ->get();
+
+    if($cases){
+        return response()->json(['code' => 200 , 'msg' => "success" , "data" => $cases]);
+      }else{
+        return response()->json(['code' => 404 , 'msg' => "not found" ]);
+      }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
    public function filtering(Request $request,$locale='ar'){
     // print_r($request->all());return ;

@@ -146,9 +146,19 @@ $locale = App::getLocale();
                         
                          <?php
                             Carbon::setLocale($locale);
+                           $now = Carbon::now();
                             $current = Carbon::parse($value->created_at);
                             $old = Carbon::parse($value->finished_date);
-                           echo $old->diffForHumans($current);
+                           
+
+                           if ($old <= $now)
+                           {
+                              echo $value->finished_date;
+                           }else {
+
+                              echo $old->diffForHumans($current);
+
+                           }
                            ?> 
                       
 
