@@ -270,8 +270,8 @@ var page_link=0;
                     html += '</div> ';
                     html += '<div class="another-details">';
                     html += '<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> '+v.name1+' ,  '+v.name2+' </div>';
-                    html += '<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> '+jQuery.format.prettyDate(v.created_at)+'</div>';
-                    html += '<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>';
+                    html += '<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> '+v.created_at+'</div>';
+                    html += '<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>'+v.finished_date+'</div>';
                     html += '<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :'+v.bidValue+' $</div>';
                     html +='<div class="imp-button">';
 

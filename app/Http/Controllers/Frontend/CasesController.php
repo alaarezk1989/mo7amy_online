@@ -297,7 +297,7 @@ return;*/
 
               $per_page = 3;
               $all_cases =  DB::table('cases')
-                ->where('status', '=', '1')
+             
                 ->join('cities', 'cities.id', '=', 'cases.city')
                 ->join('countries', 'countries.id', '=', 'cities.country_id')
                 ->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2')
@@ -425,8 +425,44 @@ public function your_cases_filtering(Request $request,$locale='ar'){
                ->paginate($per_page);
                // ->get();
 
+
+    foreach ( $cases as $casestime) 
+            {
+
+                            Carbon::setLocale($locale);
+                            $now = Carbon::now();
+                            $current = Carbon::parse($casestime->created_at);
+                            $old = Carbon::parse($casestime->finished_date);
+                            $date = $old->diffForHumans($current);
+                            // $AllCases_array[][1]=$time;
+                             if ($old < $now)
+                            {
+                                $casestime->finished_date =  $casestime->finished_date;
+                                  $ChangeStatus =  DB::table('cases')
+                                    ->where('cases.id','=',$casestime->id)
+                                    ->update(array('status'=> 0));
+
+
+                            }else
+                            {
+                            $casestime->finished_date = $date;
+                            }
+
+
+
+                             Carbon::setLocale($locale);
+                            $current = Carbon::now();
+                            $old = Carbon::parse($casestime->created_at);
+                            $time =  $old->diffForHumans($current);
+                            $casestime->created_at = $time;
+
+            }
+
+
+
+
     if($cases){
-        return response()->json(['code' => 200 , 'msg' => "success" , "data" => $cases]);
+        return response()->json(['code' => 200 , 'msg' => "success" , "data" => $cases->toArray()]);
       }else{
         return response()->json(['code' => 404 , 'msg' => "not found" ]);
       }
