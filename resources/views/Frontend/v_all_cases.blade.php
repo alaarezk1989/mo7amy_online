@@ -175,6 +175,8 @@ $get_country = $_GET['country'];
 
 
 <!--*******************************************-->
+        
+
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
       <script >
 
@@ -354,8 +356,8 @@ var page ='?page='+p;
                     html += '</div> ';
                     html += '<div class="another-details">';
                     html += '<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> '+v.CountryName+' ,  '+v.Cityname+' </div>';
-                    html += '<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> '+jQuery.format.prettyDate(v.created_at)+'</div>';
-                    html += '<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>';
+                    html += '<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> '+v.created_at+'</div>';
+                    html += '<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>'+v.finished_date+'</div>';
                     html += '<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :'+v.bidValue+' $</div>';
                     html += '</div> </div>';
                     html += '</a>';
