@@ -21,7 +21,7 @@
                         <ul class="dropdown-menu arrang-menu" aria-labelledby="dropdownMenu1">
                            <li><a id="max" href="#">الترتيب تصاعديا</a></li>
                            <li><a id="low" href="#">الترتيب تنازليا</a></li>
-                          
+
                         </ul>
                      </div>
                      <p>
@@ -52,9 +52,9 @@
 <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
 </div>
 </form>
-                    
+
                      <form method="get" action="{{url('lawyers/filtering')}}">
-                      
+
                       <div id="filters" class="dep">
                          <div class="filterblock" id="all_sections">
                              <label> الاقسام </label>
@@ -106,8 +106,8 @@
 
 
   $(document).ready(function(){
- 
-            filterIt() ;  
+
+            filterIt() ;
           });
 
           function filterIt(){
@@ -120,11 +120,11 @@
                     if($(this).attr('id') == 'low'){
                     sortBy = $(this).attr('id');
                   }
-                 
+
                // $('.loader').show();
               var category_list = [];
               $('body #filter').each(function(){
-                  
+
                 if($(this).is(":checked")) {
 
                     if($(this).hasClass( "countries" )){
@@ -143,7 +143,7 @@
                         }
                     }
 
-           
+
                 }
 
               });
@@ -151,8 +151,8 @@
             filters = {'countries':countries,'sections':sections ,'sortBy':sortBy} ;
 
             //  Call the ajax request
-              
-        var page_url = $('.active_page').html(); 
+
+        var page_url = $('.active_page').html();
         // alert(page_url);
                 getData(page_url);
 
@@ -161,7 +161,7 @@
                  sections = [];
                  countries = [];
                  // filters = [] ;
-                
+
 
 
               if(category_list.length == 0)
@@ -177,7 +177,7 @@
               }
             });
             });
-            
+
           }
 
 
@@ -198,7 +198,7 @@
 ?>
           function getData(p='1'){
 var page ='?page='+p;
-
+var page_link=0;
             $.ajax({
               type: "GET",
               url: "{{lang_url('lawyers/filtering')}}"+page,
@@ -207,10 +207,18 @@ var page ='?page='+p;
                    console.log(result);
               html='';
               var total_per_page=result.data['total'];
-              //var last=result.data['last_page'];
-             // console.log(total_per_page);
               $('#total_per_page').text(total_per_page);
-              //$('.test').text(last);
+
+              var last_page=result.data['last_page'];
+              $('#page_navigation').find('a').each(function() {
+                  // console.log($(this).attr('href'));
+                   page_link=$(this).text();
+                   if(page_link > last_page){
+                     $(this).hide();
+                   }
+                    // alert('mmss'+$(this).text());
+              });
+              
                 $.each(result.data.data,function(k,v){
 
                     html += '<div class="col-md-3 col-xs-6 text-center">'
@@ -236,7 +244,7 @@ var page ='?page='+p;
 
 
           function allOf_filterationSections(){
-      
+
 
            $(".AllCountries").click(function () {
                 if ($('input.AllCountries').is(':checked')) {
@@ -280,21 +288,21 @@ $(function() {
         $('#load a').css('color', '#dfecf6');
         $('#load').append('<img style="position: absolute; left: 0; top: 0; z-index: 100000;" src="/images/loading.gif" />');
 
-        // var url = $(this).attr('href'); 
+        // var url = $(this).attr('href');
 
 
 $(this).addClass('active_page').siblings().removeClass("active_page");
-        var url = $(this).html(); 
-        
+        var url = $(this).html();
+
         getData(url);
         // window.history.pushStates("", "", url);
     });
 
     function getArticles(url) {
         $.ajax({
-            url : url  
+            url : url
         }).done(function (data) {
-            $('.articles').html(data);  
+            $('.articles').html(data);
         }).fail(function () {
             alert('Articles could not be loaded.');
         });
