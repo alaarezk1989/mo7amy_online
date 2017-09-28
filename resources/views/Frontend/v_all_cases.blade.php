@@ -134,8 +134,8 @@ $get_country = $_GET['country'];
 <input   type="checkbox" id="filter" class="AllStatus2 filter status2">  الكل <br>
 <input id="filter" class="filter status2" type="checkbox"  value="1"> المتاح   <br>
 <input id="filter" class="filter status2" type="checkbox"  value="0" > المنتهى    <br>
-<!--<input id="filter" class="filter status" type="checkbox" name="" value="" > تحت التنفيذ    <br>
-!--></div>
+<input id="filter" class="filter status2" type="checkbox"  value="2" > تحت التنفيذ    <br>
+</div>
 
 
 
@@ -352,7 +352,10 @@ var page_link=0;
                 $.each(result.data.data,function(k,v){
                     if(v.status == 1){
                         v.status = "متاح" ;
-                    }else{
+                    }if(v.status == 2){
+                        v.status = "تحت التنفيذ" ;
+                    }
+                    else{
                         v.status = "غير متاح" ;
                     }
 

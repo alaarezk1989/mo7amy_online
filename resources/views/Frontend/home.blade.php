@@ -151,7 +151,7 @@ $locale = App::getLocale();
                             $old = Carbon::parse($value->finished_date);
                            
 
-                           if ($old <= $now)
+                           if ($old < $now)
                            {
                               echo $value->finished_date;
                            }else {
