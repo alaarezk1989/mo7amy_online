@@ -648,17 +648,17 @@ public function lawyer($locale='ar',$id){
             ->join('cities', 'cities.id', '=', 'cases.city')
             ->join('countries', 'countries.id', '=', 'cities.country_id')
             ->join('sections', 'sections.id', '=', 'cases.section_id')
-           // ->Leftjoin('bids','bids.case_id','=','cases.id')
-             ->leftJoin(\DB::raw('(SELECT * FROM bids A WHERE bids_val = (SELECT MAX(bids_val) AS bidValue FROM bids B WHERE A.case_id=B.case_id)) AS t2'), function($join) {
+           ->leftJoin('bids as bb','bb.case_id','=','cases.id')
+           
+           ->where('bb.user_id','=',$id)
+  ->leftJoin(\DB::raw('(SELECT bids_val as m_bids ,case_id FROM bids as A WHERE A.bids_val = (SELECT MAX(bids_val) AS bidValue FROM bids B WHERE A.case_id=B.case_id)) AS t2'), function($join) {
                $join->on('cases.id', '=', 't2.case_id');
   })
-          //  ->where('bids.user_id','=',$id)
-
-            ->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','bids_val as bidValue','sections.'.$locale.'_name as sectionName')
+            ->select('cases.*','bb.bids_val as bid_value','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','m_bids as max_bid_value','sections.'.$locale.'_name as sectionName')
            // ->orderBy ('cases.created_at','desc')
             ->paginate($per_page);
-print_r($lawyerCases);
-return;
+// print_r($lawyerCases);
+// return;
 foreach ($lawyerCases as $caser_row) {
   if($caser_row->status==2 && $caser_row->user_id==$sess_user_id){
     $show_lowyer_contact_flag=1;
@@ -714,10 +714,17 @@ public function lawyer_cases_filtering(Request $request,$locale='ar',$id){
                 ->join('countries', 'countries.id', '=', 'cities.country_id')
                 ->join('sections', 'sections.id', '=', 'cases.section_id')
 
-                ->leftJoin('bids', function ($join) {
-                $join->on('bids.case_id','=','cases.id');
-              });
+              //   ->leftJoin('bids', function ($join) {
+              //   $join->on('bids.case_id','=','cases.id');
+              // });
    
+    ->leftJoin('bids as bb','bb.case_id','=','cases.id')
+           
+           ->where('bb.user_id','=',$id)
+  ->leftJoin(\DB::raw('(SELECT bids_val as m_bids ,case_id FROM bids as A WHERE A.bids_val = (SELECT MAX(bids_val) AS bidValue FROM bids B WHERE A.case_id=B.case_id)) AS t2'), function($join) {
+               $join->on('cases.id', '=', 't2.case_id');
+  });
+           
       
 
       if($request->sortBy == 'max'){
@@ -728,8 +735,9 @@ public function lawyer_cases_filtering(Request $request,$locale='ar',$id){
         $Cases1->orderBy('cases.created_at','desc');
       }
       
-                $cases = $Cases1->select('cases.*','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','bids_val as bidValue','sections.'.$locale.'_name as sectionName')
-               ->where('bids.user_id','=',$id)
+                $cases = $Cases1 ->select('cases.*','bb.bids_val as bid_value','countries.'.$locale.'_name as name1','cities.'.$locale.'_name as name2','m_bids as max_bid_value','sections.'.$locale.'_name as sectionName')
+           
+               // ->where('bids.user_id','=',$id)
                ->paginate($per_page);
        /* echo "<pre>";
       print_r($cases);

@@ -95,7 +95,7 @@ $locale = App::getLocale();
   <section class="offers">
      <div class="container">
         <div class="row">
-       @if(isset($lawyerCases))   
+      
            <div class="arrange">
                      <i class="fa fa-sort " aria-hidden="true"></i>
                      <div class="dropdown">
@@ -123,12 +123,11 @@ $locale = App::getLocale();
            <input type='hidden' id='current_page' />
            <input type='hidden' id='show_per_page' />
 
- @endif
+
            
         <div id='content'>
 
-
-           @if(isset($lawyerCases))   
+ 
 
            @foreach($lawyerCases as $lawyerCase)
             <a href="{{lang_url('case').'/'.$lawyerCase->id}}">
@@ -161,15 +160,15 @@ $locale = App::getLocale();
                            echo $old->diffForHumans($current);
                            ?> </div>
 
-                    <div class="price"><i class="fa fa-money" aria-hidden="true"></i> العرض المقدم {{$lawyerCase->bidValue}} $</div>
-                   <div class="price" style="padding-right: 67px;"><i class="fa fa-money" aria-hidden="true"></i> اعلى سعر  $</div>
+                    <div class="price"><i class="fa fa-money" aria-hidden="true"></i> العرض المقدم الداتا بتاعه الفوراتش{{$lawyerCase->bid_value}} $</div>
+                   <div class="price" style="padding-right: 67px;"><i class="fa fa-money" aria-hidden="true"></i> اعلى سعر الداتا بتاعه الفور اتش{{$lawyerCase->max_bid_value}} $</div>
                    
                  </div>
               </div>
             </a>
 
               @endforeach
-                @endif
+              
         </div>
             
 
@@ -335,8 +334,8 @@ var page ='/{{$user_data->id}}'+'?page='+p;
                     html += '<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> '+v.name1+' ,  '+v.name2+' </div>';
                     html += '<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> '+jQuery.format.prettyDate(v.created_at)+'</div>';
                     html += '<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>باقى <span>55</span> يوم</div>';
-                    html += '<div class="price"><i class="fa fa-money" aria-hidden="true"></i> العرض المقدم :'+v.bidValue+' $</div>';
-                    html +='<div class="price" style="padding-right: 67px;"><i class="fa fa-money" aria-hidden="true"></i> اعلى سعر: '+v.max_bidValue+'  $</div>'
+                    html += '<div class="price"><i class="fa fa-money" aria-hidden="true"></i> العرض المقدم الداتا اجكس:'+v.bid_value+' $</div>';
+                    html +='<div class="price" style="padding-right: 67px;"><i class="fa fa-money" aria-hidden="true"></i> اعلى سعر الداتا اجكس: '+v.max_bid_value+'  $</div>'
 
                  
                     html += '</div>';

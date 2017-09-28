@@ -173,9 +173,8 @@ $locale = App::getLocale();
                   </a>
                    @if($sess_user_id= session('user_id') == $case->user_id)
                   <div class="offers">سعر العرض:  $ {{$user_bids->bids_val}}  </div>
-                    @if($user_bids->status == 1)
+                    @if($case->status == 1)
                   <button data-target="#confirmation_{{$user_bids->id}}"  data-toggle="modal" class="okk">قبلت عرضك </button>
-
 
             <div class="modal fade" id="confirmation_{{$user_bids->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 
@@ -187,26 +186,22 @@ $locale = App::getLocale();
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="exampleModalLabel"><!--<i class="fa fa-trash" aria-hidden="true"></i>--> رسالة تأكيد </h4>
             </div>
-
-
             <div class="modal-body">
             <p>هل انت متاكد من قبول هذا العرض ؟</p>
             </div>
-    {!! Form::open(['method'=>'POST', 'id'=>'apply_bids_form', 'url'=>'']) !!}
-            <input type="hidden" value="{{$user_bids->id}}" name="user_bids_id">
-            <input type="hidden" value="{{$user_bids->case_id}}" name="case_id" >
-
               <div class="modal-footer">
                   <button type="button" class="btn btn-default yes " id="apply_bids_button" onclick="return apply_bids_fun({{$user_bids->id}},{{$user_bids->case_id}});" data-dismiss="modal">نعم </button>
                   <button type="reset" class="btn btn-primary no"  data-dismiss="modal">لا</button>
               </div>
-{!! Form::close() !!}
 
           </div>
           </div>
           </div>
-            @endif
-
+          @else
+            @if($user_bids->is_pids==1)
+            <button data-target="#confirmation_1268696920" data-toggle="modal" class="okk done" disabled="disabled" style="background: rgb(179, 31, 36); color: rgb(255, 255, 255);">قبلت عرضك </button>
+              @endif
+    @endif
                   @else
                   <div class="offers">سعر العرض:  $ {{$user_bids->bids_val}}  </div>
                   @endif
