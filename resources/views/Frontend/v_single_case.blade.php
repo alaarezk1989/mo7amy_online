@@ -5,6 +5,8 @@
    $locale = App::getLocale();
 
    ?>
+
+
 <section class="details">
    <div class="container">
       <div class="row">
@@ -104,6 +106,8 @@
 <!--***********************************************************************-->
 @if(auth()->user())
 @if(user_auth()->permissions=='lawyer' or 'client')
+@if($all_case_bids->count() > 0)
+
 <div class=" head-off">
    <p> العروض المقدمة </P>
 </div>
@@ -194,6 +198,9 @@
       </div>
    </div>
 </section>
+
+
+@endif
 @endif
 @endif
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

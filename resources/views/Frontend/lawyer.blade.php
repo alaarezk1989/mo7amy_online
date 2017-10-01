@@ -86,7 +86,7 @@ $locale = App::getLocale();
      </div>
   </section>
   <!--*************************************************************************-->
-
+@if($lawyerCases->count() > 0)
   <div class="profilecase-img">
   <p> القضايا المشترك بها  </p>
   </div>
@@ -138,11 +138,24 @@ $locale = App::getLocale();
                      <div class="status"> الحالة :
 
                      <?php
-                         if($lawyerCase->status ==1) echo '<span> متاح</span>';
+                         if($lawyerCase->status ==1) 
+                          {
+                            echo '<span class="avail"> متاح</span>';
+                          }
+                         elseif($lawyerCase->status ==2) 
+                          {
+                            echo '<span class="unConst">تحت التنفيذ</span>';
+                          }
                          else{
-                           echo '</span>غير متاحة</span>'; }
+                           echo '</span class="unavail">غير متاحة</span>'; 
+                         }
                      ?>
+
+
+    
                     </div>
+                   <div class="price"><i class="fa fa-money" aria-hidden="true"></i> العرض المقدم {{$lawyerCase->bid_value}} $</div>
+                   <div class="price"><i class="fa fa-money" aria-hidden="true"></i> اعلى سعر {{$lawyerCase->max_bid_value}} $</div>
                  </div>
                  <div class="another-details">
                     <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> {{$lawyerCase->name1}} -{{$lawyerCase->name2}} </div>
@@ -160,8 +173,7 @@ $locale = App::getLocale();
                            echo $old->diffForHumans($current);
                            ?> </div>
 
-                    <div class="price"><i class="fa fa-money" aria-hidden="true"></i> العرض المقدم {{$lawyerCase->bid_value}} $</div>
-                   <div class="price" style="padding-right: 67px;"><i class="fa fa-money" aria-hidden="true"></i> اعلى سعر {{$lawyerCase->max_bid_value}} $</div>
+         
 
                  </div>
               </div>
@@ -177,6 +189,7 @@ $locale = App::getLocale();
         </div>
      </div>
   </section>
+  @endif
   <!--*******************************************-->
   <!--******************************Modal******************************-->
   <div class="modal fade" id="editvideo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -324,10 +337,13 @@ var page_link=0;
              html += '<div class="status" style="font-size: 48px; padding-right: 167px;"> There are no data :)<span>';
              }
                 $.each(result.data.data,function(k,v){
-                    if(v.status == 1){
-                        v.status = "متاح" ;
-                    }else{
-                        v.status = "غير متاح" ;
+                      if(v.status == 1){
+                        v.status = '<span class="avail"> متاح</span>' ;
+                    }if(v.status == 2){
+                        v.status = '<span class="unConst"> تحت التنفيذ</span>' ;
+                    }
+                    else{
+                        v.status = '<span class="unavail"> غير متاحة</span>' ;
                     }
 
                     if(v.bidValue == null){
@@ -342,15 +358,16 @@ var page_link=0;
                     html += '</a>';
                     html += '<div> ';
                     html += '<div class="casetype"> نوع القضية : <span>'+v.sectionName+'</span></div>';
-                    html += '<div class="status"> الحالة : <span>sss</span></div> ';
+                    html += '<div class="status"> الحالة : <span>'+v.status+'</span></div> ';
+                    html += '<div class="price"><i class="fa fa-money" aria-hidden="true"></i> العرض المقدم :'+v.bid_value+' $</div>';
+                    html +='<div class="price"><i class="fa fa-money" aria-hidden="true"></i> اعلى سعر : '+v.max_bid_value+'  $</div>'
+
                     html += '</div> ';
                     html += '<div class="another-details">';
                     html += '<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> '+v.name1+' ,  '+v.name2+' </div>';
                     html += '<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> '+v.created_at+'</div>';
                     html += '<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>'+v.finished_date+'</div>';
-                    html += '<div class="price"><i class="fa fa-money" aria-hidden="true"></i> العرض المقدم :'+v.bid_value+' $</div>';
-                    html +='<div class="price" style="padding-right: 67px;"><i class="fa fa-money" aria-hidden="true"></i> اعلى سعر : '+v.max_bid_value+'  $</div>'
-
+               
 
                     html += '</div>';
                     html += '</div>';

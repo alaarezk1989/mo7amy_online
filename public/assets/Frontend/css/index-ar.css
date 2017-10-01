@@ -785,8 +785,21 @@ margin-bottom: 5px;
 padding-right: 7px;    
 min-width: 180px;  */
 font-size: 20px;
-color: #3cb54a;
 
+margin-bottom: 5px;
+}
+
+.avail{
+ color: #3cb54a;   
+}
+
+
+.unavail{
+    color: #b31f24;
+}
+
+.unConst{
+    color: blue;
 }
 
 .status-doing{
@@ -1116,7 +1129,43 @@ margin-bottom: 15px;
 border-radius: 5px;
 border: 1px solid #e0cd85;
 padding: 20px; 
-height: 534px;
+min-height: 570px;
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    margin-top: 20px;
+}
+.offers .sidebar2.res-search{
+      margin-top: 0px; 
+     border: none; 
+     border-radius: 0px;    
+}
+.sidebar2.res-search .forsearch {
+ border-bottom: none;   
+} 
+
+.sidebar2.res-search button{
+    background-color: transparent;
+    outline: none !important;
+    float: left;
+    margin-top: -46px;
+    color: #b31f24;
+    font-size: 18px;
+}
+
+.sidebar2.res-search input[type="search"] {
+    background: #eceaea;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    height: 50px;
+}
+
+.sidebar2.res-search .forsearch{
+    padding: 20px 0;
 }
 
 .casere-servation{
@@ -1191,6 +1240,10 @@ padding-top: 15px;
 
 
 /*********************************************home*************************************/
+
+.cons a img{
+    width: 70%
+}
 
 
 .cases{
@@ -1456,7 +1509,7 @@ position: relative;
 margin: 0 auto;
 display: inline-block;
 overflow: hidden;
-background-color: black;
+background-color: none;
 }
 
 
@@ -1981,10 +2034,12 @@ padding-left: 10px;
 
 
 #content .case-client .price{
-display: inline-block;
+/*display: inline-block;
+min-width: 180px;*/
 color: #efa308;
 font-size: 23px;
-min-width: 180px;
+display: inline-block;
+margin-left: 60px;
 }
 
 #content .case-client .delt{
@@ -2306,8 +2361,9 @@ border-radius: 10px;
 }
 
 .offers .location, .time,.offers #content .case-client .price{
-min-width: 160px;
+/*min-width: 160px;*/
 font-size: 20px;
+margin-bottom: 5px;
 }
 
 .offers .sidebar2{
@@ -2452,9 +2508,11 @@ margin: 20px 0;
 }
 
 .contact h3{
-font-size: 20px;    
-margin: 60px 0 60px 0;
-padding:0 15px 0 15px;
+font-size: 20px;
+    margin: 60px 0 60px 0;
+    padding: 0 15px 0 15px;
+    line-height: 30px;
+    width: 70%;
 }
 
 .contact form{
@@ -2775,13 +2833,13 @@ padding: 6px 0px;
 font-size: 18px;
 }    
 
-.status {
+/*.status {
 display: inline-block;
 font-size: 18px;
 color: #3cb54a;
 padding-right: 7px;
 min-width: 100px;
-}
+}*/
 
 .casetype {
 display: inline-block;

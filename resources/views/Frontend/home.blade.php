@@ -187,7 +187,7 @@ $locale = App::getLocale();
       <h1 class="text-center"> {{trans('cpanel.The_best_lawyers')}}</h1>
       <div class="row">
       @foreach($lawyers as $law)
-         <div class="col-lg-2 col-md-4 col-sm-6 cons">
+         <div class="col-lg-2 col-md-4 col-sm-6 cons pull-right">
             <a href="{{lang_url('lawyer').'/'.$law->id}}" class="img1"> <img src="{{ asset('public/uploads/user_img')}}/{{$law->image}}" class="img-responsive">  <span class="name">{{$law->name}} <span class="title">{{$law->career}} </span></span> </a>
          </div>
          @endforeach

@@ -10,19 +10,19 @@
 <div class="col-md-3 col-sm-3 text-center ul1">
 <p>الموقع </p>
 <ul class="list-unstyled">
-<li> <a href="who%20are%20we.html"> من نحن </a> </li>
+<li> <a href="{{lang_url('about')}}"> من نحن </a> </li>
 <li> <a href=""> هدفنا   </a> </li>
 <li> <a href="">  رؤيتنا  </a> </li>
-<li> <a href="contact.html">  اتصل نا   </a> </li>
+<li> <a href="{{lang_url('contact-us')}}">  اتصل نا   </a> </li>
 </ul>
 </div>
 
 <div class="col-md-3  col-sm-3  text-center ul2">
 <P> القضايا </P>
 <ul class="list-unstyled">
-<li> <a href="addcase-ar.html"> اضف قضية  </a> </li>
-<li> <a href="cases.html"> عرض القضايا    </a> </li>
-<li> <a href="lawyers.html">  المستشاريين   </a> </li>
+<li> <a href="{{lang_url('create')}}"> اضف قضية  </a> </li>
+<li> <a href="{{lang_url('cases')}}"> عرض القضايا    </a> </li>
+<li> <a href="{{lang_url('lawyers')}}">  المستشاريين   </a> </li>
 <li> <a href="">   ان تكون شركة رائدة  </a> </li>
 </ul>
 </div>

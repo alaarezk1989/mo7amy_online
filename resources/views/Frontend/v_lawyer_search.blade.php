@@ -8,17 +8,26 @@
 
 <!--***********************************************************************-->
 
-<section class="lawyers wrapper">
+<section class="lawyers offers">
 <div class="container">
 <div class="row">
 
 <form method="get" role="search" action="{{lang_url('lawyers/search')}}">
   {{ csrf_field() }}
+
+<div class=" sidebar2 res-search">
 <div class="forsearch">
 <label> البحث </label>
 <input type="search" name="q" class="form-control" value="{{$query}}">
 <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
 </div>
+</div>
+
+
+
+
+
+
 </form>
 
 <div class="col-md-12">

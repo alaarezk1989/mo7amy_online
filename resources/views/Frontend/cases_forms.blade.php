@@ -31,6 +31,10 @@
 
 {!! Form::select('section_id', $sections,old('section_id'), ['id'=>'section_id','class' => 'sl-cou']) !!}
 
+ @if ($errors->has('section_id'))
+<div class="alert alert-danger" style="font-size: 15px;" role="alert">{{ $errors->first('section_id') }}</div>
+ @endif
+
 </div>
 
 
@@ -39,10 +43,14 @@
 
 
  {!! Form::select('country', $countries,$case_country_id, ['id'=>'country','class' => 'sl-cou']) !!}
-
+  @if ($errors->has('country'))
+<div class="alert alert-danger" style="font-size: 15px;" role="alert">{{ $errors->first('country') }}</div>
+ @endif
 
  {!! Form::select('city', $states,old('city'), ['id'=>'city','class' => 'sl-cou']) !!}
-
+  @if ($errors->has('city'))
+<div class="alert alert-danger" style="font-size: 15px;" role="alert">{{ $errors->first('city') }}</div>
+ @endif
 </div>
 
 
@@ -51,6 +59,9 @@
 
 {!! Form::date('finished_date',old('finished_date'), array('id'=>'finished_date', 'class'=>'form-control','placeholder'=>'اختار التاريخ')) !!}
 
+  @if ($errors->has('finished_date'))
+<div class="alert alert-danger" style="font-size: 15px;" role="alert">{{ $errors->first('finished_date') }}</div>
+ @endif
 </div>
 
 
@@ -68,29 +79,14 @@
 <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
 @endif
 
-@if ($errors->has('title'))
-<div class="alert alert-danger" style="font-size: 15px;" role="alert">{{ $errors->first('title') }}</div>
-@endif
 
- @if ($errors->has('description'))
-<div class="alert alert-danger" style="font-size: 15px;" role="alert">{{ $errors->first('description') }}</div>
- @endif
 
- @if ($errors->has('type'))
-<div class="alert alert-danger" style="font-size: 15px;" role="alert">{{ $errors->first('type') }}</div>
- @endif
 
-  @if ($errors->has('country'))
-<div class="alert alert-danger" style="font-size: 15px;" role="alert">{{ $errors->first('country') }}</div>
- @endif
 
-  @if ($errors->has('city'))
-<div class="alert alert-danger" style="font-size: 15px;" role="alert">{{ $errors->first('city') }}</div>
- @endif
 
-  @if ($errors->has('finished_date'))
-<div class="alert alert-danger" style="font-size: 15px;" role="alert">{{ $errors->first('finished_date') }}</div>
- @endif
+
+
+
 
 <div class="casedetails">
 
@@ -99,7 +95,9 @@
 
 {!! Form::text('title',old('title'), array('id'=>'title', 'class'=>'form-control','placeholder'=>'أضف عنوان لقضيتك')) !!}
 
-
+@if ($errors->has('title'))
+<div class="alert alert-danger" style="font-size: 15px;" role="alert">{{ $errors->first('title') }}</div>
+@endif
 
 
 </div>
@@ -108,7 +106,9 @@
 <label>التفاصيل </label>
 
 {!! Form::textarea('description',old('description'), array('id'=>'description','rows'=>'11','cols'=>'93', 'class'=>'form-control','placeholder'=>'أضف تفاصيل قضيتك')) !!}
-
+ @if ($errors->has('description'))
+<div class="alert alert-danger" style="font-size: 15px;" role="alert">{{ $errors->first('description') }}</div>
+ @endif
 </div>
 
 

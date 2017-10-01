@@ -133,8 +133,9 @@ $get_country = $_GET['country'];
 <label> الحالة </label>
 <input   type="checkbox" id="filter" class="AllStatus2 filter status2">  الكل <br>
 <input id="filter" class="filter status2" type="checkbox"  value="1"> المتاح   <br>
-<input id="filter" class="filter status2" type="checkbox"  value="0" > المنتهى    <br>
 <input id="filter" class="filter status2" type="checkbox"  value="2" > تحت التنفيذ    <br>
+<input id="filter" class="filter status2" type="checkbox"  value="0" > المنتهى   
+
 </div>
 
 
@@ -350,13 +351,15 @@ var page_link=0;
              html += '<div class="status" style="font-size: 48px; padding-right: 167px;"> There are no data :)<span>';
              }
                 $.each(result.data.data,function(k,v){
-                    if(v.status == 1){
-                        v.status = "متاح" ;
-                    }if(v.status == 2){
-                        v.status = "تحت التنفيذ" ;
+                   var case_status = '' ;
+                   if(v.status == 1){
+                       case_status = '<span class="avail"> متاح</span>' ;
                     }
-                    else{
-                        v.status = "غير متاح" ;
+                  if(v.status == 0){
+                       case_status = '<span class="unavail">منتهية</span>' ;
+                    }
+                    if(v.status == 2){
+                        case_status = '<span class="unConst"> تحت التنفيذ</span>' ;
                     }
 
                     if(v.bidValue == null){
@@ -369,13 +372,14 @@ var page_link=0;
                     html += '<p>'+v.title+'</p>  ';
                     html += '<div> ';
                     html += '<div class="casetype"> نوع القضية : <span>'+v.SectionName+'</span></div>';
-                    html += '<div class="status"> الحالة : <span>'+v.status+'</span></div> ';
+                    html += '<div class="status"> الحالة : <span>'+case_status+'</span></div> ';
+                    html += '<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :'+v.bidValue+' $</div>';
+
                     html += '</div> ';
                     html += '<div class="another-details">';
                     html += '<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> '+v.CountryName+' ,  '+v.Cityname+' </div>';
                     html += '<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> '+v.created_at+'</div>';
                     html += '<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>'+v.finished_date+'</div>';
-                    html += '<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :'+v.bidValue+' $</div>';
                     html += '</div> </div>';
                     html += '</a>';
 

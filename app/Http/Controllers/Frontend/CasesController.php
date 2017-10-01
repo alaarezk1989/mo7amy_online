@@ -109,8 +109,11 @@ public function create_case (Request $request)
         {   /*$errors = $validation->messages();
           echo $errors;
           return;*/
-            session()->flash('error_msg', trans('cpanel.form_error'));
-            //return $request->all();
+              Session::flash('error_msg',  trans('cpanel.form_error'));
+              Session::flash('alert-class', 'alert-danger');
+           
+
+    
             return back()->withInput()->withErrors($validator);
         }else{
 //return $request->all();
@@ -503,6 +506,8 @@ public function your_cases_filtering(Request $request,$locale='ar'){
             //  ->orderBy ('bids.created_at')
               ->paginate($per_page);
               //->get();
+              /*print_r($all_case_bids->count());
+              return;*/
       }
 // return $all_case_bids;
         $case = DB::table('cases')

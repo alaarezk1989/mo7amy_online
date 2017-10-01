@@ -226,16 +226,35 @@ var page_link=0;
 
                 $.each(result.data.data,function(k,v){
 
-                    html += '<div class="col-md-3 col-xs-6 text-center">'
+                    html += '<div class="col-md-3 col-xs-6 text-center pull-right">'
                     html += '<a href="<?= lang_url('lawyer').'/' ; ?>'+v.id+'">';
                     html += '<div class="pro">';
-                    html += '<img src="{{ asset('public/uploads/user_img').'/'}}'+v.image+'" class="img-responsive img-circle">';
+                    if(v.image !=''){
+                     html += '<img src="{{ asset('public/uploads/user_img').'/'}}'+v.image+'" class="img-responsive img-circle">';
+
+                    }
+                    else{
+                   html += '<img src="{{ asset('public/uploads')}}/avater.png" class="img-responsive img-circle">';
+
+                    }
+                    
                     html += '<h3>'+v.name+'</h3>';
                    // html += '<h3>'+v.s_name+'</h3>';
                     html += '<h4>'+v.career+'</h4>';
                     html += '</div> ';
                      html += '</a>';
                     html += '</div>';
+
+
+
+
+
+
+
+
+
+
+
        });
 
                 $('#content').html(html);
