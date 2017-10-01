@@ -16,10 +16,33 @@
             </p>
             <div>
                <div class="casetype"> نوع القضية : <span>{{$case->sectionName}}</span></div>
-               <div class="status"> الحالة :                    <?php
-                  if($case->status) echo '<span> متاح</span>';
-                  else{echo '</span>غير متاحة</span>'; }
-                       ?></div>
+             
+
+
+
+
+      <div class="status"> الحالة :
+
+                     <?php
+                         if($case->status ==1) 
+                          {
+                            echo '<span class="avail"> متاح</span>';
+                          }
+                         elseif($case->status ==2) 
+                          {
+                            echo '<span class="unConst">تحت التنفيذ</span>';
+                          }
+                         else{
+                           echo '<span class="unavail">غير متاحة</span>'; 
+                         }
+                     ?>
+
+
+    
+                    </div>
+
+
+
             </div>
             <div style="margin-top:5px">
                <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> {{$case->country_name}} - {{$case->city_name}} </div>

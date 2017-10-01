@@ -69,7 +69,15 @@
 <div class="col-md-3 col-xs-6 text-center">
 <a href="{{lang_url('lawyer').'/'.$value->id}}">
 <div class="pro">
-<img src="{{ asset('public/uploads/user_img')}}/{{$value->image}}" class="img-responsive img-circle">
+           @if($value->image !='')
+       <img src="{{ asset('public/uploads/user_img')}}/{{$value->image}}" class="img-responsive img-circle">
+
+           
+           @else
+           <img src="{{ asset('public/uploads')}}/avater.png" class="imgs img-circle">
+           
+@endif
+
 <h3> {{$value->name}}</h3>
 <p>{{$value->career}} </p>
 </div>
@@ -183,8 +191,14 @@ var page_link=0;
                     html +='<div class="col-md-3 col-xs-6 text-center">';
                     html += '<a href="<?= lang_url('lawyer').'/' ; ?>'+v.id+'">';
                     html += '<div class="pro">';
-                    html += '<img src="{{ asset('public/uploads')}}/avater.png" class="img-responsive">';
+                              if(v.image !=''){
 
+           html += '<img src="{{ asset('public/uploads/user_img').'/'}}'+v.image+'" class="img-responsive img-circle">';
+
+           }
+           else{
+             html +='<img src="{{ asset('public/uploads')}}/avater.png" class="imgs img-circle">';
+           }
                     html += '<h3>'+v.username+'</h3>';
                     html += '<p>'+v.usercareer+'</p>';
                     html += '</div> ';

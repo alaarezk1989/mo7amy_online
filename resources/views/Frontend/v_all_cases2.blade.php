@@ -85,10 +85,31 @@ $locale = App::getLocale();
 <p> {{$value->title}}</p>
 <div>
 <div class="casetype"> نوع القضية : <span>{{$value->sectionName}}</span></div>
-<div class="status"> الحالة :                    <?php
-                         if($value->status ==1) echo '<span> متاح</span>';
-                         else{echo '</span>غير متاحة</span>'; }
-                              ?></div>
+
+
+
+
+   <div class="status"> الحالة :
+
+                     <?php
+                         if($value->status ==1) 
+                          {
+                            echo '<span class="avail"> متاح</span>';
+                          }
+                         elseif($value->status ==2) 
+                          {
+                            echo '<span class="unConst">تحت التنفيذ</span>';
+                          }
+                         else{
+                           echo '<span class="unavail">غير متاحة</span>'; 
+                         }
+                     ?>
+
+
+    
+                    </div>
+      <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :{{$value->bidValue}} $</div>
+
 </div>
 <div class="another-details">
 <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> {{$value->name1}} - {{$value->name2}}</div>
@@ -105,7 +126,6 @@ $locale = App::getLocale();
                             $old = Carbon::parse($value->finished_date);
                            echo $old->diffForHumans($current);
                            ?></div>
-                           <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :{{$value->bidValue}} $ $</div>
 
 
 </div>
@@ -289,10 +309,15 @@ var page_link=0;
              html += '<div class="status" style="font-size: 48px; padding-right: 167px;"> There are no data :)<span>';
              }
                 $.each(result.data.data,function(k,v){
-                    if(v.status == 1){
-                        v.status = "متاح" ;
-                    }else{
-                        v.status = "غير متاح" ;
+                         var case_status = '' ;
+                   if(v.status == 1){
+                       case_status = '<span class="avail"> متاح</span>' ;
+                    }
+                  if(v.status == 0){
+                       case_status = '<span class="unavail">منتهية</span>' ;
+                    }
+                    if(v.status == 2){
+                        case_status = '<span class="unConst"> تحت التنفيذ</span>' ;
                     }
 
                     if(v.bidValue == null){
@@ -305,13 +330,14 @@ var page_link=0;
                     html += '<p>'+v.title+'</p>  ';
                     html += '<div> ';
                     html += '<div class="casetype"> نوع القضية : <span>'+v.sectionName+'</span></div>';
-                    html += '<div class="status"> الحالة : <span>'+v.status+'</span></div> ';
+                    html += '<div class="status"> الحالة : <span>'+case_status+'</span></div> ';
+                    html += '<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :'+v.bidValue+' $</div>';
+
                     html += '</div> ';
                     html += '<div class="another-details">';
                     html += '<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> '+v.name1+' ,  '+v.name2+' </div>';
                     html += '<div class="time"><i class="fa fa-clock-o" aria-hidden="true"></i> '+v.created_at+'</div>';
                     html += '<div class="time"><i class="fa fa-calendar" aria-hidden="true"></i>'+v.finished_date+'</div>';
-                    html += '<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :'+v.bidValue+' $</div>';
                     html += '</div> </div>';
                     html += '</a>';
 

@@ -147,7 +147,7 @@ $locale = App::getLocale();
                             echo '<span class="unConst">تحت التنفيذ</span>';
                           }
                          else{
-                           echo '</span class="unavail">غير متاحة</span>'; 
+                           echo '<span class="unavail">غير متاحة</span>'; 
                          }
                      ?>
 
@@ -337,14 +337,17 @@ var page_link=0;
              html += '<div class="status" style="font-size: 48px; padding-right: 167px;"> There are no data :)<span>';
              }
                 $.each(result.data.data,function(k,v){
-                      if(v.status == 1){
-                        v.status = '<span class="avail"> متاح</span>' ;
-                    }if(v.status == 2){
-                        v.status = '<span class="unConst"> تحت التنفيذ</span>' ;
+                      var case_status = '' ;
+                   if(v.status == 1){
+                       case_status = '<span class="avail"> متاح</span>' ;
                     }
-                    else{
-                        v.status = '<span class="unavail"> غير متاحة</span>' ;
+                  if(v.status == 0){
+                       case_status = '<span class="unavail">منتهية</span>' ;
                     }
+                    if(v.status == 2){
+                        case_status = '<span class="unConst"> تحت التنفيذ</span>' ;
+                    }
+
 
                     if(v.bidValue == null){
                         v.bidValue = "0" ;
@@ -358,7 +361,7 @@ var page_link=0;
                     html += '</a>';
                     html += '<div> ';
                     html += '<div class="casetype"> نوع القضية : <span>'+v.sectionName+'</span></div>';
-                    html += '<div class="status"> الحالة : <span>'+v.status+'</span></div> ';
+                    html += '<div class="status"> الحالة : <span>'+case_status+'</span></div> ';
                     html += '<div class="price"><i class="fa fa-money" aria-hidden="true"></i> العرض المقدم :'+v.bid_value+' $</div>';
                     html +='<div class="price"><i class="fa fa-money" aria-hidden="true"></i> اعلى سعر : '+v.max_bid_value+'  $</div>'
 
