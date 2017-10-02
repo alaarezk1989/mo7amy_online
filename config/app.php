@@ -182,6 +182,7 @@ return [
         Barryvdh\TranslationManager\ManagerServiceProvider::class,
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        'Intervention\Image\ImageServiceProvider',
 
     ],
 
@@ -236,6 +237,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Image' => 'Intervention\Image\Facades\Image',
 
     ],
 

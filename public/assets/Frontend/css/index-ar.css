@@ -147,6 +147,10 @@ width: 240px;
     line-height: 20px;
 }
 
+.help-block{
+    color: #b31f24 !important;
+}
+
 @media(min-width: 768px){
 	.carousel-caption {
 left: 80% !important;
@@ -1241,10 +1245,15 @@ padding-top: 15px;
 
 /*********************************************home*************************************/
 
-.cons a img{
-    width: 70%
-}
+/*.cons a img{
+    width: 320px;
+    height: 320px;
+}*/
 
+.cons{
+    padding-left: 0;
+    padding-right: 0;
+}
 
 .cases{
 background-image: url(../img/sections%20image.png);
@@ -3015,6 +3024,10 @@ padding: 0 !important;
     line-height: 20px;
 }
 
+.cons{
+    padding-left: 0;
+    padding-right: 0;
+}
 
 .emailadd{
 margin-top: 20px;    
@@ -3153,7 +3166,10 @@ margin-bottom:0;
 
 @media(min-width:992px) and (max-width:1199px){
 
-
+.cons{
+    padding-left: 0;
+    padding-right: 0;
+}
 
 .navbar-right
 {

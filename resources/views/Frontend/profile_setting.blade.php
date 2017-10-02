@@ -32,9 +32,12 @@
                        {{-- <input class="input-file" id="my-file" type="file"> --}}
 
                        <!-- <input type='file' onchange="readURL(this);" />-->
-                        {!! Form::file('profile_picture',array('onchange'=>'readURL(this);','id'=>'imgInp')) !!}
+                        {!! Form::file('image',array('onchange'=>'readURL(this);','id'=>'imgInp')) !!}
                     
-
+  
+                            @if($errors->has('image'))
+                              <span class="help-block text-danger">{{ $errors->first('image') }}</span>
+                            @endif
 
 
                         

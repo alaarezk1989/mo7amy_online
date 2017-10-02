@@ -23,6 +23,7 @@ use Carbon\Carbon;
 use Session;
 use File;
 use Illuminate\Support\Facades\Input;
+use Image;
 
 
 class UserController extends Controller
@@ -251,18 +252,20 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-// print_r( $request->file('profile_picture'));
+// print_r( $request->file('image'));
 //           return $request->all();
           $rules=[
             'name'                      =>'required',
             'phone'                     =>'required|min:10',
-            'birthdate'                     =>'required|before:20 years ago',
+            'birthdate'                 =>'required|before:20 years ago',
+           'image'                     =>'dimensions:min_width=320,min_height=320'
 
           ];
 
 
           $messages = [
         'birthdate.before' => 'You must be at least 20 years old',
+         'image.dimensions' => 'The min size for image to upload is 320x320',
     ];
 
           // Check if He/She want to change password
@@ -290,7 +293,11 @@ class UserController extends Controller
               $sess_user_id= session('user_id');
               $edit = User::findOrFail($id);
 
-              if (!empty($request->file('profile_picture'))) {
+
+/*******************************/
+
+/*//////////////////////////////*/
+              if (!empty($request->file('image'))) {
                 $date_path=date("Y").'/'.date("m").'/';
                 $path = public_path() . '/uploads/user_img/'.$date_path;
 
@@ -299,16 +306,37 @@ class UserController extends Controller
                   //  $result = File::makeDirectory($path, 0775, true, true);
 
                  }
-                  $file_name = date('YmdHis') . mt_rand() . '_user_img.' . $request->file('profile_picture')->getClientOriginalExtension();
+                  $file_name = date('YmdHis') . mt_rand() . '_user_img.' . $request->file('image')->getClientOriginalExtension();
 
-                  if ($request->file('profile_picture')->move($path, $file_name)) {
-                      $img = $date_path.$file_name;
-                      $edit->image                   = $img;
+   $img1 = Image::make($request->file('image')->getRealPath());
+
+        $img1->resize(320, 320, function ($constraint) {
+        $constraint->aspectRatio();
+         //  $edit->image                   = $path.$file_name;
+    })->save($path.'/'.$file_name);
+
+ // return;
+  /*echo  $img1;
+    return;*/
+ 
 
 
-                  }
+              //  if ($request->file('image')->move($path, $file_name)) {
+
+
+                     $img1 = $date_path.$file_name;
+                      $edit->image                   = $img1;
+
+
+                // }
               } else {
                 //  $img = '';
+
+  
+
+
+
+
               }
 
               $edit->name              = $request->input('name');

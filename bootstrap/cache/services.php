@@ -33,6 +33,7 @@
     29 => 'Barryvdh\\TranslationManager\\ManagerServiceProvider',
     30 => 'Mcamara\\LaravelLocalization\\LaravelLocalizationServiceProvider',
     31 => 'Laravel\\Socialite\\SocialiteServiceProvider',
+    32 => 'Intervention\\Image\\ImageServiceProvider',
   ),
   'eager' => 
   array (
@@ -53,6 +54,7 @@
     14 => 'DougSisk\\CountryState\\CountryStateServiceProvider',
     15 => 'Barryvdh\\TranslationManager\\ManagerServiceProvider',
     16 => 'Mcamara\\LaravelLocalization\\LaravelLocalizationServiceProvider',
+    17 => 'Intervention\\Image\\ImageServiceProvider',
   ),
   'deferred' => 
   array (
