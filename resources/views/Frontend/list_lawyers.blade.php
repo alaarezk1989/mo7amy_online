@@ -3,7 +3,7 @@
 
       <!--*******************************************************************-->
       <div class="lawyers-img">
-      <p>  قائمة المستشارين </p>
+      <p>  {{ trans('cpanel.List_Of_Lawyers') }}</p>
       </div>
 
       <!--***********************************************************************-->
@@ -47,8 +47,8 @@
 <form method="get" role="search" action="{{lang_url('lawyers/search')}}">
   {{ csrf_field() }}
 <div class="forsearch">
-<label> البحث </label>
-<input type="search" name="q" class="form-control" placeholder="ابحث عن ">
+<label> {{ trans('cpanel.Search') }} </label>
+<input type="search" name="q" class="form-control" placeholder="{{ trans('cpanel.Search_for') }}">
 <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
 </div>
 </form>
@@ -57,8 +57,8 @@
 
                       <div id="filters" class="dep">
                          <div class="filterblock" id="all_sections">
-                             <label> الاقسام </label>
-                                  <input type="checkbox" id="filter" class="AllSections filter sections" >  الكل <br>
+                             <label> {{trans('cpanel.Sections')}} </label>
+                                  <input type="checkbox" id="filter" class="AllSections filter sections" >  {{trans('cpanel.All')}} <br>
                                      <?php
                                          foreach($sections as $key => $value){?>
                                                 <input id="filter" class="filter sections"  type="checkbox"  value="{{$key}}" data-tag="{{$value}}"  /> {{$value}} <br>
@@ -67,8 +67,8 @@
                        </div>
                     <div  id="filters2" class="count">
 <div class="filterblock2" id="all_countries">
-<label> الدول </label>
-                <input type="checkbox" id="filter" class="AllCountries filter countries" >  الكل <br>
+<label> {{trans('cpanel.Countries')}} </label>
+                <input type="checkbox" id="filter" class="AllCountries filter countries" >  {{trans('cpanel.All')}} <br>
   <?php
          foreach($countries as $key => $value){?>
                <input  type="checkbox" id="filter" class="filter countries"  value="{{$key}}" data-tag="{{$value}}"  /> {{$value}} <br>

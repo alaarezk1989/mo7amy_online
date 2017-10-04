@@ -152,6 +152,7 @@ return array (
   'Hour'=>'hour',
   'Days'=>'days',
   'Month'=>'month',
+  'List_Of_Lawyers'=>'List Of Lawyers',
 );
 
 ?>
