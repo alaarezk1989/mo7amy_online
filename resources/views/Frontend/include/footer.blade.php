@@ -8,30 +8,30 @@
 <div class="row">
 
 <div class="col-md-3 col-sm-3 text-center ul1">
-<p>الموقع </p>
+<p>{{trans('cpanel.Website')}} </p>
 <ul class="list-unstyled">
-<li> <a href="{{lang_url('about')}}"> من نحن </a> </li>
-<li> <a href=""> هدفنا   </a> </li>
-<li> <a href="">  رؤيتنا  </a> </li>
-<li> <a href="{{lang_url('contact-us')}}">  اتصل نا   </a> </li>
+<li> <a href="{{lang_url('about')}}">{{trans('cpanel.Who_we_are')}} </a> </li>
+<li> <a href=""> {{trans('cpanel.Our_Goal')}}  </a> </li>
+<li> <a href=""> {{trans('cpanel.Our_Vision')}}   </a> </li>
+<li> <a href="{{lang_url('contact-us')}}">{{trans('cpanel.Contact_us')}} </a> </li>
 </ul>
 </div>
 
 <div class="col-md-3  col-sm-3  text-center ul2">
-<P> القضايا </P>
+<P> {{trans('cpanel.cases')}}</P>
 <ul class="list-unstyled">
-<li> <a href="{{lang_url('create')}}"> اضف قضية  </a> </li>
-<li> <a href="{{lang_url('cases')}}"> عرض القضايا    </a> </li>
-<li> <a href="{{lang_url('lawyers')}}">  المستشاريين   </a> </li>
-<li> <a href="">  حسابى  </a> </li>
+<li> <a href="{{lang_url('create')}}">{{trans('cpanel.Add_Case')}}  </a> </li>
+<li> <a href="{{lang_url('cases')}}">{{trans('cpanel.cases')}} </a> </li>
+<li> <a href="{{lang_url('lawyers')}}">  {{trans('cpanel.lawyers')}}</a> </li>
+<li> <a href="{{lang_url('edit-profile').'/'.session('user_id')}}"> {{trans('cpanel.My_Profile')}}   </a> </li>
 </ul>
 </div>
 
 <div class="col-md-3  col-sm-3  note">
-<span> نبذة </span>
-<p>محامى أونلاين أول بوابة إلكترونية تتيح للعملاء عرض القضايا الخاصة بهم والبحث عن المستشار أو المحامى المناسب للدفاع عنهم فى هذه القضايا . 
-<br>وكذلك أخذ إستشارات قانونية من متخاصصين بسهولة وسرية تامة . <br>
-إنضم إلينا وتمتع بالمزايا التى يقدمها الموقع.
+<span> {{trans('cpanel.Brief')}}  </span>
+<p>
+  {{trans('cpanel.footer_brief')}}
+
 </p>
 </div>
 

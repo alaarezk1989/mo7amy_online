@@ -7,7 +7,7 @@ return array (
   'home' => 'Home',
   'cases' => 'Cases',
   'lawyers' => 'Lawyers',
-  'Who_we_are' => 'Who we are',
+  'Who_we_are' => 'About Us',
   'Contact_us' => 'Contact us',
 
   'Previous' => 'Previous',
@@ -136,6 +136,7 @@ return array (
   'of'=>'of',
   'show'=>'show',
   'arranging'=>'arranging',
+  'type_of_specialization'=>'Type of specialization',
 
   'Under_Implementation'=>'In Processing',
   'Finished'=>'Finished',
@@ -153,6 +154,31 @@ return array (
   'Days'=>'days',
   'Month'=>'month',
   'List_Of_Lawyers'=>'List Of Lawyers',
+   'Ascending'=>'Ascending',
+  'Descending'=>'Descending',
+  'Information_about_lawyer'=>'Information about lawyer',
+  'Cases_That_Participate'=>'Bids count ',
+  'about_lawyer'=>'A bout lawyer',
+  'year'=>'years',
+  'Add_Case'=>'Add Case',
+  'Edit_Case'=>'Edit Case',
+  'My_Profile'=>'My Profile',
+  'Website'=>'Website',
+   'Our_Goal'=>'Our Goal',
+   'Our_Vision'=>'Our Vision',
+   'Brief'=>'Brief',
+   'footer_brief'=>'Mohamy online is the first portal enable clients to show their cases and search about the best lawyers who can defend about them. Also, can take a consultation from special people easy and confidential. Join us and enjoy with our features',
+   'Case_Title'=>'Case Title',
+  'Country_and_City'=>'Country and City',
+   'Finished_date'=>'Finished date',
+
+   'Details'=>'Details',
+   'Details_case'=>'Add case details',
+     'upload_your_image' => 'Upload image',
+   // 'Finished_date'=>'Finished date',
+   // 'Finished_date'=>'Finished date',
+   // 'Finished_date'=>'Finished date',
+   // 'Finished_date'=>'Finished date',
 );
 
 ?>

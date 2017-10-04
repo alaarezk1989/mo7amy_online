@@ -34,7 +34,7 @@ $locale = App::getLocale();
         <div class="row">
            <div class="col-md-4">
               <div class="lawyer-info">
-                 <h4>معلومات عن المحامى </h4>
+                 <h4>{{trans('cpanel.Information_about_lawyer')}}</h4>
                  <ul class="list-unstyled ul-lawyer">
                     <li> <i class="fa fa-map-marker" aria-hidden="true"></i>  {{$user_country}} , {{$user_city}}  </li>
                     <li> <i class="fa fa-birthday-cake" aria-hidden="true"></i>  {{$birthdate_year}} {{trans('cpanel.year')}} </li>
@@ -43,7 +43,7 @@ $locale = App::getLocale();
                     <li> <i class="fa fa-envelope" aria-hidden="true"></i>  @if($show_lowyer_contact_flag)  {{$user_data->email}}@endif</li>
                  </ul>
                  <span class="text-center"> {{$countLawyersCases}} </span>
-                 <p class="text-center"> عدد القضايا المشترك بها </p>
+                 <p class="text-center"> {{trans('cpanel.Cases_That_Participate')}} </p>
                  @if($show_lowyer_contact_flag)
                  <a href="tel:{{$user_data->phone}}" class="text-center"> اتصل بالمحامى </a>
                  @endif
@@ -88,7 +88,7 @@ $locale = App::getLocale();
   <!--*************************************************************************-->
 @if($lawyerCases->count() > 0)
   <div class="profilecase-img">
-  <p> القضايا المشترك بها  </p>
+  <p> {{trans('cpanel.Cases_That_Participate')}} </p>
   </div>
 
 
@@ -134,20 +134,22 @@ $locale = App::getLocale();
               <div class="case-client border-bott">
                  <p> {{$lawyerCase->title}}  </p>
                  <div>
-                    <div class="casetype"> نوع القضية : <span>{{$lawyerCase->sectionName}}</span></div>
-                     <div class="status"> الحالة :
+                    <div class="casetype"> {{trans('cpanel.Case_type')}} : <span>{{$lawyerCase->sectionName}}</span></div>
+                     <div class="status"> {{trans('cpanel.Status')}} :
 
                      <?php
                          if($lawyerCase->status ==1) 
                           {
-                            echo '<span class="avail"> متاح</span>';
+                            $x= trans('cpanel.Available');
+                            echo '<span class="avail">'.$x.' </span>';
                           }
                          elseif($lawyerCase->status ==2) 
-                          {
-                            echo '<span class="unConst">تحت التنفيذ</span>';
+                          { $y= trans('cpanel.Under_Implementation');
+                            echo '<span class="unConst">'.$y.'</span>';
                           }
                          else{
-                           echo '<span class="unavail">غير متاحة</span>'; 
+                          $z= trans('cpanel.Finished');
+                           echo '<span class="unavail">'.$z.'</span>'; 
                          }
                      ?>
 
@@ -155,7 +157,7 @@ $locale = App::getLocale();
     
                     </div>
                    <div class="price"><i class="fa fa-money" aria-hidden="true"></i> العرض المقدم {{$lawyerCase->bid_value}} $</div>
-                   <div class="price"><i class="fa fa-money" aria-hidden="true"></i> اعلى سعر {{$lawyerCase->max_bid_value}} $</div>
+                   <div class="price"><i class="fa fa-money" aria-hidden="true"></i> {{trans('cpanel.Price_top')}}{{$lawyerCase->max_bid_value}} $</div>
                  </div>
                  <div class="another-details">
                     <div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> {{$lawyerCase->name1}} -{{$lawyerCase->name2}} </div>
@@ -337,15 +339,15 @@ var page_link=0;
              html += '<div class="status" style="font-size: 48px; padding-right: 167px;"> There are no data :)<span>';
              }
                 $.each(result.data.data,function(k,v){
-                      var case_status = '' ;
+                       var case_status = '' ;
                    if(v.status == 1){
-                       case_status = '<span class="avail"> متاح</span>' ;
+                       case_status = '<span class="avail">{{trans('cpanel.Available')}}</span>' ;
                     }
                   if(v.status == 0){
-                       case_status = '<span class="unavail">منتهية</span>' ;
+                       case_status = '<span class="unavail">{{trans('cpanel.Finished')}}</span>' ;
                     }
                     if(v.status == 2){
-                        case_status = '<span class="unConst"> تحت التنفيذ</span>' ;
+                        case_status = '<span class="unConst">{{trans('cpanel.Under_Implementation')}} </span>' ;
                     }
 
 
@@ -360,10 +362,10 @@ var page_link=0;
                     html += '<p>'+v.title+'</p>  ';
                     html += '</a>';
                     html += '<div> ';
-                    html += '<div class="casetype"> نوع القضية : <span>'+v.sectionName+'</span></div>';
-                    html += '<div class="status"> الحالة : <span>'+case_status+'</span></div> ';
+                    html += '<div class="casetype"> {{trans('cpanel.Case_type')}} : <span>'+v.sectionName+'</span></div>';
+                    html += '<div class="status"> {{trans('cpanel.Status')}} : <span>'+case_status+'</span></div> ';
                     html += '<div class="price"><i class="fa fa-money" aria-hidden="true"></i> العرض المقدم :'+v.bid_value+' $</div>';
-                    html +='<div class="price"><i class="fa fa-money" aria-hidden="true"></i> اعلى سعر : '+v.max_bid_value+'  $</div>'
+                    html +='<div class="price"><i class="fa fa-money" aria-hidden="true"></i> {{trans('cpanel.Price_top')}} : '+v.max_bid_value+'  $</div>'
 
                     html += '</div> ';
                     html += '<div class="another-details">';

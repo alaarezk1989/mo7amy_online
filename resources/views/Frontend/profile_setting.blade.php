@@ -145,16 +145,21 @@
                     @endif
 
                    <div class="buttons-save">
-                        <button class="done" type="submit">  {{ trans('cpanel.save') }} </button>  </div>
+                        <button class="done" type="submit">  {{ trans('cpanel.save') }}</button> 
+
+                 
+                        <a href="{{lang_url('')}}">
+                        <button type="button" class="delet">  {{ trans('cpanel.cancel') }} </button></a>
+
+                      </div>
+
                  {!! Form::close() !!}
 
                  
                </div>
 
   
-                     <div class="buttons-save">
-                        <a href="{{lang_url('')}}">
-                        <button  class="delet">  {{ trans('cpanel.cancel') }} </button></a></div>
+               
 
 
                <div class="tab2">

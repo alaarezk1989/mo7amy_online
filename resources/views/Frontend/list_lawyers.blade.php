@@ -19,8 +19,8 @@
                         <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu arrang-menu" aria-labelledby="dropdownMenu1">
-                           <li><a id="max" href="#">الترتيب تصاعديا</a></li>
-                           <li><a id="low" href="#">الترتيب تنازليا</a></li>
+                           <li><a id="max" href="#">{{trans('cpanel.Ascending')}}</a></li>
+                           <li><a id="low" href="#">{{trans('cpanel.Descending')}} </a></li>
 
                         </ul>
                      </div>
