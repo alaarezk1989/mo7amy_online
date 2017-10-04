@@ -8,7 +8,7 @@ $locale = App::getLocale();
 
 
 <div class="cases-img">
-<p> القضايا المعروضة </p>
+<p>{{ trans('cpanel.Cases_Presented') }}  </p>
 </div>
 
 <!--***********************************************************************-->
@@ -71,8 +71,8 @@ $locale = App::getLocale();
 <form method="get" role="search" action="{{lang_url('cases/search')}}">
   {{ csrf_field() }}
 <div class="forsearch">
-<label> البحث </label>
-<input type="search" name="q" class="form-control" placeholder="ابحث عن ">
+<label> {{ trans('cpanel.Search') }} </label>
+<input type="search" name="q" class="form-control" placeholder="{{ trans('cpanel.Search_for') }} ">
 <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
 </div>
 </form>
@@ -97,8 +97,8 @@ $get_country = $_GET['country'];
 
 <div id="filters2" class="dep">
 <div class="filterblock2" id="all_sections">
-<label> الاقسام </label>
-<input type="checkbox" id="filter" class="AllSections filter sections" >  الكل <br>
+<label> {{trans('cpanel.Sections')}}</label>
+<input type="checkbox" id="filter" class="AllSections filter sections" >  {{trans('cpanel.All')}} <br>
   <?php
          foreach($sections as $key => $value){
           $checked ='';
@@ -113,8 +113,8 @@ $get_country = $_GET['country'];
 
 <div  id="filters2" class="count">
 <div class="filterblock2" id="all_countries">
-<label> الدول </label>
-                <input type="checkbox" id="filter" class="AllCountries filter countries" >  الكل <br>
+<label> {{trans('cpanel.Countries')}} </label>
+                <input type="checkbox" id="filter" class="AllCountries filter countries" >  {{trans('cpanel.All')}}<br>
   <?php
          foreach($countries as $key => $value){
             $checked ='';
@@ -130,11 +130,11 @@ $get_country = $_GET['country'];
 
 
 <div class="case" id="all_status2">
-<label> الحالة </label>
-<input   type="checkbox" id="filter" class="AllStatus2 filter status2">  الكل <br>
-<input id="filter" class="filter status2" type="checkbox"  value="1"> المتاح   <br>
-<input id="filter" class="filter status2" type="checkbox"  value="2" > تحت التنفيذ    <br>
-<input id="filter" class="filter status2" type="checkbox"  value="0" > المنتهى   
+<label> {{ trans('cpanel.Status') }} </label>
+<input   type="checkbox" id="filter" class="AllStatus2 filter status2">  {{trans('cpanel.All')}} <br>
+<input id="filter" class="filter status2" type="checkbox"  value="1"> {{trans('cpanel.Available')}}   <br>
+<input id="filter" class="filter status2" type="checkbox"  value="2" > {{trans('cpanel.Under_Implementation')}}   <br>
+<input id="filter" class="filter status2" type="checkbox"  value="0" > {{trans('cpanel.Finished')}}
 
 </div>
 
@@ -149,14 +149,14 @@ $get_country = $_GET['country'];
 
 
 
-<div class="timee">
-<label> المدة الزمنية </label>
-<input type="checkbox" name="" value="">  الكل <br>
-<input id="filter" class="filter created_date" type="checkbox"  value="6"> اخر 6 ساعات <br>
-<input id="filter" class="filter created_date" type="checkbox"  value="12" > اخر 12 ساعة  <br>
-<input id="filter" class="filter created_date" type="checkbox"  value="24" > اخر 24 ساعة <br>
-<input id="filter" class="filter created_date" type="checkbox"  value="7" > اخر 7 ايام <br>
-<input id="filter" class="filter created_date" type="checkbox"  value="30" > اخر شهر  <br>
+<div class="timee" id="all_created_date">
+<label>{{ trans('cpanel.Time') }} </label>
+<input type="checkbox" id="filter" class="Allcreated_date filter created_date"> {{trans('cpanel.All')}} <br>
+<input id="filter" class="filter created_date" type="checkbox"  value="6"> {{trans('cpanel.latestTime')}} 6 {{trans('cpanel.Hours')}} <br>
+<input id="filter" class="filter created_date" type="checkbox"  value="12" > {{trans('cpanel.latestTime')}} 12 {{trans('cpanel.Hour')}}  <br>
+<input id="filter" class="filter created_date" type="checkbox"  value="24" > {{trans('cpanel.latestTime')}}24 {{trans('cpanel.Hour')}} <br>
+<input id="filter" class="filter created_date" type="checkbox"  value="7" > {{trans('cpanel.latestTime')}} 7 {{trans('cpanel.Days')}} <br>
+<input id="filter" class="filter created_date" type="checkbox"  value="30" > {{trans('cpanel.latestTime')}} {{trans('cpanel.Month')}} <br>
 
 </div>
 
@@ -353,13 +353,13 @@ var page_link=0;
                 $.each(result.data.data,function(k,v){
                    var case_status = '' ;
                    if(v.status == 1){
-                       case_status = '<span class="avail"> متاح</span>' ;
+                       case_status = '<span class="avail">{{trans('cpanel.Available')}}</span>' ;
                     }
                   if(v.status == 0){
-                       case_status = '<span class="unavail">منتهية</span>' ;
+                       case_status = '<span class="unavail">{{trans('cpanel.Finished')}}</span>' ;
                     }
                     if(v.status == 2){
-                        case_status = '<span class="unConst"> تحت التنفيذ</span>' ;
+                        case_status = '<span class="unConst">{{trans('cpanel.Under_Implementation')}} </span>' ;
                     }
 
                     if(v.bidValue == null){
@@ -371,9 +371,9 @@ var page_link=0;
                     html += '<div class="case-client">';
                     html += '<p>'+v.title+'</p>  ';
                     html += '<div> ';
-                    html += '<div class="casetype"> نوع القضية : <span>'+v.SectionName+'</span></div>';
-                    html += '<div class="status"> الحالة : <span>'+case_status+'</span></div> ';
-                    html += '<div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :'+v.bidValue+' $</div>';
+                    html += '<div class="casetype"> {{trans('cpanel.Case_type')}} : <span>'+v.SectionName+'</span></div>';
+                    html += '<div class="status"> {{trans('cpanel.Status')}} : <span>'+case_status+'</span></div> ';
+                    html += '<div class="price"><i class="fa fa-money" aria-hidden="true"></i> {{trans('cpanel.Price_top')}} :'+v.bidValue+' $</div>';
 
                     html += '</div> ';
                     html += '<div class="another-details">';
@@ -449,6 +449,19 @@ var page_link=0;
                     });
                 } else {
                     $("#all_status2 input[type=checkbox]").each(function () {
+                       $(this).prop("checked", false);
+                    });
+                }
+            });
+
+      $(".Allcreated_date").click(function () {
+                if ($('input.Allcreated_date').is(':checked')) {
+                   // alert('x1');
+                    $("#all_created_date input[type=checkbox]").each(function () {
+                      $(this).prop("checked", true);
+                    });
+                } else {
+                    $("#all_created_date input[type=checkbox]").each(function () {
                        $(this).prop("checked", false);
                     });
                 }

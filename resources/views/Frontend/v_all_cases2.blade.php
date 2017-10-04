@@ -84,12 +84,12 @@ $locale = App::getLocale();
 <div class="case-client border-bott">
 <p> {{$value->title}}</p>
 <div>
-<div class="casetype"> نوع القضية : <span>{{$value->sectionName}}</span></div>
+<div class="casetype"> {{trans('cpanel.Case_type')}} : <span>{{$value->sectionName}}</span></div>
 
 
 
 
-   <div class="status"> الحالة :
+   <div class="status"> {{trans('cpanel.Status')}} :
 
                      <?php
                          if($value->status ==1) 
@@ -108,7 +108,7 @@ $locale = App::getLocale();
 
     
                     </div>
-      <div class="price"><i class="fa fa-money" aria-hidden="true"></i> أعلى سعر :{{$value->bidValue}} $</div>
+      <div class="price"><i class="fa fa-money" aria-hidden="true"></i>{{trans('cpanel.Price_top')}} :{{$value->bidValue}} $</div>
 
 </div>
 <div class="another-details">
@@ -309,17 +309,16 @@ var page_link=0;
              html += '<div class="status" style="font-size: 48px; padding-right: 167px;"> There are no data :)<span>';
              }
                 $.each(result.data.data,function(k,v){
-                         var case_status = '' ;
+                            var case_status = '' ;
                    if(v.status == 1){
-                       case_status = '<span class="avail"> متاح</span>' ;
+                       case_status = '<span class="avail">{{trans('cpanel.Available')}}</span>' ;
                     }
                   if(v.status == 0){
-                       case_status = '<span class="unavail">منتهية</span>' ;
+                       case_status = '<span class="unavail">{{trans('cpanel.Finished')}}</span>' ;
                     }
                     if(v.status == 2){
-                        case_status = '<span class="unConst"> تحت التنفيذ</span>' ;
+                        case_status = '<span class="unConst">{{trans('cpanel.Under_Implementation')}} </span>' ;
                     }
-
                     if(v.bidValue == null){
                         v.bidValue = "0" ;
                     }else{

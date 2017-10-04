@@ -128,6 +128,30 @@ return array (
   'send' => 'Send',
   'Page-Not-Found' => 'Page Not Found',
   'copyright' => '2017 Mo7amy Online Software GmbH. Erstellt von Shift E-Business.',
+
+  'highest_price'=>'Highest Price',
+  'lowest_price'=>'Lowest Price',
+  'latest_show'=>'Latest Show',
+  'result'=>'result',
+  'of'=>'of',
+  'show'=>'show',
+  'arranging'=>'arranging',
+
+  'Under_Implementation'=>'In Processing',
+  'Finished'=>'Finished',
+  'Available'=>'Available',
+  'Cases_Presented'=>'Cases Presented',
+   'Search_for'=>'Search for',
+  'Search'=>'Search',
+  'All'=>'All',
+  'Sections'=>'Sections',
+  'Countries'=>'Countries',
+  'Time'=>'Time',
+  'latestTime'=>'Last',
+  'Hours'=>'hours',
+  'Hour'=>'hour',
+  'Days'=>'days',
+  'Month'=>'month',
 );
 
 ?>

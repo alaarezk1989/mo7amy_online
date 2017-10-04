@@ -240,7 +240,14 @@ var page_link=0;
                     
                     html += '<h3>'+v.name+'</h3>';
                    // html += '<h3>'+v.s_name+'</h3>';
-                    html += '<h4>'+v.career+'</h4>';
+
+                     if(v.career == null){
+                   html +='';
+                    }
+                    else{
+                        html += '<h4>'+v.career+'</h4>';
+                    }
+            
                     html += '</div> ';
                      html += '</a>';
                     html += '</div>';
