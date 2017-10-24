@@ -15,25 +15,27 @@
                {{$case->title}}
             </p>
             <div>
-               <div class="casetype"> نوع القضية : <span>{{$case->sectionName}}</span></div>
+               <div class="casetype">{{trans('cpanel.Case_type')}} : <span>{{$case->sectionName}}</span></div>
              
 
 
 
 
-      <div class="status"> الحالة :
+      <div class="status"> {{trans('cpanel.Status')}} :
 
-                     <?php
+                   <?php
                          if($case->status ==1) 
                           {
-                            echo '<span class="avail"> متاح</span>';
+                            $x= trans('cpanel.Available');
+                            echo '<span class="avail">'.$x.' </span>';
                           }
                          elseif($case->status ==2) 
-                          {
-                            echo '<span class="unConst">تحت التنفيذ</span>';
+                          { $y= trans('cpanel.Under_Implementation');
+                            echo '<span class="unConst">'.$y.'</span>';
                           }
                          else{
-                           echo '<span class="unavail">غير متاحة</span>'; 
+                          $z= trans('cpanel.Finished');
+                           echo '<span class="unavail">'.$z.'</span>'; 
                          }
                      ?>
 
@@ -77,26 +79,26 @@
                   <i class="fa fa-star-o" aria-hidden="true"></i>
                   <div class="opinion">
                      <span> (0) </span>
-                     <span> 0</span> أراء
+                     <span> 0</span> {{trans('cpanel.Opinions')}}
                   </div>
                </div>
                <div class="case-price">
                   @if (empty($case->bidValue))
                   <h4>0$</h4>
-                  اعلى سعر
+                  {{trans('cpanel.Price_top')}}
                </div>
                @else
                <h4>{{$case->bidValue}}$</h4>
-               اعلى سعر
+               {{trans('cpanel.Price_top')}}
             </div>
             @endif
             <div class="numofviews">
                <h4>{{$view_counter}}</h4>
-               عدد المشاهدات
+              {{trans('cpanel.Views')}} 
             </div>
             <div class="numooffers">
                <h4>{{$offerCount}}</h4>
-               عدد العروض
+              {{trans('cpanel.Offer_count')}} 
             </div>
             @if(auth()->user())
             <div class="forresvation" id="bids_div">
@@ -117,7 +119,7 @@
       </div>
       <div class="col-md-8 ma">
          <div class="more-details">
-            <h4>التفاصيل </h4>
+            <h4>{{ trans('cpanel.Details') }} </h4>
             <p>
                {{$case->description}}
             </p>
@@ -132,7 +134,7 @@
 @if($all_case_bids->count() > 0)
 
 <div class=" head-off">
-   <p> العروض المقدمة </P>
+   <p>{{ trans('cpanel.Offers') }}</P>
 </div>
 <section class="offers">
    <div class="container">
@@ -183,11 +185,11 @@
                      </p>
                   </a>
 
-                  <div class="offers">سعر العرض:  $ {{$user_bids->bids_val}}  </div>
+                  <div class="offers">{{trans('cpanel.offer_price')}}:  $ {{$user_bids->bids_val}}  </div>
                   @if(session('user_id') == $case->user_id)
 
                     @if($case->status == 1)
-                      <button data-target="#confirmation_{{$user_bids->id}}"  data-toggle="modal" class="okk">قبلت عرضك </button>
+                      <button data-target="#confirmation_{{$user_bids->id}}"  data-toggle="modal" class="okk">{{trans('cpanel.Accept_Offer')}} </button>
                       <div class="modal fade" id="confirmation_{{$user_bids->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                          <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -209,7 +211,7 @@
                       </div>
                     @else
                       @if($user_bids->is_pids==1)
-                        <button data-target="#confirmation_{{$user_bids->id}}" data-toggle="modal" class="okk done" disabled="disabled" style="background: rgb(179, 31, 36); color: rgb(255, 255, 255);">قبلت عرضك </button>
+                        <button data-target="#confirmation_{{$user_bids->id}}" data-toggle="modal" class="okk done" disabled="disabled" style="background: rgb(179, 31, 36); color: rgb(255, 255, 255);">{{trans('cpanel.Accept_Offer')}} </button>
                       @endif
                     @endif
 
@@ -342,12 +344,12 @@
              html += '<a href="<?= lang_url('lawyer').'/' ; ?>'+v.id+'">';
             html += '<p class="desc">'+v.career+'<span> '+v.country_name+', '+v.city_name+' </span></p>';
            html += '</a>';
-           html += '<div class="offers">سعر العرض:  $ '+v.bids_val+'</div> ';
+           html += '<div class="offers">{{trans('cpanel.offer_price')}}:  $ '+v.bids_val+'</div> ';
 var sess_user_id= {{session('user_id')}};
 // alert(sess_user_id);
          if(sess_user_id == v.user_id){
              if(v.status == 1){
-                html += '<button data-target="#confirmation_'+v.id+'"  data-toggle="modal" class="okk">قبلت عرضك </button>';
+                html += '<button data-target="#confirmation_'+v.id+'"  data-toggle="modal" class="okk">{{trans('cpanel.Accept_Offer')}} </button>';
                 html +='<div class="modal fade" id="confirmation_'+v.id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">';
                 html +='<div class="modal-dialog" role="document">';
                 html +='<div class="modal-content">';
@@ -367,7 +369,7 @@ var sess_user_id= {{session('user_id')}};
                 html += '</div>';
           }else{
             if(v.is_pids == 1){
-          html +='<button data-target="#confirmation_'+v.id+'" data-toggle="modal" class="okk done" disabled="disabled" style="background: rgb(179, 31, 36); color: rgb(255, 255, 255);">قبلت عرضك </button>';
+          html +='<button data-target="#confirmation_'+v.id+'" data-toggle="modal" class="okk done" disabled="disabled" style="background: rgb(179, 31, 36); color: rgb(255, 255, 255);">{{trans('cpanel.Accept_Offer')}} </button>';
             }
           }
 }

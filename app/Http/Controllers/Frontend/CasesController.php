@@ -364,8 +364,8 @@ return; */
 /*
 
 */
-  public function your_cases(){
-
+  public function your_cases($locale='ar'){
+       App::setLocale($locale);
         $locale = App::getLocale();
 
         $sess_user_id= session('user_id');
@@ -480,7 +480,8 @@ public function your_cases_filtering(Request $request,$locale='ar'){
 
 
    public function SingleCase($locale='ar',$id){
-    $locale = App::getLocale();
+      App::setLocale($locale);
+              $locale = App::getLocale();
 
         $case_bids=array();
         $all_case_bids=array();
@@ -529,10 +530,10 @@ public function your_cases_filtering(Request $request,$locale='ar'){
             ->count();    
 
 
-           /*echo "<pre>";
-      print_r($offerCount);
-      echo "</pre>";
-      return;*/
+      //      echo "<pre>";
+      // print_r($case);
+      // echo "</pre>";
+      // return;
       
       
         $user_id=$case->user_id;

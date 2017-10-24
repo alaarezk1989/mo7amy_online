@@ -156,7 +156,7 @@ $locale = App::getLocale();
 
     
                     </div>
-                   <div class="price"><i class="fa fa-money" aria-hidden="true"></i> العرض المقدم {{$lawyerCase->bid_value}} $</div>
+                   <div class="price"><i class="fa fa-money" aria-hidden="true"></i> {{trans('cpanel.Case_Offer')}} {{$lawyerCase->bid_value}} $</div>
                    <div class="price"><i class="fa fa-money" aria-hidden="true"></i> {{trans('cpanel.Price_top')}}{{$lawyerCase->max_bid_value}} $</div>
                  </div>
                  <div class="another-details">
@@ -364,7 +364,7 @@ var page_link=0;
                     html += '<div> ';
                     html += '<div class="casetype"> {{trans('cpanel.Case_type')}} : <span>'+v.sectionName+'</span></div>';
                     html += '<div class="status"> {{trans('cpanel.Status')}} : <span>'+case_status+'</span></div> ';
-                    html += '<div class="price"><i class="fa fa-money" aria-hidden="true"></i> العرض المقدم :'+v.bid_value+' $</div>';
+                    html += '<div class="price"><i class="fa fa-money" aria-hidden="true"></i> {{trans('cpanel.Case_Offer')}} :'+v.bid_value+' $</div>';
                     html +='<div class="price"><i class="fa fa-money" aria-hidden="true"></i> {{trans('cpanel.Price_top')}} : '+v.max_bid_value+'  $</div>'
 
                     html += '</div> ';

@@ -175,7 +175,8 @@ min-height: 222px;
 }
 
 
-.addcase-img p,.head-off p,.cases-img p,.clientcase-img p,.clientsett-img p,.lawyers-img p,.profilecase-img p,.clientcase-img p{
+.addcase-img p,.head-off p,.cases-img p,.clientcase-img p,.clientsett-img p,.lawyers-img p,.profilecase-img p,.clientcase-img p
+,.yourcase-img p{
 color: #fff;
 text-align: center;
 font-size: 70px;
@@ -222,6 +223,13 @@ min-height: 222px;
 .profilecase-img{
 margin-top: 100px;
 background-image: url(../img/Lawyer-Profile-Page-Image-2.jpg);
+background-repeat: no-repeat;
+min-height: 222px;   
+}
+
+.yourcase-img{
+margin-top: 100px;
+background-image: url(../img/Client-Cases-Page-Image.jpg);
 background-repeat: no-repeat;
 min-height: 222px;   
 }

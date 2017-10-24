@@ -18,7 +18,7 @@ return array (
 
   'Case_type' => 'Case type',
   'Status' => 'Status',
-  'Price_top' => 'Price top',
+  'Price_top' => 'Highest Price',
   'The_best_lawyers' => 'The best lawyers',
   'Cases_and_Countries' => 'Cases and Countries',
 
@@ -39,7 +39,7 @@ return array (
 
   'Case' => 'Case',
 
-  'settings' => 'Settings',
+  'Setting' => 'Setting',
   'or' => 'or',
   'Welcome_in' => 'Welcome in',
   'arabic' => 'عربي',
@@ -131,11 +131,11 @@ return array (
 
   'highest_price'=>'Highest Price',
   'lowest_price'=>'Lowest Price',
-  'latest_show'=>'Latest Show',
-  'result'=>'result',
+  'latest_show'=>'Latest Cases',
+  'result'=>'results',
   'of'=>'of',
   'show'=>'show',
-  'arranging'=>'arranging',
+  'arranging'=>'Sorting',
   'type_of_specialization'=>'Type of specialization',
 
   'Under_Implementation'=>'In Processing',
@@ -166,19 +166,30 @@ return array (
   'Website'=>'Website',
    'Our_Goal'=>'Our Goal',
    'Our_Vision'=>'Our Vision',
-   'Brief'=>'Brief',
+   'Brief'=>'About',
    'footer_brief'=>'Mohamy online is the first portal enable clients to show their cases and search about the best lawyers who can defend about them. Also, can take a consultation from special people easy and confidential. Join us and enjoy with our features',
    'Case_Title'=>'Case Title',
   'Country_and_City'=>'Country and City',
    'Finished_date'=>'Finished date',
-
    'Details'=>'Details',
    'Details_case'=>'Add case details',
-     'upload_your_image' => 'Upload image',
-   // 'Finished_date'=>'Finished date',
-   // 'Finished_date'=>'Finished date',
-   // 'Finished_date'=>'Finished date',
-   // 'Finished_date'=>'Finished date',
+   'upload_your_image' => 'Upload image',
+   'Your_Cases_page'=> 'Your Cases',
+   'Case_Offer'=>'Case Offer',
+   'Edit'=>'Edit',
+   'Delete'=>'Delete',
+   'confirm_delete_message'=>'Are you sure you want to delete this item?',
+   'basic_information'=>'Main Data',
+   'Offer_count'=>'Offer Count',
+   'Views'=>'Views',
+   'Opinions'=>'Opinions',
+   'Offers'=>'Offers',
+   'offer_price'=>'offer price',
+   'Accept_Offer'=>'Accept Offer',
+   'old_passowrd'=>'Current Password',
+   'new_passowrd'=>'New passowrd',
+   'F_WORD'=>'Designed and developed by',
 );
 
 ?>
+

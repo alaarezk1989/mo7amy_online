@@ -286,13 +286,13 @@
                       <span class=""> {{user_auth()->name}} </span><span class="caret"></span></a>
                       <ul class="dropdown-menu user-menu">
                         <li> <a href="{{lang_url('create')}}"> <i class="fa fa-plus" aria-hidden="true"></i>
-اضف قضية </a></li>
+                                 {{trans('cpanel.Add_Case')}}  </a></li>
                         <li> <a href="{{lang_url('your-cases')}}"> <i class="fa fa-briefcase" aria-hidden="true"></i>
- القضايا المرفوعة  </a></li>
+                                  {{ trans('cpanel.Your_Cases_page') }} </a></li>
                         <li> <a href="{{lang_url('edit-profile').'/'.$sess_user_id}}"><i class="fa fa-cogs" aria-hidden="true"></i>{{ trans('cpanel.my_profile') }} </a></li>
 
                         <li> <a href="{{lang_url('logout')}}"> <i class="fa fa-sign-out" aria-hidden="true"></i>
- {{ trans('cpanel.log_out') }} </a></li>
+                                  {{ trans('cpanel.log_out') }} </a></li>
                       </ul>
                   </li>
 

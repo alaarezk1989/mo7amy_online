@@ -32,14 +32,14 @@ $locale = App::getLocale();
 <img src="{{ URL::to('public/assets/Frontend/img/Slider1.jpg') }}" alt="slide1" class="img-responsive">
 <div class="carousel-caption d-none d-md-block">
 <a href="{{lang_url('create')}}">
-<button class="btn-add-case">اضف قضيتك</button></a>
+<button class="btn-add-case">{{trans('cpanel.Add_Case')}}</button></a>
 </div>
 </div>
 <div class="item">
 <img src="{{ URL::to('public/assets/Frontend/img/Slider2.jpg') }}" alt="slide2" class="img-responsive">
 <div class="carousel-caption d-none d-md-block">
 <a href="{{lang_url('create')}}">
-<button class="btn-add-case">اضف قضيتك</button></a>
+<button class="btn-add-case">{{trans('cpanel.Add_Case')}}</button></a>
 </div>
 </div>
 
@@ -125,11 +125,22 @@ $locale = App::getLocale();
                      <div class="casetype"> {{trans('cpanel.Case_type')}} : <span>{{$value->sectionName}}</span></div>
                      <div class="status"> {{trans('cpanel.Status')}} : 
 
-                     <?php
-                         if($value->status ==1) echo '<span> متاح</span>';
+                              <?php
+                         if($value->status ==1) 
+                          {
+                            $x= trans('cpanel.Available');
+                            echo '<span class="avail">'.$x.' </span>';
+                          }
+                         elseif($value->status ==2) 
+                          { $y= trans('cpanel.Under_Implementation');
+                            echo '<span class="unConst">'.$y.'</span>';
+                          }
                          else{
-                           echo '</span>غير متاحة</span>'; }
+                          $z= trans('cpanel.Finished');
+                           echo '<span class="unavail">'.$z.'</span>'; 
+                         }
                      ?>
+
                     </div>
                   </div>
                   <ul class="list-unstyled">

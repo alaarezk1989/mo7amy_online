@@ -3,7 +3,7 @@
 
 
   <div class="clientsett-img">
-  <p>{{trans('cpanel.setting')}} </p>
+  <p>{{trans('cpanel.Setting')}} </p>
   </div>
 
 <section class="seetings">

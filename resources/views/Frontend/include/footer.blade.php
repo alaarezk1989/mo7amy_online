@@ -53,7 +53,7 @@
 
 <div class="container-fluid">
 <div class="row">
-<p class="last-footer">   جميع الحقوق محفوظة- تم تصميمة وتطويرة بو اسطة  <a href="http://www.lodex-solutions.com">lodex-solutions.com</a> </p>
+<p class="last-footer">  {{trans('cpanel.F_WORD')}} <a href="http://www.lodex-solutions.com">lodex solutions</a> </p>
 </div>
 </div>
 

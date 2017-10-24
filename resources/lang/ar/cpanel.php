@@ -41,8 +41,8 @@ return array (
 
 
 
-  'settings' => 'الضبط',
-  'setting'=>'الضبط',
+ 
+  'Setting'=>'الضبط',
   'or' => 'او',
   'Welcome_in' => 'Welcome in',
   'arabic' => 'عربي',
@@ -86,9 +86,9 @@ return array (
 
 
   'forgot_password' => 'نسيت كلمه المرور ؟',
-  'old_passowrd'=>' كلمة السر القديمة',
-  'old_passowrd'=>'كلمة السر الجديدة ',
-  'basic_information'=>'البيانات الاساسية',
+  
+  'old_passowrd'=>'كلمة السر الحالية',
+  
   'forgot' => 'Forgot',
   'forgot_password_msg' => 'Enter your e-mail address below to reset your password.',
 
@@ -112,7 +112,7 @@ return array (
   'email_address' => 'E-Mail Adresse',
   'change_password' => 'change password',
   'current_password' => 'current password',
-  'password_confirmation' => 'Password Confirmation',
+  'password_confirmation' => 'تأكيد الرقم السرى الجديد',
   'status' => 'Status',
   'empty_data' => 'No Data Inserted',
   'action' => 'Action',
@@ -129,7 +129,7 @@ return array (
 
   'highest_price'=>'اعلى سعر',
   'lowest_price'=>'اقل سعر',
-  'latest_show'=>' احدث عرض',
+  'latest_show'=>' احدث القضايا',
   'result'=>'نتيجه',
   'of'=>'من',
   'show'=>'يظهر',
@@ -171,12 +171,27 @@ return array (
 وكذلك أخذ إستشارات قانونية من متخاصصين بسهولة وسرية تامة . 
 إنضم إلينا وتمتع بالمزايا التى يقدمها الموقع.',
 
-  'Case_Title'=>'نوع القضية',
-  'Country_and_City'=>'البلد والمدينة',
-   'Finished_date'=>'تاريخ الأنتهاء',
+'Case_Title'=>'نوع القضية',
+'Country_and_City'=>'البلد والمدينة',
+ 'Finished_date'=>'تاريخ الأنتهاء',
 
-    'Details'=>'التفاصيل',
-   'Details_case'=>'أضف تفاصيل قضيتك',
+ 'Details'=>'التفاصيل',
+ 'Details_case'=>'أضف تفاصيل قضيتك',
+'Your_Cases_page'=>'القضايا المرفوعة',
+   'Case_Offer'=>'العرض المقدم',
+ 'Edit'=>'تعديل',
+ 'Delete'=>'مسح',
+ 'confirm_delete_message'=>'هل أنت متأكد من مسح هذا العنصر؟',
+ 'basic_information'=>'البيانات الاساسية',
+ 'Offer_count'=>'عدد العروض',
+ 'Views'=>'عدد المشاهدات',
+ 'Opinions'=>'أراء',
+ 'Offers'=>'العروض المقدمة',
+ 'offer_price'=>'سعر العرض',
+ 'Accept_Offer'=>'قبلت عرضك',
+'new_passowrd'=>'الرقم السرى الجديد',
+ 'F_WORD'=>'تم تصميمة وتطويرة بو اسطة',
+  
 
 );
 
